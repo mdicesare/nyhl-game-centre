@@ -131,10 +131,15 @@ export function DataProvider({ children }) {
   const arenas = [...new Set(games.map((g) => g.arena).filter(Boolean))].sort()
   const standingsGameTypes = [...new Set(standingsList.map((s) => s.gameType).filter(Boolean))].sort()
   const allTeams = [
-    ...new Set(
-      games.flatMap((g) => [g.homeTeam.name, g.awayTeam.name]).filter(Boolean)
-    ),
-  ].sort()
+    ...new Set([
+      ...games.flatMap((g) => [g.homeTeam.name, g.awayTeam.name]),
+      ...standingsList.map((s) => s.name),
+    ].filter(Boolean).map((n) => n.toUpperCase())),
+  ].sort().map((upper) => {
+    // Preserve original casing from schedule data if available
+    const fromSchedule = games.flatMap((g) => [g.homeTeam.name, g.awayTeam.name]).find((n) => n.toUpperCase() === upper)
+    return fromSchedule || upper.charAt(0) + upper.slice(1).toLowerCase()
+  })
 
   const value = {
     schedule,

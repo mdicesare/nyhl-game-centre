@@ -12,7 +12,8 @@ export default defineConfig({
       manifest: {
         name: 'NYHL Game Centre',
         short_name: 'NYHL',
-        description: 'A better way to follow your NYHL teams',
+        name: 'North York Hockey League Game Center',
+        description: 'Schedules, standings, and results for your NYHL teams',
         theme_color: '#1e3a5f',
         background_color: '#ffffff',
         display: 'standalone',

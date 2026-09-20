@@ -234,13 +234,13 @@ export default function Settings() {
       </section>
 
       {/* About */}
-      <section>
+      <section className="mb-8">
         <h2 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">
           About
         </h2>
         <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4 text-sm text-gray-500 dark:text-slate-400 space-y-2">
           <p>
-            NYHL Game Centre — A better way to follow your NYHL teams.
+            North York Hockey League Game Center — Schedules, standings, and results for your NYHL teams.
           </p>
           <p>
             Data sourced from the NYHL/Agilex Game Centre. Updated regularly.
@@ -250,6 +250,62 @@ export default function Settings() {
           </p>
         </div>
       </section>
+
+      {/* Clear all data */}
+      <section>
+        <h2 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">
+          Data
+        </h2>
+        <ClearDataButton />
+      </section>
+    </div>
+  )
+}
+
+function ClearDataButton() {
+  const [confirmClear, setConfirmClear] = useState(false)
+
+  const handleClear = () => {
+    // Clear all NYHL-related localStorage keys
+    const keys = Object.keys(localStorage).filter((k) => k.startsWith('nyhl-'))
+    keys.forEach((k) => localStorage.removeItem(k))
+    // Reload to reset all state
+    window.location.href = '/nyhl-game-centre/'
+  }
+
+  return (
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="font-medium text-gray-700 dark:text-slate-200">Clear All Data</p>
+          <p className="text-sm text-gray-500 dark:text-slate-400">
+            Remove saved teams, preferences, and settings
+          </p>
+        </div>
+        {!confirmClear ? (
+          <button
+            onClick={() => setConfirmClear(true)}
+            className="text-sm text-red-500 border border-red-300 dark:border-red-700 px-3 py-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+          >
+            Clear
+          </button>
+        ) : (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleClear}
+              className="text-sm text-white bg-red-600 px-3 py-1.5 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Yes, clear
+            </button>
+            <button
+              onClick={() => setConfirmClear(false)}
+              className="text-sm text-gray-500 dark:text-slate-400 hover:underline"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

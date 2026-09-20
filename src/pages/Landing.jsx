@@ -6,7 +6,11 @@ import Select from '../components/Select.jsx'
 
 export default function Landing() {
   const { hasTeams, savedTeams, addTeam, setActiveTeam } = usePreferences()
-  const { divisions, tiers, allTeams, season, loading } = useData()
+  const { divisions: dataDivisions, tiers: dataTiers, allTeams, season, loading } = useData()
+
+  // Hardcoded lists so users can browse any division even if we only scraped one
+  const divisions = ['U07','U08','U09','U10','U11','U12','U13','U14','U15','U16','U17','U18','U21','OTH']
+  const tiers = ['Tier 1', 'Tier 2', 'Tier 3']
   const navigate = useNavigate()
 
   const [step, setStep] = useState('pick') // pick | search | done
@@ -62,11 +66,13 @@ export default function Landing() {
     <div className="min-h-screen bg-gradient-to-b from-nyhl-navy to-blue-900 text-white">
       <div className="max-w-lg mx-auto px-4 py-12 flex flex-col items-center text-center">
         {/* Header */}
-        <div className="text-6xl mb-4">🏒</div>
-        <h1 className="text-3xl font-bold mb-2">NYHL Game Centre</h1>
-        <p className="text-blue-200 text-lg mb-8">
-          A better way to follow your NYHL teams.
-          <br />
+        <div className="flex items-center gap-3 mb-4">
+          <img src={`${import.meta.env.BASE_URL}images/NYHLLogo-h150.png`} alt="NYHL" className="h-14 w-auto" />
+          <span className="text-5xl">🏒</span>
+        </div>
+        <h1 className="text-3xl font-bold mb-2">North York Hockey League</h1>
+        <h2 className="text-xl text-blue-200 mb-1">Game Center</h2>
+        <p className="text-blue-300 text-sm mb-8">
           Schedules · Standings · Results
         </p>
 

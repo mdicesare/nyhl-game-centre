@@ -533,6 +533,7 @@ def discover_filters(html: str) -> dict:
         "gameTypes": extract_select_options(html, "ddlType"),
         "clubs": extract_select_options(html, "ddlClub"),
         "arenas": extract_select_options(html, "ddlArena"),
+        "seasons": extract_select_options(html, "ddlSeason"),
     }
 
 
@@ -778,7 +779,7 @@ def write_output(
 
 def main():
     parser = argparse.ArgumentParser(description="NYHL Schedule & Standings Scraper")
-    parser.add_argument("--season", default="26-27", help="Season, e.g. 26-27 (default: current)")
+    parser.add_argument("--season", default="25-26", help="Season e.g. 25-26 (default: 25-26)")
     parser.add_argument("--division", default="ALL", help="Filter to division, e.g. U14")
     parser.add_argument("--tier", default="ALL", help="Filter to tier, e.g. Tier 2")
     parser.add_argument("--club", default="ALL", help="Filter to club name")
@@ -793,7 +794,6 @@ def main():
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
 
-    log.info("NYHL Scraper — season %s", args.season)
     session = create_session()
 
     # Step 1: GET initial page to harvest ViewState
@@ -823,6 +823,9 @@ def main():
         "gameTypes": filters.get("gameTypes", []),
     }
 
+    season = args.season
+    log.info("NYHL Scraper — season %s", season)
+
     games = []
     standings = []
 
@@ -831,7 +834,7 @@ def main():
         games = scrape_schedules(
             session,
             viewstate,
-            season=args.season,
+            season=season,
             division=args.division,
             club=args.club,
             arena=args.arena,
@@ -842,7 +845,7 @@ def main():
     if not args.schedule_only:
         standings = scrape_standings(
             session,
-            season=args.season,
+            season=season,
             division=args.division,
             tier=args.tier,
         )
@@ -864,7 +867,7 @@ def main():
         log.info("No team logos found in scraped data")
 
     # Step 6: Write output
-    write_output(games, standings, metadata, args.season, dry_run=args.dry_run)
+    write_output(games, standings, metadata, season, dry_run=args.dry_run)
 
     log.info("Done.")
 

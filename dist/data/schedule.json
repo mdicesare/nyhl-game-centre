@@ -1,70 +1,7447 @@
 {
-  "season": "26-27",
-  "scrapedAt": "2026-09-20T15:39:13.839248Z",
-  "gameCount": 3,
+  "season": "25-26",
+  "scrapedAt": "2026-09-20T15:57:54.667300Z",
+  "gameCount": 310,
   "games": [
     {
-      "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
-      "date": "2026-09-11",
-      "time": "18:00",
+      "id": "25-26_2025-10-06_20:30_Leaside Red_North Toronto",
+      "date": "2025-10-06",
+      "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "Vaughan Black",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-10-06_20:45_Parkwoods_Leaside Gold",
+      "date": "2025-10-06",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-06_20:30_Faustina Black_Ted Reeve",
+      "date": "2025-10-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-06_20:30_Forest Hill Blue_Faustina White",
+      "date": "2025-10-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-10-07_20:40_Vaughan Blue_Vaughan Red",
+      "date": "2025-10-07",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
         "logo": "VAR"
       },
       "awayTeam": {
         "id": "",
-        "name": "Knights",
-        "logo": "NK3"
+        "name": "Vaughan Blue",
+        "logo": "VAR"
       },
-      "division": "U9 /",
-      "tier": "",
-      "gameType": "WS",
-      "arena": "Downsview",
-      "status": "scheduled",
-      "score": null
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
-      "id": "26-27_2026-09-15_18:00__Duffield Black",
-      "date": "2026-09-15",
-      "time": "18:00",
+      "id": "25-26_2025-10-09_19:20_Scarborough Black_Scarborough Red",
+      "date": "2025-10-09",
+      "time": "19:20",
       "homeTeam": {
         "id": "",
-        "name": "Duffield Black",
-        "logo": "DF9"
+        "name": "Scarborough Red",
+        "logo": "SAE"
       },
       "awayTeam": {
         "id": "",
-        "name": "",
-        "logo": ""
+        "name": "Scarborough Black",
+        "logo": "SAE"
       },
-      "division": "U9 /",
-      "tier": "",
-      "gameType": "WS",
-      "arena": "Downsview",
-      "status": "scheduled",
-      "score": null
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
     },
     {
-      "id": "26-27_2026-09-15_18:45__Vaughan White",
-      "date": "2026-09-15",
-      "time": "18:45",
+      "id": "25-26_2025-10-10_19:20_Parkdale_York Mills Blue",
+      "date": "2025-10-10",
+      "time": "19:20",
       "homeTeam": {
         "id": "",
-        "name": "Vaughan White",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-10-10_20:30_Warren Park_East York",
+      "date": "2025-10-10",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-10_20:50_Willowdale_West Hill",
+      "date": "2025-10-10",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-14_20:30_Faustina White_Victoria Village",
+      "date": "2025-10-14",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-10-15_20:30_Warren Park_Faustina Black",
+      "date": "2025-10-15",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-16_20:30_Forest Hill Gold_York Mills Red",
+      "date": "2025-10-16",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-16_20:50_Leaside Gold_Forest Hill Blue",
+      "date": "2025-10-16",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-16_20:50_Parkwoods_Willowdale",
+      "date": "2025-10-16",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-17_20:20_East York_Scarborough Red",
+      "date": "2025-10-17",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-17_20:30_West Hill_York Mills Blue",
+      "date": "2025-10-17",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-10-18_16:35_Vaughan Red_Leaside Red",
+      "date": "2025-10-18",
+      "time": "16:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-19_18:50_York Mills Red_North Toronto",
+      "date": "2025-10-19",
+      "time": "18:50",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-10-19_16:55_Scarborough Black_Ted Reeve",
+      "date": "2025-10-19",
+      "time": "16:55",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-10-20_20:20_East York_Etobicoke Blue",
+      "date": "2025-10-20",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-20_20:20_Victoria Village_Forest Hill Blue",
+      "date": "2025-10-20",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-20_20:30_Leaside Red_Forest Hill Gold",
+      "date": "2025-10-20",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-21_20:40_Vaughan Blue_North Toronto",
+      "date": "2025-10-21",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-23_20:20_Etobicoke Blue_Ted Reeve",
+      "date": "2025-10-23",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-10-23_20:30_Faustina White_Willowdale",
+      "date": "2025-10-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-10-23_20:30_West Hill_Parkdale",
+      "date": "2025-10-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-23_20:50_Leaside Gold_York Mills Blue",
+      "date": "2025-10-23",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-24_20:20_Victoria Village_Parkwoods",
+      "date": "2025-10-24",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2025-10-24_20:30_Scarborough Black_Warren Park",
+      "date": "2025-10-24",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-26_16:50_Parkwoods_West Hill",
+      "date": "2025-10-26",
+      "time": "16:50",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-27_20:20_Ted Reeve_East York",
+      "date": "2025-10-27",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-27_20:20_North Toronto_Forest Hill Gold",
+      "date": "2025-10-27",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-27_20:30_Avenue Road_Etobicoke Blue",
+      "date": "2025-10-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-28_20:40_Vaughan Red_Forest Hill Gold",
+      "date": "2025-10-28",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-28_20:30_Willowdale_Forest Hill Blue",
+      "date": "2025-10-28",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-29_20:30_Vaughan Blue_York Mills Red",
+      "date": "2025-10-29",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_20:30_Faustina Black_Etobicoke Blue",
+      "date": "2025-10-30",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_20:30_West Hill_Victoria Village",
+      "date": "2025-10-30",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_20:20_York Mills Blue_Faustina White",
+      "date": "2025-10-30",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_20:50_Leaside Gold_Parkdale",
+      "date": "2025-10-30",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_21:00_Warren Park_Scarborough Red",
+      "date": "2025-10-30",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-10-30_20:30_Avenue Road_Scarborough Black",
+      "date": "2025-10-30",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-02_20:10_Avenue Road_Faustina Black",
+      "date": "2025-11-02",
+      "time": "20:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-11-03_20:30_Ted Reeve_Avenue Road",
+      "date": "2025-11-03",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-03_20:45_Vaughan Red_North Toronto",
+      "date": "2025-11-03",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2025-11-03_20:20_Faustina Black_East York",
+      "date": "2025-11-03",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-03_20:30_Parkwoods_Etobicoke White",
+      "date": "2025-11-03",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-04_20:40_Leaside Red_Vaughan Blue",
+      "date": "2025-11-04",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
         "logo": "VAR"
       },
       "awayTeam": {
         "id": "",
-        "name": "",
-        "logo": ""
+        "name": "Leaside Red",
+        "logo": "LE9"
       },
-      "division": "U9 /",
-      "tier": "",
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-04_20:30_Etobicoke Blue_Scarborough Red",
+      "date": "2025-11-04",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-05_20:30_Seaside Hockey_Etobicoke White",
+      "date": "2025-11-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-11-06_20:30_Parkdale_Faustina White",
+      "date": "2025-11-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-06_20:30_Forest Hill Blue_West Hill",
+      "date": "2025-11-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-06_20:20_Scarborough Black_Etobicoke Blue",
+      "date": "2025-11-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-11-06_20:50_Leaside Gold_Etobicoke White",
+      "date": "2025-11-06",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 11,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-06_20:50_York Mills Blue_Seaside Hockey",
+      "date": "2025-11-06",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-07_21:00_Victoria Village_Willowdale",
+      "date": "2025-11-07",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-09_18:55_York Mills Red_Vaughan Red",
+      "date": "2025-11-09",
+      "time": "18:55",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-11-09_15:50_Scarborough Red_Faustina Black",
+      "date": "2025-11-09",
+      "time": "15:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-11-09_17:00_Parkdale_Seaside Hockey",
+      "date": "2025-11-09",
+      "time": "17:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-10_20:30_North Toronto_Leaside Red",
+      "date": "2025-11-10",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-10_20:30_Parkdale_Parkwoods",
+      "date": "2025-11-10",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-10_20:30_Seaside Hockey_Leaside Gold",
+      "date": "2025-11-10",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-11-11_20:20_Scarborough Red_Avenue Road",
+      "date": "2025-11-11",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2025-11-12_20:30_York Mills Red_Vaughan Blue",
+      "date": "2025-11-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-12_20:30_Ted Reeve_Warren Park",
+      "date": "2025-11-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-13_20:30_Etobicoke White_Faustina White",
+      "date": "2025-11-13",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-11-13_20:50_Seaside Hockey_Willowdale",
+      "date": "2025-11-13",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 10
+      }
+    },
+    {
+      "id": "25-26_2025-11-13_20:30_York Mills Blue_Victoria Village",
+      "date": "2025-11-13",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-14_20:20_East York_Scarborough Black",
+      "date": "2025-11-14",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-14_20:30_Forest Hill Gold_Leaside Red",
+      "date": "2025-11-14",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-14_20:30_Forest Hill Blue_Parkdale",
+      "date": "2025-11-14",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-15_14:30_Willowdale_Etobicoke White",
+      "date": "2025-11-15",
+      "time": "14:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-17_20:30_Parkdale_Victoria Village",
+      "date": "2025-11-17",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-17_20:20_East York_Avenue Road",
+      "date": "2025-11-17",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-17_20:20_Parkwoods_Forest Hill Blue",
+      "date": "2025-11-17",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-17_20:30_Forest Hill Gold_Vaughan Blue",
+      "date": "2025-11-17",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-18_20:40_North Toronto_Vaughan Red",
+      "date": "2025-11-18",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-18_20:40_Faustina White_Seaside Hockey",
+      "date": "2025-11-18",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-19_20:30_Etobicoke White_York Mills Blue",
+      "date": "2025-11-19",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_20:30_Faustina Black_Scarborough Black",
+      "date": "2025-11-20",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_19:20_West Hill_Seaside Hockey",
+      "date": "2025-11-20",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_20:30_Ted Reeve_Scarborough Red",
+      "date": "2025-11-20",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_20:20_Etobicoke Blue_Warren Park",
+      "date": "2025-11-20",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_19:40_York Mills Red_Leaside Red",
+      "date": "2025-11-20",
+      "time": "19:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-20_20:30_Victoria Village_Leaside Gold",
+      "date": "2025-11-20",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-11-24_20:20_Etobicoke White_Forest Hill Blue",
+      "date": "2025-11-24",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 11
+      }
+    },
+    {
+      "id": "25-26_2025-11-24_20:30_Forest Hill Gold_North Toronto",
+      "date": "2025-11-24",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-11-25_20:40_Vaughan Red_Vaughan Blue",
+      "date": "2025-11-25",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-25_20:30_Avenue Road_East York",
+      "date": "2025-11-25",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-26_20:30_Ted Reeve_Etobicoke Blue",
+      "date": "2025-11-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-11-27_20:30_Faustina White_Leaside Gold",
+      "date": "2025-11-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-11-27_20:30_Etobicoke White_West Hill",
+      "date": "2025-11-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 10
+      }
+    },
+    {
+      "id": "25-26_2025-11-27_20:20_Vaughan Red_York Mills Red",
+      "date": "2025-11-27",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-11-27_20:50_Vaughan Blue_Leaside Red",
+      "date": "2025-11-27",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-27_20:30_Seaside Hockey_Victoria Village",
+      "date": "2025-11-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2025-11-28_20:20_Willowdale_Parkdale",
+      "date": "2025-11-28",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-11-28_20:20_York Mills Blue_Parkwoods",
+      "date": "2025-11-28",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-28_20:30_Warren Park_Scarborough Black",
+      "date": "2025-11-28",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-30_18:30_Warren Park_Avenue Road",
+      "date": "2025-11-30",
+      "time": "18:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Amesbury",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-11-30_18:50_Faustina Black_Scarborough Red",
+      "date": "2025-11-30",
+      "time": "18:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-01_19:35_East York_Ted Reeve",
+      "date": "2025-12-01",
+      "time": "19:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-01_20:30_Faustina White_Parkwoods",
+      "date": "2025-12-01",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-12-02_20:40_Vaughan Blue_Forest Hill Gold",
+      "date": "2025-12-02",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-03_20:30_Faustina Black_Avenue Road",
+      "date": "2025-12-03",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-03_19:20_Warren Park_Etobicoke Blue",
+      "date": "2025-12-03",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-12-04_20:30_Scarborough Red_Scarborough Black",
+      "date": "2025-12-04",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-12-04_20:20_York Mills Blue_Willowdale",
+      "date": "2025-12-04",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-04_20:50_Leaside Red_Vaughan Red",
+      "date": "2025-12-04",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-12-04_20:30_Victoria Village_Etobicoke White",
+      "date": "2025-12-04",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-05_21:30_York Mills Red_Forest Hill Gold",
+      "date": "2025-12-05",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-05_21:00_Leaside Gold_West Hill",
+      "date": "2025-12-05",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-07_18:00_North Toronto_York Mills Red",
+      "date": "2025-12-07",
+      "time": "18:00",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-07_19:00_West Hill_Faustina White",
+      "date": "2025-12-07",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-07_15:50_Seaside Hockey_Parkwoods",
+      "date": "2025-12-07",
+      "time": "15:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-12-08_20:30_Forest Hill Blue_Seaside Hockey",
+      "date": "2025-12-08",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-08_20:45_Avenue Road_Ted Reeve",
+      "date": "2025-12-08",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-08_20:20_Forest Hill Gold_Vaughan Red",
+      "date": "2025-12-08",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-12-09_20:40_North Toronto_Vaughan Blue",
+      "date": "2025-12-09",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-12-11_20:20_Willowdale_Leaside Gold",
+      "date": "2025-12-11",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-11_20:30_Etobicoke Blue_Faustina Black",
+      "date": "2025-12-11",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-11_20:20_Etobicoke White_Parkdale",
+      "date": "2025-12-11",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-12-11_21:00_Forest Hill Blue_York Mills Blue",
+      "date": "2025-12-11",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-11_20:30_Leaside Red_York Mills Red",
+      "date": "2025-12-11",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-12_20:20_Scarborough Black_East York",
+      "date": "2025-12-12",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2025-12-12_19:20_West Hill_Parkwoods",
+      "date": "2025-12-12",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-12-12_20:30_Scarborough Red_Warren Park",
+      "date": "2025-12-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2025-12-15_20:20_Faustina Black_East York",
+      "date": "2025-12-15",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-15_20:20_Forest Hill Gold_York Mills Red",
+      "date": "2025-12-15",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-15_20:30_Avenue Road_Ted Reeve",
+      "date": "2025-12-15",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2025-12-15_20:30_Vaughan Red_Leaside Red",
+      "date": "2025-12-15",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-16_20:40_Vaughan Blue_North Toronto",
+      "date": "2025-12-16",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-17_20:30_Ted Reeve_Etobicoke Blue",
+      "date": "2025-12-17",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-17_20:30_Willowdale_Parkdale",
+      "date": "2025-12-17",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-18_20:30_Scarborough Red_York Mills Blue",
+      "date": "2025-12-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
       "gameType": "WS",
       "arena": "Downsview",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-18_20:30_Seaside Hockey_Faustina White",
+      "date": "2025-12-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-18_20:30_West Hill_Victoria Village",
+      "date": "2025-12-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2025-12-18_19:40_Warren Park_Leaside Gold",
+      "date": "2025-12-18",
+      "time": "19:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2025-12-18_20:30_Scarborough Black_Forest Hill Blue",
+      "date": "2025-12-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-22_20:30_Etobicoke Blue_Avenue Road",
+      "date": "2025-12-22",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-12-22_20:20_East York_Faustina Black",
+      "date": "2025-12-22",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2025-12-22_20:30_Parkwoods_Victoria Village",
+      "date": "2025-12-22",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2025-12-22_20:20_Forest Hill Gold_North Toronto",
+      "date": "2025-12-22",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 10
+      }
+    },
+    {
+      "id": "25-26_2025-12-22_20:30_Seaside Hockey_Etobicoke White",
+      "date": "2025-12-22",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2025-12-23_19:20_Forest Hill Blue_Parkdale",
+      "date": "2025-12-23",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-04_17:50_York Mills Blue_Warren Park",
+      "date": "2026-01-04",
+      "time": "17:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Chesswood 2",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-01-05_20:20_Etobicoke Blue_Faustina Black",
+      "date": "2026-01-05",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-05_20:20_Avenue Road_East York",
+      "date": "2026-01-05",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 8
+      }
+    },
+    {
+      "id": "25-26_2026-01-05_20:20_Leaside Red_Forest Hill Gold",
+      "date": "2026-01-05",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-06_20:40_York Mills Red_Vaughan Blue",
+      "date": "2026-01-06",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-07_20:30_Faustina White_Forest Hill Blue",
+      "date": "2026-01-07",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-08_20:30_East York_Ted Reeve",
+      "date": "2026-01-08",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-08_21:00_North Toronto_Vaughan Red",
+      "date": "2026-01-08",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-08_20:30_Etobicoke White_Willowdale",
+      "date": "2026-01-08",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 11
+      }
+    },
+    {
+      "id": "25-26_2026-01-09_20:20_Victoria Village_Leaside Gold",
+      "date": "2026-01-09",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-09_20:30_York Mills Blue_Parkwoods",
+      "date": "2026-01-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-09_20:30_Scarborough Black_Parkdale",
+      "date": "2026-01-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-09_21:00_Warren Park_Scarborough Red",
+      "date": "2026-01-09",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-11_16:55_West Hill_York Mills Blue",
+      "date": "2026-01-11",
+      "time": "16:55",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-11_17:00_Seaside Hockey_Scarborough Black",
+      "date": "2026-01-11",
+      "time": "17:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 12
+      }
+    },
+    {
+      "id": "25-26_2026-01-12_20:30_Parkdale_Seaside Hockey",
+      "date": "2026-01-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-12_20:20_East York_Etobicoke Blue",
+      "date": "2026-01-12",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-01-12_20:20_North Toronto_Forest Hill Gold",
+      "date": "2026-01-12",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-12_20:30_Forest Hill Blue_Etobicoke White",
+      "date": "2026-01-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-12_20:30_Leaside Red_Vaughan Blue",
+      "date": "2026-01-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-13_20:40_Vaughan Red_Vaughan Blue",
+      "date": "2026-01-13",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-13_20:30_Ted Reeve_Faustina Black",
+      "date": "2026-01-13",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-14_20:30_York Mills Red_Vaughan Red",
+      "date": "2026-01-14",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-16_20:20_Scarborough Red_Parkwoods",
+      "date": "2026-01-16",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-16_19:20_Scarborough Black_Willowdale",
+      "date": "2026-01-16",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-16_20:30_Victoria Village_Warren Park",
+      "date": "2026-01-16",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-01-18_19:00_Faustina Black_Avenue Road",
+      "date": "2026-01-18",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Chesswood 1",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-19_20:30_Ted Reeve_Avenue Road",
+      "date": "2026-01-19",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-19_20:20_Forest Hill Blue_Seaside Hockey",
+      "date": "2026-01-19",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-19_20:30_North Toronto_York Mills Red",
+      "date": "2026-01-19",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-20_20:30_Faustina White_Willowdale",
+      "date": "2026-01-20",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-20_21:05_North Toronto_Leaside Red",
+      "date": "2026-01-20",
+      "time": "21:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Leaside B",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-21_20:30_East York_Avenue Road",
+      "date": "2026-01-21",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-22_20:20_Etobicoke White_Scarborough Black",
+      "date": "2026-01-22",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 10
+      }
+    },
+    {
+      "id": "25-26_2026-01-22_20:30_Scarborough Red_West Hill",
+      "date": "2026-01-22",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-22_20:20_Parkdale_Faustina White",
+      "date": "2026-01-22",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-22_21:00_Etobicoke Blue_Ted Reeve",
+      "date": "2026-01-22",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-23_19:10_Leaside Gold_York Mills Blue",
+      "date": "2026-01-23",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-23_20:30_Parkwoods_Warren Park",
+      "date": "2026-01-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-01-24_17:45_Leaside Red_Vaughan Red",
+      "date": "2026-01-24",
+      "time": "17:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-01-24_14:50_Vaughan Blue_Forest Hill Gold",
+      "date": "2026-01-24",
+      "time": "14:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Scotiabank Pond 3",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-01-26_20:30_Parkdale_Etobicoke White",
+      "date": "2026-01-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-26_20:20_Ted Reeve_East York",
+      "date": "2026-01-26",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-26_20:30_Parkwoods_Leaside Gold",
+      "date": "2026-01-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-26_20:30_Avenue Road_Etobicoke Blue",
+      "date": "2026-01-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-01-28_20:30_Vaughan Red_North Toronto",
+      "date": "2026-01-28",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-01-28_20:30_Vaughan Blue_York Mills Red",
+      "date": "2026-01-28",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-01-29_20:30_Faustina Black_Etobicoke Blue",
+      "date": "2026-01-29",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-01-29_20:30_Willowdale_Forest Hill Blue",
+      "date": "2026-01-29",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-01-30_20:20_Leaside Gold_Scarborough Red",
+      "date": "2026-01-30",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-01-30_20:30_York Mills Blue_Victoria Village",
+      "date": "2026-01-30",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-01-31_17:40_Faustina White_Scarborough Black",
+      "date": "2026-01-31",
+      "time": "17:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-02-02_20:45_North Toronto_Vaughan Blue",
+      "date": "2026-02-02",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-02_20:20_Etobicoke Blue_East York",
+      "date": "2026-02-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-02_20:30_Avenue Road_Faustina Black",
+      "date": "2026-02-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-02_20:20_Forest Hill Gold_Vaughan Red",
+      "date": "2026-02-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-03_20:20_Willowdale_Seaside Hockey",
+      "date": "2026-02-03",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-03_21:05_York Mills Red_Leaside Red",
+      "date": "2026-02-03",
+      "time": "21:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Leaside B",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-04_20:30_Faustina Black_Ted Reeve",
+      "date": "2026-02-04",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "WS",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-05_20:30_Etobicoke White_Faustina White",
+      "date": "2026-02-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-05_19:40_Leaside Gold_West Hill",
+      "date": "2026-02-05",
+      "time": "19:40",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-06_20:20_Forest Hill Gold_Leaside Red",
+      "date": "2026-02-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-06_20:30_Warren Park_West Hill",
+      "date": "2026-02-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-02-07_17:50_Vaughan Blue_Vaughan Red",
+      "date": "2026-02-07",
+      "time": "17:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-09_20:30_Vaughan Blue_North Toronto",
+      "date": "2026-02-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Commander Park R1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-09_20:20_East York_Ted Reeve",
+      "date": "2026-02-09",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-09_20:20_York Mills Red_Forest Hill Gold",
+      "date": "2026-02-09",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-09_20:30_Etobicoke Blue_Avenue Road",
+      "date": "2026-02-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-02-10_20:40_Forest Hill Gold_Vaughan Red",
+      "date": "2026-02-10",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-10_20:30_Victoria Village_Scarborough Red",
+      "date": "2026-02-10",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "WS",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-10_21:05_Leaside Red_York Mills Red",
+      "date": "2026-02-10",
+      "time": "21:05",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "WS",
+      "arena": "Leaside B",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-11_20:30_Faustina White_Parkdale",
+      "date": "2026-02-11",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-02-12_20:30_Faustina Black_East York",
+      "date": "2026-02-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-12_20:50_Leaside Red_York Mills Red",
+      "date": "2026-02-12",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-13_19:20_York Mills Blue_Victoria Village",
+      "date": "2026-02-13",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-14_14:30_Willowdale_Etobicoke White",
+      "date": "2026-02-14",
+      "time": "14:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-14_15:40_Scarborough Red_Leaside Gold",
+      "date": "2026-02-14",
+      "time": "15:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-15_16:50_Scarborough Black_Seaside Hockey",
+      "date": "2026-02-15",
+      "time": "16:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-18_20:30_Faustina White_Warren Park",
+      "date": "2026-02-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-02-19_20:20_Etobicoke Blue_Faustina Black",
+      "date": "2026-02-19",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-19_20:30_Forest Hill Blue_West Hill",
+      "date": "2026-02-19",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-19_20:20_Etobicoke White_Parkwoods",
+      "date": "2026-02-19",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 10
+      }
+    },
+    {
+      "id": "25-26_2026-02-19_20:50_Avenue Road_Ted Reeve",
+      "date": "2026-02-19",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-19_20:30_North Toronto_York Mills Red",
+      "date": "2026-02-19",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-20_19:20_Willowdale_Scarborough Black",
+      "date": "2026-02-20",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-02-20_19:20_Victoria Village_Parkdale",
+      "date": "2026-02-20",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-02-20_19:20_Warren Park_West Hill",
+      "date": "2026-02-20",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-20_19:50_Parkwoods_Scarborough Red",
+      "date": "2026-02-20",
+      "time": "19:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-21_17:45_Vaughan Blue_Forest Hill Gold",
+      "date": "2026-02-21",
+      "time": "17:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-21_19:00_Vaughan Red_Leaside Red",
+      "date": "2026-02-21",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-22_18:30_York Mills Blue_Warren Park",
+      "date": "2026-02-22",
+      "time": "18:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Amesbury",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-02-23_20:45_Leaside Gold_Seaside Hockey",
+      "date": "2026-02-23",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-23_20:20_Victoria Village_Forest Hill Blue",
+      "date": "2026-02-23",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-23_20:30_York Mills Blue_Faustina White",
+      "date": "2026-02-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-24_20:30_Etobicoke White_Scarborough Red",
+      "date": "2026-02-24",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 13
+      }
+    },
+    {
+      "id": "25-26_2026-02-25_20:30_Parkdale_West Hill",
+      "date": "2026-02-25",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-02-26_20:20_Faustina White_Forest Hill Blue",
+      "date": "2026-02-26",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-02-26_20:20_Scarborough Black_Etobicoke White",
+      "date": "2026-02-26",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-26_20:50_Willowdale_Leaside Gold",
+      "date": "2026-02-26",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-02-26_21:00_Seaside Hockey_Parkwoods",
+      "date": "2026-02-26",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 8
+      }
+    },
+    {
+      "id": "25-26_2026-02-26_20:20_Victoria Village_Warren Park",
+      "date": "2026-02-26",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-27_20:20_Parkwoods_Willowdale",
+      "date": "2026-02-27",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-02-27_19:20_Leaside Red_Forest Hill Gold",
+      "date": "2026-02-27",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-27_20:30_Warren Park_Parkdale",
+      "date": "2026-02-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-02-27_21:00_West Hill_York Mills Blue",
+      "date": "2026-02-27",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-02-28_16:35_Vaughan Red_Vaughan Blue",
+      "date": "2026-02-28",
+      "time": "16:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-01_19:10_Ted Reeve_Faustina Black",
+      "date": "2026-03-01",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Chesswood 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-01_16:50_Avenue Road_East York",
+      "date": "2026-03-01",
+      "time": "16:50",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-03-01_16:50_Seaside Hockey_Scarborough Red",
+      "date": "2026-03-01",
+      "time": "16:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Scarborough Ice Sports 3",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-03-02_20:30_Ted Reeve_Etobicoke Blue",
+      "date": "2026-03-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-03-02_20:30_Forest Hill Blue_Parkdale",
+      "date": "2026-03-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-03-02_20:20_Forest Hill Gold_York Mills Red",
+      "date": "2026-03-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Forest Hill",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-03_18:20_North Toronto_Vaughan Red",
+      "date": "2026-03-03",
+      "time": "18:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-05_20:30_York Mills Red_Vaughan Blue",
+      "date": "2026-03-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-05_20:20_Forest Hill Gold_North Toronto",
+      "date": "2026-03-05",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-05_20:30_Forest Hill Blue_York Mills Blue",
+      "date": "2026-03-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-06_20:20_Scarborough Red_Scarborough Black",
+      "date": "2026-03-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-06_20:20_Parkwoods_Leaside Gold",
+      "date": "2026-03-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-06_20:30_West Hill_Victoria Village",
+      "date": "2026-03-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-03-07_16:35_Leaside Red_Vaughan Blue",
+      "date": "2026-03-07",
+      "time": "16:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-03-09_20:20_East York_Etobicoke Blue",
+      "date": "2026-03-09",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-03-09_20:30_Faustina White_Victoria Village",
+      "date": "2026-03-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
+    },
+    {
+      "id": "25-26_2026-03-09_20:30_Seaside Hockey_Etobicoke White",
+      "date": "2026-03-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-03-10_20:20_Warren Park_Forest Hill Blue",
+      "date": "2026-03-10",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-03-10_21:05_Leaside Gold_Scarborough Black",
+      "date": "2026-03-10",
+      "time": "21:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Leaside B",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-11_20:30_West Hill_Faustina White",
+      "date": "2026-03-11",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-03-12_20:20_York Mills Red_Vaughan Red",
+      "date": "2026-03-12",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-03-12_20:30_Willowdale_Seaside Hockey",
+      "date": "2026-03-12",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-12_20:20_Faustina Black_Avenue Road",
+      "date": "2026-03-12",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PO",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-03-12_20:50_North Toronto_Leaside Red",
+      "date": "2026-03-12",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PO",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-13_20:20_Scarborough Black_Parkwoods",
+      "date": "2026-03-13",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Fenside",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-13_19:20_Scarborough Red_Willowdale",
+      "date": "2026-03-13",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-13_20:30_Parkdale_York Mills Blue",
+      "date": "2026-03-13",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Habitant",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-14_15:40_Leaside Gold_Etobicoke White",
+      "date": "2026-03-14",
+      "time": "15:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PO",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-03-15_19:10_Parkdale_Parkwoods",
+      "date": "2026-03-15",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Chesswood 1",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-03-15_18:50_Warren Park_Scarborough Red",
+      "date": "2026-03-15",
+      "time": "18:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-23_20:45_Leaside Red_North Toronto",
+      "date": "2026-03-23",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Commander Park R2",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-03-23_20:20_Avenue Road_East York",
+      "date": "2026-03-23",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-23_20:30_Ted Reeve_Faustina Black",
+      "date": "2026-03-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "John Booth",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-23_20:30_Parkwoods_Parkdale",
+      "date": "2026-03-23",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-03-24_20:20_Willowdale_Victoria Village",
+      "date": "2026-03-24",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-24_21:05_North Toronto_Leaside Red",
+      "date": "2026-03-24",
+      "time": "21:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Leaside B",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-03-26_20:20_Victoria Village_Willowdale",
+      "date": "2026-03-26",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
+    },
+    {
+      "id": "25-26_2026-03-26_20:30_Faustina Black_Ted Reeve",
+      "date": "2026-03-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Ford Performance Centre 3",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-03-26_20:30_Scarborough Black_West Hill",
+      "date": "2026-03-26",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Heron Park 1",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-03-27_19:20_Forest Hill Gold_Vaughan Blue",
+      "date": "2026-03-27",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Goulding Park",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-27_20:30_Scarborough Red_Warren Park",
+      "date": "2026-03-27",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Lambton",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
+    },
+    {
+      "id": "25-26_2026-03-28_17:45_Vaughan Blue_Forest Hill Gold",
+      "date": "2026-03-28",
+      "time": "17:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Al Palladini A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-28_15:30_West Hill_Scarborough Black",
+      "date": "2026-03-28",
+      "time": "15:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-29_19:00_East York_Avenue Road",
+      "date": "2026-03-29",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Chesswood 2",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
+    },
+    {
+      "id": "25-26_2026-03-30_20:30_Forest Hill Gold_Vaughan Blue",
+      "date": "2026-03-30",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Pleasantview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-03-31_20:20_East York_Avenue Road",
+      "date": "2026-03-31",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-03-31_20:20_Willowdale_Victoria Village",
+      "date": "2026-03-31",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "East York",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-04-02_20:50_Willowdale_Parkwoods",
+      "date": "2026-04-02",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Leaside A",
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-04-02_20:30_Scarborough Black_West Hill",
+      "date": "2026-04-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Victoria Village",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-04-09_20:30_Parkwoods_Willowdale",
+      "date": "2026-04-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Don Mills",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-04-09_20:20_Warren Park_Scarborough Black",
+      "date": "2026-04-09",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-04-10_20:20_Scarborough Black_Warren Park",
+      "date": "2026-04-10",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-04-11_16:10_North Toronto_Vaughan Blue",
+      "date": "2026-04-11",
+      "time": "16:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Herbert Carnegie",
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-04-12_18:20_Avenue Road_Ted Reeve",
+      "date": "2026-04-12",
+      "time": "18:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
+    },
+    {
+      "id": "25-26_2026-04-13_20:30_Willowdale_Parkwoods",
+      "date": "2026-04-13",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-04-15_21:00_Ted Reeve_Avenue Road",
+      "date": "2026-04-15",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
+    },
+    {
+      "id": "25-26_2026-04-17_20:20_Parkwoods_Scarborough Black",
+      "date": "2026-04-17",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
+    },
+    {
+      "id": "25-26_2026-04-18_16:00_Vaughan Blue_North Toronto",
+      "date": "2026-04-18",
+      "time": "16:00",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
+    },
+    {
+      "id": "25-26_2026-04-18_19:30_Scarborough Black_Parkwoods",
+      "date": "2026-04-18",
+      "time": "19:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
+    },
+    {
+      "id": "25-26_2026-04-19_16:00_Avenue Road_Ted Reeve",
+      "date": "2026-04-19",
+      "time": "16:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "PB",
+      "arena": "Downsview",
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     }
   ],
   "metadata": {
@@ -188,9 +7565,25 @@
       "FS"
     ],
     "logos": {
-      "DF9": "DF9.png",
-      "NK3": "NK3.png",
-      "VAR": "VAR.png"
+      "AV9": "AV9.png",
+      "EH9": "EH9.png",
+      "EY9": "EY9.png",
+      "FA9": "FA9.png",
+      "FH9": "FH9.png",
+      "LE9": "LE9.png",
+      "NT9": "NT9.png",
+      "PF9": "PF9.png",
+      "PW9": "PW9.png",
+      "SAE": "SAE.png",
+      "SEA": "SEA.png",
+      "TR9": "TR9.png",
+      "VAR": "VAR.png",
+      "VS1": "VS1.png",
+      "VV9": "VV9.png",
+      "WH1": "WH1.png",
+      "WI9": "WI9.png",
+      "WP9": "WP9.png",
+      "YM9": "YM9.png"
     }
   }
 }
