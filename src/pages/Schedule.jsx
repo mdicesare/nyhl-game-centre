@@ -173,9 +173,12 @@ export default function Schedule() {
       {/* Game list */}
       {filteredGames.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-400 dark:text-slate-500 text-lg mb-2">No games found</p>
+          <p className="text-4xl mb-4">🏒</p>
+          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">No games found</p>
           <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-            Try changing your filters or date range.
+            {activeFilterCount > 0
+              ? 'Try changing your filters or date range.'
+              : 'The season may not have started yet. Check back soon!'}
           </p>
           {activeFilterCount > 0 && (
             <button

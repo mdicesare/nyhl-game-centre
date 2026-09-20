@@ -764,6 +764,23 @@ def write_output(
     schedule_path = OUTPUT_DIR / "schedule.json"
     standings_path = OUTPUT_DIR / "standings.json"
 
+    # Safety: don't overwrite good data with bad
+    # If new scrape has fewer than 50% of existing games, skip writing
+    if schedule_path.exists():
+        try:
+            with open(schedule_path, encoding="utf-8") as f:
+                existing = json.load(f)
+            existing_count = existing.get("gameCount", 0)
+            if existing_count > 0 and len(games) < existing_count * 0.5:
+                log.warning(
+                    "SKIP: New scrape has %d games but existing has %d. "
+                    "Not overwriting — possible scrape failure.",
+                    len(games), existing_count,
+                )
+                return
+        except Exception:
+            pass  # Can't read existing, proceed with write
+
     with open(schedule_path, "w", encoding="utf-8") as f:
         json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
     log.info("Wrote %s (%d games)", schedule_path, len(games))
@@ -822,6 +839,23 @@ def main():
         "arenas": filters.get("arenas", []),
         "gameTypes": filters.get("gameTypes", []),
     }
+
+    # Discover available seasons from the standings page (schedule page doesn't have ddlSeason)
+    log.info("Discovering available seasons from standings page...")
+    try:
+        standings_resp = session.get(STANDINGS_URL, timeout=60)
+        standings_resp.raise_for_status()
+        seasons = extract_select_options(standings_resp.text, "ddlSeason")
+        if seasons:
+            metadata["seasons"] = seasons
+            log.info("Available seasons: %s", seasons)
+        else:
+            metadata["seasons"] = [args.season]
+            log.info("No seasons dropdown found, using: %s", args.season)
+        throttle()
+    except Exception as e:
+        log.warning("Could not discover seasons: %s", e)
+        metadata["seasons"] = [args.season]
 
     season = args.season
     log.info("NYHL Scraper — season %s", season)

@@ -3,16 +3,15 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/nyhl-game-centre/',
+  base: process.env.NODE_ENV === 'production' ? '/nyhl-game-centre/' : '/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'data/*.json'],
       manifest: {
-        name: 'NYHL Game Centre',
-        short_name: 'NYHL',
         name: 'North York Hockey League Game Center',
+        short_name: 'NYHL',
         description: 'Schedules, standings, and results for your NYHL teams',
         theme_color: '#1e3a5f',
         background_color: '#ffffff',

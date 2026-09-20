@@ -64,7 +64,19 @@ export function PreferencesProvider({ children }) {
   }, [])
 
   const setActiveTeam = useCallback((teamName) => {
-    setPrefs((p) => ({ ...p, activeTeam: teamName }))
+    setPrefs((p) => {
+      const team = p.savedTeams.find((t) => t.name === teamName)
+      const updates = { activeTeam: teamName }
+      // Pre-fill filters with the team's division/tier if available
+      if (team) {
+        updates.filters = {
+          ...p.filters,
+          division: team.division || 'ALL',
+          tier: team.tier || 'ALL',
+        }
+      }
+      return { ...p, ...updates }
+    })
   }, [])
 
   const setSeason = useCallback((season) => {

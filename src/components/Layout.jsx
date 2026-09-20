@@ -1,4 +1,5 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import Footer from './Footer'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 
 const navItems = [
@@ -13,7 +14,7 @@ export default function Layout() {
   const location = useLocation()
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 transition-colors">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 transition-colors pb-20">
       {/* Top bar */}
       <header className="gradient-navy text-white px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-lg">
         <a href="https://nyhl.on.ca/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -35,38 +36,12 @@ export default function Layout() {
       <FilterBar />
 
       {/* Main content */}
-      <main className="flex-1 pb-20">
+      <main className="flex-1">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50 pb-20 pt-4 px-4 text-center transition-colors">
-        <p className="text-xs text-gray-400 dark:text-slate-400">
-          Data sourced from{' '}
-          <a
-            href="https://nyhl.on.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-nyhl-blue hover:underline"
-          >
-            North York Hockey League
-          </a>
-        </p>
-        <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">
-          Powered by{' '}
-          <a
-            href="http://www.agilex.ca/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-nyhl-blue hover:underline"
-          >
-            AGILEX
-          </a>
-        </p>
-        <p className="text-xs text-gray-300 dark:text-slate-600 mt-1">
-          Not affiliated with NYHL. Built for fans, by fans.
-        </p>
-      </footer>
+      <Footer />
 
       {/* Bottom navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-700 z-30 safe-area-bottom transition-colors shadow-[0_-2px_10px_rgba(0,0,0,0.05)] dark:shadow-[0_-2px_10px_rgba(0,0,0,0.3)]">

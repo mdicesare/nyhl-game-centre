@@ -10,6 +10,12 @@ const GAME_TYPE_LABELS = {
   'PB': 'Playoff Elimination',
 }
 
+function formatSeasonLabel(s) {
+  // "25-26" → "2025–26"
+  const [y1, y2] = s.split('-')
+  return `20${y1}–${y2}`
+}
+
 export default function Standings() {
   const { filters, setFilters, clearFilters, activeTeam, season, setSeason } = usePreferences()
   const { standingsList, divisions, tiers, standingsGameTypes, lastUpdated } = useData()
@@ -32,22 +38,18 @@ export default function Standings() {
     return result
   }, [standingsList, filters])
 
-  // Determine current competition context
-  const competitionLabel = useMemo(() => {
-    const parts = [season]
-    if (filters.division !== 'ALL') parts.push(filters.division)
-    if (filters.tier !== 'ALL') parts.push(filters.tier)
-    if (filters.gameType && filters.gameType !== 'ALL') parts.push(GAME_TYPE_LABELS[filters.gameType] || filters.gameType)
-    return parts.join(' · ')
-  }, [season, filters])
-
   return (
     <div className="px-4 py-6 max-w-5xl mx-auto animate-fade-in">
-      {/* Header */}
-      <h1 className="text-2xl font-bold mb-4 dark:text-white">Standings</h1>
+      {/* Header with season badge */}
+      <div className="flex items-center gap-3 mb-5">
+        <h1 className="text-2xl font-bold dark:text-white">Standings</h1>
+        <span className="bg-nyhl-blue text-white text-sm font-semibold px-3 py-1 rounded-full">
+          20{season.split('-')[0]}–{season.split('-')[1]}
+        </span>
+      </div>
 
-      {/* Inline filter bar */}
-      <div className="flex items-center gap-2 mb-4 flex-wrap">
+      {/* Filter bar */}
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
         <select
           value={season}
           onChange={(e) => setSeason(e.target.value)}
@@ -56,8 +58,6 @@ export default function Standings() {
           <option value="26-27">2026–27</option>
           <option value="25-26">2025–26</option>
           <option value="24-25">2024–25</option>
-          <option value="23-24">2023–24</option>
-          <option value="22-23">2022–23</option>
         </select>
 
         <select
@@ -105,17 +105,41 @@ export default function Standings() {
         )}
       </div>
 
-      {/* Competition context label */}
-      <p className="text-sm text-gray-500 dark:text-slate-400 mb-4">{competitionLabel}</p>
+      {/* Active filter summary */}
+      <div className="flex items-center gap-2 mb-4 flex-wrap">
+        {filters.division !== 'ALL' && (
+          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.division}
+          </span>
+        )}
+        {filters.tier !== 'ALL' && (
+          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.tier}
+          </span>
+        )}
+        {filters.gameType && filters.gameType !== 'ALL' && (
+          <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {GAME_TYPE_LABELS[filters.gameType] || filters.gameType}
+          </span>
+        )}
+        {filters.division === 'ALL' && filters.tier === 'ALL' && (!filters.gameType || filters.gameType === 'ALL') && (
+          <span className="text-sm text-gray-400 dark:text-slate-500">
+            Showing all divisions · all tiers
+          </span>
+        )}
+      </div>
 
       {/* Standings list */}
       {filteredStandings.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-400 dark:text-slate-500 text-lg mb-2">
-            Standings aren't available for this competition yet.
+          <p className="text-4xl mb-4">📋</p>
+          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+            No standings data yet for {formatSeasonLabel(season)}
           </p>
           <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-            Try changing your filters.
+            {filters.division !== 'ALL' || filters.tier !== 'ALL' || (filters.gameType && filters.gameType !== 'ALL')
+              ? 'Try changing your filters, or check back later.'
+              : 'The season may not have started yet. Check back soon!'}
           </p>
           {(filters.division !== 'ALL' || filters.tier !== 'ALL' || (filters.gameType && filters.gameType !== 'ALL')) && (
             <button

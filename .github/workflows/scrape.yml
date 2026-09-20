@@ -1,0 +1,117 @@
+name: Scrape & Deploy
+
+on:
+  schedule:
+    # 6:00 AM ET daily (10:00 UTC)
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season to scrape (e.g. 25-26)"
+        required: false
+        default: "25-26"
+      division:
+        description: "Division filter (e.g. U14 or ALL)"
+        required: false
+        default: "U14"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    name: Scrape NYHL Data
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run scraper
+        run: |
+          python scraper/nyhl_scrape.py \
+            --season "${{ github.event.inputs.season || '25-26' }}" \
+            --division "${{ github.event.inputs.division || 'U14' }}" \
+            --verbose
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Validate output
+        run: |
+          python -c "
+          import json, sys
+          for f in ['public/data/schedule.json', 'public/data/standings.json']:
+              try:
+                  with open(f) as fh:
+                      data = json.load(fh)
+                  count = len(data.get('games', data.get('standings', [])))
+                  print(f'{f}: OK ({count} entries)')
+                  if count == 0:
+                      print(f'WARNING: {f} has 0 entries')
+              except FileNotFoundError:
+                  print(f'{f}: MISSING')
+              except json.JSONDecodeError as e:
+                  print(f'{f}: INVALID JSON: {e}')
+                  sys.exit(1)
+          "
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/
+          git diff --staged --quiet || git commit -m "Update NYHL data snapshot [skip ci]"
+          git push
+
+  build:
+    name: Build & Deploy
+    needs: scrape
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -18,7 +18,6 @@ export default function Home() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold dark:text-white">My Teams</h1>
-          <p className="text-sm text-gray-500 dark:text-slate-400">{season}</p>
         </div>
       </div>
 
@@ -33,6 +32,7 @@ export default function Home() {
             standing={getTeamStanding(team.name)}
             onSelect={() => setActiveTeam(team.name)}
             index={index}
+            globalSeason={season}
           />
         ))}
       </div>
@@ -73,7 +73,7 @@ export default function Home() {
   )
 }
 
-function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, index = 0 }) {
+function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, index = 0, globalSeason }) {
   const isWin = lastGame && lastGame.score && (
     (lastGame.homeTeam.name.toLowerCase() === team.name.toLowerCase() && lastGame.score.home > lastGame.score.away) ||
     (lastGame.awayTeam.name.toLowerCase() === team.name.toLowerCase() && lastGame.score.away > lastGame.score.home)
@@ -120,9 +120,10 @@ function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, inde
           )}
           <div>
             <h2 className="font-bold text-lg dark:text-white">{team.name}</h2>
-            {team.division && (
-              <p className="text-sm text-gray-500 dark:text-slate-400">{team.division}</p>
-            )}
+            <p className="text-sm text-gray-500 dark:text-slate-400">
+              {team.season ? `20${team.season.split('-')[0]}–${team.season.split('-')[1]}` : globalSeason}
+              {team.division && ` · ${team.division}`}
+            </p>
           </div>
         </div>
         {isActive && (
@@ -208,19 +209,36 @@ function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, inde
 
 function NoTeams() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 dark:bg-slate-900">
+    <div className="flex flex-col items-center justify-center px-4 py-12">
       <div className="text-center animate-fade-in">
-        <p className="text-5xl mb-4">🏒</p>
-        <h1 className="text-2xl font-bold mb-2 dark:text-white">Welcome to NYHL</h1>
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <img src={`${import.meta.env.BASE_URL}images/NYHLLogo-h150.png`} alt="NYHL" className="h-14 w-auto" />
+          <span className="text-5xl">🏒</span>
+        </div>
+        <h1 className="text-2xl font-bold mb-1 dark:text-white">Welcome to NYHL Game Center</h1>
         <p className="text-gray-500 dark:text-slate-400 mb-6">
-          Add a team to get started with schedules and standings.
+          Browse the league or add a team to personalize your experience.
         </p>
-        <Link
-          to="/"
-          className="inline-block bg-gradient-to-r from-nyhl-blue to-blue-600 text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
-        >
-          Find your team
-        </Link>
+        <div className="space-y-3">
+          <Link
+            to="/standings"
+            className="block bg-nyhl-blue text-white font-semibold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
+          >
+            View Standings
+          </Link>
+          <Link
+            to="/schedule"
+            className="block bg-transparent border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 font-medium py-3 px-8 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            View Schedule
+          </Link>
+          <Link
+            to="/"
+            className="block text-sm text-nyhl-blue hover:underline"
+          >
+            + Add a team
+          </Link>
+        </div>
       </div>
     </div>
   )

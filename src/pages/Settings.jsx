@@ -205,8 +205,6 @@ export default function Settings() {
           <option value="26-27">2026–27</option>
           <option value="25-26">2025–26</option>
           <option value="24-25">2024–25</option>
-          <option value="23-24">2023–24</option>
-          <option value="22-23">2022–23</option>
         </select>
       </section>
 
