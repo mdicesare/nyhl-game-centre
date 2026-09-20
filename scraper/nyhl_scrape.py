@@ -327,7 +327,7 @@ def fetch_standings_page(
     session: requests.Session,
     viewstate: dict,
     *,
-    event_id: int = 185,
+    event_id: int = 162,
     division: str = "U14",
     tier: str = "ALL",
     season: str = "",
@@ -612,9 +612,12 @@ def normalize_game(raw: dict, season: str) -> dict:
 
 def normalize_standings(raw: dict, season: str, division: str, tier: str) -> dict:
     """Normalize a raw standings row."""
+    name = raw.get("name", "").strip()
+    # Normalize to title case to match schedule data (e.g. "VAUGHAN BLUE" -> "Vaughan Blue")
+    name = " ".join(word.capitalize() for word in name.split()) if name else name
     return {
         "teamId": raw.get("teamId", ""),
-        "name": raw.get("name", ""),
+        "name": name,
         "logo": raw.get("logo", ""),
         "division": raw.get("division", division),
         "tier": raw.get("tier", tier),
@@ -688,15 +691,20 @@ def scrape_standings(
     tier: str = "ALL",
 ) -> list[dict]:
     """Scrape standings for a season. Gets its own ViewState from the standings page."""
-    # GET standings page to harvest its ViewState (different from schedule page)
+    # GET standings page to harvest its ViewState and event ID
     log.info("Fetching standings page for ViewState...")
     resp = session.get(STANDINGS_URL, timeout=60)
     resp.raise_for_status()
     viewstate = extract_viewstate(resp.text)
     throttle()
 
-    # Discover available game types from the standings page
+    # Extract lbEventID from hidden field (varies by season/event)
     soup = BeautifulSoup(resp.text, "lxml")
+    event_id_input = soup.find("input", {"id": "lbEventID"})
+    event_id = int(event_id_input.get("value", 162)) if event_id_input else 162
+    log.info("Standings event ID: %d", event_id)
+
+    # Discover available game types from the standings page
     type_select = soup.find("select", {"id": "ddlType"})
     game_types = ["FS"]
     if type_select:
@@ -712,6 +720,7 @@ def scrape_standings(
         html = fetch_standings_page(
             session,
             viewstate,
+            event_id=event_id,
             division=division,
             tier=tier,
             season=season,
