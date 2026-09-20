@@ -8,13 +8,6 @@ on:
   workflow_dispatch: # manual trigger
   push:
     branches: [main]
-    paths:
-      - "src/**"
-      - "public/**"
-      - "package.json"
-      - "vite.config.*"
-      - "tailwind.config.*"
-      - "index.html"
 
 permissions:
   contents: write
