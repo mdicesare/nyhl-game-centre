@@ -6,7 +6,7 @@ import Select from '../components/Select.jsx'
 
 export default function Landing() {
   const { hasTeams, savedTeams, addTeam, setActiveTeam } = usePreferences()
-  const { divisions: dataDivisions, tiers: dataTiers, allTeams, season, loading } = useData()
+  const { allTeams, season, loading } = useData()
 
   // Hardcoded lists so users can browse any division even if we only scraped one
   const divisions = ['U07','U08','U09','U10','U11','U12','U13','U14','U15','U16','U17','U18','U21','OTH']
@@ -32,12 +32,19 @@ export default function Landing() {
   }
 
   // Filter teams based on selections
-  const filteredTeams = allTeams.filter((name) => {
-    if (searchQuery) {
-      return name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredTeams = allTeams.filter((team) => {
+    // Text search
+    if (searchQuery && !team.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
     }
-    // Without division/tier data on team names, we show all
-    // The real filtering happens once we have division/tier metadata
+    // Division filter
+    if (selectedDivision && !team.divisions.includes(selectedDivision)) {
+      return false
+    }
+    // Tier filter
+    if (selectedTier && !team.tiers.includes(selectedTier)) {
+      return false
+    }
     return true
   })
 
@@ -160,17 +167,22 @@ export default function Landing() {
                     No teams found. Try adjusting your search.
                   </div>
                 )}
-                {filteredTeams.map((name) => (
+                {filteredTeams.map((team) => (
                   <button
-                    key={name}
-                    onClick={() => setSelectedTeam(name)}
+                    key={team.name}
+                    onClick={() => setSelectedTeam(team.name)}
                     className={`w-full text-left px-4 py-3 border-b border-white/5 transition-colors ${
-                      selectedTeam === name
+                      selectedTeam === team.name
                         ? 'bg-nyhl-gold/20 text-nyhl-gold font-semibold'
                         : 'hover:bg-white/5'
                     }`}
                   >
-                    {name}
+                    <span>{team.name}</span>
+                    {team.divisions.length > 0 && (
+                      <span className="text-xs text-blue-300 ml-2">
+                        {team.divisions.join(', ')}
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>

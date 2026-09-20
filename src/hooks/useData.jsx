@@ -130,16 +130,33 @@ export function DataProvider({ children }) {
   const tiers = [...new Set(games.map((g) => g.tier).filter(Boolean))].sort()
   const arenas = [...new Set(games.map((g) => g.arena).filter(Boolean))].sort()
   const standingsGameTypes = [...new Set(standingsList.map((s) => s.gameType).filter(Boolean))].sort()
-  const allTeams = [
-    ...new Set([
-      ...games.flatMap((g) => [g.homeTeam.name, g.awayTeam.name]),
-      ...standingsList.map((s) => s.name),
-    ].filter(Boolean).map((n) => n.toUpperCase())),
-  ].sort().map((upper) => {
-    // Preserve original casing from schedule data if available
-    const fromSchedule = games.flatMap((g) => [g.homeTeam.name, g.awayTeam.name]).find((n) => n.toUpperCase() === upper)
-    return fromSchedule || upper.charAt(0) + upper.slice(1).toLowerCase()
-  })
+
+  // Build per-team metadata: which divisions/tiers each team plays in
+  const teamMeta = {}
+  for (const g of games) {
+    for (const side of ['homeTeam', 'awayTeam']) {
+      const name = g[side]?.name
+      if (!name) continue
+      const key = name.toUpperCase()
+      if (!teamMeta[key]) teamMeta[key] = { name, divisions: new Set(), tiers: new Set() }
+      if (g.division) teamMeta[key].divisions.add(g.division)
+      if (g.tier) teamMeta[key].tiers.add(g.tier)
+    }
+  }
+  // Also add standings teams
+  for (const s of standingsList) {
+    const key = s.name?.toUpperCase()
+    if (!key) continue
+    if (!teamMeta[key]) teamMeta[key] = { name: s.name, divisions: new Set(), tiers: new Set() }
+    if (s.division) teamMeta[key].divisions.add(s.division)
+    if (s.tier) teamMeta[key].tiers.add(s.tier)
+  }
+
+  const allTeams = Object.values(teamMeta).map((t) => ({
+    name: t.name,
+    divisions: [...t.divisions],
+    tiers: [...t.tiers],
+  })).sort((a, b) => a.name.localeCompare(b.name))
 
   const value = {
     schedule,

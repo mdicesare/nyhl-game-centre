@@ -33,12 +33,12 @@ export default function Settings() {
   }
 
   const availableTeams = allTeams.filter(
-    (t) => !savedTeams.some((s) => s.name === t)
+    (t) => !savedTeams.some((s) => s.name.toLowerCase() === t.name.toLowerCase())
   )
 
   const filteredAvailable = newTeamSearch
     ? availableTeams.filter((t) =>
-        t.toLowerCase().includes(newTeamSearch.toLowerCase())
+        t.name.toLowerCase().includes(newTeamSearch.toLowerCase())
       )
     : availableTeams
 
@@ -163,13 +163,18 @@ export default function Settings() {
                   {newTeamSearch ? 'No matching teams' : 'All teams already added'}
                 </p>
               ) : (
-                filteredAvailable.map((name) => (
+                filteredAvailable.map((team) => (
                   <button
-                    key={name}
-                    onClick={() => handleAddTeam(name)}
+                    key={team.name}
+                    onClick={() => handleAddTeam(team.name)}
                     className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg dark:text-slate-200 transition-colors"
                   >
-                    {name}
+                    {team.name}
+                    {team.divisions.length > 0 && (
+                      <span className="text-xs text-gray-400 dark:text-slate-500 ml-2">
+                        {team.divisions.join(', ')}
+                      </span>
+                    )}
                   </button>
                 ))
               )}
