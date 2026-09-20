@@ -1,0 +1,873 @@
+#!/usr/bin/env python3
+"""
+NYHL Schedule & Standings Scraper
+
+Scrapes the Agilex SSP WebForms application used by NYHL's Game Centre.
+No REST API exists — we replay ASP.NET ViewState to fetch rendered HTML pages,
+then parse the server-side tables into normalized JSON.
+
+Usage:
+    python nyhl_scrape.py                    # scrape current season, all divisions
+    python nyhl_scrape.py --division U14     # one division only
+    python nyhl_scrape.py --club "Vaughan"   # one club only
+    python nyhl_scrape.py --team-id 12345    # one team by Agilex data-teamid
+    python nyhl_scrape.py --season 25-26     # historical season
+    python nyhl_scrape.py --dry-run          # parse but don't write files
+"""
+
+import argparse
+import json
+import logging
+import os
+import re
+import sys
+import time
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Optional
+from urllib.parse import urljoin
+
+import requests
+from bs4 import BeautifulSoup
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+
+AGILEX_BASE = "https://www.agilex.ca/SSP/Hockey"
+SCHEDULE_URL = f"{AGILEX_BASE}/schedules.aspx?event=176"
+STANDINGS_URL = f"{AGILEX_BASE}/Standings.aspx?event=171"
+
+VIEWSTATE_GENERATOR = "EBDC8456"  # observed stable across sessions
+
+USER_AGENT = (
+    "NYHL-GameCentre/1.0 "
+    "(scraper; contact: your-email@example.com) "
+    "Python-requests/"
+)
+
+THROTTLE_SECONDS = 2.0
+
+# Schedule HTML table ID
+SCHEDULE_TABLE_ID = "sche_repeater"
+# Standings HTML table ID
+STANDINGS_TABLE_ID = "st_tblRepeater"
+
+# Date format for Agilex form posts
+AGILEX_DATE_FMT = "%d-%b-%Y"  # e.g. 31-Aug-2026
+
+# Output paths (relative to project root)
+OUTPUT_DIR = Path(__file__).resolve().parent.parent / "public" / "data"
+LOGO_DIR = Path(__file__).resolve().parent.parent / "public" / "images" / "teams"
+
+# Logo base URL on Agilex (relative to /SSP/Hockey/ pages, ../ resolves to /SSP/)
+LOGO_BASE_URL = f"{AGILEX_BASE}/../Images/NYHL/Logo"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
+)
+log = logging.getLogger("nyhl_scraper")
+
+
+# ---------------------------------------------------------------------------
+# HTTP session
+# ---------------------------------------------------------------------------
+
+def create_session() -> requests.Session:
+    s = requests.Session()
+    s.headers.update({
+        "User-Agent": USER_AGENT,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+    })
+    return s
+
+
+def throttle():
+    time.sleep(THROTTLE_SECONDS)
+
+
+# ---------------------------------------------------------------------------
+# Logo handling
+# ---------------------------------------------------------------------------
+
+def extract_logo_codes(html: str) -> set[str]:
+    """Extract unique team logo codes from HTML (data-alt on logo images)."""
+    soup = BeautifulSoup(html, "lxml")
+    codes = set()
+    for img in soup.find_all("img", class_="logo-img"):
+        code = img.get("data-alt", "").strip()
+        if code:
+            codes.add(code)
+    return codes
+
+
+def download_logos(session: requests.Session, codes: set[str], dry_run: bool = False) -> dict[str, str]:
+    """
+    Download team logos from Agilex. Returns a mapping of code -> local filename.
+    Only downloads logos that don't already exist locally.
+    """
+    if not codes:
+        return {}
+
+    LOGO_DIR.mkdir(parents=True, exist_ok=True)
+    mapping = {}
+
+    for code in sorted(codes):
+        filename = f"{code}.png"
+        local_path = LOGO_DIR / filename
+        mapping[code] = filename
+
+        if local_path.exists():
+            log.debug("Logo %s already exists, skipping", code)
+            continue
+
+        url = f"{LOGO_BASE_URL}/{filename}"
+        try:
+            if dry_run:
+                log.info("Dry run: would download logo %s from %s", code, url)
+                continue
+
+            log.info("Downloading logo: %s", code)
+            resp = session.get(url, timeout=15)
+            if resp.status_code == 200 and len(resp.content) > 100:
+                local_path.write_bytes(resp.content)
+                log.info("Saved logo %s (%d bytes)", code, len(resp.content))
+            else:
+                log.warning("Logo %s not found or too small (%d bytes)", code, len(resp.content))
+            throttle()
+        except Exception as e:
+            log.warning("Failed to download logo %s: %s", code, e)
+
+    return mapping
+
+
+def get_team_logo(team_data_attr: str) -> str:
+    """
+    Extract logo code from a pipe-delimited data attribute.
+    e.g. "3250|NORTH TORONTO|25-26|U14|SL" -> we need the logo code
+    which comes from the img data-alt, not this attribute.
+    Returns empty string - logo codes come from extract_logo_codes().
+    """
+    return ""
+
+
+# ---------------------------------------------------------------------------
+# ViewState extraction
+# ---------------------------------------------------------------------------
+
+def extract_viewstate(html: str) -> dict:
+    """Extract ASP.NET ViewState fields from raw HTML."""
+    soup = BeautifulSoup(html, "lxml")
+    fields = {}
+    for name in ("__VIEWSTATE", "__VIEWSTATEGENERATOR", "__EVENTVALIDATION", "__VIEWSTATEENCRYPTED"):
+        tag = soup.find("input", {"name": name})
+        if tag:
+            fields[name] = tag.get("value", "")
+        else:
+            fields[name] = ""
+    # If VIEWSTATEGENERATOR missing from page, use known value
+    if not fields.get("__VIEWSTATEGENERATOR"):
+        fields["__VIEWSTATEGENERATOR"] = VIEWSTATE_GENERATOR
+    log.info("ViewState extracted — __VIEWSTATE length: %d", len(fields.get("__VIEWSTATE", "")))
+    return fields
+
+
+# ---------------------------------------------------------------------------
+# Schedule scraping
+# ---------------------------------------------------------------------------
+
+def fetch_schedule_page(
+    session: requests.Session,
+    viewstate: dict,
+    *,
+    event_id: int = 176,
+    division: str = "ALL",
+    tier: str = "ALL",
+    game_type: str = "ALL",
+    club: str = "ALL",
+    arena: str = "ALL",
+    date_from: Optional[str] = None,
+    date_to: Optional[str] = None,
+    event_target: str = "ddlDiv",
+) -> str:
+    """POST to schedules.aspx and return rendered HTML."""
+    payload = {
+        "__VIEWSTATE": viewstate["__VIEWSTATE"],
+        "__VIEWSTATEGENERATOR": viewstate["__VIEWSTATEGENERATOR"],
+        "__EVENTTARGET": event_target,
+        "__EVENTARGUMENT": "",
+        "lbEventID": str(event_id),
+        "ddlDiv": division,
+        "ddlTier": tier,
+        "ddlType": game_type,
+        "ddlClub": club,
+        "ddlArena": arena,
+    }
+    if date_from:
+        payload["dpFrom"] = date_from
+    if date_to:
+        payload["dpTo"] = date_to
+
+    resp = session.post(SCHEDULE_URL, data=payload, timeout=30)
+    resp.raise_for_status()
+    # DEBUG: dump raw response
+    debug_path = Path(__file__).resolve().parent / "debug_schedule.html"
+    debug_path.write_text(resp.text, encoding="utf-8")
+    log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
+    return resp.text
+
+
+def parse_schedule_table(html: str) -> list[dict]:
+    """
+    Parse the schedule repeater table into structured rows.
+
+    Actual column layout (0-indexed):
+      0: Date          - "26-Oct-2025 Sun" with data='2025-10-26' attribute
+      1: Time          - "4:50 PM"
+      2: Away logo     - <img> with data-alt='XX' (team code)
+      3: Away team     - <a> link text: "Parkwoods"
+      4: Score         - "2 : 1" or empty
+      5: Home logo     - <img> with data-alt='XX' (team code)
+      6: Home team     - <a> link text: "West Hill"
+      7: Div/Cat       - "U14 / Tier 3" (combined)
+      8: Type          - "FS"
+      9: Arena         - "Heron Park 1"
+     10: Status        - (often empty for completed games)
+     11: Extra         - LiveBarn link or empty
+    """
+    soup = BeautifulSoup(html, "lxml")
+    table = soup.find("table", {"id": SCHEDULE_TABLE_ID})
+    if not table:
+        log.warning("Schedule table '%s' not found in response", SCHEDULE_TABLE_ID)
+        return []
+
+    rows = []
+    for tr in table.find_all("tr"):
+        cells = tr.find_all("td")
+        if len(cells) < 10:
+            continue
+
+        # Extract date from data attribute on the first td
+        date_cell = cells[0]
+        iso_date = date_cell.get("data", "")
+        date_text = date_cell.get_text(strip=True)
+
+        # Extract time
+        time_text = cells[1].get_text(strip=True)
+
+        # Extract away team from <a> tag in cell 3
+        away_link = cells[3].find("a")
+        away_name = away_link.get_text(strip=True) if away_link else cells[3].get_text(strip=True)
+
+        # Extract away logo code from cell 2
+        away_logo = ""
+        away_img = cells[2].find("img", class_="logo-img")
+        if away_img:
+            away_logo = away_img.get("data-alt", "").strip()
+
+        # Extract score (cell 4) — format is "2 : 1" or empty
+        score_text = cells[4].get_text(strip=True)
+
+        # Extract home team from <a> tag in cell 6
+        home_link = cells[6].find("a")
+        home_name = home_link.get_text(strip=True) if home_link else cells[6].get_text(strip=True)
+
+        # Extract home logo code from cell 5
+        home_logo = ""
+        home_img = cells[5].find("img", class_="logo-img")
+        if home_img:
+            home_logo = home_img.get("data-alt", "").strip()
+
+        # Division/tier combined in cell 7 — e.g. "U14 / Tier 3"
+        div_tier = cells[7].get_text(strip=True)
+        division = ""
+        tier = ""
+        if " / " in div_tier:
+            parts = div_tier.split(" / ", 1)
+            division = parts[0].strip()
+            tier = parts[1].strip()
+        elif div_tier:
+            division = div_tier
+
+        # Game type (cell 8)
+        game_type = cells[8].get_text(strip=True)
+
+        # Arena (cell 9)
+        arena = cells[9].get_text(strip=True)
+
+        # Status (cell 10, if present)
+        status = cells[10].get_text(strip=True) if len(cells) > 10 else ""
+
+        row = {
+            "date": iso_date or date_text,
+            "time": time_text,
+            "awayTeam": {"id": "", "name": away_name, "logo": away_logo},
+            "score": score_text,
+            "homeTeam": {"id": "", "name": home_name, "logo": home_logo},
+            "division": division,
+            "tier": tier,
+            "gameType": game_type,
+            "arena": arena,
+            "status": status,
+        }
+        rows.append(row)
+
+    log.info("Parsed %d schedule rows", len(rows))
+    return rows
+
+
+# ---------------------------------------------------------------------------
+# Standings scraping
+# ---------------------------------------------------------------------------
+
+def fetch_standings_page(
+    session: requests.Session,
+    viewstate: dict,
+    *,
+    event_id: int = 185,
+    division: str = "U14",
+    tier: str = "ALL",
+    season: str = "",
+    game_type: str = "FS",
+    event_target: str = "ddlDiv",
+) -> str:
+    """POST to Standings.aspx and return rendered HTML."""
+    payload = {
+        "__VIEWSTATE": viewstate["__VIEWSTATE"],
+        "__VIEWSTATEGENERATOR": viewstate["__VIEWSTATEGENERATOR"],
+        "__EVENTTARGET": event_target,
+        "__EVENTARGUMENT": "",
+        "lbEventID": str(event_id),
+        "lbGameType": game_type,
+        "ddlDiv": division,
+        "ddlTier": tier,
+        "ddlType": game_type,
+    }
+    if season:
+        payload["ddlSeason"] = season
+
+    resp = session.post(STANDINGS_URL, data=payload, timeout=30)
+    resp.raise_for_status()
+    # DEBUG: dump raw standings response
+    debug_path = Path(__file__).resolve().parent / "debug_standings.html"
+    debug_path.write_text(resp.text, encoding="utf-8")
+    log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
+    return resp.text
+
+
+def parse_standings_table(html: str) -> list[dict]:
+    """
+    Parse the standings repeater table into structured rows.
+
+    Actual column layout (0-indexed):
+      0: Logo        - <img> with data="3250|TEAM NAME|25-26|U14|SL"
+      1: Team        - <a> with data-teamid="3250" and data="3250|TEAM|25-26|U14|Tier 1"
+      2: GP          - games played
+      3: W-L-T       - combined record "9-0-1"
+      4: PTS         - points
+      5: WIN%        - win percentage ".950"
+      6: GFA         - goals for average
+      7: GAA         - goals against average
+      8: GF          - goals for (total)
+      9: GA          - goals against (total)
+     10: GF/GA       - ratio
+     11: Home        - home record "4-0-1"
+     12: Away        - away record "5-0-0"
+     13: P10         - past 10 games
+     14: Streak      - "Won 7"
+     15: PIM         - penalty minutes
+    """
+    soup = BeautifulSoup(html, "lxml")
+    table = soup.find("table", {"id": STANDINGS_TABLE_ID})
+    if not table:
+        log.warning("Standings table '%s' not found in response", STANDINGS_TABLE_ID)
+        return []
+
+    rows = []
+    for tr in table.find_all("tr"):
+        cells = tr.find_all("td")
+        if len(cells) < 13:
+            continue
+
+        # Extract team identity from the data attribute on the <a> tag
+        # Format: "3250|TEAM NAME|25-26|U14|Tier 1"
+        team_cell = cells[1]
+        a_tag = team_cell.find("a")
+        team_id = ""
+        team_name = team_cell.get("data", "").strip()
+        division = ""
+        tier = ""
+        if a_tag:
+            data_attr = a_tag.get("data", "")
+            parts = data_attr.split("|")
+            if len(parts) >= 5:
+                team_id = parts[0].strip()
+                team_name = parts[1].strip()
+                division = parts[3].strip()
+                tier = parts[4].strip()
+            elif len(parts) >= 2:
+                team_id = parts[0].strip()
+                team_name = parts[1].strip()
+
+        # If team name still empty, try the text content
+        if not team_name:
+            team_name = team_cell.get_text(strip=True)
+
+        # Parse W-L-T record (combined in one column)
+        wlt_text = cells[3].get_text(strip=True)
+        w, l, t = 0, 0, 0
+        if "-" in wlt_text:
+            wlt_parts = wlt_text.split("-")
+            if len(wlt_parts) == 3:
+                try:
+                    w = int(wlt_parts[0])
+                    l = int(wlt_parts[1])
+                    t = int(wlt_parts[2])
+                except ValueError:
+                    pass
+
+        def safe_int(text):
+            text = text.strip().replace(",", "")
+            try:
+                return int(text)
+            except (ValueError, TypeError):
+                return 0
+
+        def safe_float(text):
+            text = text.strip().replace(",", "")
+            try:
+                return float(text)
+            except (ValueError, TypeError):
+                return 0.0
+
+        # Extract logo code from cell 0 (<img data-alt='NT9'>)
+        logo_code = ""
+        logo_img = cells[0].find("img", class_="logo-img")
+        if logo_img:
+            logo_code = logo_img.get("data-alt", "").strip()
+
+        row = {
+            "teamId": team_id,
+            "name": team_name,
+            "logo": logo_code,
+            "division": division,
+            "tier": tier,
+            "gp": safe_int(cells[2].get_text(strip=True)),
+            "w": w,
+            "l": l,
+            "t": t,
+            "pts": safe_int(cells[4].get_text(strip=True)),
+            "winPct": safe_float(cells[5].get_text(strip=True)),
+            "gfAvg": safe_float(cells[6].get_text(strip=True)),
+            "gaAvg": safe_float(cells[7].get_text(strip=True)),
+            "gf": safe_int(cells[8].get_text(strip=True)),
+            "ga": safe_int(cells[9].get_text(strip=True)),
+            "home": cells[11].get_text(strip=True),
+            "away": cells[12].get_text(strip=True),
+            "last10": cells[13].get_text(strip=True) if len(cells) > 13 else "",
+            "streak": cells[14].get_text(strip=True) if len(cells) > 14 else "",
+            "pim": safe_int(cells[15].get_text(strip=True)) if len(cells) > 15 else 0,
+        }
+        rows.append(row)
+
+    log.info("Parsed %d standings rows", len(rows))
+    return rows
+
+
+# ---------------------------------------------------------------------------
+# Season date range
+# ---------------------------------------------------------------------------
+
+def get_season_date_range(season: str) -> tuple[str, str]:
+    """
+    Return (start_date, end_date) for a NYHL season string like '26-27'.
+    NYHL seasons run roughly late August through March/April.
+    """
+    # Parse "26-27" -> start year 2026, end year 2027
+    parts = season.split("-")
+    start_year = 2000 + int(parts[0])
+    end_year = 2000 + int(parts[1])
+    start = datetime(start_year, 8, 25)
+    end = datetime(end_year, 4, 30)
+    return start.strftime(AGILEX_DATE_FMT), end.strftime(AGILEX_DATE_FMT)
+
+
+def chunk_date_range(start_str: str, end_str: str, chunk_days: int = 30) -> list[tuple[str, str]]:
+    """Split a date range into 30-day chunks."""
+    fmt = "%d-%b-%Y"
+    start = datetime.strptime(start_str, fmt)
+    end = datetime.strptime(end_str, fmt)
+    chunks = []
+    current = start
+    while current < end:
+        chunk_end = min(current + timedelta(days=chunk_days), end)
+        chunks.append((
+            current.strftime(fmt),
+            chunk_end.strftime(fmt),
+        ))
+        current = chunk_end + timedelta(days=1)
+    return chunks
+
+
+# ---------------------------------------------------------------------------
+# Filter options discovery
+# ---------------------------------------------------------------------------
+
+def extract_select_options(html: str, select_id: str) -> list[str]:
+    """Extract option values from a <select> element."""
+    soup = BeautifulSoup(html, "lxml")
+    sel = soup.find("select", {"id": select_id})
+    if not sel:
+        return []
+    return [opt.get("value", "") for opt in sel.find_all("option")]
+
+
+def discover_filters(html: str) -> dict:
+    """Extract available filter options from the schedule page."""
+    return {
+        "divisions": extract_select_options(html, "ddlDiv"),
+        "tiers": extract_select_options(html, "ddlTier"),
+        "gameTypes": extract_select_options(html, "ddlType"),
+        "clubs": extract_select_options(html, "ddlClub"),
+        "arenas": extract_select_options(html, "ddlArena"),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Data normalization
+# ---------------------------------------------------------------------------
+
+def normalize_game(raw: dict, season: str) -> dict:
+    """Normalize a raw scraped schedule row into the application schema."""
+    # Date is already ISO from the data attribute (e.g. "2025-10-26")
+    game_date = raw.get("date", "")
+    game_time = raw.get("time", "")
+
+    # Try to convert 12h time to 24h
+    if game_time:
+        try:
+            from datetime import datetime as _dt
+            parsed_time = _dt.strptime(game_time, "%I:%M %p")
+            game_time = parsed_time.strftime("%H:%M")
+        except ValueError:
+            pass
+
+    # Parse score if present — format is "2 : 1" or "2:1"
+    score = None
+    status_text = raw.get("status", "").lower().strip()
+    score_text = raw.get("score", "").strip()
+    if score_text:
+        # Handle "2 : 1", "2:1", etc.
+        cleaned = score_text.replace(" ", "")
+        if ":" in cleaned:
+            parts = cleaned.split(":")
+            if len(parts) == 2:
+                try:
+                    score = {"away": int(parts[0]), "home": int(parts[1])}
+                except ValueError:
+                    pass
+
+    # Determine status category
+    if score is not None:
+        status_cat = "final"
+    elif status_text in ("cancelled", "canceled"):
+        status_cat = "cancelled"
+    elif status_text in ("postponed", "ppd"):
+        status_cat = "postponed"
+    else:
+        status_cat = "scheduled"
+
+    away = raw.get("awayTeam", {})
+    home = raw.get("homeTeam", {})
+
+    # Build a stable ID
+    game_id = f"{season}_{game_date}_{game_time}_{away.get('name', '')}_{home.get('name', '')}"
+
+    return {
+        "id": game_id,
+        "date": game_date,
+        "time": game_time,
+        "homeTeam": {
+            "id": home.get("id", ""),
+            "name": home.get("name", ""),
+            "logo": home.get("logo", ""),
+        },
+        "awayTeam": {
+            "id": away.get("id", ""),
+            "name": away.get("name", ""),
+            "logo": away.get("logo", ""),
+        },
+        "division": raw.get("division", ""),
+        "tier": raw.get("tier", ""),
+        "gameType": raw.get("gameType", ""),
+        "arena": raw.get("arena", ""),
+        "status": status_cat,
+        "score": score,
+    }
+
+
+def normalize_standings(raw: dict, season: str, division: str, tier: str) -> dict:
+    """Normalize a raw standings row."""
+    return {
+        "teamId": raw.get("teamId", ""),
+        "name": raw.get("name", ""),
+        "logo": raw.get("logo", ""),
+        "division": raw.get("division", division),
+        "tier": raw.get("tier", tier),
+        "season": season,
+        "gp": raw.get("gp", 0),
+        "w": raw.get("w", 0),
+        "l": raw.get("l", 0),
+        "t": raw.get("t", 0),
+        "pts": raw.get("pts", 0),
+        "winPct": raw.get("winPct", 0.0),
+        "gfAvg": raw.get("gfAvg", 0.0),
+        "gaAvg": raw.get("gaAvg", 0.0),
+        "gf": raw.get("gf", 0),
+        "ga": raw.get("ga", 0),
+        "home": raw.get("home", ""),
+        "away": raw.get("away", ""),
+        "last10": raw.get("last10", ""),
+        "streak": raw.get("streak", ""),
+        "pim": raw.get("pim", 0),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Main scraper
+# ---------------------------------------------------------------------------
+
+def scrape_schedules(
+    session: requests.Session,
+    viewstate: dict,
+    *,
+    season: str = "26-27",
+    division: str = "ALL",
+    club: str = "ALL",
+    arena: str = "ALL",
+    tier: str = "ALL",
+) -> list[dict]:
+    """Scrape schedules for an entire season in 30-day chunks."""
+    start_str, end_str = get_season_date_range(season)
+    chunks = chunk_date_range(start_str, end_str, chunk_days=30)
+    log.info("Scraping schedules: %d chunks from %s to %s", len(chunks), start_str, end_str)
+
+    all_games = []
+    for i, (chunk_start, chunk_end) in enumerate(chunks, 1):
+        log.info("Chunk %d/%d: %s → %s", i, len(chunks), chunk_start, chunk_end)
+        html = fetch_schedule_page(
+            session,
+            viewstate,
+            division=division,
+            club=club,
+            arena=arena,
+            tier=tier,
+            date_from=chunk_start,
+            date_to=chunk_end,
+        )
+        raw_rows = parse_schedule_table(html)
+        for raw in raw_rows:
+            game = normalize_game(raw, season)
+            all_games.append(game)
+        if i < len(chunks):
+            throttle()
+
+    log.info("Total schedule games scraped: %d", len(all_games))
+    return all_games
+
+
+def scrape_standings(
+    session: requests.Session,
+    *,
+    season: str = "26-27",
+    division: str = "ALL",
+    tier: str = "ALL",
+) -> list[dict]:
+    """Scrape standings for a season. Gets its own ViewState from the standings page."""
+    # GET standings page to harvest its ViewState (different from schedule page)
+    log.info("Fetching standings page for ViewState...")
+    resp = session.get(STANDINGS_URL, timeout=30)
+    resp.raise_for_status()
+    viewstate = extract_viewstate(resp.text)
+    throttle()
+
+    # Discover available game types from the standings page
+    soup = BeautifulSoup(resp.text, "lxml")
+    type_select = soup.find("select", {"id": "ddlType"})
+    game_types = ["FS"]
+    if type_select:
+        game_types = [
+            opt.get("value", "FS")
+            for opt in type_select.find_all("option")
+            if opt.get("value")
+        ]
+    log.info("Available standings game types: %s", game_types)
+
+    results = []
+    for gt in game_types:
+        html = fetch_standings_page(
+            session,
+            viewstate,
+            division=division,
+            tier=tier,
+            season=season,
+            game_type=gt,
+        )
+        raw_rows = parse_standings_table(html)
+        for raw in raw_rows:
+            entry = normalize_standings(raw, season, division, tier)
+            entry["gameType"] = gt
+            results.append(entry)
+        throttle()
+
+    log.info("Total standings entries scraped: %d", len(results))
+    return results
+
+
+def write_output(
+    games: list[dict],
+    standings: list[dict],
+    metadata: dict,
+    season: str,
+    dry_run: bool = False,
+):
+    """Write normalized JSON to public/data/."""
+    now = datetime.utcnow().isoformat() + "Z"
+
+    schedule_payload = {
+        "season": season,
+        "scrapedAt": now,
+        "gameCount": len(games),
+        "games": games,
+        "metadata": metadata,
+    }
+
+    standings_payload = {
+        "season": season,
+        "scrapedAt": now,
+        "teamCount": len(standings),
+        "standings": standings,
+    }
+
+    if dry_run:
+        log.info("Dry run — would write %d games, %d standings entries", len(games), len(standings))
+        log.info("Sample game: %s", json.dumps(games[0], indent=2) if games else "none")
+        log.info("Sample standing: %s", json.dumps(standings[0], indent=2) if standings else "none")
+        return
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    schedule_path = OUTPUT_DIR / "schedule.json"
+    standings_path = OUTPUT_DIR / "standings.json"
+
+    with open(schedule_path, "w", encoding="utf-8") as f:
+        json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
+    log.info("Wrote %s (%d games)", schedule_path, len(games))
+
+    with open(standings_path, "w", encoding="utf-8") as f:
+        json.dump(standings_payload, f, indent=2, ensure_ascii=False)
+    log.info("Wrote %s (%d teams)", standings_path, len(standings))
+
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(description="NYHL Schedule & Standings Scraper")
+    parser.add_argument("--season", default="26-27", help="Season, e.g. 26-27 (default: current)")
+    parser.add_argument("--division", default="ALL", help="Filter to division, e.g. U14")
+    parser.add_argument("--tier", default="ALL", help="Filter to tier, e.g. Tier 2")
+    parser.add_argument("--club", default="ALL", help="Filter to club name")
+    parser.add_argument("--arena", default="ALL", help="Filter to arena")
+    parser.add_argument("--team-id", default=None, help="Filter to one team by Agilex data-teamid")
+    parser.add_argument("--schedule-only", action="store_true", help="Skip standings scrape")
+    parser.add_argument("--standings-only", action="store_true", help="Skip schedule scrape")
+    parser.add_argument("--dry-run", action="store_true", help="Parse but don't write files")
+    parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
+    args = parser.parse_args()
+
+    if args.verbose:
+        logging.getLogger().setLevel(logging.DEBUG)
+
+    log.info("NYHL Scraper — season %s", args.season)
+    session = create_session()
+
+    # Step 1: GET initial page to harvest ViewState
+    log.info("Fetching initial page for ViewState...")
+    resp = session.get(SCHEDULE_URL, timeout=30)
+    resp.raise_for_status()
+    # DEBUG: dump initial GET response
+    debug_path = Path(__file__).resolve().parent / "debug_get.html"
+    debug_path.write_text(resp.text, encoding="utf-8")
+    log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
+    viewstate = extract_viewstate(resp.text)
+    throttle()
+
+    # Step 2: Discover available filters
+    log.info("Discovering filter options...")
+    filters = discover_filters(resp.text)
+    log.info("Available divisions: %s", filters.get("divisions", []))
+    log.info("Available tiers: %s", filters.get("tiers", []))
+    log.info("Available clubs: %d options", len(filters.get("clubs", [])))
+    log.info("Available arenas: %d options", len(filters.get("arenas", [])))
+
+    metadata = {
+        "divisions": filters.get("divisions", []),
+        "tiers": filters.get("tiers", []),
+        "clubs": filters.get("clubs", []),
+        "arenas": filters.get("arenas", []),
+        "gameTypes": filters.get("gameTypes", []),
+    }
+
+    games = []
+    standings = []
+
+    # Step 3: Scrape schedules
+    if not args.standings_only:
+        games = scrape_schedules(
+            session,
+            viewstate,
+            season=args.season,
+            division=args.division,
+            club=args.club,
+            arena=args.arena,
+            tier=args.tier,
+        )
+
+    # Step 4: Scrape standings
+    if not args.schedule_only:
+        standings = scrape_standings(
+            session,
+            season=args.season,
+            division=args.division,
+            tier=args.tier,
+        )
+
+    # Step 5: Collect and download team logos
+    all_logo_codes = set()
+    for game in games:
+        all_logo_codes.add(game.get("awayTeam", {}).get("logo", ""))
+        all_logo_codes.add(game.get("homeTeam", {}).get("logo", ""))
+    for team in standings:
+        all_logo_codes.add(team.get("logo", ""))
+    all_logo_codes.discard("")  # remove empty strings
+
+    if all_logo_codes:
+        log.info("Found %d unique team logos to download", len(all_logo_codes))
+        logo_mapping = download_logos(session, all_logo_codes, dry_run=args.dry_run)
+        metadata["logos"] = logo_mapping
+    else:
+        log.info("No team logos found in scraped data")
+
+    # Step 6: Write output
+    write_output(games, standings, metadata, args.season, dry_run=args.dry_run)
+
+    log.info("Done.")
+
+
+if __name__ == "__main__":
+    main()

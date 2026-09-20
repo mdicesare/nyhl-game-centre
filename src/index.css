@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Safe area padding for notched phones */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Dark mode base */
+.dark {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark body {
+  background-color: #0f172a;
+}
+
+/* Smooth transitions for page navigation */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.dark .card-hover:hover {
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Score pulse animation for wins */
+@keyframes scorePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.score-win {
+  animation: scorePulse 0.3s ease-in-out;
+}
+
+/* Status badge styles */
+.status-final { @apply bg-gray-100 text-gray-600; }
+.status-scheduled { @apply bg-nyhl-blue/10 text-nyhl-blue; }
+.status-live { @apply bg-nyhl-red/10 text-nyhl-red animate-pulse; }
+.dark .status-final { @apply bg-gray-800 text-gray-400; }
+.dark .status-scheduled { @apply bg-nyhl-blue/20 text-blue-400; }
+.dark .status-live { @apply bg-nyhl-red/20 text-red-400; }
+
+/* Gradient backgrounds */
+.gradient-navy {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+}
+.gradient-gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Logo glow effect */
+.logo-glow {
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
+}
+.dark .logo-glow {
+  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 0.4));
+}

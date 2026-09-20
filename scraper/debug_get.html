@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Agilex Schedules
+</title><link href="../Content/icons/font/bootstrap-icons.min.css" rel="stylesheet" /><link href="../Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="Event.js" type="text/javascript"></script>
+    <script src="../Scripts/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="../Script/jquery.min.js" type="text/javascript"></script>
+    <script src="../Script/common.js" type="text/javascript"></script>
+    <script src="../Script/jquery.tablesorter.min.js" type="text/javascript"></script>
+    <script src="../Script/iframeResizer.contentWindow.min.js" type="text/javascript"></script>
+
+    <script src="../Scripts/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <link href="../Content/bootstrap-datepicker.standalone.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        var client = 'NYHL';
+        g_DynamicLoading.css("../App_Themes/" + 'NYHL' + "/Main.css");
+
+        function GoBack() {
+            window.location.href = "Standings.aspx?event=" + g_EventID[client].Standings;
+        }
+
+        $(function () {
+            $('#divFrom').datepicker({ format: 'dd-M-yyyy', autoclose: true });
+            $('#divTo').datepicker({ format: 'dd-M-yyyy', autoclose: true });
+
+            try {
+                $.tablesorter.addParser({
+                    // set a unique id 
+                    id: 'DOW',
+                    is: function (s) {
+                        return false;
+                    },
+                    format: function (s, table, cell, cellIndex) {
+                        return $.tablesorter.formatFloat(new Date($(cell).attr('data')).getTime());
+                    },
+                    // set type, either numeric or text 
+                    type: 'text'
+                });
+
+                $.tablesorter.defaults.headers = { 0: { sorter: 'DOW' }, 1: { sorter: 'time' } };
+                $("#sche_repeater").tablesorter();
+            }
+            catch (e) {
+                console.log("Error: " + e.message);
+            }
+
+            $("#btnPlayoffs").click(function () {
+                window.location.href = "Playoffs.aspx?event=" + g_EventID[client].Playoffs;
+            });
+
+            $("#btnStandings").click(function () {
+                window.location.href = "Standings.aspx?event=" + g_EventID[client].Standings;
+            });
+
+            // link to the html of Champion_Weekend schedules
+            $("#btnChampion").click(function (e) {
+                e.preventDefault(); // Prevent the default behavior of the radio button
+
+                var url = "https://www.agilex.ca/HTML/" + client + "/ChampionshipWeekend";
+                var myModal = new bootstrap.Modal($("#exampleModal"), {});
+
+                loadChampionWeenendImage(url, $("#modalBody"));
+
+                myModal.show();
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        .modal-dialog {
+            min-width: 650px;
+            height: auto;
+        }
+        button.btn-close {
+            width: 15px; height: 15px;
+        }
+        .modal-header {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer border-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" action="./schedules.aspx?event=176" id="ctl01">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="EBDC8456" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+        <div class="container">
+            <div class="row mt-2">
+                <span class="col-lg-6 col-md-6 col-sm-6 text-start"><span id="lbTitle" class="page-title fw-bold">SCHEDULES / SCORES</span></span>
+                <span class="col-lg-6 col-md-6 col-sm-12 text-end"><a class="link-copyright" target="_blank" href="http://www.agilex.ca">Powered by AGILEX</a>&nbsp;</span>
+                <input name="lbEventID" type="hidden" id="lbEventID" value="176" />
+            </div>
+
+            <div class="row clearfix col-lg-12 col-md-12 col-sm-12 mt-3">
+                <div id="sche_pnlSearch">
+	
+                    <div class="row">
+                        <div id="pnlDiv" class="col-lg-2 col-md-4 col-sm-8">
+		
+                            <label for="ddlDiv" class="control-label fw-bold"><span id="lbDivision">Division</span></label>
+                            <div class="text-start">
+                                <select name="ddlDiv" id="ddlDiv" class="form-control form-select">
+			<option selected="selected" value="ALL">ALL</option>
+			<option value="U07">Under 7</option>
+			<option value="U08">Under 8</option>
+			<option value="U09">Under 9</option>
+			<option value="U10">Under 10</option>
+			<option value="U11">Under 11</option>
+			<option value="U12">Under 12</option>
+			<option value="U13">Under 13</option>
+			<option value="U14">Under 14</option>
+			<option value="U15">Under 15</option>
+			<option value="U16">Under 16</option>
+			<option value="U17">Under 17</option>
+			<option value="U18">Under 18</option>
+			<option value="U21">Under 21</option>
+			<option value="OTH">Other</option>
+
+		</select>
+                            </div>
+                        
+	</div>
+                        
+                        <div id="pnlTier" class="col-lg-2 col-md-4 col-sm-8">
+		
+                            <label for="ddlTier" class="control-label fw-bold"><span id="lbTier">Tier</span></label>
+                            <div class="text-start">
+                                <select name="ddlTier" id="ddlTier" class="form-control form-select">
+			<option selected="selected" value="ALL">ALL</option>
+			<option value="Tier 1">Tier 1</option>
+			<option value="Tier 2">Tier 2</option>
+			<option value="Tier 3">Tier 3</option>
+			<option value="Tier 4">Tier 4</option>
+			<option value="Tier E">Tier E</option>
+
+		</select>
+                            </div>
+                        
+	</div>
+                        <div id="pnlType" class="col-lg-2 col-md-4 col-sm-8">
+		
+                            <label for="ddlType" class="control-label fw-bold"><span id="lbGameType">Game Type</span></label>
+                            <div class="text-start">
+                                <select name="ddlType" id="ddlType" class="form-control form-select">
+			<option selected="selected" value="ALL">ALL</option>
+			<option value="FS">Fall Season</option>
+
+		</select>
+                            </div>
+                        
+	</div>
+                    </div>
+                    <div class="row mt-2">
+                        <div id="pnlClub" class="col-lg-3 col-md-6 col-sm-8">
+		
+                            <label for="ddlClub" class="control-label fw-bold"><span id="lbClub">Club</span></label>
+                            <div class="text-start">
+                                <select name="ddlClub" id="ddlClub" class="form-control form-select">
+			<option selected="selected" value="ALL">ALL</option>
+			<option value="AVENUE ROAD">AVENUE ROAD</option>
+			<option value="AVENUE ROAD BLACK">AVENUE ROAD BLACK</option>
+			<option value="AVENUE ROAD ORANGE">AVENUE ROAD ORANGE</option>
+			<option value="DUFFIELD">DUFFIELD</option>
+			<option value="DUFFIELD BLACK">DUFFIELD BLACK</option>
+			<option value="DUFFIELD RED">DUFFIELD RED</option>
+			<option value="DUFFIELD WHITE">DUFFIELD WHITE</option>
+			<option value="EAST YORK">EAST YORK</option>
+			<option value="ETOBICOKE">ETOBICOKE</option>
+			<option value="ETOBICOKE BLUE">ETOBICOKE BLUE</option>
+			<option value="ETOBICOKE WHITE">ETOBICOKE WHITE</option>
+			<option value="FAUSTINA BLACK">FAUSTINA BLACK</option>
+			<option value="FAUSTINA WHITE">FAUSTINA WHITE</option>
+			<option value="FOREST HILL">FOREST HILL</option>
+			<option value="FOREST HILL BLUE">FOREST HILL BLUE</option>
+			<option value="FOREST HILL GOLD">FOREST HILL GOLD</option>
+			<option value="GEORGE BELL">GEORGE BELL</option>
+			<option value="GOULDING PARK">GOULDING PARK</option>
+			<option value="HUMBER VALLEY">HUMBER VALLEY</option>
+			<option value="KNIGHTS">KNIGHTS</option>
+			<option value="LEASIDE GOLD">LEASIDE GOLD</option>
+			<option value="LEASIDE RED">LEASIDE RED</option>
+			<option value="LEASIDE WHITE">LEASIDE WHITE</option>
+			<option value="MIMICO">MIMICO</option>
+			<option value="NORTH TORONTO">NORTH TORONTO</option>
+			<option value="NORTH TORONTO GREEN">NORTH TORONTO GREEN</option>
+			<option value="NORTH TORONTO RED">NORTH TORONTO RED</option>
+			<option value="PARKDALE">PARKDALE</option>
+			<option value="PARKDALE RED">PARKDALE RED</option>
+			<option value="PARKDALE WHITE">PARKDALE WHITE</option>
+			<option value="PARKWOODS">PARKWOODS</option>
+			<option value="SCARBOROUGH">SCARBOROUGH</option>
+			<option value="SCARBOROUGH BLACK">SCARBOROUGH BLACK</option>
+			<option value="SCARBOROUGH RED">SCARBOROUGH RED</option>
+			<option value="SCARBOROUGH WHITE">SCARBOROUGH WHITE</option>
+			<option value="SEASIDE HOCKEY">SEASIDE HOCKEY</option>
+			<option value="TED REEVE">TED REEVE</option>
+			<option value="TED REEVE BLACK">TED REEVE BLACK</option>
+			<option value="TED REEVE RED">TED REEVE RED</option>
+			<option value="THORNCREST">THORNCREST</option>
+			<option value="VAUGHAN BLACK">VAUGHAN BLACK</option>
+			<option value="VAUGHAN BLUE">VAUGHAN BLUE</option>
+			<option value="VAUGHAN JCC">VAUGHAN JCC</option>
+			<option value="VAUGHAN JCC BLUE">VAUGHAN JCC BLUE</option>
+			<option value="VAUGHAN JCC WHITE">VAUGHAN JCC WHITE</option>
+			<option value="VAUGHAN RED">VAUGHAN RED</option>
+			<option value="VAUGHAN SILVER">VAUGHAN SILVER</option>
+			<option value="VAUGHAN WHITE">VAUGHAN WHITE</option>
+			<option value="VICTORIA VILLAGE">VICTORIA VILLAGE</option>
+			<option value="VICTORIA VILLAGE BLUE">VICTORIA VILLAGE BLUE</option>
+			<option value="VICTORIA VILLAGE ORANGE">VICTORIA VILLAGE ORANGE</option>
+			<option value="WARREN PARK">WARREN PARK</option>
+			<option value="WARREN PARK RED">WARREN PARK RED</option>
+			<option value="WARREN PARK WHITE">WARREN PARK WHITE</option>
+			<option value="WEST HILL">WEST HILL</option>
+			<option value="WEST HILL GOLD">WEST HILL GOLD</option>
+			<option value="WILLOWDALE">WILLOWDALE</option>
+			<option value="YORK MILLS">YORK MILLS</option>
+			<option value="YORK MILLS BLUE">YORK MILLS BLUE</option>
+			<option value="YORK MILLS RED">YORK MILLS RED</option>
+
+		</select>
+                            </div>
+                        
+	</div>
+                        <div id="pnlArena" class="col-lg-3 col-md-6 col-sm-8">
+		
+                            <label for="ddlArena" class="control-label fw-bold"><span id="lbArena">Arena</span></label>
+                            <div class="text-start">
+                                <select name="ddlArena" id="ddlArena" class="form-control form-select">
+			<option selected="selected" value="ALL">ALL</option>
+			<option value="Al Palladini">Al Palladini</option>
+			<option value="Amesbury">Amesbury</option>
+			<option value="Chesswood">Chesswood</option>
+			<option value="Commander Park">Commander Park</option>
+			<option value="Don Mills">Don Mills</option>
+			<option value="Don Montgomery">Don Montgomery</option>
+			<option value="Downsview">Downsview</option>
+			<option value="East York">East York</option>
+			<option value="Fenside">Fenside</option>
+			<option value="Ford Performance Centre">Ford Performance Centre</option>
+			<option value="Forest Hill">Forest Hill</option>
+			<option value="Goulding Park">Goulding Park</option>
+			<option value="Habitant">Habitant</option>
+			<option value="Herbert Carnegie">Herbert Carnegie</option>
+			<option value="Heron Park">Heron Park</option>
+			<option value="John Booth">John Booth</option>
+			<option value="Lambton">Lambton</option>
+			<option value="Leaside">Leaside</option>
+			<option value="Pleasantview">Pleasantview</option>
+			<option value="Scarborough Ice Sports">Scarborough Ice Sports</option>
+			<option value="Scotiabank Pond">Scotiabank Pond</option>
+			<option value="Vgn Sports Village">Vgn Sports Village</option>
+			<option value="Victoria Village">Victoria Village</option>
+			<option value="Westwood">Westwood</option>
+
+		</select>
+                            </div>
+                        
+	</div>
+                    </div>
+ 
+                    <div class="row mt-2">
+                        <div class="col-lg-3 col-md-6 col-sm-8">
+                            <label for="dpFrom" class="control-label fw-bold">From</label>
+                            <div class="form-group">
+                                <div class="text-start input-group date" id="divFrom">
+                                    <input name="dpFrom" type="text" value="20-Sep-2026" id="dpFrom" class="form-control" />
+
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text bg-light h-100">
+                                            <i class="align-middle bi-calendar3"></i>
+                                          </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-8">
+                            <label for="dpTo" class="control-label fw-bold">To</label>
+                            <div class="form-group">
+                                <div class="text-start input-group date" id="divTo">
+                                    <input name="dpTo" type="text" value="27-Sep-2026" id="dpTo" class="form-control" />
+
+                                    <div class="input-group-addon">
+                                        <span class="input-group-text bg-light h-100">
+                                            <i class="align-middle bi-calendar3"></i>
+                                          </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+</div>
+            </div>
+
+            <div class="clearfix mt-3">
+                <label for="sche_repeater" class="control-label fw-bold"><span id="sche_lbDetail"></span></label>
+
+                <span class="float-end">
+                    
+                </span>
+            </div>
+
+            <div class="row mt-2 switch-panel">
+                <div class="col-12 text-end">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnSchedules" autocomplete="off" checked />
+                        <label class="btn btn-outline-secondary" for="btnSchedules">Schedules</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnStandings" autocomplete="off" />
+                        <label class="btn btn-outline-secondary" for="btnStandings">Standings</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnPlayoffs" autocomplete="off" />
+                        <label class="btn btn-outline-secondary" for="btnPlayoffs">Brackets</label>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix h-auto"></div>
+            <div class="table-responsive mt-2">
+                <table id="sche_repeater" class="tablesorter table table-striped">
+                    
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th class="text-center" colspan="2">Away</th>
+                                    <th>Score</th>
+                                    <th class="text-center" colspan="2">Home</th>
+                                    <th class="tdDivCat">Div/Cat</th>
+                                    <th class="tdDivTier">Div/Tier</th>
+                                    <th>Type</th>
+                                    <th>Arena</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        
+                            
+                        
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
