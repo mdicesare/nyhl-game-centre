@@ -207,7 +207,7 @@ function StandingsTable({ standings, activeTeam }) {
                   <div className="flex items-center gap-2">
                     {team.logo && (
                       <img
-                        src={`/images/teams/${team.logo}.png`}
+                        src={`${import.meta.env.BASE_URL}images/teams/${team.logo}.png`}
                         alt=""
                         className="w-7 h-7 object-contain"
                         onError={(e) => { e.target.style.display = 'none' }}
@@ -282,7 +282,7 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
           <span className="text-sm font-bold text-gray-400 dark:text-slate-500 w-6">{rank}</span>
           {team.logo && (
             <img
-              src={`/images/teams/${team.logo}.png`}
+              src={`${import.meta.env.BASE_URL}images/teams/${team.logo}.png`}
               alt=""
               className="w-7 h-7 object-contain"
               onError={(e) => { e.target.style.display = 'none' }}

@@ -2,8 +2,8 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 
 const DataContext = createContext(null)
 
-const SCHEDULE_PATH = '/data/schedule.json'
-const STANDINGS_PATH = '/data/standings.json'
+const SCHEDULE_PATH = `${import.meta.env.BASE_URL}data/schedule.json`
+const STANDINGS_PATH = `${import.meta.env.BASE_URL}data/standings.json`
 
 export function DataProvider({ children }) {
   const [schedule, setSchedule] = useState(null)

@@ -96,7 +96,7 @@ function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, inde
       {/* Logo watermark */}
       {standing?.logo && (
         <img
-          src={`/images/teams/${standing.logo}.png`}
+          src={`${import.meta.env.BASE_URL}images/teams/${standing.logo}.png`}
           alt=""
           className="absolute -right-4 -bottom-4 w-28 h-28 object-contain opacity-[0.06] dark:opacity-[0.08] pointer-events-none select-none"
           onError={(e) => { e.target.style.display = 'none' }}
@@ -108,7 +108,7 @@ function TeamCard({ team, isActive, nextGame, lastGame, standing, onSelect, inde
         <div className="flex items-center gap-4">
           {standing?.logo ? (
             <img
-              src={`/images/teams/${standing.logo}.png`}
+              src={`${import.meta.env.BASE_URL}images/teams/${standing.logo}.png`}
               alt=""
               className="w-14 h-14 object-contain logo-glow"
               onError={(e) => { e.target.style.display = 'none' }}

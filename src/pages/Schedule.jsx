@@ -255,7 +255,7 @@ function GameCard({ game, activeTeam, onClick }) {
           <div className="flex items-center gap-2">
             {game.homeTeam.logo && (
               <img
-                src={`/images/teams/${game.homeTeam.logo}.png`}
+                src={`${import.meta.env.BASE_URL}images/teams/${game.homeTeam.logo}.png`}
                 alt=""
                 className="w-6 h-6 object-contain"
                 onError={(e) => { e.target.style.display = 'none' }}
@@ -270,7 +270,7 @@ function GameCard({ game, activeTeam, onClick }) {
           <div className="flex items-center gap-2">
             {game.awayTeam.logo && (
               <img
-                src={`/images/teams/${game.awayTeam.logo}.png`}
+                src={`${import.meta.env.BASE_URL}images/teams/${game.awayTeam.logo}.png`}
                 alt=""
                 className="w-6 h-6 object-contain"
                 onError={(e) => { e.target.style.display = 'none' }}
@@ -335,7 +335,7 @@ function GameDetail({ game, onClose }) {
           <div className="flex-1 flex items-center gap-3">
             {game.homeTeam.logo && (
               <img
-                src={`/images/teams/${game.homeTeam.logo}.png`}
+                src={`${import.meta.env.BASE_URL}images/teams/${game.homeTeam.logo}.png`}
                 alt=""
                 className="w-14 h-14 object-contain logo-glow"
                 onError={(e) => { e.target.style.display = 'none' }}
@@ -369,7 +369,7 @@ function GameDetail({ game, onClose }) {
             </div>
             {game.awayTeam.logo && (
               <img
-                src={`/images/teams/${game.awayTeam.logo}.png`}
+                src={`${import.meta.env.BASE_URL}images/teams/${game.awayTeam.logo}.png`}
                 alt=""
                 className="w-14 h-14 object-contain logo-glow"
                 onError={(e) => { e.target.style.display = 'none' }}

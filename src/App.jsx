@@ -10,7 +10,7 @@ import Settings from './pages/Settings'
 
 export default function App() {
   return (
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter basename="/nyhl-game-centre" future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <PreferencesProvider>
         <DataProvider>
           <Routes>

@@ -17,7 +17,7 @@ export default function Layout() {
       {/* Top bar */}
       <header className="gradient-navy text-white px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-lg">
         <a href="https://nyhl.on.ca/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-          <img src="/images/NYHLLogo-h150.png" alt="NYHL" className="h-8 w-auto" />
+          <img src={`${import.meta.env.BASE_URL}images/NYHLLogo-h150.png`} alt="NYHL" className="h-8 w-auto" />
         </a>
         <div className="flex items-center gap-3">
           {activeTeam && (
