@@ -211,7 +211,7 @@ def fetch_schedule_page(
     if date_to:
         payload["dpTo"] = date_to
 
-    resp = session.post(SCHEDULE_URL, data=payload, timeout=30)
+    resp = session.post(SCHEDULE_URL, data=payload, timeout=60)
     resp.raise_for_status()
     # DEBUG: dump raw response
     debug_path = Path(__file__).resolve().parent / "debug_schedule.html"
@@ -349,7 +349,7 @@ def fetch_standings_page(
     if season:
         payload["ddlSeason"] = season
 
-    resp = session.post(STANDINGS_URL, data=payload, timeout=30)
+    resp = session.post(STANDINGS_URL, data=payload, timeout=60)
     resp.raise_for_status()
     # DEBUG: dump raw standings response
     debug_path = Path(__file__).resolve().parent / "debug_standings.html"
@@ -690,7 +690,7 @@ def scrape_standings(
     """Scrape standings for a season. Gets its own ViewState from the standings page."""
     # GET standings page to harvest its ViewState (different from schedule page)
     log.info("Fetching standings page for ViewState...")
-    resp = session.get(STANDINGS_URL, timeout=30)
+    resp = session.get(STANDINGS_URL, timeout=60)
     resp.raise_for_status()
     viewstate = extract_viewstate(resp.text)
     throttle()
@@ -798,7 +798,7 @@ def main():
 
     # Step 1: GET initial page to harvest ViewState
     log.info("Fetching initial page for ViewState...")
-    resp = session.get(SCHEDULE_URL, timeout=30)
+    resp = session.get(SCHEDULE_URL, timeout=60)
     resp.raise_for_status()
     # DEBUG: dump initial GET response
     debug_path = Path(__file__).resolve().parent / "debug_get.html"
