@@ -495,6 +495,58 @@ def get_season_date_range(season: str) -> tuple[str, str]:
     return start.strftime(AGILEX_DATE_FMT), end.strftime(AGILEX_DATE_FMT)
 
 
+def current_season(today: Optional[datetime] = None) -> str:
+    """
+    Work out which NYHL season is running right now.
+    Seasons run 25-Aug -> 30-Apr, so:
+      Aug-Dec  -> the season starts this calendar year
+      Jan-Jul  -> the season started last calendar year
+    """
+    today = today or datetime.now()
+    start = (today.year % 100) if today.month >= 8 else (today.year % 100) - 1
+    return f"{start:02d}-{(start + 1) % 100:02d}"
+
+
+def season_is_complete(season: str, today: Optional[datetime] = None) -> bool:
+    """True once the season's end date (30-Apr) has passed."""
+    _, end_str = get_season_date_range(season)
+    end = datetime.strptime(end_str, AGILEX_DATE_FMT)
+    return (today or datetime.now()) > end
+
+
+def read_json(path: Path) -> Optional[dict]:
+    """Read a JSON file, returning None if missing or unreadable."""
+    if not path.exists():
+        return None
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def preserve_existing_snapshots() -> None:
+    """
+    Copy the default schedule/standings files into per-season snapshots
+    before they get replaced. This is what lets completed seasons stay
+    cached locally instead of being scraped again every morning.
+    """
+    for kind in ("schedule", "standings"):
+        default = OUTPUT_DIR / f"{kind}.json"
+        data = read_json(default)
+        if not data:
+            continue
+        season = data.get("season")
+        if not season:
+            continue
+        snap = OUTPUT_DIR / f"{kind}-{season}.json"
+        if snap.exists():
+            continue
+        with open(snap, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        log.info("Preserved existing %s as %s", default.name, snap.name)
+
+
 def chunk_date_range(start_str: str, end_str: str, chunk_days: int = 30) -> list[tuple[str, str]]:
     """Split a date range into 30-day chunks."""
     fmt = "%d-%b-%Y"
@@ -747,6 +799,10 @@ def write_output(
     """Write normalized JSON to public/data/."""
     now = datetime.utcnow().isoformat() + "Z"
 
+    # Drop standings rows that came back without a team name — the site emits
+    # placeholder rows like this before a season has real data in it.
+    standings = [s for s in standings if (s.get("name") or "").strip()]
+
     schedule_payload = {
         "season": season,
         "scrapedAt": now,
@@ -768,35 +824,91 @@ def write_output(
         log.info("Sample standing: %s", json.dumps(standings[0], indent=2) if standings else "none")
         return
 
+    # Never let an empty scrape overwrite working data. This is what happens
+    # when a new season exists in the dropdown but its schedule hasn't been
+    # published yet, and when a scrape silently fails and returns no rows.
+    if not games and not standings:
+        log.warning(
+            "SKIP: Season %s returned no usable data (0 games, 0 standings "
+            "rows). The schedule is probably not published yet — leaving all "
+            "existing files untouched.",
+            season,
+        )
+        return
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     schedule_path = OUTPUT_DIR / "schedule.json"
     standings_path = OUTPUT_DIR / "standings.json"
 
-    # Safety: don't overwrite good data with bad
-    # If new scrape has fewer than 50% of existing games, skip writing
-    if schedule_path.exists():
-        try:
-            with open(schedule_path, encoding="utf-8") as f:
-                existing = json.load(f)
-            existing_count = existing.get("gameCount", 0)
-            if existing_count > 0 and len(games) < existing_count * 0.5:
-                log.warning(
-                    "SKIP: New scrape has %d games but existing has %d. "
-                    "Not overwriting — possible scrape failure.",
-                    len(games), existing_count,
-                )
-                return
-        except Exception:
-            pass  # Can't read existing, proceed with write
+    # Keep whatever the default files currently hold as a per-season snapshot
+    # before we overwrite them, so completed seasons stay cached locally.
+    preserve_existing_snapshots()
 
-    with open(schedule_path, "w", encoding="utf-8") as f:
+    season_schedule_path = OUTPUT_DIR / f"schedule-{season}.json"
+    season_standings_path = OUTPUT_DIR / f"standings-{season}.json"
+
+    # Safety: don't overwrite good data with bad. Compare against the snapshot
+    # for this same season, and only over divisions the new scrape covers, so a
+    # single-division run is never measured against an all-divisions dataset.
+    existing = read_json(season_schedule_path)
+    if existing is None:
+        fallback = read_json(schedule_path)
+        if fallback and fallback.get("season") == season:
+            existing = fallback
+    if existing and existing.get("season") in (None, season):
+        existing_games = existing.get("games", [])
+        new_divisions = {g.get("division") for g in games if g.get("division")}
+        comparable = [
+            g for g in existing_games
+            if not new_divisions or g.get("division") in new_divisions
+        ]
+        if comparable and len(games) < len(comparable) * 0.5:
+            log.warning(
+                "SKIP: New scrape has %d games but cached %s has %d "
+                "in divisions %s. Not overwriting — possible scrape failure.",
+                len(games), season, len(comparable), sorted(new_divisions),
+            )
+            return
+
+    # Always write the per-season snapshot — this is the long-lived cache.
+    with open(season_schedule_path, "w", encoding="utf-8") as f:
         json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
-    log.info("Wrote %s (%d games)", schedule_path, len(games))
-
-    with open(standings_path, "w", encoding="utf-8") as f:
+    with open(season_standings_path, "w", encoding="utf-8") as f:
         json.dump(standings_payload, f, indent=2, ensure_ascii=False)
-    log.info("Wrote %s (%d teams)", standings_path, len(standings))
+    log.info("Wrote %s (%d games)", season_schedule_path.name, len(games))
+    log.info("Wrote %s (%d teams)", season_standings_path.name, len(standings))
+
+    # Mirror into the default files the app falls back to. Each file is guarded
+    # separately so a partial scrape (games but no standings, or the other way
+    # round) can't blank out half of what the site is already showing.
+    is_current = season == current_season()
+
+    if is_current or not schedule_path.exists():
+        if games:
+            with open(schedule_path, "w", encoding="utf-8") as f:
+                json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
+            log.info("Updated default schedule (%d games)", len(games))
+        else:
+            log.warning("Default schedule untouched: new scrape has 0 games")
+    else:
+        log.info(
+            "Season %s is not the current season (%s) — default schedule untouched",
+            season, current_season(),
+        )
+
+    if is_current or not standings_path.exists():
+        if standings:
+            with open(standings_path, "w", encoding="utf-8") as f:
+                json.dump(standings_payload, f, indent=2, ensure_ascii=False)
+            log.info("Updated default standings (%d teams)", len(standings))
+        else:
+            log.warning("Default standings untouched: new scrape has 0 teams")
+    else:
+        log.info(
+            "Season %s is not the current season (%s) — default standings untouched",
+            season, current_season(),
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -805,7 +917,8 @@ def write_output(
 
 def main():
     parser = argparse.ArgumentParser(description="NYHL Schedule & Standings Scraper")
-    parser.add_argument("--season", default="25-26", help="Season e.g. 25-26 (default: 25-26)")
+    parser.add_argument("--season", default="current",
+                        help="Season e.g. 25-26, or 'current' to auto-detect (default)")
     parser.add_argument("--division", default="ALL", help="Filter to division, e.g. U14")
     parser.add_argument("--tier", default="ALL", help="Filter to tier, e.g. Tier 2")
     parser.add_argument("--club", default="ALL", help="Filter to club name")
@@ -814,11 +927,35 @@ def main():
     parser.add_argument("--schedule-only", action="store_true", help="Skip standings scrape")
     parser.add_argument("--standings-only", action="store_true", help="Skip schedule scrape")
     parser.add_argument("--dry-run", action="store_true", help="Parse but don't write files")
+    parser.add_argument("--force", action="store_true",
+                        help="Scrape even if the season is complete and already cached")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
     if args.verbose:
         logging.getLogger().setLevel(logging.DEBUG)
+
+    # Resolve the season — "current" works it out from today's date.
+    if args.season.strip().lower() in ("current", "auto", ""):
+        season = current_season()
+        log.info("Auto-detected current season: %s", season)
+    else:
+        season = args.season
+
+    # Completed seasons are scraped once and then served from the local
+    # snapshot, so we make zero requests to Agilex for them.
+    if not args.force and season_is_complete(season):
+        snapshot = OUTPUT_DIR / f"schedule-{season}.json"
+        default = read_json(OUTPUT_DIR / "schedule.json")
+        cached = snapshot.exists() or (default and default.get("season") == season)
+        if cached:
+            log.info(
+                "Season %s ended %s — cached snapshot present. "
+                "Skipping scrape (0 requests to Agilex). Use --force to re-scrape.",
+                season, get_season_date_range(season)[1],
+            )
+            return
+        log.info("Season %s has ended but no cached snapshot — scraping once.", season)
 
     session = create_session()
 
@@ -859,14 +996,13 @@ def main():
             metadata["seasons"] = seasons
             log.info("Available seasons: %s", seasons)
         else:
-            metadata["seasons"] = [args.season]
-            log.info("No seasons dropdown found, using: %s", args.season)
+            metadata["seasons"] = [season]
+            log.info("No seasons dropdown found, using: %s", season)
         throttle()
     except Exception as e:
         log.warning("Could not discover seasons: %s", e)
-        metadata["seasons"] = [args.season]
+        metadata["seasons"] = [season]
 
-    season = args.season
     log.info("NYHL Scraper — season %s", season)
 
     games = []

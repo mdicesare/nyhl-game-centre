@@ -1,42 +1,53 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { usePreferences } from './usePreferences.jsx'
 
 const DataContext = createContext(null)
 
-const SCHEDULE_PATH = `${import.meta.env.BASE_URL}data/schedule.json`
-const STANDINGS_PATH = `${import.meta.env.BASE_URL}data/standings.json`
+const BASE = import.meta.env.BASE_URL
 
 export function DataProvider({ children }) {
+  // The season the user picked in preferences decides which snapshot we load.
+  // Completed seasons are served from their own file and never re-scraped.
+  const { season: selectedSeason } = usePreferences()
+
   const [schedule, setSchedule] = useState(null)
   const [standings, setStandings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [lastUpdated, setLastUpdated] = useState(null)
 
   const loadData = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
-      const [schedRes, standRes] = await Promise.all([
-        fetch(SCHEDULE_PATH),
-        fetch(STANDINGS_PATH),
+      // Prefer the per-season snapshot; fall back to the default (current) file.
+      const fetchJson = async (kind) => {
+        if (selectedSeason) {
+          const snapRes = await fetch(`${BASE}data/${kind}-${selectedSeason}.json`)
+          if (snapRes.ok) return snapRes.json()
+        }
+        const res = await fetch(`${BASE}data/${kind}.json`)
+        if (!res.ok) throw new Error(`${kind} fetch failed: ${res.status}`)
+        return res.json()
+      }
+
+      const [schedData, standData] = await Promise.all([
+        fetchJson('schedule'),
+        fetchJson('standings'),
       ])
 
-      if (!schedRes.ok) throw new Error(`Schedule fetch failed: ${schedRes.status}`)
-      if (!standRes.ok) throw new Error(`Standings fetch failed: ${standRes.status}`)
+      // If we fell back to the default file and it belongs to a different
+      // season, surface "no data" instead of showing the wrong year.
+      const mismatch = selectedSeason && schedData.season && schedData.season !== selectedSeason
 
-      const schedData = await schedRes.json()
-      const standData = await standRes.json()
-
-      setSchedule(schedData)
-      setStandings(standData)
-      setLastUpdated(schedData.scrapedAt || standData.scrapedAt || null)
+      setSchedule(mismatch ? { ...schedData, season: selectedSeason, games: [] } : schedData)
+      setStandings(mismatch ? { ...standData, season: selectedSeason, standings: [] } : standData)
     } catch (err) {
       console.error('Failed to load data:', err)
       setError(err.message)
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [selectedSeason])
 
   useEffect(() => {
     loadData()
@@ -69,7 +80,7 @@ export function DataProvider({ children }) {
   }, [standingsList])
 
   // Get next game for a team
-  const getNextGame = useCallback((teamName) => {
+  const getNextGame = useCallback((teamName, division, tier) => {
     const now = new Date()
     const lower = teamName.toLowerCase()
     return games
@@ -78,6 +89,11 @@ export function DataProvider({ children }) {
           (g.homeTeam.name.toLowerCase() === lower || g.awayTeam.name.toLowerCase() === lower) &&
           g.status === 'scheduled'
       )
+      .filter((g) => {
+        if (division && g.division && g.division !== division) return false
+        if (tier && g.tier && g.tier !== tier) return false
+        return true
+      })
       .filter((g) => {
         const gameDate = new Date(`${g.date}T${g.time || '23:59'}`)
         return gameDate > now
@@ -90,7 +106,7 @@ export function DataProvider({ children }) {
   }, [games])
 
   // Get last completed game for a team
-  const getLastGame = useCallback((teamName) => {
+  const getLastGame = useCallback((teamName, division, tier) => {
     const now = new Date()
     const lower = teamName.toLowerCase()
     return games
@@ -99,6 +115,11 @@ export function DataProvider({ children }) {
           (g.homeTeam.name.toLowerCase() === lower || g.awayTeam.name.toLowerCase() === lower) &&
           g.status === 'final'
       )
+      .filter((g) => {
+        if (division && g.division && g.division !== division) return false
+        if (tier && g.tier && g.tier !== tier) return false
+        return true
+      })
       .filter((g) => {
         const gameDate = new Date(`${g.date}T${g.time || '23:59'}`)
         return gameDate <= now
@@ -111,11 +132,14 @@ export function DataProvider({ children }) {
   }, [games])
 
   // Get standings entry for a team (includes computed rank)
-  const getTeamStanding = useCallback((teamName) => {
+  const getTeamStanding = useCallback((teamName, division, tier) => {
     if (!teamName) return null
     const lower = teamName.toLowerCase()
+    let pool = standingsList
+    if (division) pool = pool.filter((s) => s.division === division)
+    if (tier) pool = pool.filter((s) => s.tier === tier)
     // Sort standings by points desc, wins desc to determine rank
-    const sorted = [...standingsList].sort((a, b) => {
+    const sorted = [...pool].sort((a, b) => {
       if (b.pts !== a.pts) return b.pts - a.pts
       if (b.w !== a.w) return b.w - a.w
       return (b.gf - b.ga) - (a.gf - a.ga)
@@ -167,7 +191,7 @@ export function DataProvider({ children }) {
     season,
     loading,
     error,
-    lastUpdated,
+    lastUpdated: schedule?.scrapedAt || schedule?.lastUpdated || null,
     divisions,
     tiers,
     arenas,

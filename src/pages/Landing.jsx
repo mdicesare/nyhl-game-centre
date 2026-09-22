@@ -7,7 +7,9 @@ import Footer from '../components/Footer.jsx'
 
 export default function Landing() {
   const { hasTeams, addTeam, setActiveTeam, setSeason } = usePreferences()
-  const { allTeams, season: dataSeason, loading } = useData()
+  // divisions/tiers come from the scraped data so the picker only offers
+  // competitions that actually exist for the selected season
+  const { allTeams, divisions, tiers, season: dataSeason, loading } = useData()
 
   // Hardcoded seasons — last 3 years
   const seasons = [
@@ -16,9 +18,6 @@ export default function Landing() {
     { value: '24-25', label: '2024–25' },
   ]
 
-  // Hardcoded lists so users can browse any division even if we only scraped one
-  const divisions = ['U07','U08','U09','U10','U11','U12','U13','U14','U15','U16','U17','U18','U21','OTH']
-  const tiers = ['Tier 1', 'Tier 2', 'Tier 3']
   const navigate = useNavigate()
 
   const [step, setStep] = useState('pick') // pick | search | done
@@ -188,9 +187,9 @@ export default function Landing() {
                       }`}
                     >
                       <span className="text-gray-900 dark:text-white">{team.name}</span>
-                    {team.divisions.length > 0 && (
+                    {(team.divisions.length > 0 || team.tiers.length > 0) && (
                       <span className="text-xs text-gray-400 dark:text-blue-300 ml-2">
-                        {team.divisions.join(', ')}
+                        {[...team.divisions, ...team.tiers].join(' · ')}
                       </span>
                     )}
                   </button>

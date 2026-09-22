@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       season:
-        description: "Season to scrape (e.g. 25-26)"
+        description: "Season to scrape ('current' or e.g. 25-26)"
         required: false
-        default: "25-26"
+        default: "current"
       division:
         description: "Division filter (e.g. U14 or ALL)"
         required: false
@@ -46,7 +46,7 @@ jobs:
       - name: Run scraper
         run: |
           python scraper/nyhl_scrape.py \
-            --season "${{ github.event.inputs.season || '25-26' }}" \
+            --season "${{ github.event.inputs.season || 'current' }}" \
             --division "${{ github.event.inputs.division || 'U14' }}" \
             --verbose
         env:

@@ -27,9 +27,9 @@ export default function Home() {
             key={team.name}
             team={team}
             isActive={activeTeam?.toLowerCase() === team.name.toLowerCase()}
-            nextGame={getNextGame(team.name)}
-            lastGame={getLastGame(team.name)}
-            standing={getTeamStanding(team.name)}
+            nextGame={getNextGame(team.name, team.division, team.tier)}
+            lastGame={getLastGame(team.name, team.division, team.tier)}
+            standing={getTeamStanding(team.name, team.division, team.tier)}
             onSelect={() => setActiveTeam(team.name)}
             index={index}
             globalSeason={season}
