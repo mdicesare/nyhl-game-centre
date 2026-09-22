@@ -26,13 +26,13 @@ export default function Select({ value, onChange, options, placeholder, classNam
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full px-4 py-3 rounded-xl bg-white/10 dark:bg-slate-800 text-left border border-white/20 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-nyhl-gold flex items-center justify-between"
+        className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800 text-left border border-gray-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-nyhl-gold flex items-center justify-between"
       >
-        <span className={selected ? 'text-white dark:text-slate-200' : 'text-blue-200 dark:text-slate-400'}>
+        <span className={selected ? 'text-gray-900 dark:text-slate-200' : 'text-gray-500 dark:text-slate-400'}>
           {displayLabel}
         </span>
         <svg
-          className={`w-4 h-4 text-blue-300 dark:text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-gray-400 dark:text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}

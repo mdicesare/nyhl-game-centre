@@ -39,8 +39,20 @@ export function DataProvider({ children }) {
       // season, surface "no data" instead of showing the wrong year.
       const mismatch = selectedSeason && schedData.season && schedData.season !== selectedSeason
 
-      setSchedule(mismatch ? { ...schedData, season: selectedSeason, games: [] } : schedData)
-      setStandings(mismatch ? { ...standData, season: selectedSeason, standings: [] } : standData)
+      // Remember the season the file really is for. When the selected season
+      // has no snapshot yet this is what lets the UI point at one that does.
+      const sourceSeason = schedData.season || standData.season || null
+
+      setSchedule(
+        mismatch
+          ? { ...schedData, season: selectedSeason, sourceSeason, games: [] }
+          : { ...schedData, sourceSeason }
+      )
+      setStandings(
+        mismatch
+          ? { ...standData, season: selectedSeason, sourceSeason, standings: [] }
+          : { ...standData, sourceSeason }
+      )
     } catch (err) {
       console.error('Failed to load data:', err)
       setError(err.message)
@@ -149,9 +161,15 @@ export function DataProvider({ children }) {
     return { ...sorted[idx], rank: idx + 1 }
   }, [standingsList])
 
-  // Unique values for filters
-  const divisions = [...new Set(games.map((g) => g.division).filter(Boolean))].sort()
-  const tiers = [...new Set(games.map((g) => g.tier).filter(Boolean))].sort()
+  // Unique values for filters. Derived from both sources: a scrape can land
+  // standings without a schedule (and vice versa), and the standings-only
+  // divisions would otherwise be impossible to filter on.
+  const divisions = [...new Set(
+    [...games.map((g) => g.division), ...standingsList.map((s) => s.division)].filter(Boolean)
+  )].sort()
+  const tiers = [...new Set(
+    [...games.map((g) => g.tier), ...standingsList.map((s) => s.tier)].filter(Boolean)
+  )].sort()
   const arenas = [...new Set(games.map((g) => g.arena).filter(Boolean))].sort()
   const standingsGameTypes = [...new Set(standingsList.map((s) => s.gameType).filter(Boolean))].sort()
 
@@ -189,6 +207,9 @@ export function DataProvider({ children }) {
     standingsList,
     metadata,
     season,
+    // Season the loaded snapshot actually belongs to (differs from `season`
+    // when the selected one has no data yet).
+    sourceSeason: schedule?.sourceSeason || standings?.sourceSeason || null,
     loading,
     error,
     lastUpdated: schedule?.scrapedAt || schedule?.lastUpdated || null,

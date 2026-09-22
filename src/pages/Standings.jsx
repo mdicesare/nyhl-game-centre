@@ -21,6 +21,21 @@ export default function Standings() {
   const { standingsList, divisions, tiers, standingsGameTypes, lastUpdated } = useData()
   const [expandedTeam, setExpandedTeam] = useState(null)
 
+  // A standings table can't sensibly mix game types: every team would appear
+  // once per type and the ranking would mean nothing. So a type is always
+  // required — fall back to the first one this season actually has instead of
+  // offering an "All types" that produces a meaningless table.
+  const effectiveGameType = useMemo(() => {
+    if (
+      filters.gameType &&
+      filters.gameType !== 'ALL' &&
+      standingsGameTypes.includes(filters.gameType)
+    ) {
+      return filters.gameType
+    }
+    return standingsGameTypes[0] || null
+  }, [filters.gameType, standingsGameTypes])
+
   // Apply filters
   const filteredStandings = useMemo(() => {
     let result = standingsList
@@ -31,12 +46,16 @@ export default function Standings() {
     if (filters.tier !== 'ALL') {
       result = result.filter((s) => s.tier === filters.tier)
     }
-    if (filters.gameType && filters.gameType !== 'ALL') {
-      result = result.filter((s) => s.gameType === filters.gameType)
+    if (effectiveGameType) {
+      result = result.filter((s) => s.gameType === effectiveGameType)
     }
 
     return result
-  }, [standingsList, filters])
+  }, [standingsList, filters.division, filters.tier, effectiveGameType])
+
+  // A game type is always chosen, so it isn't part of "clear the filters".
+  const hasActiveFilters = filters.division !== 'ALL' || filters.tier !== 'ALL'
+  const hasData = standingsList.length > 0
 
   return (
     <div className="px-4 py-6 max-w-5xl mx-auto animate-fade-in">
@@ -66,7 +85,11 @@ export default function Standings() {
           className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
         >
           <option value="ALL">All divisions</option>
-          {['U07','U08','U09','U10','U11','U12','U13','U14','U15','U16','U17','U18','U21','OTH'].map((d) => (
+          {/* Keep a remembered filter selectable even if the loaded season lacks it */}
+          {filters.division !== 'ALL' && !divisions.includes(filters.division) && (
+            <option value={filters.division}>{filters.division}</option>
+          )}
+          {divisions.map((d) => (
             <option key={d} value={d}>{d}</option>
           ))}
         </select>
@@ -77,25 +100,27 @@ export default function Standings() {
           className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
         >
           <option value="ALL">All tiers</option>
-          {['Tier 1','Tier 2','Tier 3'].map((t) => (
+          {filters.tier !== 'ALL' && !tiers.includes(filters.tier) && (
+            <option value={filters.tier}>{filters.tier}</option>
+          )}
+          {tiers.map((t) => (
             <option key={t} value={t}>{t}</option>
           ))}
         </select>
 
         {standingsGameTypes.length > 0 && (
           <select
-            value={filters.gameType || 'ALL'}
+            value={effectiveGameType || ''}
             onChange={(e) => setFilters({ gameType: e.target.value })}
             className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
           >
-            <option value="ALL">All types</option>
             {standingsGameTypes.map((gt) => (
               <option key={gt} value={gt}>{GAME_TYPE_LABELS[gt] || gt}</option>
             ))}
           </select>
         )}
 
-        {(filters.division !== 'ALL' || filters.tier !== 'ALL' || (filters.gameType && filters.gameType !== 'ALL')) && (
+        {hasActiveFilters && (
           <button
             onClick={clearFilters}
             className="text-sm text-red-600 hover:underline whitespace-nowrap"
@@ -117,12 +142,12 @@ export default function Standings() {
             {filters.tier}
           </span>
         )}
-        {filters.gameType && filters.gameType !== 'ALL' && (
+        {effectiveGameType && (
           <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {GAME_TYPE_LABELS[filters.gameType] || filters.gameType}
+            {GAME_TYPE_LABELS[effectiveGameType] || effectiveGameType}
           </span>
         )}
-        {filters.division === 'ALL' && filters.tier === 'ALL' && (!filters.gameType || filters.gameType === 'ALL') && (
+        {!hasActiveFilters && (
           <span className="text-sm text-gray-400 dark:text-slate-500">
             Showing all divisions · all tiers
           </span>
@@ -133,21 +158,32 @@ export default function Standings() {
       {filteredStandings.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-4xl mb-4">📋</p>
-          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
-            No standings data yet for {formatSeasonLabel(season)}
-          </p>
-          <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-            {filters.division !== 'ALL' || filters.tier !== 'ALL' || (filters.gameType && filters.gameType !== 'ALL')
-              ? 'Try changing your filters, or check back later.'
-              : 'The season may not have started yet. Check back soon!'}
-          </p>
-          {(filters.division !== 'ALL' || filters.tier !== 'ALL' || (filters.gameType && filters.gameType !== 'ALL')) && (
-            <button
-              onClick={clearFilters}
-              className="text-sm text-nyhl-blue hover:underline"
-            >
-              Clear filters
-            </button>
+          {hasData ? (
+            <>
+              <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+                No teams match these filters
+              </p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
+                Try a different division or tier.
+              </p>
+              {hasActiveFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-nyhl-blue hover:underline"
+                >
+                  Clear filters
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+                No standings data yet for {formatSeasonLabel(season)}
+              </p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm">
+                The season may not have started yet. Check back soon!
+              </p>
+            </>
           )}
         </div>
       ) : (

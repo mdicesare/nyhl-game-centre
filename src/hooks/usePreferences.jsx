@@ -25,7 +25,13 @@ function loadPreferences() {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return DEFAULT_PREFS
     const parsed = JSON.parse(raw)
-    return { ...DEFAULT_PREFS, ...parsed }
+    return {
+      ...DEFAULT_PREFS,
+      ...parsed,
+      // Merge filters individually: an older/partial record missing a key
+      // would otherwise turn the filter selects uncontrolled.
+      filters: { ...DEFAULT_PREFS.filters, ...(parsed.filters || {}) },
+    }
   } catch {
     return DEFAULT_PREFS
   }

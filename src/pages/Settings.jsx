@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
-import { useData } from '../hooks/useData.jsx'
+import TeamFinder from '../components/TeamFinder.jsx'
 
 export default function Settings() {
   const { savedTeams, activeTeam, setActiveTeam, removeTeam, season, setSeason } =
     usePreferences()
-  const { divisions, allTeams, season: dataSeason } = useData()
   const navigate = useNavigate()
   const [confirmRemove, setConfirmRemove] = useState(null)
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'))
 
-  // Quick add team state
+  // Collapsed by default so the team list stays compact
   const [showAdd, setShowAdd] = useState(false)
-  const [newTeamSearch, setNewTeamSearch] = useState('')
-  const { addTeam } = usePreferences()
+
+  // Removing the last team swaps this section back to the full team finder,
+  // so drop the stale "add another" expansion before it can resurface.
+  useEffect(() => {
+    if (savedTeams.length === 0) setShowAdd(false)
+  }, [savedTeams.length])
 
   // Sync dark mode state when localStorage changes from other sources
   useEffect(() => {
@@ -30,22 +33,6 @@ export default function Settings() {
     const nowDark = document.documentElement.classList.contains('dark')
     setIsDark(nowDark)
     localStorage.setItem('nyhl-dark-mode', nowDark ? 'dark' : 'light')
-  }
-
-  const availableTeams = allTeams.filter(
-    (t) => !savedTeams.some((s) => s.name.toLowerCase() === t.name.toLowerCase())
-  )
-
-  const filteredAvailable = newTeamSearch
-    ? availableTeams.filter((t) =>
-        t.name.toLowerCase().includes(newTeamSearch.toLowerCase())
-      )
-    : availableTeams
-
-  const handleAddTeam = (teamName) => {
-    addTeam({ name: teamName })
-    setNewTeamSearch('')
-    setShowAdd(false)
   }
 
   const handleRemoveTeam = (name) => {
@@ -64,14 +51,12 @@ export default function Settings() {
         </h2>
 
         {savedTeams.length === 0 ? (
-          <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-6 text-center">
-            <p className="text-gray-400 dark:text-slate-500 mb-3">No teams saved yet</p>
-            <button
-              onClick={() => setShowAdd(true)}
-              className="text-sm text-nyhl-blue hover:underline"
-            >
-              Add your first team
-            </button>
+          <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4">
+            <p className="font-medium dark:text-slate-200">Find your team</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mb-3">
+              Pick your division and team to start following their games.
+            </p>
+            <TeamFinder showSeason={false} />
           </div>
         ) : (
           <div className="space-y-2">
@@ -144,50 +129,14 @@ export default function Settings() {
           </button>
         )}
 
-        {showAdd && (
+        {showAdd && savedTeams.length > 0 && (
           <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4 mt-3 animate-scale-in">
-            <label className="block text-xs font-medium text-gray-500 dark:text-slate-400 mb-1">
-              Search teams
-            </label>
-            <input
-              type="text"
-              value={newTeamSearch}
-              onChange={(e) => setNewTeamSearch(e.target.value)}
-              placeholder="e.g. Toronto Aeros"
-              className="w-full px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm mb-3 bg-white dark:bg-slate-700 dark:text-white placeholder-gray-400 dark:placeholder-slate-500"
-              autoFocus
+            <TeamFinder
+              showSeason={false}
+              backLabel="Cancel"
+              onCancel={() => setShowAdd(false)}
+              onAdded={() => setShowAdd(false)}
             />
-            <div className="max-h-48 overflow-y-auto">
-              {filteredAvailable.length === 0 ? (
-                <p className="text-sm text-gray-400 dark:text-slate-500 py-2">
-                  {newTeamSearch ? 'No matching teams' : 'All teams already added'}
-                </p>
-              ) : (
-                filteredAvailable.map((team) => (
-                  <button
-                    key={team.name}
-                    onClick={() => handleAddTeam(team.name)}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-slate-700 rounded-lg dark:text-slate-200 transition-colors"
-                  >
-                    {team.name}
-                    {team.divisions.length > 0 && (
-                      <span className="text-xs text-gray-400 dark:text-slate-500 ml-2">
-                        {team.divisions.join(', ')}
-                      </span>
-                    )}
-                  </button>
-                ))
-              )}
-            </div>
-            <button
-              onClick={() => {
-                setShowAdd(false)
-                setNewTeamSearch('')
-              }}
-              className="w-full mt-3 text-sm text-gray-500 dark:text-slate-400 hover:underline"
-            >
-              Cancel
-            </button>
           </div>
         )}
       </section>
