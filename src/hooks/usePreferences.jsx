@@ -80,6 +80,9 @@ export function PreferencesProvider({ children }) {
           division: team.division || 'ALL',
           tier: team.tier || 'ALL',
         }
+        // Following a team means looking at its season's data, so the
+        // schedule and standings open on the year that team plays in.
+        if (team.season) updates.season = team.season
       }
       return { ...p, ...updates }
     })

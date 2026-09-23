@@ -4,8 +4,7 @@ import { usePreferences } from '../hooks/usePreferences.jsx'
 import TeamFinder from '../components/TeamFinder.jsx'
 
 export default function Settings() {
-  const { savedTeams, activeTeam, setActiveTeam, removeTeam, season, setSeason } =
-    usePreferences()
+  const { savedTeams, activeTeam, setActiveTeam, removeTeam } = usePreferences()
   const navigate = useNavigate()
   const [confirmRemove, setConfirmRemove] = useState(null)
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'))
@@ -139,22 +138,6 @@ export default function Settings() {
             />
           </div>
         )}
-      </section>
-
-      {/* Season */}
-      <section className="mb-8">
-        <h2 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">
-          Season
-        </h2>
-        <select
-          value={season}
-          onChange={(e) => setSeason(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
-        >
-          <option value="26-27">2026–27</option>
-          <option value="25-26">2025–26</option>
-          <option value="24-25">2024–25</option>
-        </select>
       </section>
 
       {/* Appearance */}

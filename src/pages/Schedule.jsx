@@ -4,10 +4,17 @@ import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 
 export default function Schedule() {
-  const { filters, setFilters, clearFilters, activeTeam, scheduleFilter, setScheduleFilter } =
-    usePreferences()
-  const { games, divisions, tiers, arenas, allTeams, season, lastUpdated } = useData()
-  const [showFilters, setShowFilters] = useState(false)
+  const {
+    filters,
+    setFilters,
+    clearFilters,
+    activeTeam,
+    scheduleFilter,
+    setScheduleFilter,
+    season,
+    setSeason,
+  } = usePreferences()
+  const { games, divisions, tiers, arenas, lastUpdated } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
 
   // Apply filters
@@ -68,86 +75,115 @@ export default function Schedule() {
     return groups
   }, [filteredGames])
 
-  const activeFilterCount = Object.values(filters).filter((v) => v && v !== 'ALL').length
+  // Schedule only applies division/tier/arena. gameType and club share the
+  // filter object but are never read here, so they must not show as active.
+  const hasActiveFilters =
+    filters.division !== 'ALL' || filters.tier !== 'ALL' || filters.arena !== 'ALL'
+  const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
+  const hasData = games.length > 0
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div>
-          <h1 className="text-2xl font-bold dark:text-white">Schedule</h1>
-          {activeTeam && (
-            <p className="text-sm text-nyhl-blue dark:text-blue-400">{activeTeam}</p>
-          )}
-        </div>
-        <button
-          onClick={() => setShowFilters(!showFilters)}
-          className="flex items-center gap-2 text-sm bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-3 py-2 hover:border-nyhl-blue dark:hover:border-blue-500 transition-colors"
-        >
-          <span className="dark:text-slate-200">Filters</span>
-          {activeFilterCount > 0 && (
-            <span className="bg-nyhl-blue text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {activeFilterCount}
-            </span>
-          )}
-        </button>
+      <div className="flex items-center gap-3 mb-5 flex-wrap">
+        <h1 className="text-2xl font-bold dark:text-white">Schedule</h1>
+        <span className="bg-nyhl-blue text-white text-sm font-semibold px-3 py-1 rounded-full">
+          20{season.split('-')[0]}–{season.split('-')[1]}
+        </span>
+        {activeTeam && (
+          <span className="w-full text-sm text-nyhl-blue dark:text-blue-400">
+            {activeTeam}
+          </span>
+        )}
       </div>
 
-      {/* Filter panel */}
-      {showFilters && (
-        <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4 mb-4 space-y-3 animate-scale-in">
-          <div>
-            <label className="block text-xs font-medium text-gray-500 dark:text-slate-400 mb-1">Division</label>
-            <select
-              value={filters.division}
-              onChange={(e) => setFilters({ division: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-700 dark:text-white"
-            >
-              <option value="ALL">All divisions</option>
-              {divisions.map((d) => (
-                <option key={d} value={d}>{d}</option>
-              ))}
-            </select>
-          </div>
+      {/* Filter bar */}
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <select
+          value={season}
+          onChange={(e) => setSeason(e.target.value)}
+          className={SELECT_CLS}
+        >
+          <option value="26-27">2026–27</option>
+          <option value="25-26">2025–26</option>
+          <option value="24-25">2024–25</option>
+        </select>
 
-          <div>
-            <label className="block text-xs font-medium text-gray-500 dark:text-slate-400 mb-1">Tier</label>
-            <select
-              value={filters.tier}
-              onChange={(e) => setFilters({ tier: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-700 dark:text-white"
-            >
-              <option value="ALL">All tiers</option>
-              {tiers.map((t) => (
-                <option key={t} value={t}>{t}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-gray-500 dark:text-slate-400 mb-1">Arena</label>
-            <select
-              value={filters.arena}
-              onChange={(e) => setFilters({ arena: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-700 dark:text-white"
-            >
-              <option value="ALL">All arenas</option>
-              {arenas.map((a) => (
-                <option key={a} value={a}>{a}</option>
-              ))}
-            </select>
-          </div>
-
-          {activeFilterCount > 0 && (
-            <button
-              onClick={clearFilters}
-              className="text-sm text-red-600 hover:underline"
-            >
-              Clear filters
-            </button>
+        <select
+          value={filters.division}
+          onChange={(e) => setFilters({ division: e.target.value })}
+          className={SELECT_CLS}
+        >
+          <option value="ALL">All divisions</option>
+          {filters.division !== 'ALL' && !divisions.includes(filters.division) && (
+            <option value={filters.division}>{filters.division}</option>
           )}
-        </div>
-      )}
+          {divisions.map((d) => (
+            <option key={d} value={d}>{d}</option>
+          ))}
+        </select>
+
+        <select
+          value={filters.tier}
+          onChange={(e) => setFilters({ tier: e.target.value })}
+          className={SELECT_CLS}
+        >
+          <option value="ALL">All tiers</option>
+          {filters.tier !== 'ALL' && !tiers.includes(filters.tier) && (
+            <option value={filters.tier}>{filters.tier}</option>
+          )}
+          {tiers.map((t) => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+
+        <select
+          value={filters.arena}
+          onChange={(e) => setFilters({ arena: e.target.value })}
+          className={SELECT_CLS}
+        >
+          <option value="ALL">All arenas</option>
+          {filters.arena !== 'ALL' && !arenas.includes(filters.arena) && (
+            <option value={filters.arena}>{filters.arena}</option>
+          )}
+          {arenas.map((a) => (
+            <option key={a} value={a}>{a}</option>
+          ))}
+        </select>
+
+        {hasActiveFilters && (
+          <button
+            onClick={clearFilters}
+            className="text-sm text-red-600 hover:underline whitespace-nowrap"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
+      {/* Active filter summary */}
+      <div className="flex items-center gap-2 mb-4 flex-wrap">
+        {filters.division !== 'ALL' && (
+          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.division}
+          </span>
+        )}
+        {filters.tier !== 'ALL' && (
+          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.tier}
+          </span>
+        )}
+        {filters.arena !== 'ALL' && (
+          <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.arena}
+          </span>
+        )}
+        {!hasActiveFilters && (
+          <span className="text-sm text-gray-400 dark:text-slate-500">
+            Showing all divisions · all tiers · all arenas
+          </span>
+        )}
+      </div>
 
       {/* Upcoming / Completed tabs */}
       <div className="flex bg-gray-100 dark:bg-slate-800 rounded-lg p-1 mb-4">
@@ -174,19 +210,35 @@ export default function Schedule() {
       {filteredGames.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-4xl mb-4">🏒</p>
-          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">No games found</p>
-          <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-            {activeFilterCount > 0
-              ? 'Try changing your filters or date range.'
-              : 'The season may not have started yet. Check back soon!'}
-          </p>
-          {activeFilterCount > 0 && (
-            <button
-              onClick={clearFilters}
-              className="text-sm text-nyhl-blue hover:underline"
-            >
-              Clear filters
-            </button>
+          {hasData ? (
+            <>
+              <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+                No games match these filters
+              </p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
+                Try a different division, tier, arena or view.
+              </p>
+              {isNarrowed && (
+                <button
+                  onClick={() => {
+                    clearFilters()
+                    setScheduleFilter('all')
+                  }}
+                  className="text-sm text-nyhl-blue hover:underline"
+                >
+                  Clear filters
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+                No schedule data yet for {formatSeasonLabel(season)}
+              </p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm">
+                The season may not have started yet. Check back soon!
+              </p>
+            </>
           )}
         </div>
       ) : (
@@ -420,6 +472,16 @@ function GameDetail({ game, onClose }) {
 }
 
 // ---- Helpers ----
+
+// Same styling as the Standings filter row so the two pages read as one UI.
+const SELECT_CLS =
+  'px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white'
+
+function formatSeasonLabel(s) {
+  // "25-26" → "2025–26"
+  const [y1, y2] = s.split('-')
+  return `20${y1}–${y2}`
+}
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',

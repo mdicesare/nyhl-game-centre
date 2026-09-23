@@ -22,9 +22,15 @@ function seasonLabel(value) {
  * be matched against the right standings, since several divisions reuse the
  * same team names.
  *
+ * The steps cascade and each one is required: divisions come from the loaded
+ * season, tiers from the chosen division, and teams only from the full
+ * season/division/tier combination. Nothing outside that combo is ever
+ * offered, and there is no "all divisions" state that would fall back to
+ * listing the whole league.
+ *
  * The season select writes straight to the shared preference, because that
- * value is what decides which snapshot the data layer loads — so the list
- * below always shows the season on screen.
+ * value is what decides which snapshot the data layer loads. Settings hides
+ * it — season is picked on the data pages or during first-time setup.
  */
 export default function TeamFinder({
   onAdded,
@@ -34,7 +40,7 @@ export default function TeamFinder({
   showSeason = true,
 }) {
   const { season, setSeason, savedTeams, addTeam, setActiveTeam } = usePreferences()
-  const { allTeams, divisions, tiers, sourceSeason, loading } = useData()
+  const { allTeams, sourceSeason, loading } = useData()
 
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedTier, setSelectedTier] = useState('')
@@ -45,29 +51,57 @@ export default function TeamFinder({
     [savedTeams]
   )
 
-  const filteredTeams = useMemo(() => {
-    return allTeams
-      .filter((t) => !savedNames.has(t.name.toLowerCase()))
-      .filter((team) => {
-        if (selectedDivision && !team.divisions.includes(selectedDivision)) return false
-        if (selectedTier && !team.tiers.includes(selectedTier)) return false
-        return true
-      })
-  }, [allTeams, savedNames, selectedDivision, selectedTier])
-
-  const unfilteredCount = useMemo(
-    () => allTeams.filter((t) => !savedNames.has(t.name.toLowerCase())).length,
-    [allTeams, savedNames]
+  // Step 1: divisions that exist in the loaded season.
+  const divisionOptions = useMemo(
+    () => [...new Set(allTeams.flatMap((t) => t.divisions))].sort(),
+    [allTeams]
   )
 
-  // The selected season drives what the data layer loaded, so "has data"
-  // simply means the loaded snapshot actually contains teams.
-  const hasData = allTeams.length > 0
+  // Step 2: teams in the chosen division — that scope is what defines the
+  // tier options, so you never see a tier this division doesn't play.
+  const divisionScoped = useMemo(
+    () =>
+      selectedDivision
+        ? allTeams.filter((t) => t.divisions.includes(selectedDivision))
+        : allTeams,
+    [allTeams, selectedDivision]
+  )
+  const tierOptions = useMemo(
+    () => [...new Set(divisionScoped.flatMap((t) => t.tiers))].sort(),
+    [divisionScoped]
+  )
 
+  // Step 3: teams inside the season/division/tier combination, less saved ones.
+  const comboTeams = useMemo(
+    () => divisionScoped.filter((t) => t.tiers.includes(selectedTier)),
+    [divisionScoped, selectedTier]
+  )
+  const filteredTeams = useMemo(
+    () => comboTeams.filter((t) => !savedNames.has(t.name.toLowerCase())),
+    [comboTeams, savedNames]
+  )
+
+  const hasData = allTeams.length > 0
+  const needsDivision = divisionOptions.length > 0
+  const divisionChosen = !needsDivision || Boolean(selectedDivision)
+  const showTier = divisionChosen && tierOptions.length > 0
+  const ready = divisionChosen && (!showTier || Boolean(selectedTier))
+
+  // Each step invalidates everything below it, including the picked team, so
+  // the Add button can never submit a team that isn't visible in the list.
   const handleSeasonChange = (value) => {
     setSeason(value)
     setSelectedDivision('')
     setSelectedTier('')
+    setSelectedTeam('')
+  }
+  const handleDivisionChange = (value) => {
+    setSelectedDivision(value)
+    setSelectedTier('')
+    setSelectedTeam('')
+  }
+  const handleTierChange = (value) => {
+    setSelectedTier(value)
     setSelectedTeam('')
   }
 
@@ -120,63 +154,66 @@ export default function TeamFinder({
         </div>
       ) : (
         <>
-          {divisions.length > 0 && (
+          {needsDivision && (
             <div>
               <label className="block text-sm text-gray-500 dark:text-slate-400 mb-2">Division</label>
               <Select
                 value={selectedDivision}
-                onChange={setSelectedDivision}
-                placeholder="All divisions"
-                options={divisions.map((d) => ({ value: d, label: d }))}
+                onChange={handleDivisionChange}
+                placeholder="Choose a division"
+                options={divisionOptions.map((d) => ({ value: d, label: d }))}
               />
             </div>
           )}
 
-          {tiers.length > 0 && (
+          {showTier && (
             <div>
               <label className="block text-sm text-gray-500 dark:text-slate-400 mb-2">Tier</label>
               <Select
                 value={selectedTier}
-                onChange={setSelectedTier}
-                placeholder="All tiers"
-                options={tiers.map((t) => ({ value: t, label: t }))}
+                onChange={handleTierChange}
+                placeholder="Choose a tier"
+                options={tierOptions.map((t) => ({ value: t, label: t }))}
               />
             </div>
           )}
 
-          <div>
-            <label className="block text-sm text-gray-500 dark:text-slate-400 mb-2">
-              Team ({filteredTeams.length} available)
-            </label>
-            <div className="max-h-48 overflow-y-auto rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-slate-700">
-              {filteredTeams.length === 0 ? (
-                <div className="px-4 py-3 text-gray-500 dark:text-slate-400 text-sm">
-                  {unfilteredCount === 0
-                    ? 'All teams already added.'
-                    : 'No teams found. Try adjusting your filters.'}
-                </div>
-              ) : (
-                filteredTeams.map((team) => (
-                  <button
-                    key={team.name}
-                    onClick={() => setSelectedTeam(team.name)}
-                    className={`w-full text-left px-4 py-3 border-b border-gray-200 dark:border-white/5 transition-colors last:border-b-0 ${
-                      selectedTeam === team.name
-                        ? 'bg-nyhl-blue/10 text-nyhl-blue dark:bg-nyhl-gold/20 dark:text-nyhl-gold font-semibold'
-                        : 'hover:bg-gray-50 dark:hover:bg-white/5'
-                    }`}
-                  >
-                    <span className="text-gray-900 dark:text-white">{team.name}</span>
-                    {(team.divisions.length > 0 || team.tiers.length > 0) && (
-                      <span className="text-xs text-gray-400 dark:text-slate-500 ml-2">
-                        {[...team.divisions, ...team.tiers].join(' · ')}
-                      </span>
-                    )}
-                  </button>
-                ))
-              )}
+          {!ready ? (
+            <div className="rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-slate-700 px-4 py-5 text-center text-sm text-gray-500 dark:text-slate-400">
+              {!divisionChosen
+                ? 'Choose a division to see the teams in it.'
+                : 'Choose a tier to see the teams in it.'}
             </div>
-          </div>
+          ) : (
+            <div>
+              <label className="block text-sm text-gray-500 dark:text-slate-400 mb-2">
+                Team ({filteredTeams.length} available)
+              </label>
+              <div className="max-h-48 overflow-y-auto rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-slate-700">
+                {filteredTeams.length === 0 ? (
+                  <div className="px-4 py-3 text-gray-500 dark:text-slate-400 text-sm">
+                    {comboTeams.length === 0
+                      ? 'No teams in this division and tier.'
+                      : 'All teams already added.'}
+                  </div>
+                ) : (
+                  filteredTeams.map((team) => (
+                    <button
+                      key={team.name}
+                      onClick={() => setSelectedTeam(team.name)}
+                      className={`w-full text-left px-4 py-3 border-b border-gray-200 dark:border-white/5 transition-colors last:border-b-0 ${
+                        selectedTeam === team.name
+                          ? 'bg-nyhl-blue/10 text-nyhl-blue dark:bg-nyhl-gold/20 dark:text-nyhl-gold font-semibold'
+                          : 'hover:bg-gray-50 dark:hover:bg-white/5'
+                      }`}
+                    >
+                      <span className="text-gray-900 dark:text-white">{team.name}</span>
+                    </button>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
         </>
       )}
 

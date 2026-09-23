@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 import Footer from './Footer'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 
@@ -10,8 +10,7 @@ const navItems = [
 ]
 
 export default function Layout() {
-  const { activeTeam, season } = usePreferences()
-  const location = useLocation()
+  const { activeTeam } = usePreferences()
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 transition-colors pb-20">
@@ -20,20 +19,12 @@ export default function Layout() {
         <a href="https://nyhl.on.ca/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
           <img src={`${import.meta.env.BASE_URL}images/NYHLLogo-h150.png`} alt="NYHL" className="h-8 w-auto" />
         </a>
-        <div className="flex items-center gap-3">
-          {activeTeam && (
-            <span className="text-sm text-blue-200 hidden sm:block">
-              {activeTeam}
-            </span>
-          )}
-          <span className="text-xs bg-white/10 px-2 py-1 rounded backdrop-blur">
-            {season}
+        {activeTeam && (
+          <span className="text-sm text-blue-200 hidden sm:block">
+            {activeTeam}
           </span>
-        </div>
+        )}
       </header>
-
-      {/* Active filter indicator */}
-      <FilterBar />
 
       {/* Main content */}
       <main className="flex-1">
@@ -64,29 +55,6 @@ export default function Layout() {
           ))}
         </div>
       </nav>
-    </div>
-  )
-}
-
-function FilterBar() {
-  const { filters } = usePreferences()
-  const location = useLocation()
-
-  const activeFilters = Object.entries(filters).filter(
-    ([, v]) => v && v !== 'ALL'
-  )
-
-  if (activeFilters.length === 0) return null
-  // Only show on schedule page (standings has inline filters)
-  if (location.pathname !== '/schedule') return null
-
-  const label = activeFilters
-    .map(([, v]) => v)
-    .join(' · ')
-
-  return (
-    <div className="bg-nyhl-ice dark:bg-nyhl-navy/50 text-nyhl-navy dark:text-blue-200 text-sm px-4 py-2 border-b border-blue-100 dark:border-slate-700 transition-colors">
-      {label}
     </div>
   )
 }
