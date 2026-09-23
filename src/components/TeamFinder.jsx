@@ -112,6 +112,10 @@ export default function TeamFinder({
       division: selectedDivision || undefined,
       tier: selectedTier || undefined,
       season,
+      // Carry the crest through so the confirmation screen shows the real
+      // logo instead of a generic puck. Not persisted meaningfully — older
+      // saved teams without it fall back to a lookup at render time.
+      logo: comboTeams.find((t) => t.name === selectedTeam)?.logo || undefined,
     }
     addTeam(team)
     setActiveTeam(selectedTeam)

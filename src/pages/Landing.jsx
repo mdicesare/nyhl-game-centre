@@ -88,8 +88,20 @@ export default function Landing() {
         {step === 'done' && addedTeam && (
           <div className="w-full space-y-6">
             <div className="bg-gray-100 dark:bg-white/10 rounded-xl p-6">
-              <p className="text-sm text-gray-500 dark:text-blue-200 mb-2">You're following:</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">🏒 {addedTeam.name}</p>
+              <p className="text-sm text-gray-500 dark:text-blue-200 mb-3">You're following:</p>
+              <div className="flex items-center gap-3">
+                {addedTeam.logo ? (
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/teams/${addedTeam.logo}.png`}
+                    alt=""
+                    className="w-12 h-12 object-contain logo-glow shrink-0"
+                    onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  />
+                ) : (
+                  <span className="text-3xl shrink-0">🏒</span>
+                )}
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{addedTeam.name}</p>
+              </div>
               {addedTeam.division && (
                 <p className="text-gray-500 dark:text-blue-200 mt-1">
                   {addedTeam.division} {addedTeam.tier ? `· ${addedTeam.tier}` : ''}

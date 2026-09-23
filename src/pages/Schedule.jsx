@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
+import GameDetail from '../components/GameDetail.jsx'
 
 export default function Schedule() {
   const {
@@ -14,8 +14,17 @@ export default function Schedule() {
     season,
     setSeason,
   } = usePreferences()
-  const { games, divisions, tiers, arenas, lastUpdated } = useData()
+  const { games, divisions, tiersFor, arenas, lastUpdated } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
+
+  // One competition at a time, same rule as Standings: a visitor who has only
+  // picked a season would otherwise get every division and tier's games in a
+  // single list. Arena stays optional — it narrows, it doesn't identify.
+  const hasData = games.length > 0
+  const needsDivision = divisions.length > 0 && filters.division === 'ALL'
+  const tierOptions = needsDivision ? [] : tiersFor(filters.division)
+  const needsTier = tierOptions.length > 0 && filters.tier === 'ALL'
+  const awaitingFilters = hasData && (needsDivision || needsTier)
 
   // Apply filters
   const filteredGames = useMemo(() => {
@@ -80,7 +89,6 @@ export default function Schedule() {
   const hasActiveFilters =
     filters.division !== 'ALL' || filters.tier !== 'ALL' || filters.arena !== 'ALL'
   const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
-  const hasData = games.length > 0
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto animate-fade-in">
@@ -111,10 +119,10 @@ export default function Schedule() {
 
         <select
           value={filters.division}
-          onChange={(e) => setFilters({ division: e.target.value })}
+          onChange={(e) => setFilters({ division: e.target.value, tier: 'ALL' })}
           className={SELECT_CLS}
         >
-          <option value="ALL">All divisions</option>
+          <option value="ALL">Choose a division…</option>
           {filters.division !== 'ALL' && !divisions.includes(filters.division) && (
             <option value={filters.division}>{filters.division}</option>
           )}
@@ -123,19 +131,21 @@ export default function Schedule() {
           ))}
         </select>
 
-        <select
-          value={filters.tier}
-          onChange={(e) => setFilters({ tier: e.target.value })}
-          className={SELECT_CLS}
-        >
-          <option value="ALL">All tiers</option>
-          {filters.tier !== 'ALL' && !tiers.includes(filters.tier) && (
-            <option value={filters.tier}>{filters.tier}</option>
-          )}
-          {tiers.map((t) => (
-            <option key={t} value={t}>{t}</option>
-          ))}
-        </select>
+        {!needsDivision && tierOptions.length > 0 && (
+          <select
+            value={filters.tier}
+            onChange={(e) => setFilters({ tier: e.target.value })}
+            className={SELECT_CLS}
+          >
+            <option value="ALL">Choose a tier…</option>
+            {filters.tier !== 'ALL' && !tierOptions.includes(filters.tier) && (
+              <option value={filters.tier}>{filters.tier}</option>
+            )}
+            {tierOptions.map((t) => (
+              <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
+        )}
 
         <select
           value={filters.arena}
@@ -161,6 +171,20 @@ export default function Schedule() {
         )}
       </div>
 
+      {/* Nothing to show until a competition is picked */}
+      {awaitingFilters ? (
+        <div className="text-center py-12 rounded-xl bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700">
+          <p className="text-4xl mb-4">📅</p>
+          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+            Choose a {needsDivision ? 'division' : 'tier'} to see games
+          </p>
+          <p className="text-gray-400 dark:text-slate-500 text-sm max-w-sm mx-auto">
+            The schedule is shown one division and tier at a time, so you're only
+            ever looking at games that are actually on.
+          </p>
+        </div>
+      ) : (
+      <div>
       {/* Active filter summary */}
       <div className="flex items-center gap-2 mb-4 flex-wrap">
         {filters.division !== 'ALL' && (
@@ -176,11 +200,6 @@ export default function Schedule() {
         {filters.arena !== 'ALL' && (
           <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-full">
             {filters.arena}
-          </span>
-        )}
-        {!hasActiveFilters && (
-          <span className="text-sm text-gray-400 dark:text-slate-500">
-            Showing all divisions · all tiers · all arenas
           </span>
         )}
       </div>
@@ -259,6 +278,8 @@ export default function Schedule() {
             </div>
           </div>
         ))
+      )}
+      </div>
       )}
 
       {lastUpdated && (
@@ -373,104 +394,6 @@ function GameCard({ game, activeTeam, onClick }) {
   )
 }
 
-function GameDetail({ game, onClose }) {
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
-      <div
-        className="bg-white dark:bg-slate-800 rounded-t-2xl w-full max-w-lg p-6 pb-8 animate-slide-up shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="w-12 h-1 bg-gray-300 dark:bg-slate-600 rounded-full mx-auto mb-4" />
-
-        <p className="text-xs text-gray-400 dark:text-slate-500 mb-4">
-          {formatGameDate(game.date)} · {formatTime(game.time)}
-        </p>
-
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex-1 flex items-center gap-3">
-            {game.homeTeam.logo && (
-              <img
-                src={`${import.meta.env.BASE_URL}images/teams/${game.homeTeam.logo}.png`}
-                alt=""
-                className="w-14 h-14 object-contain logo-glow"
-                onError={(e) => { e.target.style.display = 'none' }}
-              />
-            )}
-            <div>
-              <p className="text-lg font-bold dark:text-white">{game.homeTeam.name}</p>
-              <p className="text-sm text-gray-500 dark:text-slate-400">Home</p>
-            </div>
-          </div>
-
-          {game.score ? (
-            <div className="text-center px-6">
-              <p className="text-4xl font-bold dark:text-white">
-                {game.score.home} – {game.score.away}
-              </p>
-              <p className="text-xs text-gray-400 dark:text-slate-500 uppercase mt-1">
-                {game.status === 'final' ? 'Final' : game.status}
-              </p>
-            </div>
-          ) : (
-            <div className="text-center px-6">
-              <p className="text-2xl font-bold text-gray-300 dark:text-slate-600">vs</p>
-            </div>
-          )}
-
-          <div className="flex-1 flex items-center justify-end gap-3">
-            <div className="text-right">
-              <p className="text-lg font-bold dark:text-white">{game.awayTeam.name}</p>
-              <p className="text-sm text-gray-500 dark:text-slate-400">Away</p>
-            </div>
-            {game.awayTeam.logo && (
-              <img
-                src={`${import.meta.env.BASE_URL}images/teams/${game.awayTeam.logo}.png`}
-                alt=""
-                className="w-14 h-14 object-contain logo-glow"
-                onError={(e) => { e.target.style.display = 'none' }}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-2 text-sm border-t border-gray-100 dark:border-slate-700 pt-4">
-          {game.arena && (
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-slate-400">Arena</span>
-              <span className="font-medium dark:text-slate-200">{game.arena}</span>
-            </div>
-          )}
-          {game.division && (
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-slate-400">Division</span>
-              <span className="font-medium dark:text-slate-200">{game.division}</span>
-            </div>
-          )}
-          {game.tier && (
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-slate-400">Tier</span>
-              <span className="font-medium dark:text-slate-200">{game.tier}</span>
-            </div>
-          )}
-          {game.gameType && (
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-slate-400">Type</span>
-              <span className="font-medium dark:text-slate-200">{formatGameType(game.gameType)}</span>
-            </div>
-          )}
-        </div>
-
-        <button
-          onClick={onClose}
-          className="w-full mt-6 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-200 py-3 rounded-xl font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  )
-}
-
 // ---- Helpers ----
 
 // Same styling as the Standings filter row so the two pages read as one UI.
@@ -481,17 +404,6 @@ function formatSeasonLabel(s) {
   // "25-26" → "2025–26"
   const [y1, y2] = s.split('-')
   return `20${y1}–${y2}`
-}
-
-const GAME_TYPE_LABELS = {
-  'FS': 'Fall Season',
-  'WS': 'Winter Season',
-  'PO': 'Playoff Round Robin',
-  'PB': 'Playoff Elimination',
-}
-
-function formatGameType(type) {
-  return GAME_TYPE_LABELS[type] || type
 }
 
 function formatTimestamp(iso) {

@@ -18,23 +18,22 @@ function formatSeasonLabel(s) {
 
 export default function Standings() {
   const { filters, setFilters, clearFilters, activeTeam, season, setSeason } = usePreferences()
-  const { standingsList, divisions, tiers, standingsGameTypes, lastUpdated } = useData()
+  // effectiveGameType lives in useData so the place shown on a Home card is
+  // always the place shown in this table.
+  const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, lastUpdated } =
+    useData()
   const [expandedTeam, setExpandedTeam] = useState(null)
 
-  // A standings table can't sensibly mix game types: every team would appear
-  // once per type and the ranking would mean nothing. So a type is always
-  // required — fall back to the first one this season actually has instead of
-  // offering an "All types" that produces a meaningless table.
-  const effectiveGameType = useMemo(() => {
-    if (
-      filters.gameType &&
-      filters.gameType !== 'ALL' &&
-      standingsGameTypes.includes(filters.gameType)
-    ) {
-      return filters.gameType
-    }
-    return standingsGameTypes[0] || null
-  }, [filters.gameType, standingsGameTypes])
+  const hasData = standingsList.length > 0
+
+  // One competition at a time. Without this a fresh visitor who only picks a
+  // season gets every division and tier stacked into a single table where the
+  // ranking means nothing. Division is required first because tier options are
+  // scoped to it — the same cascade the team finder uses.
+  const needsDivision = divisions.length > 0 && filters.division === 'ALL'
+  const tierOptions = needsDivision ? [] : tiersFor(filters.division)
+  const needsTier = tierOptions.length > 0 && filters.tier === 'ALL'
+  const awaitingFilters = hasData && (needsDivision || needsTier)
 
   // Apply filters
   const filteredStandings = useMemo(() => {
@@ -55,7 +54,6 @@ export default function Standings() {
 
   // A game type is always chosen, so it isn't part of "clear the filters".
   const hasActiveFilters = filters.division !== 'ALL' || filters.tier !== 'ALL'
-  const hasData = standingsList.length > 0
 
   return (
     <div className="px-4 py-6 max-w-5xl mx-auto animate-fade-in">
@@ -79,34 +77,38 @@ export default function Standings() {
           <option value="24-25">2024–25</option>
         </select>
 
-        <select
-          value={filters.division}
-          onChange={(e) => setFilters({ division: e.target.value })}
-          className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
-        >
-          <option value="ALL">All divisions</option>
-          {/* Keep a remembered filter selectable even if the loaded season lacks it */}
-          {filters.division !== 'ALL' && !divisions.includes(filters.division) && (
-            <option value={filters.division}>{filters.division}</option>
-          )}
-          {divisions.map((d) => (
-            <option key={d} value={d}>{d}</option>
-          ))}
-        </select>
+        {divisions.length > 0 && (
+          <select
+            value={filters.division}
+            onChange={(e) => setFilters({ division: e.target.value, tier: 'ALL' })}
+            className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
+          >
+            <option value="ALL">Choose a division…</option>
+            {/* Keep a remembered filter selectable even if the loaded season lacks it */}
+            {filters.division !== 'ALL' && !divisions.includes(filters.division) && (
+              <option value={filters.division}>{filters.division}</option>
+            )}
+            {divisions.map((d) => (
+              <option key={d} value={d}>{d}</option>
+            ))}
+          </select>
+        )}
 
-        <select
-          value={filters.tier}
-          onChange={(e) => setFilters({ tier: e.target.value })}
-          className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
-        >
-          <option value="ALL">All tiers</option>
-          {filters.tier !== 'ALL' && !tiers.includes(filters.tier) && (
-            <option value={filters.tier}>{filters.tier}</option>
-          )}
-          {tiers.map((t) => (
-            <option key={t} value={t}>{t}</option>
-          ))}
-        </select>
+        {!needsDivision && tierOptions.length > 0 && (
+          <select
+            value={filters.tier}
+            onChange={(e) => setFilters({ tier: e.target.value })}
+            className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
+          >
+            <option value="ALL">Choose a tier…</option>
+            {filters.tier !== 'ALL' && !tierOptions.includes(filters.tier) && (
+              <option value={filters.tier}>{filters.tier}</option>
+            )}
+            {tierOptions.map((t) => (
+              <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
+        )}
 
         {standingsGameTypes.length > 0 && (
           <select
@@ -130,6 +132,20 @@ export default function Standings() {
         )}
       </div>
 
+      {/* Nothing to rank until a competition is picked */}
+      {awaitingFilters ? (
+        <div className="text-center py-12 rounded-xl bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700">
+          <p className="text-4xl mb-4">📋</p>
+          <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+            Choose a {needsDivision ? 'division' : 'tier'} to see standings
+          </p>
+          <p className="text-gray-400 dark:text-slate-500 text-sm max-w-sm mx-auto">
+            Standings are shown one division and tier at a time, so the table only
+            ever ranks teams that actually play each other.
+          </p>
+        </div>
+      ) : (
+      <div>
       {/* Active filter summary */}
       <div className="flex items-center gap-2 mb-4 flex-wrap">
         {filters.division !== 'ALL' && (
@@ -145,11 +161,6 @@ export default function Standings() {
         {effectiveGameType && (
           <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-medium px-2.5 py-1 rounded-full">
             {GAME_TYPE_LABELS[effectiveGameType] || effectiveGameType}
-          </span>
-        )}
-        {!hasActiveFilters && (
-          <span className="text-sm text-gray-400 dark:text-slate-500">
-            Showing all divisions · all tiers
           </span>
         )}
       </div>
@@ -212,6 +223,8 @@ export default function Standings() {
             ))}
           </div>
         </>
+      )}
+      </div>
       )}
 
       {lastUpdated && (
