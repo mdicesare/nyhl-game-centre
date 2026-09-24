@@ -109,15 +109,17 @@ def has_full_viewstate(html: str) -> bool:
     return len(extract_viewstate(html).get("__VIEWSTATE", "")) >= MIN_VIEWSTATE
 
 
-def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 8):
+def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 8,
+                       fatal: bool = True):
     """Repeat a request until Agilex serves a usable page.
 
     Backs off 5s, 10s, 20s, 40s, 60s... A degraded window lasted about five
     minutes while the new season was being published, so the retries are sized
     to outlast one rather than give up inside it.
 
-    If it never clears, abort the whole run non-zero so CI skips the commit
-    step and the deployed site keeps its last good data.
+    fatal=False returns None instead of exiting, for callers whose dataset can
+    be skipped without endangering the other one — a dead schedule page must
+    not stop standings from updating.
     """
     is_ok = healthy if healthy is not None else (lambda text: not is_throttle_stub(text))
     delay = 5
@@ -133,6 +135,13 @@ def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 
         if attempt < attempts:
             time.sleep(delay)
             delay = min(delay * 2, 60)
+    if not fatal:
+        log.warning(
+            "%s: still unhealthy after %d attempts — continuing without this "
+            "dataset; matching files will be left exactly as they are.",
+            label, attempts,
+        )
+        return None
     log.error(
         "%s: still unhealthy after %d attempts. Aborting without writing "
         "anything so the site keeps its last good data.",
@@ -880,6 +889,7 @@ def write_output(
     metadata: dict,
     season: str,
     dry_run: bool = False,
+    write_schedule: bool = True,
 ):
     """Write normalized JSON to public/data/."""
     now = datetime.utcnow().isoformat() + "Z"
@@ -904,7 +914,9 @@ def write_output(
     }
 
     if dry_run:
-        log.info("Dry run — would write %d games, %d standings entries", len(games), len(standings))
+        log.info("Dry run — would write %d games, %d standings entries%s",
+                 len(games), len(standings),
+                 "" if write_schedule else " (schedule skipped)")
         log.info("Sample game: %s", json.dumps(games[0], indent=2) if games else "none")
         log.info("Sample standing: %s", json.dumps(standings[0], indent=2) if standings else "none")
         return
@@ -952,7 +964,9 @@ def write_output(
     # Safety: don't overwrite good data with bad. Compare against the snapshot
     # for this same season, and only over divisions the new scrape covers, so a
     # single-division run is never measured against an all-divisions dataset.
-    if existing and existing.get("season") in (None, season):
+    # A rejected schedule must not take standings down with it, so this drops
+    # the schedule rather than bailing out of the whole write.
+    if write_schedule and existing and existing.get("season") in (None, season):
         new_divisions = {g.get("division") for g in games if g.get("division")}
         comparable = [
             g for g in existing_games
@@ -960,27 +974,34 @@ def write_output(
         ]
         if comparable and len(games) < len(comparable) * 0.5:
             log.warning(
-                "SKIP: New scrape has %d games but cached %s has %d "
-                "in divisions %s. Not overwriting — possible scrape failure.",
+                "SKIP schedule: New scrape has %d games but cached %s has %d "
+                "in divisions %s — possible scrape failure. Keeping the cached "
+                "schedule and still writing standings.",
                 len(games), season, len(comparable), sorted(new_divisions),
             )
-            return
+            write_schedule = False
 
     # Merge instead of replace: this run owns only the divisions it scraped
-    # and only the dataset it actually returned rows for.
-    merged_games = merge_by_division(existing_games, games)
+    # and only the dataset it actually returned rows for. When the schedule
+    # could not be fetched at all, every schedule file is left as-is rather
+    # than recording an empty season as fact — the app reads the snapshot
+    # ahead of the default file, so a wrong 0 here would be shown as truth.
+    merged_games = existing_games
+    if write_schedule:
+        merged_games = merge_by_division(existing_games, games)
+        schedule_payload["games"] = merged_games
+        schedule_payload["gameCount"] = len(merged_games)
     merged_standings = merge_by_division(existing_standings_rows, standings)
-    schedule_payload["games"] = merged_games
-    schedule_payload["gameCount"] = len(merged_games)
     standings_payload["standings"] = merged_standings
     standings_payload["teamCount"] = len(merged_standings)
 
-    # Always write the per-season snapshot — this is the long-lived cache.
-    with open(season_schedule_path, "w", encoding="utf-8") as f:
-        json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
+    # Write the per-season snapshots — these are the long-lived caches.
+    if write_schedule:
+        with open(season_schedule_path, "w", encoding="utf-8") as f:
+            json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
+        log.info("Wrote %s (%d games)", season_schedule_path.name, len(merged_games))
     with open(season_standings_path, "w", encoding="utf-8") as f:
         json.dump(standings_payload, f, indent=2, ensure_ascii=False)
-    log.info("Wrote %s (%d games)", season_schedule_path.name, len(merged_games))
     log.info("Wrote %s (%d teams)", season_standings_path.name, len(merged_standings))
 
     # Mirror into the default files the app falls back to. Each file is guarded
@@ -988,7 +1009,9 @@ def write_output(
     # round) can't blank out half of what the site is already showing.
     is_current = season == current_season()
 
-    if is_current or not schedule_path.exists():
+    if not write_schedule:
+        log.info("Default schedule untouched: schedule page was unavailable this run")
+    elif is_current or not schedule_path.exists():
         if merged_games:
             with open(schedule_path, "w", encoding="utf-8") as f:
                 json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
@@ -1069,21 +1092,32 @@ def main():
         lambda: session.get(SCHEDULE_URL, timeout=60),
         label="schedule GET",
         healthy=has_full_viewstate,
+        fatal=False,
     )
-    # DEBUG: dump initial GET response
-    debug_path = Path(__file__).resolve().parent / "debug_get.html"
-    debug_path.write_text(resp.text, encoding="utf-8")
-    log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
-    viewstate = extract_viewstate(resp.text)
-    throttle()
+    schedule_ok = resp is not None
+    viewstate = None
+    filters = {}
+    if schedule_ok:
+        # DEBUG: dump initial GET response
+        debug_path = Path(__file__).resolve().parent / "debug_get.html"
+        debug_path.write_text(resp.text, encoding="utf-8")
+        log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
+        viewstate = extract_viewstate(resp.text)
+        throttle()
 
-    # Step 2: Discover available filters
-    log.info("Discovering filter options...")
-    filters = discover_filters(resp.text)
-    log.info("Available divisions: %s", filters.get("divisions", []))
-    log.info("Available tiers: %s", filters.get("tiers", []))
-    log.info("Available clubs: %d options", len(filters.get("clubs", [])))
-    log.info("Available arenas: %d options", len(filters.get("arenas", [])))
+        # Step 2: Discover available filters
+        log.info("Discovering filter options...")
+        filters = discover_filters(resp.text)
+        log.info("Available divisions: %s", filters.get("divisions", []))
+        log.info("Available tiers: %s", filters.get("tiers", []))
+        log.info("Available clubs: %d options", len(filters.get("clubs", [])))
+        log.info("Available arenas: %d options", len(filters.get("arenas", [])))
+    else:
+        log.warning(
+            "Schedule page unavailable — standings will still be scraped, and "
+            "every schedule file will be left exactly as it is rather than "
+            "written as an empty season."
+        )
 
     metadata = {
         "divisions": filters.get("divisions", []),
@@ -1116,7 +1150,7 @@ def main():
     standings = []
 
     # Step 3: Scrape schedules
-    if not args.standings_only:
+    if not args.standings_only and schedule_ok:
         games = scrape_schedules(
             session,
             viewstate,
@@ -1153,7 +1187,8 @@ def main():
         log.info("No team logos found in scraped data")
 
     # Step 6: Write output
-    write_output(games, standings, metadata, season, dry_run=args.dry_run)
+    write_output(games, standings, metadata, season,
+                 dry_run=args.dry_run, write_schedule=schedule_ok)
 
     log.info("Done.")
 
