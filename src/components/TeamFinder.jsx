@@ -1,14 +1,17 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import Select from './Select.jsx'
 
-// Last three seasons we keep a snapshot for.
+// Last three seasons we keep a snapshot for. The first entry is the current
+// season and is what every team search opens on.
 const SEASONS = [
   { value: '26-27', label: '2026–27' },
   { value: '25-26', label: '2025–26' },
   { value: '24-25', label: '2024–25' },
 ]
+
+const CURRENT_SEASON = SEASONS[0].value
 
 function seasonLabel(value) {
   return SEASONS.find((s) => s.value === value)?.label || value
@@ -29,8 +32,10 @@ function seasonLabel(value) {
  * listing the whole league.
  *
  * The season select writes straight to the shared preference, because that
- * value is what decides which snapshot the data layer loads. Settings hides
- * it — season is picked on the data pages or during first-time setup.
+ * value is what decides which snapshot the data layer loads. Opening the
+ * finder resets it to the current season and gives the previous one back on
+ * close unless a team was added. Settings hides the select — season is picked
+ * on the data pages or during first-time setup.
  */
 export default function TeamFinder({
   onAdded,
@@ -45,6 +50,26 @@ export default function TeamFinder({
   const [selectedDivision, setSelectedDivision] = useState('')
   const [selectedTier, setSelectedTier] = useState('')
   const [selectedTeam, setSelectedTeam] = useState('')
+
+  // A team search always opens on the current season. The stored season is a
+  // browsing scope — it follows the active team's year, or whatever was last
+  // looked at on Standings/Schedule — so the finder was quietly starting on
+  // last year's rosters. The visitor's own season comes back if they leave
+  // without adding anyone, so opening this panel never rewrites the season
+  // the data pages were showing.
+  const seasonAtOpen = useRef(season)
+  const addedRef = useRef(false)
+  useEffect(() => {
+    if (season !== CURRENT_SEASON) setSeason(CURRENT_SEASON)
+    return () => {
+      if (!addedRef.current && seasonAtOpen.current !== CURRENT_SEASON) {
+        setSeason(seasonAtOpen.current)
+      }
+    }
+    // Mount/unmount only: a season picked inside the finder has to stick
+    // while it is open, and re-running this would fight that choice.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const savedNames = useMemo(
     () => new Set(savedTeams.map((t) => t.name.toLowerCase())),
@@ -119,6 +144,9 @@ export default function TeamFinder({
     }
     addTeam(team)
     setActiveTeam(selectedTeam)
+    // The season this finder set up is now the visitor's real season — don't
+    // restore the old one when the panel closes.
+    addedRef.current = true
     setSelectedTeam('')
     onAdded?.(team)
   }

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail from '../components/GameDetail.jsx'
@@ -14,39 +15,49 @@ export default function Schedule() {
     season,
     setSeason,
   } = usePreferences()
-  const { games, divisions, tiersFor, arenas, lastUpdated } = useData()
+  const { games, divisions, tiersFor, lastUpdated } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
+
+  // A standings row links here as /schedule?team=…&division=…&tier=… so the
+  // schedule opens on the team that was just clicked rather than on whoever
+  // the visitor happens to follow. While that parameter is present the page
+  // is in "one team" mode: the division/tier cascade is replaced by a single
+  // removable chip, because those two selects would otherwise disagree with
+  // the list they are filtering.
+  const [searchParams, setSearchParams] = useSearchParams()
+  const focusTeam = searchParams.get('team')
 
   // One competition at a time, same rule as Standings: a visitor who has only
   // picked a season would otherwise get every division and tier's games in a
-  // single list. Arena stays optional — it narrows, it doesn't identify.
+  // single list. Picking a single team is the other way in.
   const hasData = games.length > 0
   const needsDivision = divisions.length > 0 && filters.division === 'ALL'
   const tierOptions = needsDivision ? [] : tiersFor(filters.division)
   const needsTier = tierOptions.length > 0 && filters.tier === 'ALL'
-  const awaitingFilters = hasData && (needsDivision || needsTier)
+  const awaitingFilters = hasData && !focusTeam && (needsDivision || needsTier)
 
   // Apply filters
   const filteredGames = useMemo(() => {
     let result = games
 
-    // Active team context
-    if (activeTeam) {
-      const lower = activeTeam.toLowerCase()
+    // Team context: the pinned team wins over the followed one, since the
+    // visitor explicitly asked to see that team's games.
+    const teamFilter = focusTeam || activeTeam
+    if (teamFilter) {
+      const lower = teamFilter.toLowerCase()
       result = result.filter(
         (g) => g.homeTeam.name.toLowerCase() === lower || g.awayTeam.name.toLowerCase() === lower
       )
     }
 
-    // Filter dropdowns
-    if (filters.division !== 'ALL') {
-      result = result.filter((g) => g.division === filters.division)
-    }
-    if (filters.tier !== 'ALL') {
-      result = result.filter((g) => g.tier === filters.tier)
-    }
-    if (filters.arena !== 'ALL') {
-      result = result.filter((g) => g.arena === filters.arena)
+    // Filter dropdowns — hidden while a team is pinned, so don't apply them.
+    if (!focusTeam) {
+      if (filters.division !== 'ALL') {
+        result = result.filter((g) => g.division === filters.division)
+      }
+      if (filters.tier !== 'ALL') {
+        result = result.filter((g) => g.tier === filters.tier)
+      }
     }
 
     // Schedule filter: upcoming / completed
@@ -66,7 +77,7 @@ export default function Schedule() {
       const db = new Date(`${b.date}T${b.time || '00:00'}`)
       return da - db
     })
-  }, [games, filters, activeTeam, scheduleFilter])
+  }, [games, filters, activeTeam, focusTeam, scheduleFilter])
 
   // Group by month
   const groupedGames = useMemo(() => {
@@ -84,11 +95,15 @@ export default function Schedule() {
     return groups
   }, [filteredGames])
 
-  // Schedule only applies division/tier/arena. gameType and club share the
+  // Schedule only applies division/tier. gameType and club share the
   // filter object but are never read here, so they must not show as active.
+  // While a team is pinned those two selects are hidden, so they don't count.
   const hasActiveFilters =
-    filters.division !== 'ALL' || filters.tier !== 'ALL' || filters.arena !== 'ALL'
+    !focusTeam && (filters.division !== 'ALL' || filters.tier !== 'ALL')
   const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
+
+  // Back to the normal division/tier view.
+  const clearFocus = () => setSearchParams({}, { replace: true })
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto animate-fade-in">
@@ -98,9 +113,9 @@ export default function Schedule() {
         <span className="bg-nyhl-blue text-white text-sm font-semibold px-3 py-1 rounded-full">
           20{season.split('-')[0]}–{season.split('-')[1]}
         </span>
-        {activeTeam && (
+        {(focusTeam || activeTeam) && (
           <span className="w-full text-sm text-nyhl-blue dark:text-blue-400">
-            {activeTeam}
+            {focusTeam || activeTeam}
           </span>
         )}
       </div>
@@ -117,6 +132,8 @@ export default function Schedule() {
           <option value="24-25">2024–25</option>
         </select>
 
+        {!focusTeam && (
+        <>
         <select
           value={filters.division}
           onChange={(e) => setFilters({ division: e.target.value, tier: 'ALL' })}
@@ -146,20 +163,8 @@ export default function Schedule() {
             ))}
           </select>
         )}
-
-        <select
-          value={filters.arena}
-          onChange={(e) => setFilters({ arena: e.target.value })}
-          className={SELECT_CLS}
-        >
-          <option value="ALL">All arenas</option>
-          {filters.arena !== 'ALL' && !arenas.includes(filters.arena) && (
-            <option value={filters.arena}>{filters.arena}</option>
-          )}
-          {arenas.map((a) => (
-            <option key={a} value={a}>{a}</option>
-          ))}
-        </select>
+        </>
+        )}
 
         {hasActiveFilters && (
           <button
@@ -187,20 +192,30 @@ export default function Schedule() {
       <div>
       {/* Active filter summary */}
       <div className="flex items-center gap-2 mb-4 flex-wrap">
-        {filters.division !== 'ALL' && (
-          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.division}
+        {focusTeam ? (
+          <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
+            Showing {focusTeam}'s games
+            <button
+              onClick={clearFocus}
+              aria-label="Back to all games"
+              className="hover:text-blue-200 transition-colors"
+            >
+              ✕
+            </button>
           </span>
-        )}
-        {filters.tier !== 'ALL' && (
-          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.tier}
-          </span>
-        )}
-        {filters.arena !== 'ALL' && (
-          <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.arena}
-          </span>
+        ) : (
+          <>
+            {filters.division !== 'ALL' && (
+              <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
+                {filters.division}
+              </span>
+            )}
+            {filters.tier !== 'ALL' && (
+              <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
+                {filters.tier}
+              </span>
+            )}
+          </>
         )}
       </div>
 
@@ -229,13 +244,28 @@ export default function Schedule() {
       {filteredGames.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-4xl mb-4">🏒</p>
-          {hasData ? (
+          {focusTeam && hasData ? (
+            <>
+              <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
+                No games for {focusTeam} in {formatSeasonLabel(season)}
+              </p>
+              <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
+                This team may not be scheduled yet in this season.
+              </p>
+              <button
+                onClick={clearFocus}
+                className="text-sm text-nyhl-blue hover:underline"
+              >
+                Back to all games
+              </button>
+            </>
+          ) : hasData ? (
             <>
               <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
                 No games match these filters
               </p>
               <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-                Try a different division, tier, arena or view.
+                Try a different division, tier or view.
               </p>
               {isNarrowed && (
                 <button
@@ -271,7 +301,7 @@ export default function Schedule() {
                 <GameCard
                   key={game.id}
                   game={game}
-                  activeTeam={activeTeam}
+                  activeTeam={focusTeam || activeTeam}
                   onClick={() => setSelectedGame(game)}
                 />
               ))}

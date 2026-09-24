@@ -2,6 +2,9 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
+// A standings row leads to that team's own schedule, not to whatever team the
+// visitor happens to follow.
+import { teamScheduleLink } from '../lib/links.js'
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',
@@ -288,7 +291,8 @@ function StandingsTable({ standings, activeTeam }) {
                     )}
                     {isUserTeam && <span className="text-nyhl-gold">★</span>}
                     <Link
-                      to="/schedule"
+                      to={teamScheduleLink(team)}
+                      aria-label={`${team.name} schedule`}
                       className={`hover:text-nyhl-blue hover:underline ${
                         isUserTeam ? 'text-nyhl-blue dark:text-blue-400 font-semibold' : 'dark:text-slate-200'
                       }`}
@@ -339,11 +343,26 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
   const gf = (team.gfAvg * team.gp).toFixed(0)
   const ga = (team.gaAvg * team.gp).toFixed(0)
   const diff = gf - ga
+  const link = teamScheduleLink(team)
+
+  // The row is a div rather than a button because the team name inside it is
+  // a real link to that team's schedule — nesting a link in a button is
+  // invalid HTML and browsers drop the inner target. Everything else on the
+  // row still expands the detail panel.
+  const toggleOnKey = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      onToggle()
+    }
+  }
 
   return (
-    <button
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onToggle}
-      className={`w-full text-left rounded-xl border p-3 transition-all card-hover ${
+      onKeyDown={toggleOnKey}
+      className={`w-full text-left rounded-xl border p-3 transition-all card-hover cursor-pointer ${
         isActive
           ? 'bg-gradient-to-r from-nyhl-blue/5 to-nyhl-blue/10 border-nyhl-blue/30 dark:from-nyhl-blue/10 dark:to-nyhl-blue/20 dark:border-blue-500/30'
           : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700'
@@ -361,10 +380,17 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
               onError={(e) => { e.target.style.display = 'none' }}
             />
           )}
-          <span className={`font-semibold ${isActive ? 'text-nyhl-blue dark:text-blue-400' : 'dark:text-slate-200'}`}>
+          <Link
+            to={link}
+            aria-label={`${team.name} schedule`}
+            onClick={(e) => e.stopPropagation()}
+            className={`font-semibold hover:text-nyhl-blue hover:underline ${
+              isActive ? 'text-nyhl-blue dark:text-blue-400' : 'dark:text-slate-200'
+            }`}
+          >
             {isActive && <span className="mr-1 text-nyhl-gold">★</span>}
             {team.name}
-          </span>
+          </Link>
         </div>
         <span className="font-bold text-xl text-nyhl-navy dark:text-white">{team.pts}</span>
       </div>
@@ -397,9 +423,16 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
           <Detail label="Away" value={team.away} />
           <Detail label="Last 10" value={team.last10} />
           <Detail label="PIM" value={team.pim || '—'} />
+          <Link
+            to={link}
+            onClick={(e) => e.stopPropagation()}
+            className="col-span-2 text-nyhl-blue dark:text-blue-400 text-sm font-medium hover:underline"
+          >
+            View {team.name}'s schedule →
+          </Link>
         </div>
       )}
-    </button>
+    </div>
   )
 }
 

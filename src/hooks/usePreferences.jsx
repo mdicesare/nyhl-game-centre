@@ -14,7 +14,6 @@ const DEFAULT_PREFS = {
     tier: 'ALL',
     gameType: 'ALL',
     club: 'ALL',
-    arena: 'ALL',
   },
   scheduleFilter: 'all', // 'all' | 'upcoming' | 'completed'
   viewPreference: 'list', // 'list' | 'calendar' (future)

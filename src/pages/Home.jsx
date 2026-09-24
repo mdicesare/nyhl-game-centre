@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameDate, formatTime, formatGameType } from '../components/GameDetail.jsx'
+import { teamScheduleLink } from '../lib/links.js'
 
 export default function Home() {
   const { savedTeams, activeTeam, setActiveTeam, hasTeams } = usePreferences()
@@ -196,9 +197,9 @@ function TeamCard({
         </Link>
       )}
 
-      {/* Next game → Schedule */}
+      {/* Next game → that team's own schedule */}
       <Link
-        to="/schedule"
+        to={teamScheduleLink(team)}
         aria-label={`${team.name} schedule`}
         className="group block mb-3 p-3 -mx-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
       >

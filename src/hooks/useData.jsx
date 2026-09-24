@@ -80,7 +80,6 @@ export function DataProvider({ children }) {
   const tiers = [...new Set(
     [...games.map((g) => g.tier), ...standingsList.map((s) => s.tier)].filter(Boolean)
   )].sort()
-  const arenas = [...new Set(games.map((g) => g.arena).filter(Boolean))].sort()
   const standingsGameTypes = [...new Set(standingsList.map((s) => s.gameType).filter(Boolean))].sort()
 
   // Tiers that exist inside one division. Filter rows must mirror the team
@@ -246,7 +245,6 @@ export function DataProvider({ children }) {
     lastUpdated: schedule?.scrapedAt || schedule?.lastUpdated || null,
     divisions,
     tiers,
-    arenas,
     standingsGameTypes,
     effectiveGameType,
     tiersFor,
