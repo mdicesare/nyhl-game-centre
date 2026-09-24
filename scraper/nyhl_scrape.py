@@ -89,6 +89,58 @@ def throttle():
     time.sleep(THROTTLE_SECONDS)
 
 
+# Agilex degrades in two ways while it is publishing or rate-limiting, both
+# answered with HTTP 200 and no error status:
+#   1. a 253-byte "The requested URL is invalid." stub
+#   2. a full-size page whose ViewState collapsed to a few hundred bytes
+# Case 2 is the dangerous one: the page looks fine by byte count, but with no
+# ViewState ASP.NET posts back with no control state, renders no dropdowns and
+# no rows, and the scrape records "0 games" as fact. A healthy page here
+# carries ~4.5KB of ViewState.
+THROTTLE_MARKER = "The requested URL is invalid"
+MIN_VIEWSTATE = 1000
+
+
+def is_throttle_stub(html: str) -> bool:
+    return THROTTLE_MARKER in html or len(html) < 1000
+
+
+def has_full_viewstate(html: str) -> bool:
+    return len(extract_viewstate(html).get("__VIEWSTATE", "")) >= MIN_VIEWSTATE
+
+
+def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 8):
+    """Repeat a request until Agilex serves a usable page.
+
+    Backs off 5s, 10s, 20s, 40s, 60s... A degraded window lasted about five
+    minutes while the new season was being published, so the retries are sized
+    to outlast one rather than give up inside it.
+
+    If it never clears, abort the whole run non-zero so CI skips the commit
+    step and the deployed site keeps its last good data.
+    """
+    is_ok = healthy if healthy is not None else (lambda text: not is_throttle_stub(text))
+    delay = 5
+    for attempt in range(1, attempts + 1):
+        resp = do_request()
+        resp.raise_for_status()
+        if is_ok(resp.text):
+            return resp
+        log.warning(
+            "%s: unhealthy response (%d bytes) — attempt %d/%d, backing off %ds",
+            label, len(resp.text), attempt, attempts, delay,
+        )
+        if attempt < attempts:
+            time.sleep(delay)
+            delay = min(delay * 2, 60)
+    log.error(
+        "%s: still unhealthy after %d attempts. Aborting without writing "
+        "anything so the site keeps its last good data.",
+        label, attempts,
+    )
+    sys.exit(1)
+
+
 # ---------------------------------------------------------------------------
 # Logo handling
 # ---------------------------------------------------------------------------
@@ -211,8 +263,10 @@ def fetch_schedule_page(
     if date_to:
         payload["dpTo"] = date_to
 
-    resp = session.post(SCHEDULE_URL, data=payload, timeout=60)
-    resp.raise_for_status()
+    resp = request_with_retry(
+        lambda: session.post(SCHEDULE_URL, data=payload, timeout=60),
+        label="schedule POST",
+    )
     # DEBUG: dump raw response
     debug_path = Path(__file__).resolve().parent / "debug_schedule.html"
     debug_path.write_text(resp.text, encoding="utf-8")
@@ -349,8 +403,10 @@ def fetch_standings_page(
     if season:
         payload["ddlSeason"] = season
 
-    resp = session.post(STANDINGS_URL, data=payload, timeout=60)
-    resp.raise_for_status()
+    resp = request_with_retry(
+        lambda: session.post(STANDINGS_URL, data=payload, timeout=60),
+        label=f"standings POST ({game_type})",
+    )
     # DEBUG: dump raw standings response
     debug_path = Path(__file__).resolve().parent / "debug_standings.html"
     debug_path.write_text(resp.text, encoding="utf-8")
@@ -745,8 +801,11 @@ def scrape_standings(
     """Scrape standings for a season. Gets its own ViewState from the standings page."""
     # GET standings page to harvest its ViewState and event ID
     log.info("Fetching standings page for ViewState...")
-    resp = session.get(STANDINGS_URL, timeout=60)
-    resp.raise_for_status()
+    resp = request_with_retry(
+        lambda: session.get(STANDINGS_URL, timeout=60),
+        label="standings GET",
+        healthy=has_full_viewstate,
+    )
     viewstate = extract_viewstate(resp.text)
     throttle()
 
@@ -1006,8 +1065,11 @@ def main():
 
     # Step 1: GET initial page to harvest ViewState
     log.info("Fetching initial page for ViewState...")
-    resp = session.get(SCHEDULE_URL, timeout=60)
-    resp.raise_for_status()
+    resp = request_with_retry(
+        lambda: session.get(SCHEDULE_URL, timeout=60),
+        label="schedule GET",
+        healthy=has_full_viewstate,
+    )
     # DEBUG: dump initial GET response
     debug_path = Path(__file__).resolve().parent / "debug_get.html"
     debug_path.write_text(resp.text, encoding="utf-8")
