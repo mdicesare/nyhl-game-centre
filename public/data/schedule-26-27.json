@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-09-24T01:21:22.774584Z",
+  "scrapedAt": "2026-09-24T14:39:53.520597Z",
   "gameCount": 9,
   "games": [
     {
@@ -323,7 +323,6 @@
       "22-23"
     ],
     "logos": {
-      "AV9": "AV9.png",
       "EH9": "EH9.png",
       "FA9": "FA9.png",
       "FH9": "FH9.png",
@@ -334,7 +333,6 @@
       "SAE": "SAE.png",
       "TR9": "TR9.png",
       "VAR": "VAR.png",
-      "VS1": "VS1.png",
       "VV9": "VV9.png",
       "WI9": "WI9.png",
       "WP9": "WP9.png",
