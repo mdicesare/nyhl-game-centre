@@ -1,26 +1,343 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-09-24T00:13:03.732531Z",
-  "gameCount": 0,
-  "games": [],
+  "scrapedAt": "2026-09-24T01:21:22.774584Z",
+  "gameCount": 9,
+  "games": [
+    {
+      "id": "26-27_2026-10-05_20:45_Scarborough Black_Leaside Gold",
+      "date": "2026-10-05",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U15",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-05_20:30_Parkwoods_Forest Hill Gold",
+      "date": "2026-10-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-05_20:30_Leaside Red_Vaughan Blue",
+      "date": "2026-10-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-05_20:30_Forest Hill Blue_Victoria Village",
+      "date": "2026-10-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-06_20:20_Willowdale_Etobicoke Blue",
+      "date": "2026-10-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U15",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-07_20:30_North Toronto_York Mills Red",
+      "date": "2026-10-07",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-08_20:20_Faustina White_York Mills Blue",
+      "date": "2026-10-08",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-08_20:50_Vaughan Red_Ted Reeve",
+      "date": "2026-10-08",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-09_20:30_Warren Park_Parkdale",
+      "date": "2026-10-09",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "status": "scheduled",
+      "score": null
+    }
+  ],
   "metadata": {
-    "divisions": [],
-    "tiers": [],
-    "clubs": [],
-    "arenas": [],
-    "gameTypes": [],
+    "divisions": [
+      "ALL",
+      "U07",
+      "U08",
+      "U09",
+      "U10",
+      "U11",
+      "U12",
+      "U13",
+      "U14",
+      "U15",
+      "U16",
+      "U17",
+      "U18",
+      "U21",
+      "OTH"
+    ],
+    "tiers": [
+      "ALL",
+      "Tier 1",
+      "Tier 2",
+      "Tier 3",
+      "Tier 4",
+      "Tier E"
+    ],
+    "clubs": [
+      "ALL",
+      "AVENUE ROAD",
+      "AVENUE ROAD BLACK",
+      "AVENUE ROAD ORANGE",
+      "DUFFIELD",
+      "DUFFIELD BLACK",
+      "DUFFIELD RED",
+      "DUFFIELD WHITE",
+      "EAST YORK",
+      "ETOBICOKE",
+      "ETOBICOKE BLUE",
+      "ETOBICOKE WHITE",
+      "FAUSTINA BLACK",
+      "FAUSTINA WHITE",
+      "FOREST HILL",
+      "FOREST HILL BLUE",
+      "FOREST HILL GOLD",
+      "GEORGE BELL",
+      "GOULDING PARK",
+      "HUMBER VALLEY",
+      "KNIGHTS",
+      "LEASIDE GOLD",
+      "LEASIDE RED",
+      "LEASIDE WHITE",
+      "MIMICO",
+      "NORTH TORONTO",
+      "NORTH TORONTO GREEN",
+      "NORTH TORONTO RED",
+      "PARKDALE",
+      "PARKDALE RED",
+      "PARKDALE WHITE",
+      "PARKWOODS",
+      "PORT CREDIT",
+      "SCARBOROUGH",
+      "SCARBOROUGH BLACK",
+      "SCARBOROUGH RED",
+      "SCARBOROUGH WHITE",
+      "SEASIDE HOCKEY",
+      "TED REEVE",
+      "TED REEVE BLACK",
+      "TED REEVE RED",
+      "VAUGHAN BLACK",
+      "VAUGHAN BLUE",
+      "VAUGHAN JCC",
+      "VAUGHAN JCC BLUE",
+      "VAUGHAN JCC WHITE",
+      "VAUGHAN RED",
+      "VAUGHAN SILVER",
+      "VAUGHAN WHITE",
+      "VICTORIA VILLAGE",
+      "VICTORIA VILLAGE BLUE",
+      "VICTORIA VILLAGE ORANGE",
+      "WARREN PARK",
+      "WARREN PARK RED",
+      "WARREN PARK WHITE",
+      "WEST HILL",
+      "WEST HILL BLACK",
+      "WEST HILL GOLD",
+      "WILLOWDALE",
+      "YORK MILLS",
+      "YORK MILLS BLUE",
+      "YORK MILLS RED"
+    ],
+    "arenas": [
+      "ALL",
+      "Al Palladini",
+      "Amesbury",
+      "Chesswood",
+      "Commander Park",
+      "Don Mills",
+      "Don Montgomery",
+      "Downsview",
+      "East York",
+      "Fenside",
+      "Ford Performance Centre",
+      "Forest Hill",
+      "Goulding Park",
+      "Habitant",
+      "Herbert Carnegie",
+      "Heron Park",
+      "John Booth",
+      "Lambton",
+      "Leaside",
+      "Pleasantview",
+      "Scarborough Ice Sports",
+      "Scotiabank Pond",
+      "Vgn Sports Village",
+      "Victoria Village",
+      "Westwood"
+    ],
+    "gameTypes": [
+      "ALL",
+      "FS",
+      "WS"
+    ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
+      "EH9": "EH9.png",
       "FA9": "FA9.png",
       "FH9": "FH9.png",
       "LE9": "LE9.png",
       "NT9": "NT9.png",
+      "PF9": "PF9.png",
       "PW9": "PW9.png",
+      "SAE": "SAE.png",
       "TR9": "TR9.png",
+      "VAR": "VAR.png",
       "VS1": "VS1.png",
+      "VV9": "VV9.png",
+      "WI9": "WI9.png",
+      "WP9": "WP9.png",
       "YM9": "YM9.png"
     }
   }
