@@ -1,0 +1,27 @@
+{
+  "season": "26-27",
+  "scrapedAt": "2026-09-24T00:13:03.732531Z",
+  "gameCount": 0,
+  "games": [],
+  "metadata": {
+    "divisions": [],
+    "tiers": [],
+    "clubs": [],
+    "arenas": [],
+    "gameTypes": [],
+    "seasons": [
+      "26-27"
+    ],
+    "logos": {
+      "AV9": "AV9.png",
+      "FA9": "FA9.png",
+      "FH9": "FH9.png",
+      "LE9": "LE9.png",
+      "NT9": "NT9.png",
+      "PW9": "PW9.png",
+      "TR9": "TR9.png",
+      "VS1": "VS1.png",
+      "YM9": "YM9.png"
+    }
+  }
+}
