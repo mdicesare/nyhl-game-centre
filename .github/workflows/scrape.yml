@@ -2,12 +2,15 @@ name: Scrape & Deploy
 
 on:
   schedule:
-    # 6:00 AM ET daily (10:00 UTC)
+    # 6:00 AM ET daily (10:00 UTC). Current season only — the cron asks for
+    # 'current' + U15, and the tier walk inside the scraper covers every tier
+    # of that division. 25-26 U14 was pulled once on 2026-09-24 and is served
+    # from its snapshot; it is deliberately not re-hit every day.
     - cron: "0 10 * * *"
   workflow_dispatch:
     inputs:
       season:
-        description: "Season to scrape ('current' or e.g. 25-26)"
+        description: "Season to scrape ('current', or name a finished season like 25-26 to re-pull it for real)"
         required: false
         default: "current"
       division:
@@ -54,38 +57,58 @@ jobs:
 
       - name: Run scraper
         run: |
+          season="${{ github.event.inputs.season || 'current' }}"
+          division="${{ github.event.inputs.division || 'U15' }}"
+          # A finished season is normally served straight from its snapshot
+          # with zero requests. Naming one explicitly means "pull it for
+          # real", so pass --force. 'current' never needs it, and the cron
+          # stays on the current season alone: last season (25-26 U14) was
+          # pulled once on 2026-09-24 and is not re-hit daily.
+          force_flag=""
+          if [ "$season" != "current" ]; then force_flag="--force"; fi
           python scraper/nyhl_scrape.py \
-            --season "${{ github.event.inputs.season || 'current' }}" \
-            --division "${{ github.event.inputs.division || 'U15' }}" \
+            --season "$season" \
+            --division "$division" \
+            $force_flag \
             --verbose
         env:
           PYTHONUNBUFFERED: "1"
 
       - name: Validate output
         run: |
-          python -c "
-          import json, sys
-          for f in ['public/data/schedule.json', 'public/data/standings.json']:
+          python - <<'PY'
+          import glob, json, os, sys
+
+          files = sorted(glob.glob("public/data/*.json"))
+          if not files:
+              print("No JSON files in public/data/")
+              sys.exit(1)
+          for f in files:
               try:
                   with open(f) as fh:
                       data = json.load(fh)
-                  count = len(data.get('games', data.get('standings', [])))
-                  print(f'{f}: OK ({count} entries)')
-                  if count == 0:
-                      print(f'WARNING: {f} has 0 entries')
-              except FileNotFoundError:
-                  print(f'{f}: MISSING')
               except json.JSONDecodeError as e:
-                  print(f'{f}: INVALID JSON: {e}')
+                  print(f"{f}: INVALID JSON: {e}")
                   sys.exit(1)
-          "
+              count = len(data.get("games", data.get("standings", [])))
+              print(f"{f}: OK season={data.get('season', '?')} ({count} entries)")
+              # A per-season snapshot legitimately holds only the divisions
+              # scraped for it, and an unpublished season holds no rows — both
+              # are warnings. Only the default files must be non-empty, since
+              # they are what the app falls back to when a snapshot is absent.
+              if count == 0 and os.path.basename(f) in ("schedule.json", "standings.json"):
+                  print(f"WARNING: {f} has 0 entries")
+          PY
 
       - name: Commit updated data
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data/
+          # public/images too: newly scraped teams arrive with logo codes the
+          # app resolves to public/images/teams/, and an uncommitted logo is
+          # a broken image on the live site even though the JSON references it.
+          git add public/data/ public/images/
           git diff --staged --quiet || git commit -m "Update NYHL data snapshot [skip ci]"
           git push
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
