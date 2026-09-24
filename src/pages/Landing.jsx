@@ -50,16 +50,24 @@ export default function Landing() {
           <div className="w-full space-y-3">
             <button
               onClick={() => setStep('search')}
-              className="w-full bg-nyhl-blue text-white font-semibold py-4 px-6 rounded-xl text-lg hover:bg-blue-700 transition-colors"
+              className="w-full bg-nyhl-blue text-white rounded-xl px-6 py-4 hover:bg-blue-700 transition-colors text-left"
             >
-              Find your team
+              <span className="block font-semibold text-lg">Find your team</span>
+              <span className="block text-xs font-normal text-blue-100 mt-1">
+                Pick your season, division and tier to follow a team. Its schedule,
+                standings and next game show up on Home.
+              </span>
             </button>
 
             <button
               onClick={() => navigate('/home', { replace: true })}
-              className="w-full bg-transparent border border-gray-300 dark:border-blue-300 text-gray-600 dark:text-blue-200 font-medium py-3 px-6 rounded-xl hover:bg-gray-100 dark:hover:bg-blue-800/50 transition-colors"
+              className="w-full bg-transparent border border-gray-300 dark:border-blue-300 text-gray-600 dark:text-blue-200 rounded-xl px-6 py-4 hover:bg-gray-100 dark:hover:bg-blue-800/50 transition-colors text-left"
             >
-              Just browse
+              <span className="block font-medium">Just browse</span>
+              <span className="block text-xs font-normal text-gray-400 dark:text-blue-300/60 mt-1">
+                Skip setup and look at the full league. You can add a team later
+                from Teams.
+              </span>
             </button>
 
             <a

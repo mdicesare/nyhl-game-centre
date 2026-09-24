@@ -789,6 +789,32 @@ def scrape_standings(
     return results
 
 
+def merge_by_division(existing_rows: list[dict], new_rows: list[dict]) -> list[dict]:
+    """
+    Keep rows for divisions this run did not scrape, replace the ones it did.
+
+    A --division run has to be additive across runs. The snapshot is written
+    wholesale, so without this a U15 scrape followed by the cron's U14 run the
+    next morning would silently delete U15. Rows with no division are treated
+    as belonging to the new run, since there is nothing to key them on.
+    """
+    if not new_rows:
+        # This run produced nothing for this dataset (e.g. schedule-only) —
+        # hold on to what is cached rather than blanking the snapshot.
+        return existing_rows
+    new_divisions = {r.get("division") for r in new_rows if r.get("division")}
+    if not new_divisions:
+        return new_rows
+    carried = [r for r in existing_rows if r.get("division") not in new_divisions]
+    if carried:
+        log.info(
+            "Carried forward %d rows from divisions not scraped this run: %s",
+            len(carried),
+            sorted({r.get("division") for r in carried if r.get("division")}),
+        )
+    return carried + new_rows
+
+
 def write_output(
     games: list[dict],
     standings: list[dict],
@@ -848,16 +874,26 @@ def write_output(
     season_schedule_path = OUTPUT_DIR / f"schedule-{season}.json"
     season_standings_path = OUTPUT_DIR / f"standings-{season}.json"
 
-    # Safety: don't overwrite good data with bad. Compare against the snapshot
-    # for this same season, and only over divisions the new scrape covers, so a
-    # single-division run is never measured against an all-divisions dataset.
+    # Cache this run is being measured against and merged into. Fall back to
+    # the default file when it belongs to the same season (it may be newer than
+    # a snapshot that has not been written yet).
     existing = read_json(season_schedule_path)
     if existing is None:
         fallback = read_json(schedule_path)
         if fallback and fallback.get("season") == season:
             existing = fallback
+    existing_standings = read_json(season_standings_path)
+    if existing_standings is None:
+        fallback = read_json(standings_path)
+        if fallback and fallback.get("season") == season:
+            existing_standings = fallback
+    existing_games = existing.get("games", []) if existing else []
+    existing_standings_rows = existing_standings.get("standings", []) if existing_standings else []
+
+    # Safety: don't overwrite good data with bad. Compare against the snapshot
+    # for this same season, and only over divisions the new scrape covers, so a
+    # single-division run is never measured against an all-divisions dataset.
     if existing and existing.get("season") in (None, season):
-        existing_games = existing.get("games", [])
         new_divisions = {g.get("division") for g in games if g.get("division")}
         comparable = [
             g for g in existing_games
@@ -871,13 +907,22 @@ def write_output(
             )
             return
 
+    # Merge instead of replace: this run owns only the divisions it scraped
+    # and only the dataset it actually returned rows for.
+    merged_games = merge_by_division(existing_games, games)
+    merged_standings = merge_by_division(existing_standings_rows, standings)
+    schedule_payload["games"] = merged_games
+    schedule_payload["gameCount"] = len(merged_games)
+    standings_payload["standings"] = merged_standings
+    standings_payload["teamCount"] = len(merged_standings)
+
     # Always write the per-season snapshot — this is the long-lived cache.
     with open(season_schedule_path, "w", encoding="utf-8") as f:
         json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
     with open(season_standings_path, "w", encoding="utf-8") as f:
         json.dump(standings_payload, f, indent=2, ensure_ascii=False)
-    log.info("Wrote %s (%d games)", season_schedule_path.name, len(games))
-    log.info("Wrote %s (%d teams)", season_standings_path.name, len(standings))
+    log.info("Wrote %s (%d games)", season_schedule_path.name, len(merged_games))
+    log.info("Wrote %s (%d teams)", season_standings_path.name, len(merged_standings))
 
     # Mirror into the default files the app falls back to. Each file is guarded
     # separately so a partial scrape (games but no standings, or the other way
@@ -885,10 +930,10 @@ def write_output(
     is_current = season == current_season()
 
     if is_current or not schedule_path.exists():
-        if games:
+        if merged_games:
             with open(schedule_path, "w", encoding="utf-8") as f:
                 json.dump(schedule_payload, f, indent=2, ensure_ascii=False)
-            log.info("Updated default schedule (%d games)", len(games))
+            log.info("Updated default schedule (%d games)", len(merged_games))
         else:
             log.warning("Default schedule untouched: new scrape has 0 games")
     else:
@@ -898,10 +943,10 @@ def write_output(
         )
 
     if is_current or not standings_path.exists():
-        if standings:
+        if merged_standings:
             with open(standings_path, "w", encoding="utf-8") as f:
                 json.dump(standings_payload, f, indent=2, ensure_ascii=False)
-            log.info("Updated default standings (%d teams)", len(standings))
+            log.info("Updated default standings (%d teams)", len(merged_standings))
         else:
             log.warning("Default standings untouched: new scrape has 0 teams")
     else:
