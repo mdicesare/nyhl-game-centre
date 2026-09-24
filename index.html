@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#1e3a5f" />
     <meta name="description" content="North York Hockey League Game Center — schedules, standings, results" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/icon-180.png" />
     <title>NYHL Game Center</title>
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased">
@@ -17,13 +18,66 @@
       // an older page can outlive the bundle it points at — that bundle then
       // 404s, the app never starts, and the visitor gets a blank screen. This
       // inline script ships inside that same HTML, so it still runs when the
-      // main bundle does not: say what happened and offer a reload instead of
-      // sitting on an empty page.
+      // main bundle does not. It works out *why* the page stayed empty:
+      //   · a file that 404'd  -> reload once past the cached shell
+      //   · a thrown error     -> show the actual message
+      //   · neither yet        -> assume a slow start and wait
+      // and reports instead of leaving a blank page with a guess.
       (function () {
         var started = Date.now()
         var box = null
+        var kind = null // 'missing' (a file 404'd) | 'error' (JS threw)
+        var detail = null // first failure, as text — the rest cascade from it
+        var healed = false
+
+        function note(k, text) {
+          if (detail || !text) return
+          kind = k
+          detail = String(text).replace(/\s+/g, ' ').slice(0, 180)
+        }
+
+        function bustHref() {
+          var sep = location.search ? '&' : '?'
+          return location.pathname + location.search + sep + 'boot=' + Date.now() + location.hash
+        }
+
+        // A file that 404s is usually an old copy of index.html naming a
+        // bundle a deploy has since replaced. Appending a query string misses
+        // that cached shell and picks up the current one. Guarded so a file
+        // that is genuinely gone ends on the notice instead of looping.
+        function heal() {
+          if (healed) return false
+          healed = true
+          try {
+            if (window.sessionStorage.getItem('nyhl-boot-healed')) return false
+            window.sessionStorage.setItem('nyhl-boot-healed', '1')
+          } catch (e) {
+            return false
+          }
+          window.location.replace(bustHref())
+          return true
+        }
+
+        // Resource failures do not bubble, so this listener must capture. A
+        // thrown error reaches the same listener with the window as target.
+        window.addEventListener('error', function (e) {
+          var t = e.target
+          if (t && t !== window && t.tagName) {
+            if (t.tagName !== 'SCRIPT' && t.tagName !== 'LINK') return
+            note('missing', t.src || t.href || t.tagName)
+            if (kind === 'missing' && t.tagName === 'SCRIPT') heal()
+            return
+          }
+          note('error', e.message || (e.error && e.error.message))
+        }, true)
+
+        window.addEventListener('unhandledrejection', function (e) {
+          var r = e.reason
+          note('error', (r && (r.message || String(r))) || 'unhandled rejection')
+        })
 
         function show() {
+          if (kind === 'missing' && heal()) return
           box = document.createElement('div')
           box.setAttribute('role', 'status')
           box.style.cssText =
@@ -31,11 +85,25 @@
             'background:#1e3a5f;color:#fff;padding:1rem 1.25rem;border-radius:.75rem;' +
             'font:15px/1.45 system-ui,-apple-system,sans-serif;text-align:center;' +
             'box-shadow:0 12px 32px rgba(0,0,0,.28);z-index:9999'
+          var title, body
+          if (kind === 'missing') {
+            title = 'A required file is missing.'
+            body = detail + ' — this copy of the app is out of date. Refreshing loads the current one.'
+          } else if (kind === 'error') {
+            title = 'The Game Center hit an error.'
+            body = detail
+          } else {
+            title = 'The Game Center didn’t finish loading.'
+            body = 'Refreshing picks up the latest version.'
+          }
+          // Static markup first, then textContent: an error message is
+          // untrusted and must not be parsed as HTML.
           box.innerHTML =
-            '<p style="margin:0 0 .5rem;font-weight:600">The Game Center didn’t finish loading.</p>' +
-            '<p style="margin:0 0 .85rem;font-size:13px;opacity:.85">' +
-            'This copy of the app has been replaced by a newer one. Refreshing picks up the latest version.' +
-            '</p>'
+            '<p style="margin:0 0 .5rem;font-weight:600"></p>' +
+            '<p style="margin:0 0 .85rem;font-size:13px;opacity:.85;word-wrap:break-word"></p>'
+          var ps = box.getElementsByTagName('p')
+          ps[0].textContent = title
+          ps[1].textContent = body
           var btn = document.createElement('button')
           btn.type = 'button'
           btn.textContent = 'Refresh'
@@ -44,7 +112,7 @@
             'font-weight:700;font-size:15px;cursor:pointer'
           btn.addEventListener('click', function () {
             btn.textContent = 'Refreshing…'
-            window.location.reload()
+            window.location.replace(bustHref())
           })
           box.appendChild(btn)
           document.body.appendChild(box)
@@ -59,7 +127,9 @@
             clearInterval(timer)
             return
           }
-          if (!box && Date.now() - started > 4000) show()
+          // A failure we already know about earns an explanation quickly; a
+          // page that is merely slow gets the benefit of the doubt.
+          if (!box && Date.now() - started > (detail ? 1500 : 8000)) show()
         }
 
         var timer = setInterval(tick, 500)
