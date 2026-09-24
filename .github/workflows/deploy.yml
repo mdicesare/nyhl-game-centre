@@ -33,6 +33,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Cached copies of the old index.html (CDN, browser and service worker
+      # all hold it for ~10 minutes) still ask for the previous bundle. Deleting
+      # it hands those visitors a blank page, so carry it forward.
+      - name: Keep previous deployment's assets
+        run: bash scripts/keep-previous-assets.sh
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

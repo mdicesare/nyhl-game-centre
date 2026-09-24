@@ -11,5 +11,59 @@
   <body class="bg-gray-50 text-gray-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Boot watchdog. index.html is cacheable for ~10 minutes (GitHub Pages
+      // CDN, browser cache) and the service worker precaches it, so a copy of
+      // an older page can outlive the bundle it points at — that bundle then
+      // 404s, the app never starts, and the visitor gets a blank screen. This
+      // inline script ships inside that same HTML, so it still runs when the
+      // main bundle does not: say what happened and offer a reload instead of
+      // sitting on an empty page.
+      (function () {
+        var started = Date.now()
+        var box = null
+
+        function show() {
+          box = document.createElement('div')
+          box.setAttribute('role', 'status')
+          box.style.cssText =
+            'position:fixed;left:1rem;right:1rem;bottom:1rem;margin:0 auto;max-width:28rem;' +
+            'background:#1e3a5f;color:#fff;padding:1rem 1.25rem;border-radius:.75rem;' +
+            'font:15px/1.45 system-ui,-apple-system,sans-serif;text-align:center;' +
+            'box-shadow:0 12px 32px rgba(0,0,0,.28);z-index:9999'
+          box.innerHTML =
+            '<p style="margin:0 0 .5rem;font-weight:600">The Game Center didn’t finish loading.</p>' +
+            '<p style="margin:0 0 .85rem;font-size:13px;opacity:.85">' +
+            'This copy of the app has been replaced by a newer one. Refreshing picks up the latest version.' +
+            '</p>'
+          var btn = document.createElement('button')
+          btn.type = 'button'
+          btn.textContent = 'Refresh'
+          btn.style.cssText =
+            'background:#fff;color:#1e3a5f;border:0;border-radius:.5rem;padding:.55rem 1.5rem;' +
+            'font-weight:700;font-size:15px;cursor:pointer'
+          btn.addEventListener('click', function () {
+            btn.textContent = 'Refreshing…'
+            window.location.reload()
+          })
+          box.appendChild(btn)
+          document.body.appendChild(box)
+        }
+
+        function tick() {
+          var root = document.getElementById('root')
+          if (!root) return
+          if (root.childElementCount > 0) {
+            // The app painted (or caught up after a slow start) — stand down.
+            if (box && box.parentNode) box.parentNode.removeChild(box)
+            clearInterval(timer)
+            return
+          }
+          if (!box && Date.now() - started > 4000) show()
+        }
+
+        var timer = setInterval(tick, 500)
+      })()
+    </script>
   </body>
 </html>
