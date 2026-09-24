@@ -32,6 +32,12 @@ jobs:
     name: Scrape NYHL Data
     runs-on: ubuntu-latest
     continue-on-error: true
+    # The build must see the commit this run just made. actions/checkout
+    # defaults to GITHUB_SHA, which for workflow_dispatch was resolved when the
+    # run was dispatched — before the scrape step committed — so every run was
+    # deploying the *previous* run's data.
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,12 +81,14 @@ jobs:
           "
 
       - name: Commit updated data
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/data/
           git diff --staged --quiet || git commit -m "Update NYHL data snapshot [skip ci]"
           git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build & Deploy
@@ -89,6 +97,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Fall back to the branch tip when the scrape step never ran (it
+          # aborts non-zero on a bad fetch) so we still deploy current data.
+          ref: ${{ needs.scrape.outputs.sha || github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
