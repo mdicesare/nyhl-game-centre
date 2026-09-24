@@ -124,13 +124,27 @@ def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 
     is_ok = healthy if healthy is not None else (lambda text: not is_throttle_stub(text))
     delay = 5
     for attempt in range(1, attempts + 1):
-        resp = do_request()
-        resp.raise_for_status()
-        if is_ok(resp.text):
+        resp = None
+        failure = None
+        try:
+            resp = do_request()
+            resp.raise_for_status()
+        except requests.RequestException as exc:
+            # A read timeout or a 5xx is the same story as a degraded page:
+            # Agilex is publishing or rate-limiting. Letting it escape would
+            # kill the whole run with a traceback on one slow response
+            # instead of backing off and retrying like any other failure.
+            # Drop resp too — an error page whose body happens to look healthy
+            # must never be returned as if the request had succeeded.
+            resp = None
+            failure = f"{exc.__class__.__name__}: {exc}"
+        if resp is not None and is_ok(resp.text):
             return resp
+        if failure is None:
+            failure = f"unhealthy response ({len(resp.text)} bytes)"
         log.warning(
-            "%s: unhealthy response (%d bytes) — attempt %d/%d, backing off %ds",
-            label, len(resp.text), attempt, attempts, delay,
+            "%s: %s — attempt %d/%d, backing off %ds",
+            label, failure, attempt, attempts, delay,
         )
         if attempt < attempts:
             time.sleep(delay)
@@ -414,7 +428,11 @@ def fetch_standings_page(
 
     resp = request_with_retry(
         lambda: session.post(STANDINGS_URL, data=payload, timeout=60),
-        label=f"standings POST ({game_type})",
+        label=f"standings POST ({game_type} {division} {tier})",
+        # The full-size page with a collapsed ViewState answers 200 and parses
+        # to "no rows", which is indistinguishable from a season that has not
+        # been published — refuse it here rather than record that as fact.
+        healthy=has_full_viewstate,
     )
     # DEBUG: dump raw standings response
     debug_path = Path(__file__).resolve().parent / "debug_standings.html"
@@ -446,97 +464,102 @@ def parse_standings_table(html: str) -> list[dict]:
      15: PIM         - penalty minutes
     """
     soup = BeautifulSoup(html, "lxml")
-    table = soup.find("table", {"id": STANDINGS_TABLE_ID})
-    if not table:
+    # A chained tier response can carry more than one repeater table (the one
+    # left over from the previous selection plus the new one). Reading only
+    # the first silently drops whichever tier rendered second, so take them
+    # all — the caller keys rows on the tier each row declares about itself.
+    tables = soup.find_all("table", {"id": STANDINGS_TABLE_ID})
+    if not tables:
         log.warning("Standings table '%s' not found in response", STANDINGS_TABLE_ID)
         return []
 
     rows = []
-    for tr in table.find_all("tr"):
-        cells = tr.find_all("td")
-        if len(cells) < 13:
-            continue
+    for table in tables:
+        for tr in table.find_all("tr"):
+            cells = tr.find_all("td")
+            if len(cells) < 13:
+                continue
 
-        # Extract team identity from the data attribute on the <a> tag
-        # Format: "3250|TEAM NAME|25-26|U14|Tier 1"
-        team_cell = cells[1]
-        a_tag = team_cell.find("a")
-        team_id = ""
-        team_name = team_cell.get("data", "").strip()
-        division = ""
-        tier = ""
-        if a_tag:
-            data_attr = a_tag.get("data", "")
-            parts = data_attr.split("|")
-            if len(parts) >= 5:
-                team_id = parts[0].strip()
-                team_name = parts[1].strip()
-                division = parts[3].strip()
-                tier = parts[4].strip()
-            elif len(parts) >= 2:
-                team_id = parts[0].strip()
-                team_name = parts[1].strip()
+            # Extract team identity from the data attribute on the <a> tag
+            # Format: "3250|TEAM NAME|25-26|U14|Tier 1"
+            team_cell = cells[1]
+            a_tag = team_cell.find("a")
+            team_id = ""
+            team_name = team_cell.get("data", "").strip()
+            division = ""
+            tier = ""
+            if a_tag:
+                data_attr = a_tag.get("data", "")
+                parts = data_attr.split("|")
+                if len(parts) >= 5:
+                    team_id = parts[0].strip()
+                    team_name = parts[1].strip()
+                    division = parts[3].strip()
+                    tier = parts[4].strip()
+                elif len(parts) >= 2:
+                    team_id = parts[0].strip()
+                    team_name = parts[1].strip()
 
-        # If team name still empty, try the text content
-        if not team_name:
-            team_name = team_cell.get_text(strip=True)
+            # If team name still empty, try the text content
+            if not team_name:
+                team_name = team_cell.get_text(strip=True)
 
-        # Parse W-L-T record (combined in one column)
-        wlt_text = cells[3].get_text(strip=True)
-        w, l, t = 0, 0, 0
-        if "-" in wlt_text:
-            wlt_parts = wlt_text.split("-")
-            if len(wlt_parts) == 3:
+            # Parse W-L-T record (combined in one column)
+            wlt_text = cells[3].get_text(strip=True)
+            w, l, t = 0, 0, 0
+            if "-" in wlt_text:
+                wlt_parts = wlt_text.split("-")
+                if len(wlt_parts) == 3:
+                    try:
+                        w = int(wlt_parts[0])
+                        l = int(wlt_parts[1])
+                        t = int(wlt_parts[2])
+                    except ValueError:
+                        pass
+
+            def safe_int(text):
+                text = text.strip().replace(",", "")
                 try:
-                    w = int(wlt_parts[0])
-                    l = int(wlt_parts[1])
-                    t = int(wlt_parts[2])
-                except ValueError:
-                    pass
+                    return int(text)
+                except (ValueError, TypeError):
+                    return 0
 
-        def safe_int(text):
-            text = text.strip().replace(",", "")
-            try:
-                return int(text)
-            except (ValueError, TypeError):
-                return 0
+            def safe_float(text):
+                text = text.strip().replace(",", "")
+                try:
+                    return float(text)
+                except (ValueError, TypeError):
+                    return 0.0
 
-        def safe_float(text):
-            text = text.strip().replace(",", "")
-            try:
-                return float(text)
-            except (ValueError, TypeError):
-                return 0.0
+            # Extract logo code from cell 0 (<img data-alt='NT9'>)
+            logo_code = ""
+            logo_img = cells[0].find("img", class_="logo-img")
+            if logo_img:
+                logo_code = logo_img.get("data-alt", "").strip()
 
-        # Extract logo code from cell 0 (<img data-alt='NT9'>)
-        logo_code = ""
-        logo_img = cells[0].find("img", class_="logo-img")
-        if logo_img:
-            logo_code = logo_img.get("data-alt", "").strip()
-
-        row = {
-            "teamId": team_id,
-            "name": team_name,
-            "logo": logo_code,
-            "division": division,
-            "tier": tier,
-            "gp": safe_int(cells[2].get_text(strip=True)),
-            "w": w,
-            "l": l,
-            "t": t,
-            "pts": safe_int(cells[4].get_text(strip=True)),
-            "winPct": safe_float(cells[5].get_text(strip=True)),
-            "gfAvg": safe_float(cells[6].get_text(strip=True)),
-            "gaAvg": safe_float(cells[7].get_text(strip=True)),
-            "gf": safe_int(cells[8].get_text(strip=True)),
-            "ga": safe_int(cells[9].get_text(strip=True)),
-            "home": cells[11].get_text(strip=True),
-            "away": cells[12].get_text(strip=True),
-            "last10": cells[13].get_text(strip=True) if len(cells) > 13 else "",
-            "streak": cells[14].get_text(strip=True) if len(cells) > 14 else "",
-            "pim": safe_int(cells[15].get_text(strip=True)) if len(cells) > 15 else 0,
-        }
-        rows.append(row)
+            row = {
+                "teamId": team_id,
+                "name": team_name,
+                "logo": logo_code,
+                "division": division,
+                "tier": tier,
+                "gp": safe_int(cells[2].get_text(strip=True)),
+                "w": w,
+                "l": l,
+                "t": t,
+                "pts": safe_int(cells[4].get_text(strip=True)),
+                "winPct": safe_float(cells[5].get_text(strip=True)),
+                "gfAvg": safe_float(cells[6].get_text(strip=True)),
+                "gaAvg": safe_float(cells[7].get_text(strip=True)),
+                "gf": safe_int(cells[8].get_text(strip=True)),
+                "ga": safe_int(cells[9].get_text(strip=True)),
+                "home": cells[11].get_text(strip=True),
+                "away": cells[12].get_text(strip=True),
+                "last10": cells[13].get_text(strip=True) if len(cells) > 13 else "",
+                "streak": cells[14].get_text(strip=True) if len(cells) > 14 else "",
+                "pim": safe_int(cells[15].get_text(strip=True)) if len(cells) > 15 else 0,
+            }
+            rows.append(row)
 
     log.info("Parsed %d standings rows", len(rows))
     return rows
@@ -807,7 +830,24 @@ def scrape_standings(
     division: str = "ALL",
     tier: str = "ALL",
 ) -> list[dict]:
-    """Scrape standings for a season. Gets its own ViewState from the standings page."""
+    """Scrape standings for a season, walking every division and tier.
+
+    The standings page builds its tier dropdown *per division*: a fresh page
+    only offers the default division's first tier, so a tier posted together
+    with the division change is rejected by ASP.NET and quietly falls back to
+    Tier 1 — which is why every snapshot used to hold Tier 1 only. Reaching
+    the other tiers takes two chained POSTs per game type:
+
+      __EVENTTARGET=ddlDiv   -> the response carries this division's real
+                                tier list plus the default tier's table
+      __EVENTTARGET=ddlTier  -> one POST per remaining tier, replaying the
+                                ViewState the response above just returned
+
+    Division "ALL" walks every division the page lists, because unlike the
+    schedule page the standings page has no ALL option to post. Each POST is
+    throttled, and a POST that exhausts its retries aborts the whole run
+    instead of writing a half-scraped tier set over a complete one.
+    """
     # GET standings page to harvest its ViewState and event ID
     log.info("Fetching standings page for ViewState...")
     resp = request_with_retry(
@@ -835,26 +875,105 @@ def scrape_standings(
         ]
     log.info("Available standings game types: %s", game_types)
 
-    results = []
-    for gt in game_types:
-        html = fetch_standings_page(
-            session,
-            viewstate,
-            event_id=event_id,
-            division=division,
-            tier=tier,
-            season=season,
-            game_type=gt,
-        )
-        raw_rows = parse_standings_table(html)
-        for raw in raw_rows:
-            entry = normalize_standings(raw, season, division, tier)
-            entry["gameType"] = gt
-            results.append(entry)
-        throttle()
+    # Unlike the schedule page, ddlDiv here has no ALL option — resolve it to
+    # the real list so "ALL" means every division rather than the default one.
+    divisions = extract_select_options(resp.text, "ddlDiv")
+    if division != "ALL":
+        divisions = [division]
+    elif not divisions:
+        divisions = ["ALL"]
+    log.info("Standings divisions to scrape: %s", divisions)
 
-    log.info("Total standings entries scraped: %d", len(results))
-    return results
+    results = []
+    for div in divisions:
+        for gt in game_types:
+            # Step 1: pick the division. This is the postback that populates
+            # the tier dropdown for it, and the response already contains the
+            # default tier's table.
+            html = fetch_standings_page(
+                session,
+                viewstate,
+                event_id=event_id,
+                division=div,
+                tier="ALL",
+                season=season,
+                game_type=gt,
+            )
+            throttle()
+            tier_options = extract_select_options(html, "ddlTier") or ["Tier 1"]
+            wanted = (
+                tier_options if tier == "ALL"
+                else [t for t in tier_options if t == tier] or [tier]
+            )
+
+            counted = {}
+            for raw in parse_standings_table(html):
+                raw_tier = (raw.get("tier") or "").strip()
+                # An explicit --tier run keeps only that tier; with tier=ALL
+                # accept whatever the server chose to show for this division.
+                if tier != "ALL" and raw_tier and raw_tier != tier:
+                    continue
+                entry = normalize_standings(raw, season, div, raw_tier or tier)
+                entry["gameType"] = gt
+                results.append(entry)
+                counted[raw_tier or "?"] = counted.get(raw_tier or "?", 0) + 1
+
+            # Step 2: chain a tier selection for every tier that response did
+            # not already hand us. Only that response's ViewState carries the
+            # dropdown list the posted tier has to appear in — the page's own
+            # still lists just the default division's first tier.
+            chain = extract_viewstate(html)
+            for t in wanted:
+                if t in counted:
+                    continue
+                page = fetch_standings_page(
+                    session,
+                    chain,
+                    event_id=event_id,
+                    division=div,
+                    tier=t,
+                    season=season,
+                    game_type=gt,
+                    event_target="ddlTier",
+                )
+                chain = extract_viewstate(page)
+                kept = 0
+                for raw in parse_standings_table(page):
+                    raw_tier = (raw.get("tier") or "").strip()
+                    # A tier the server does not recognise falls back to its
+                    # own selection — never record that as the tier asked for.
+                    if raw_tier and raw_tier != t:
+                        continue
+                    entry = normalize_standings(raw, season, div, raw_tier or t)
+                    entry["gameType"] = gt
+                    results.append(entry)
+                    kept += 1
+                counted[t] = kept
+                throttle()
+            log.info(
+                "Standings %s %s %s (tiers %s): %s",
+                season, div, gt, "/".join(wanted),
+                ", ".join(f"{k}={v}" for k, v in sorted(counted.items())) or "no rows",
+            )
+
+    # One team appears once per tier and game type. A chained response can
+    # echo the previous selection and a response can carry more than one
+    # repeater table, so dedupe on identity rather than trust either.
+    unique, seen = [], set()
+    for entry in results:
+        key = (
+            entry.get("season"), entry.get("division"), entry.get("tier"),
+            entry.get("gameType"), entry.get("teamId") or entry.get("name"),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(entry)
+    if len(unique) != len(results):
+        log.info("Dropped %d duplicate standings rows", len(results) - len(unique))
+
+    log.info("Total standings entries scraped: %d", len(unique))
+    return unique
 
 
 def merge_by_division(existing_rows: list[dict], new_rows: list[dict]) -> list[dict]:
@@ -879,6 +998,40 @@ def merge_by_division(existing_rows: list[dict], new_rows: list[dict]) -> list[d
             "Carried forward %d rows from divisions not scraped this run: %s",
             len(carried),
             sorted({r.get("division") for r in carried if r.get("division")}),
+        )
+    return carried + new_rows
+
+
+def merge_standings(existing_rows: list[dict], new_rows: list[dict]) -> list[dict]:
+    """
+    Keep rows for every (division, tier, game type) this run returned nothing for.
+
+    Division-level merging is too coarse for standings: the site serves each
+    tier and each game type as its own table, and one of them can come back
+    with no table at all while the others are fine — 25-26 U14 Winter Season
+    served six rows one night and nothing the next, during the new-season
+    publishing. Replacing the division wholesale would delete rows the run
+    never actually looked at, so a slice is only replaced when the run
+    produced rows for it. A slice that legitimately empties stays stale until
+    the season rolls over to a fresh snapshot — the same bargain the rest of
+    the scraper makes: never turn a blank response into fact.
+    """
+    if not new_rows:
+        # This run produced no standings at all — hold on to what is cached
+        # rather than blanking the file.
+        return existing_rows
+
+    def key_of(row):
+        return (row.get("division"), row.get("tier"), row.get("gameType"))
+
+    new_slices = {key_of(r) for r in new_rows}
+    carried = [r for r in existing_rows if key_of(r) not in new_slices]
+    if carried:
+        log.info(
+            "Carried forward %d standings rows from slices this run returned "
+            "nothing for: %s",
+            len(carried),
+            sorted({"/".join(str(p) for p in key_of(r)) for r in carried}),
         )
     return carried + new_rows
 
@@ -991,7 +1144,10 @@ def write_output(
         merged_games = merge_by_division(existing_games, games)
         schedule_payload["games"] = merged_games
         schedule_payload["gameCount"] = len(merged_games)
-    merged_standings = merge_by_division(existing_standings_rows, standings)
+    # Standings merge per (division, tier, game type) rather than per
+    # division — those are separate tables on the site, and one that comes
+    # back empty must not erase the tables that did return rows.
+    merged_standings = merge_standings(existing_standings_rows, standings)
     standings_payload["standings"] = merged_standings
     standings_payload["teamCount"] = len(merged_standings)
 
