@@ -11,9 +11,12 @@ on:
         required: false
         default: "current"
       division:
-        description: "Division filter (e.g. U14 or ALL)"
+        description: "Division filter (e.g. U15 or ALL)"
         required: false
-        default: "U14"
+        # U15 for now: that is the division we are following for 26-27. The
+        # snapshot merges per division, so widening this later accumulates
+        # rather than replacing what has already been collected.
+        default: "U15"
 
 permissions:
   contents: write
@@ -47,7 +50,7 @@ jobs:
         run: |
           python scraper/nyhl_scrape.py \
             --season "${{ github.event.inputs.season || 'current' }}" \
-            --division "${{ github.event.inputs.division || 'U14' }}" \
+            --division "${{ github.event.inputs.division || 'U15' }}" \
             --verbose
         env:
           PYTHONUNBUFFERED: "1"

@@ -328,7 +328,7 @@ def fetch_standings_page(
     viewstate: dict,
     *,
     event_id: int = 162,
-    division: str = "U14",
+    division: str = "ALL",
     tier: str = "ALL",
     season: str = "",
     game_type: str = "FS",
