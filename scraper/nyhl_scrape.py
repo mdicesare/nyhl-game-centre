@@ -22,7 +22,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 from urllib.parse import urljoin
@@ -1045,7 +1045,9 @@ def write_output(
     write_schedule: bool = True,
 ):
     """Write normalized JSON to public/data/."""
-    now = datetime.utcnow().isoformat() + "Z"
+    # tzinfo stripped so the stamp keeps its plain "…Z" shape (the app parses
+    # it with new Date(), which rejects a trailing offset after a Z).
+    now = datetime.now(timezone.utc).replace(tzinfo=None).isoformat() + "Z"
 
     # Drop standings rows that came back without a team name — the site emits
     # placeholder rows like this before a season has real data in it.
@@ -1242,38 +1244,48 @@ def main():
 
     session = create_session()
 
-    # Step 1: GET initial page to harvest ViewState
-    log.info("Fetching initial page for ViewState...")
-    resp = request_with_retry(
-        lambda: session.get(SCHEDULE_URL, timeout=60),
-        label="schedule GET",
-        healthy=has_full_viewstate,
-        fatal=False,
-    )
-    schedule_ok = resp is not None
-    viewstate = None
-    filters = {}
-    if schedule_ok:
-        # DEBUG: dump initial GET response
-        debug_path = Path(__file__).resolve().parent / "debug_get.html"
-        debug_path.write_text(resp.text, encoding="utf-8")
-        log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
-        viewstate = extract_viewstate(resp.text)
-        throttle()
-
-        # Step 2: Discover available filters
-        log.info("Discovering filter options...")
-        filters = discover_filters(resp.text)
-        log.info("Available divisions: %s", filters.get("divisions", []))
-        log.info("Available tiers: %s", filters.get("tiers", []))
-        log.info("Available clubs: %d options", len(filters.get("clubs", [])))
-        log.info("Available arenas: %d options", len(filters.get("arenas", [])))
+    # Step 1: GET initial page to harvest ViewState. A standings-only run
+    # never posts to the schedule page, so fetching it would only burn the
+    # retry budget against a degraded site before any standings work starts.
+    # write_schedule is derived from this flag, so skipping here also leaves
+    # every schedule file exactly as it is.
+    if args.standings_only:
+        log.info("Standings-only run — skipping the schedule page fetch.")
+        schedule_ok = False
+        viewstate = None
+        filters = {}
     else:
-        log.warning(
-            "Schedule page unavailable — standings will still be scraped, and "
-            "every schedule file will be left exactly as it is rather than "
-            "written as an empty season."
+        log.info("Fetching initial page for ViewState...")
+        resp = request_with_retry(
+            lambda: session.get(SCHEDULE_URL, timeout=60),
+            label="schedule GET",
+            healthy=has_full_viewstate,
+            fatal=False,
         )
+        schedule_ok = resp is not None
+        viewstate = None
+        filters = {}
+        if schedule_ok:
+            # DEBUG: dump initial GET response
+            debug_path = Path(__file__).resolve().parent / "debug_get.html"
+            debug_path.write_text(resp.text, encoding="utf-8")
+            log.debug("DEBUG: wrote %s (%d bytes)", debug_path, len(resp.text))
+            viewstate = extract_viewstate(resp.text)
+            throttle()
+
+            # Step 2: Discover available filters
+            log.info("Discovering filter options...")
+            filters = discover_filters(resp.text)
+            log.info("Available divisions: %s", filters.get("divisions", []))
+            log.info("Available tiers: %s", filters.get("tiers", []))
+            log.info("Available clubs: %d options", len(filters.get("clubs", [])))
+            log.info("Available arenas: %d options", len(filters.get("arenas", [])))
+        else:
+            log.warning(
+                "Schedule page unavailable — standings will still be scraped, and "
+                "every schedule file will be left exactly as it is rather than "
+                "written as an empty season."
+            )
 
     metadata = {
         "divisions": filters.get("divisions", []),
