@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useMemo, useEffect } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 // A standings row leads to that team's own schedule, not to whatever team the
@@ -26,6 +26,29 @@ export default function Standings() {
   const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, lastUpdated } =
     useData()
   const [expandedTeam, setExpandedTeam] = useState(null)
+
+  // A Home card's record links here as
+  // /standings?season=…&division=…&tier=…&gameType=… so the table opens on
+  // exactly what the card showed instead of the competition last browsed.
+  // The parameters are consumed once, then dropped: from there the normal
+  // filter selects own the view (and still persist across pages).
+  const [searchParams, setSearchParams] = useSearchParams()
+  useEffect(() => {
+    const pSeason = searchParams.get('season')
+    const pDivision = searchParams.get('division')
+    const pTier = searchParams.get('tier')
+    const pGameType = searchParams.get('gameType')
+    if (!pSeason && !pDivision && !pTier && !pGameType) return
+    if (pSeason && pSeason !== season) setSeason(pSeason)
+    const patch = {}
+    if (pDivision) patch.division = pDivision
+    if (pTier) patch.tier = pTier
+    if (pGameType) patch.gameType = pGameType
+    if (Object.keys(patch).length) setFilters(patch)
+    setSearchParams({}, { replace: true })
+    // Keyed on the URL, not mount, so a card's link is still picked up when
+    // this page is already on screen.
+  }, [searchParams])
 
   const hasData = standingsList.length > 0
 
@@ -54,6 +77,11 @@ export default function Standings() {
 
     return result
   }, [standingsList, filters.division, filters.tier, effectiveGameType])
+
+  // Until someone in the displayed table has played, a row number would only
+  // repeat the order the rows came in — the same rule the Home card applies
+  // to its place, so the two never disagree.
+  const tableStarted = filteredStandings.some((s) => Number(s.gp) > 0)
 
   // A game type is always chosen, so it isn't part of "clear the filters".
   const hasActiveFilters = filters.division !== 'ALL' || filters.tier !== 'ALL'
@@ -207,6 +235,7 @@ export default function Standings() {
             <StandingsTable
               standings={filteredStandings}
               activeTeam={activeTeam}
+              started={tableStarted}
             />
           </div>
 
@@ -216,7 +245,7 @@ export default function Standings() {
               <TeamRow
                 key={team.teamId || team.name}
                 team={team}
-                rank={i + 1}
+                rank={tableStarted ? i + 1 : null}
                 isActive={activeTeam?.toLowerCase() === team.name.toLowerCase()}
                 isExpanded={expandedTeam === team.name}
                 onToggle={() =>
@@ -241,7 +270,7 @@ export default function Standings() {
 
 // ---- Desktop Table ----
 
-function StandingsTable({ standings, activeTeam }) {
+function StandingsTable({ standings, activeTeam, started }) {
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-x-auto shadow-lg">
       <table className="w-full text-sm whitespace-nowrap">
@@ -278,7 +307,7 @@ function StandingsTable({ standings, activeTeam }) {
                     : 'hover:bg-gray-50 dark:hover:bg-slate-700/50'
                 }`}
               >
-                <td className="px-3 py-3 font-medium text-gray-500 dark:text-slate-400">{i + 1}</td>
+                <td className="px-3 py-3 font-medium text-gray-500 dark:text-slate-400">{started ? i + 1 : '—'}</td>
                 <td className="px-3 py-3 font-medium">
                   <div className="flex items-center gap-2">
                     {team.logo && (
@@ -371,7 +400,7 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
       {/* Main row */}
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-bold text-gray-400 dark:text-slate-500 w-6">{rank}</span>
+          <span className="text-sm font-bold text-gray-400 dark:text-slate-500 w-6">{rank ?? '—'}</span>
           {team.logo && (
             <img
               src={`${import.meta.env.BASE_URL}images/teams/${team.logo}.png`}

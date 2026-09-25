@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameDate, formatTime, formatGameType } from '../components/GameDetail.jsx'
-import { teamScheduleLink } from '../lib/links.js'
+import { teamScheduleLink, teamStandingsLink } from '../lib/links.js'
 
 export default function Home() {
   const { savedTeams, activeTeam, setActiveTeam, hasTeams } = usePreferences()
-  const { getNextGame, getLastGame, getTeamStanding, allTeams, season, lastUpdated, loading } = useData()
+  const { getNextGame, getLastGame, getTeamStanding, seasonReady, allTeams, season, lastUpdated, loading } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
 
   if (!hasTeams) {
@@ -27,18 +27,23 @@ export default function Home() {
 
       <div className="space-y-4">
         {displayTeams.map((team, index) => {
-          const standing = getTeamStanding(team.name, team.division, team.tier)
+          const standing = getTeamStanding(team)
+          // Each card is read from the team's own season, which may not be
+          // the one on screen. Until that snapshot lands, say so rather than
+          // claiming the team has no games.
+          const ready = seasonReady(team.season || season)
           return (
             <TeamCard
               key={team.name}
               team={team}
               isActive={activeTeam?.toLowerCase() === team.name.toLowerCase()}
-              nextGame={getNextGame(team.name, team.division, team.tier)}
-              lastGame={getLastGame(team.name, team.division, team.tier)}
+              nextGame={getNextGame(team)}
+              lastGame={getLastGame(team)}
               standing={standing}
+              ready={ready}
               // Logos live on the schedule and standings rows, but a team can
               // have neither and still deserve its crest on the card.
-              logo={standing?.logo || allTeams.find((t) => t.name === team.name)?.logo || null}
+              logo={standing?.logo || team.logo || allTeams.find((t) => t.name === team.name)?.logo || null}
               onSelect={() => setActiveTeam(team.name)}
               onOpenGame={setSelectedGame}
               index={index}
@@ -98,6 +103,7 @@ function TeamCard({
   nextGame,
   lastGame,
   standing,
+  ready = true,
   logo,
   onSelect,
   onOpenGame,
@@ -168,7 +174,7 @@ function TeamCard({
       {/* Record → Standings */}
       {standing && (
         <Link
-          to="/standings"
+          to={teamStandingsLink(team, standing.gameType)}
           aria-label={`${team.name} standings`}
           className="group flex items-center gap-3 mb-4 p-3 rounded-xl bg-gray-50 dark:bg-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
         >
@@ -178,7 +184,11 @@ function TeamCard({
             </p>
             <div className="flex items-center gap-4">
               <div className="text-center">
-                <p className="text-2xl font-bold text-nyhl-blue dark:text-blue-400">{ordinal(standing.rank)}</p>
+                {/* A place is only a place once someone has played — before
+                    that it is just the order the rows came in. */}
+                <p className="text-2xl font-bold text-nyhl-blue dark:text-blue-400">
+                  {standing.ranked ? ordinal(standing.rank) : '—'}
+                </p>
                 <p className="text-xs text-gray-500 dark:text-slate-400">Place</p>
               </div>
               <div className="h-8 w-px bg-gray-200 dark:bg-slate-600" />
@@ -222,7 +232,9 @@ function TeamCard({
             )}
           </div>
         ) : (
-          <p className="text-sm text-gray-400 dark:text-slate-500">No upcoming games</p>
+          <p className="text-sm text-gray-400 dark:text-slate-500">
+            {ready ? 'No upcoming games' : 'Loading…'}
+          </p>
         )}
       </Link>
 

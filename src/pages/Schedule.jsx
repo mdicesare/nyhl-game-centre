@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
@@ -10,6 +10,7 @@ export default function Schedule() {
     setFilters,
     clearFilters,
     activeTeam,
+    savedTeams,
     scheduleFilter,
     setScheduleFilter,
     season,
@@ -27,6 +28,27 @@ export default function Schedule() {
   const [searchParams, setSearchParams] = useSearchParams()
   const focusTeam = searchParams.get('team')
 
+  // The link that pinned this team can carry its season as well, so a card
+  // read from another year opens the schedule on that year's snapshot.
+  // Consume only that parameter — the team pin stays until its chip is
+  // cleared, and a season pick the visitor makes later must stick.
+  useEffect(() => {
+    const linkedSeason = searchParams.get('season')
+    if (!linkedSeason) return
+    if (linkedSeason !== season) setSeason(linkedSeason)
+    const next = new URLSearchParams(searchParams)
+    next.delete('season')
+    setSearchParams(next, { replace: true })
+  }, [searchParams])
+
+  // The followed team's filter only counts when its season is on screen —
+  // otherwise every game of the browsed season is dropped by a name that
+  // cannot appear in it. A pinned team always wins: its season link has just
+  // been applied above, so its games are the ones on offer.
+  const followedTeam = savedTeams.find((t) => t.name === activeTeam)
+  const followInView = !activeTeam || !followedTeam?.season || followedTeam.season === season
+  const displayTeam = focusTeam || (followInView ? activeTeam : null)
+
   // One competition at a time, same rule as Standings: a visitor who has only
   // picked a season would otherwise get every division and tier's games in a
   // single list. Picking a single team is the other way in.
@@ -42,7 +64,7 @@ export default function Schedule() {
 
     // Team context: the pinned team wins over the followed one, since the
     // visitor explicitly asked to see that team's games.
-    const teamFilter = focusTeam || activeTeam
+    const teamFilter = displayTeam
     if (teamFilter) {
       const lower = teamFilter.toLowerCase()
       result = result.filter(
@@ -77,7 +99,7 @@ export default function Schedule() {
       const db = new Date(`${b.date}T${b.time || '00:00'}`)
       return da - db
     })
-  }, [games, filters, activeTeam, focusTeam, scheduleFilter])
+  }, [games, filters, displayTeam, focusTeam, scheduleFilter])
 
   // Group by month
   const groupedGames = useMemo(() => {
@@ -113,9 +135,9 @@ export default function Schedule() {
         <span className="bg-nyhl-blue text-white text-sm font-semibold px-3 py-1 rounded-full">
           20{season.split('-')[0]}–{season.split('-')[1]}
         </span>
-        {(focusTeam || activeTeam) && (
+        {displayTeam && (
           <span className="w-full text-sm text-nyhl-blue dark:text-blue-400">
-            {focusTeam || activeTeam}
+            {displayTeam}
           </span>
         )}
       </div>
@@ -301,7 +323,7 @@ export default function Schedule() {
                 <GameCard
                   key={game.id}
                   game={game}
-                  activeTeam={focusTeam || activeTeam}
+                  activeTeam={displayTeam}
                   onClick={() => setSelectedGame(game)}
                 />
               ))}
