@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail from '../components/GameDetail.jsx'
+import TeamChips from '../components/TeamChips.jsx'
 
 export default function Schedule() {
   const {
@@ -19,25 +20,34 @@ export default function Schedule() {
   const { games, divisions, tiersFor, lastUpdated } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
 
-  // A standings row links here as /schedule?team=…&division=…&tier=… so the
-  // schedule opens on the team that was just clicked rather than on whoever
-  // the visitor happens to follow. While that parameter is present the page
-  // is in "one team" mode: the division/tier cascade is replaced by a single
-  // removable chip, because those two selects would otherwise disagree with
-  // the list they are filtering.
+  // A standings row (or a Home card) links here as /schedule?team=…&division=
+  // …&tier=…&season=… so the schedule opens on the team that was just clicked
+  // rather than on whoever the visitor happens to follow. The team rides as a
+  // removable chip while its competition pre-fills the selects below — the
+  // list stays that one team's games until the chip is cleared, then browses
+  // exactly the division and tier the link showed.
   const [searchParams, setSearchParams] = useSearchParams()
   const focusTeam = searchParams.get('team')
 
-  // The link that pinned this team can carry its season as well, so a card
-  // read from another year opens the schedule on that year's snapshot.
-  // Consume only that parameter — the team pin stays until its chip is
-  // cleared, and a season pick the visitor makes later must stick.
+  // The link that pinned this team carries its whole competition as well, so
+  // the selects open pre-filled (U15 / Tier 1) instead of on "Choose a
+  // division…" while the page claims to show that team's games. Consume those
+  // parameters once — the team pin stays until its chip is cleared, and filter
+  // picks the visitor makes later must stick.
   useEffect(() => {
     const linkedSeason = searchParams.get('season')
-    if (!linkedSeason) return
-    if (linkedSeason !== season) setSeason(linkedSeason)
+    const linkedDivision = searchParams.get('division')
+    const linkedTier = searchParams.get('tier')
+    if (!linkedSeason && !linkedDivision && !linkedTier) return
+    if (linkedSeason && linkedSeason !== season) setSeason(linkedSeason)
+    const patch = {}
+    if (linkedDivision) patch.division = linkedDivision
+    if (linkedTier) patch.tier = linkedTier
+    if (Object.keys(patch).length) setFilters(patch)
     const next = new URLSearchParams(searchParams)
     next.delete('season')
+    next.delete('division')
+    next.delete('tier')
     setSearchParams(next, { replace: true })
   }, [searchParams])
 
@@ -150,6 +160,9 @@ export default function Schedule() {
         )}
       </div>
 
+      {/* One tap back to a saved team: snaps season, division and tier to it */}
+      <TeamChips onPick={() => { if (focusTeam) clearFocus() }} />
+
       {/* Filter bar */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">
         <select
@@ -162,11 +175,15 @@ export default function Schedule() {
           <option value="24-25">2024–25</option>
         </select>
 
-        {!focusTeam && (
-        <>
+        {/* While a team is pinned these stay visible and pre-filled from its
+            link; touching one drops the pin and browses the picked
+            competition instead. */}
         <select
           value={filters.division}
-          onChange={(e) => setFilters({ division: e.target.value, tier: 'ALL' })}
+          onChange={(e) => {
+            if (focusTeam) clearFocus()
+            setFilters({ division: e.target.value, tier: 'ALL' })
+          }}
           className={SELECT_CLS}
         >
           <option value="ALL">Choose a division…</option>
@@ -181,7 +198,10 @@ export default function Schedule() {
         {!needsDivision && tierOptions.length > 0 && (
           <select
             value={filters.tier}
-            onChange={(e) => setFilters({ tier: e.target.value })}
+            onChange={(e) => {
+              if (focusTeam) clearFocus()
+              setFilters({ tier: e.target.value })
+            }}
             className={SELECT_CLS}
           >
             <option value="ALL">Choose a tier…</option>
@@ -192,8 +212,6 @@ export default function Schedule() {
               <option key={t} value={t}>{t}</option>
             ))}
           </select>
-        )}
-        </>
         )}
 
         {hasActiveFilters && (
@@ -220,9 +238,10 @@ export default function Schedule() {
         </div>
       ) : (
       <div>
-      {/* Active filter summary */}
+      {/* Active filter summary — the pinned team and the pre-filled
+          competition read together while a link's team is on screen */}
       <div className="flex items-center gap-2 mb-4 flex-wrap">
-        {focusTeam ? (
+        {focusTeam && (
           <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
             Showing {focusTeam}'s games
             <button
@@ -233,19 +252,16 @@ export default function Schedule() {
               ✕
             </button>
           </span>
-        ) : (
-          <>
-            {filters.division !== 'ALL' && (
-              <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
-                {filters.division}
-              </span>
-            )}
-            {filters.tier !== 'ALL' && (
-              <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
-                {filters.tier}
-              </span>
-            )}
-          </>
+        )}
+        {filters.division !== 'ALL' && (
+          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.division}
+          </span>
+        )}
+        {filters.tier !== 'ALL' && (
+          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
+            {filters.tier}
+          </span>
         )}
       </div>
 

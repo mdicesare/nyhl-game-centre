@@ -55,7 +55,7 @@ export default function Settings() {
             <p className="text-sm text-gray-500 dark:text-slate-400 mb-3">
               Pick your division and team to start following their games.
             </p>
-            <TeamFinder showSeason={false} />
+            <TeamFinder />
           </div>
         ) : (
           <div className="space-y-2">
@@ -131,7 +131,6 @@ export default function Settings() {
         {showAdd && savedTeams.length > 0 && (
           <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4 mt-3 animate-scale-in">
             <TeamFinder
-              showSeason={false}
               backLabel="Cancel"
               onCancel={() => setShowAdd(false)}
               onAdded={() => setShowAdd(false)}

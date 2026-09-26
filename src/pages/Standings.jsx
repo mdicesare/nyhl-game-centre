@@ -5,6 +5,7 @@ import { useData } from '../hooks/useData.jsx'
 // A standings row leads to that team's own schedule, not to whatever team the
 // visitor happens to follow.
 import { teamScheduleLink } from '../lib/links.js'
+import TeamChips from '../components/TeamChips.jsx'
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',
@@ -95,6 +96,9 @@ export default function Standings() {
           20{season.split('-')[0]}–{season.split('-')[1]}
         </span>
       </div>
+
+      {/* One tap back to a saved team: snaps season, division and tier to it */}
+      <TeamChips />
 
       {/* Filter bar */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">

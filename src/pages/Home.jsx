@@ -75,11 +75,12 @@ export default function Home() {
   )
 }
 
-// The card is deliberately not one big link. Every section is its own target:
-// the record leads to Standings (the subtle route for users who click text on
-// instinct — the labelled button row at the bottom is the explicit one), the
-// two game blocks open their own overlays, and only the card body itself picks
-// the active team.
+// The card is deliberately not one big link, but every section shares one
+// behaviour: any tap inside also switches the active team, so fiddling with
+// a child's card always leaves you following that child. Each section still
+// does its own job after the switch — the record to Standings (the subtle
+// route; the labelled buttons at the bottom are the explicit one) and the
+// two game blocks to their overlays — while the card body just selects.
 function TeamCard({
   team,
   isActive,
@@ -159,7 +160,6 @@ function TeamCard({
         <Link
           to={teamStandingsLink(team, standing.gameType)}
           aria-label={`${team.name} standings`}
-          onClick={(e) => e.stopPropagation()}
           className="group flex items-center gap-3 mb-4 p-3 rounded-xl bg-gray-50 dark:bg-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
         >
           <div className="flex-1 min-w-0">
@@ -167,7 +167,7 @@ function TeamCard({
               {formatSeasonLabel(cardSeason)} · {formatGameType(standing.gameType)}
             </p>
             <div className="flex items-center gap-4">
-              <div className="text-center">
+              <div className="text-left">
                 {/* A place is only a place once someone has played — before
                     that it is just the order the rows came in. */}
                 <p className="text-2xl font-bold text-nyhl-blue dark:text-blue-400">
@@ -176,12 +176,12 @@ function TeamCard({
                 <p className="text-xs text-gray-500 dark:text-slate-400">Place</p>
               </div>
               <div className="h-8 w-px bg-gray-200 dark:bg-slate-600" />
-              <div className="text-center">
+              <div className="text-left">
                 <p className="text-2xl font-bold dark:text-white">{standing.pts}</p>
                 <p className="text-xs text-gray-500 dark:text-slate-400">Points</p>
               </div>
               <div className="h-8 w-px bg-gray-200 dark:bg-slate-600" />
-              <div className="text-center">
+              <div className="text-left">
                 <p className="text-lg font-bold dark:text-white">{standing.w}-{standing.l}-{standing.t}</p>
                 <p className="text-xs text-gray-500 dark:text-slate-400">Record</p>
               </div>
@@ -196,12 +196,9 @@ function TeamCard({
           list, so tapping a game means "tell me about *this* game". */}
       <button
         type="button"
-        onClick={(e) => {
-          e.stopPropagation()
-          if (nextGame) onOpenGame(nextGame)
-        }}
+        onClick={() => nextGame && onOpenGame(nextGame)}
         disabled={!nextGame}
-        className="w-full text-left block mb-3 p-3 -mx-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors disabled:cursor-default disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"
+        className="w-full text-left block mb-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors disabled:cursor-default disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"
       >
         <div className="flex items-center justify-between mb-1">
           <p className="text-xs font-semibold text-gray-400 dark:text-slate-500 uppercase tracking-wide">
@@ -232,11 +229,8 @@ function TeamCard({
       {lastGame && (
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation()
-            onOpenGame(lastGame)
-          }}
-          className={`w-full text-left text-sm border-t pt-3 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/50 ${
+          onClick={() => onOpenGame(lastGame)}
+          className={`w-full text-left text-sm border-t pt-3 px-3 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-slate-700/50 ${
             isWin ? 'border-green-200 dark:border-green-800' :
             isLoss ? 'border-red-200 dark:border-red-800' :
             'border-gray-100 dark:border-slate-700'
@@ -268,9 +262,9 @@ function TeamCard({
       )}
 
       {/* The explicit doors — one pair per team, so a parent's second child
-          gets its own buttons too. Pure navigation: pressing them never
-          switches the active team (the card body alone does that). */}
-      <div className="grid grid-cols-2 gap-2 mt-3" onClick={(e) => e.stopPropagation()}>
+          gets its own buttons too. Like every other section they also switch
+          the active team before navigating. */}
+      <div className="grid grid-cols-2 gap-2 mt-3">
         <Link
           to={teamScheduleLink(team)}
           aria-label={`Open ${team.name} schedule`}
