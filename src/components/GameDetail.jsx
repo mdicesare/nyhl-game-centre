@@ -1,6 +1,7 @@
 // Game detail sheet. Lives on its own so both the Schedule list and the
 // "last result" row on a Home team card can open the same overlay instead of
 // each page growing its own copy.
+import { useRef, useState } from 'react'
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',
@@ -39,13 +40,77 @@ export function formatTime(timeStr) {
 }
 
 export default function GameDetail({ game, onClose }) {
+  // The handle bar always looked draggable, so it is: pulling it down
+  // dismisses the sheet the same way the Close button does. Pointer events
+  // cover touch and mouse alike; anything shy of a committed pull springs
+  // back so a stray tap never closes the card.
+  const [dragY, setDragY] = useState(0)
+  const [dragging, setDragging] = useState(false)
+  // Once the visitor has grabbed the handle the mount animation is done
+  // with — an animation would out-rank the inline transform mid-drag.
+  const [grabbed, setGrabbed] = useState(false)
+  const startY = useRef(0)
+  const startT = useRef(0)
+  // A drag that ends with the pointer over the backdrop fires a click there
+  // after release; without this flag an aborted drag would read as a tap on
+  // the scrim and close the sheet.
+  const suppressBackdropClick = useRef(false)
+
+  const onPointerDown = (e) => {
+    if (!e.isPrimary) return
+    setGrabbed(true)
+    setDragging(true)
+    startY.current = e.clientY
+    startT.current = performance.now()
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+  const onPointerMove = (e) => {
+    if (!dragging) return
+    const dy = e.clientY - startY.current
+    setDragY(dy > 0 ? dy : 0)
+  }
+  const endDrag = (e) => {
+    if (!dragging) return
+    setDragging(false)
+    const dy = Math.max(0, e.clientY - startY.current)
+    const elapsed = Math.max(1, performance.now() - startT.current)
+    // A committed pull or a quick flick dismisses; anything less springs
+    // back into place.
+    if (dy > 90 || (dy > 24 && dy / elapsed > 0.6)) {
+      suppressBackdropClick.current = true
+      setTimeout(() => { suppressBackdropClick.current = false }, 350)
+      onClose()
+    } else {
+      setDragY(0)
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm"
+      onClick={() => { if (!suppressBackdropClick.current) onClose() }}
+    >
       <div
-        className="bg-white dark:bg-slate-800 rounded-t-2xl w-full max-w-lg p-6 pb-8 animate-slide-up shadow-2xl"
+        className={`bg-white dark:bg-slate-800 rounded-t-2xl w-full max-w-lg p-6 pb-8 shadow-2xl ${grabbed ? '' : 'animate-slide-up'}`}
+        style={{
+          transform: `translateY(${dragY}px)`,
+          transition: dragging ? 'none' : 'transform 180ms ease-out',
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-12 h-1 bg-gray-300 dark:bg-slate-600 rounded-full mx-auto mb-4" />
+        {/* Grab zone: the visible bar plus breathing room around it, sized
+            so a thumb finds it without aiming. touch-none keeps a drag from
+            turning into a scroll mid-gesture. */}
+        <div
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={() => { setDragging(false); setDragY(0) }}
+          className="w-full -mt-3 py-3 mb-1 cursor-grab active:cursor-grabbing touch-none select-none"
+          aria-hidden="true"
+        >
+          <div className="w-12 h-1 bg-gray-300 dark:bg-slate-600 rounded-full mx-auto" />
+        </div>
 
         <p className="text-xs text-gray-400 dark:text-slate-500 mb-4">
           {formatGameDate(game.date)} · {formatTime(game.time)}
