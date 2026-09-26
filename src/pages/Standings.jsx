@@ -6,6 +6,7 @@ import { useData } from '../hooks/useData.jsx'
 // visitor happens to follow.
 import { teamScheduleLink } from '../lib/links.js'
 import TeamChips from '../components/TeamChips.jsx'
+import UpdatedStamp from '../components/UpdatedStamp.jsx'
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',
@@ -24,7 +25,7 @@ export default function Standings() {
   const { filters, setFilters, clearFilters, activeTeamName, season, setSeason } = usePreferences()
   // effectiveGameType lives in useData so the place shown on a Home card is
   // always the place shown in this table.
-  const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, lastUpdated } =
+  const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType } =
     useData()
   const [expandedTeam, setExpandedTeam] = useState(null)
 
@@ -263,11 +264,7 @@ export default function Standings() {
       </div>
       )}
 
-      {lastUpdated && (
-        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
-          Updated {formatTimestamp(lastUpdated)}
-        </p>
-      )}
+      <UpdatedStamp />
     </div>
   )
 }
@@ -478,19 +475,3 @@ function Detail({ label, value }) {
   )
 }
 
-// ---- Helpers ----
-
-function formatTimestamp(iso) {
-  try {
-    const d = new Date(iso)
-    return d.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    })
-  } catch {
-    return iso
-  }
-}

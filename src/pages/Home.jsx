@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameDate, formatTime, formatGameType } from '../components/GameDetail.jsx'
+import UpdatedStamp from '../components/UpdatedStamp.jsx'
 import { teamScheduleLink, teamStandingsLink } from '../lib/links.js'
 import { teamId } from '../lib/teams.js'
 
 export default function Home() {
   const { savedTeams, activeTeam, setActiveTeam, hasTeams } = usePreferences()
-  const { getNextGame, getLastGame, getTeamStanding, seasonReady, allTeams, season, lastUpdated, loading } = useData()
+  const { getNextGame, getLastGame, getTeamStanding, seasonReady, allTeams, season } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
 
   if (!hasTeams) {
@@ -63,11 +64,7 @@ export default function Home() {
         </Link>
       )}
 
-      {lastUpdated && (
-        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
-          Updated {formatTimestamp(lastUpdated)}
-        </p>
-      )}
+      <UpdatedStamp />
 
       {selectedGame && (
         <GameDetail game={selectedGame} onClose={() => setSelectedGame(null)} />
@@ -335,21 +332,6 @@ function NoTeams() {
 }
 
 // ---- Helpers ----
-
-function formatTimestamp(iso) {
-  try {
-    const d = new Date(iso)
-    return d.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    })
-  } catch {
-    return iso
-  }
-}
 
 function formatSeasonLabel(s) {
   if (!s) return ''

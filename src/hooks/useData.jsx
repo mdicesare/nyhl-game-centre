@@ -14,6 +14,7 @@ export function DataProvider({ children }) {
   const [standings, setStandings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const lastLoadAt = useRef(0)
 
   const loadData = useCallback(async () => {
     setLoading(true)
@@ -58,11 +59,27 @@ export function DataProvider({ children }) {
       setError(err.message)
     } finally {
       setLoading(false)
+      lastLoadAt.current = Date.now()
     }
   }, [selectedSeason])
 
   useEffect(() => {
     loadData()
+  }, [loadData])
+
+  // Foreground refresh: re-fetch when the page returns to the foreground
+  // after being hidden — the "checked it an hour later" case, with no
+  // gesture to discover and Android's native pull-to-refresh left alone.
+  // Throttled so fast app-switching doesn't hammer the endpoint; the
+  // refresh button bypasses this on purpose.
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.hidden) return
+      if (Date.now() - lastLoadAt.current < 30000) return
+      loadData()
+    }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => document.removeEventListener('visibilitychange', onVisible)
   }, [loadData])
 
   // Saved teams are followed across seasons while the visitor browses a

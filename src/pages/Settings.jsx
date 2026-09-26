@@ -188,6 +188,9 @@ export default function Settings() {
           <p>
             This is an unofficial fan tool and is not affiliated with NYHL or Agilex.
           </p>
+          <p>
+            App icon by Twemoji (CC BY 4.0).
+          </p>
         </div>
       </section>
 

@@ -1,22 +1,26 @@
-// Generates the PWA icons from public/images/NYHLLogo-h150.png.
+// Generates the PWA icons from scripts/assets/puck-stick-art-512.png — the
+// hockey stick-and-puck emoji (Twemoji, CC BY 4.0), rendered once on
+// transparency by scripts/assets/icon-template.html (that file documents the
+// exact Chrome command).
 //
 //   node scripts/make-icons.js        -> writes public/icon-{512,192,180}.png
 //                                        and public/favicon.png
 //
-// The wordmark (415x150, palette PNG with transparency) is box-filtered to
-// 74% width / 58% height — the same rule the stylesheet used — and blitted
-// centred onto a league-navy square (#1e3a5f, the theme colour).
+// The square art is box-filtered to 72% of the tile and blitted centred
+// onto a league-navy square (#1e3a5f, the theme colour).
 //
 // This runs in Node on purpose. Rendering the icons through headless Chrome
 // looked like the quick option, but Chrome mis-lays-out windows narrower than
 // ~300px: the 192 and 180 screenshots came back cropped against the right
 // edge. Doing the arithmetic here is deterministic and checkable.
-const fs = require('fs')
-const path = require('path')
-const zlib = require('zlib')
+import fs from 'node:fs'
+import path from 'node:path'
+import zlib from 'node:zlib'
+import { fileURLToPath } from 'node:url'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO = path.join(__dirname, '..')
-const LOGO = path.join(REPO, 'public', 'images', 'NYHLLogo-h150.png')
+const ART = path.join(REPO, 'scripts', 'assets', 'puck-stick-art-512.png')
 const NAVY = [30, 58, 95] // #1e3a5f — matches <meta name="theme-color">
 
 function decodePng(file) {
@@ -195,11 +199,13 @@ function encodePng(w, h, rgb) {
 }
 
 function makeIcon(size, outFile) {
-  const logo = decodePng(LOGO)
-  const scale = Math.min((size * 0.74) / logo.w, (size * 0.58) / logo.h)
-  const lw = Math.round(logo.w * scale)
-  const lh = Math.round(logo.h * scale)
-  const scaled = resize(logo.px, logo.w, logo.h, lw, lh)
+  const art = decodePng(ART)
+  // Square art at 72% of the tile: readable on a home screen while staying
+  // inside the mask padding iOS and Android apply to icon artwork.
+  const scale = Math.min((size * 0.72) / art.w, (size * 0.72) / art.h)
+  const lw = Math.round(art.w * scale)
+  const lh = Math.round(art.h * scale)
+  const scaled = resize(art.px, art.w, art.h, lw, lh)
   const ox = Math.round((size - lw) / 2)
   const oy = Math.round((size - lh) / 2)
   const canvas = Buffer.alloc(size * size * 3)
@@ -221,7 +227,7 @@ function makeIcon(size, outFile) {
     }
   }
   fs.writeFileSync(outFile, encodePng(size, size, canvas))
-  console.log(`${path.basename(outFile)}  ${size}x${size}  logo ${lw}x${lh} at (${ox},${oy})`)
+  console.log(`${path.basename(outFile)}  ${size}x${size}  art ${lw}x${lh} at (${ox},${oy})`)
 }
 
 const outDir = process.argv[2] || path.join(REPO, 'public')

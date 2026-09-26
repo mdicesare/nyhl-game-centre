@@ -4,6 +4,7 @@ import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail from '../components/GameDetail.jsx'
 import TeamChips from '../components/TeamChips.jsx'
+import UpdatedStamp from '../components/UpdatedStamp.jsx'
 import { teamId } from '../lib/teams.js'
 
 export default function Schedule() {
@@ -19,7 +20,7 @@ export default function Schedule() {
     season,
     setSeason,
   } = usePreferences()
-  const { games, divisions, tiersFor, lastUpdated } = useData()
+  const { games, divisions, tiersFor } = useData()
   const [selectedGame, setSelectedGame] = useState(null)
 
   // A standings row (or a Home card) links here as /schedule?team=…&division=
@@ -362,11 +363,7 @@ export default function Schedule() {
       </div>
       )}
 
-      {lastUpdated && (
-        <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
-          Updated {formatTimestamp(lastUpdated)}
-        </p>
-      )}
+      <UpdatedStamp />
 
       {/* Game detail modal */}
       {selectedGame && (
@@ -484,21 +481,6 @@ function formatSeasonLabel(s) {
   // "25-26" → "2025–26"
   const [y1, y2] = s.split('-')
   return `20${y1}–${y2}`
-}
-
-function formatTimestamp(iso) {
-  try {
-    const d = new Date(iso)
-    return d.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    })
-  } catch {
-    return iso
-  }
 }
 
 function formatGameDate(dateStr) {
