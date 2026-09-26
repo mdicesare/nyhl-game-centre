@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 import { CURRENT_SEASON } from '../lib/seasons.js'
+import { teamId } from '../lib/teams.js'
 
 const PreferencesContext = createContext(null)
 
@@ -7,7 +8,7 @@ const STORAGE_KEY = 'nyhl-preferences'
 
 const DEFAULT_PREFS = {
   savedTeams: [],       // [{ name, division, tier, season, label? }]
-  activeTeam: null,     // currently focused team name
+  activeTeam: null,     // id (see teamId) of the active saved team
   season: '26-27',
   // Shared filter context (persists across Schedule ↔ Standings)
   filters: {
@@ -25,16 +26,29 @@ function loadPreferences() {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return DEFAULT_PREFS
     const parsed = JSON.parse(raw)
+    // Teams saved before the season field existed get stamped with the
+    // current season — every one of them was added while it was on screen,
+    // and without this their card links ship no season and land on
+    // whichever year was last browsed.
+    const savedTeams = (parsed.savedTeams || []).map((team) =>
+      team.season ? team : { ...team, season: CURRENT_SEASON }
+    )
+    // The active team used to be stored as a plain name; names are no
+    // longer unique, so upgrade a stored name to the id of the first saved
+    // team it matches, and drop it when nothing does. Ids pass straight
+    // through.
+    let activeTeam = parsed.activeTeam ?? null
+    if (activeTeam && !savedTeams.some((t) => teamId(t) === activeTeam)) {
+      const byName = savedTeams.find(
+        (t) => t.name && t.name.toLowerCase() === String(activeTeam).toLowerCase()
+      )
+      activeTeam = byName ? teamId(byName) : null
+    }
     return {
       ...DEFAULT_PREFS,
       ...parsed,
-      // Teams saved before the season field existed get stamped with the
-      // current season — every one of them was added while it was on screen,
-      // and without this their card links ship no season and land on
-      // whichever year was last browsed.
-      savedTeams: (parsed.savedTeams || []).map((team) =>
-        team.season ? team : { ...team, season: CURRENT_SEASON }
-      ),
+      savedTeams,
+      activeTeam,
       // Merge filters individually: an older/partial record missing a key
       // would otherwise turn the filter selects uncontrolled.
       filters: { ...DEFAULT_PREFS.filters, ...(parsed.filters || {}) },
@@ -62,34 +76,42 @@ export function PreferencesProvider({ children }) {
 
   const addTeam = useCallback((team) => {
     setPrefs((p) => {
-      // Avoid duplicates
-      if (p.savedTeams.some((t) => t.name === team.name)) return p
+      // One entry per season/division/tier — the same name may be followed
+      // again in another season, but never twice in the same one.
+      if (p.savedTeams.some((t) => teamId(t) === teamId(team))) return p
       return { ...p, savedTeams: [...p.savedTeams, team] }
     })
   }, [])
 
-  const removeTeam = useCallback((teamName) => {
+  const removeTeam = useCallback((id) => {
     setPrefs((p) => ({
       ...p,
-      savedTeams: p.savedTeams.filter((t) => t.name !== teamName),
-      activeTeam: p.activeTeam === teamName ? null : p.activeTeam,
+      savedTeams: p.savedTeams.filter((t) => teamId(t) !== id),
+      activeTeam: p.activeTeam === id ? null : p.activeTeam,
     }))
   }, [])
 
-  const setActiveTeam = useCallback((teamName) => {
+  // Accepts the team object (preferred — filters come straight off it) or an
+  // id/name string, which is resolved against the saved list.
+  const setActiveTeam = useCallback((team) => {
     setPrefs((p) => {
-      const team = p.savedTeams.find((t) => t.name === teamName)
-      const updates = { activeTeam: teamName }
+      const id = typeof team === 'string' ? team : teamId(team)
+      const entry =
+        typeof team === 'string'
+          ? p.savedTeams.find((t) => teamId(t) === id) ||
+            p.savedTeams.find((t) => t.name?.toLowerCase() === String(team).toLowerCase())
+          : team
+      const updates = { activeTeam: entry ? teamId(entry) : id }
       // Pre-fill filters with the team's division/tier if available
-      if (team) {
+      if (entry) {
         updates.filters = {
           ...p.filters,
-          division: team.division || 'ALL',
-          tier: team.tier || 'ALL',
+          division: entry.division || 'ALL',
+          tier: entry.tier || 'ALL',
         }
         // Following a team means looking at its season's data, so the
         // schedule and standings open on the year that team plays in.
-        if (team.season) updates.season = team.season
+        if (entry.season) updates.season = entry.season
       }
       return { ...p, ...updates }
     })
@@ -113,9 +135,18 @@ export function PreferencesProvider({ children }) {
 
   const hasTeams = prefs.savedTeams.length > 0
 
+  // The name behind the active id, for headers and labels that used to read
+  // activeTeam directly. Falls back to matching a stored plain name so an
+  // un-migrated value still renders somewhere.
+  const activeEntry = prefs.savedTeams.find((t) => teamId(t) === prefs.activeTeam)
+  const activeTeamName = activeEntry
+    ? activeEntry.name
+    : prefs.savedTeams.find((t) => t.name === prefs.activeTeam)?.name || null
+
   const value = {
     ...prefs,
     hasTeams,
+    activeTeamName,
     addTeam,
     removeTeam,
     setActiveTeam,

@@ -1,9 +1,10 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail from '../components/GameDetail.jsx'
 import TeamChips from '../components/TeamChips.jsx'
+import { teamId } from '../lib/teams.js'
 
 export default function Schedule() {
   const {
@@ -11,6 +12,7 @@ export default function Schedule() {
     setFilters,
     clearFilters,
     activeTeam,
+    activeTeamName,
     savedTeams,
     scheduleFilter,
     setScheduleFilter,
@@ -58,14 +60,14 @@ export default function Schedule() {
   // empty list the active team's name could never match. Teams stored without
   // division/tier only check the season, as before. A pinned team always
   // wins — its season link has just been applied above.
-  const followedTeam = savedTeams.find((t) => t.name === activeTeam)
+  const followedTeam = savedTeams.find((t) => teamId(t) === activeTeam)
   const followsTeamFilters =
     !activeTeam ||
     !followedTeam ||
     ((!followedTeam.season || followedTeam.season === season) &&
       (!followedTeam.division || filters.division === followedTeam.division) &&
       (!followedTeam.tier || filters.tier === followedTeam.tier))
-  const displayTeam = focusTeam || (followsTeamFilters ? activeTeam : null)
+  const displayTeam = focusTeam || (followsTeamFilters ? activeTeamName : null)
 
   // One competition at a time, same rule as Standings: a visitor who has only
   // picked a season would otherwise get every division and tier's games in a
@@ -90,7 +92,8 @@ export default function Schedule() {
       )
     }
 
-    // Filter dropdowns — hidden while a team is pinned, so don't apply them.
+    // Filter dropdowns — while a pin is on screen its list wins (and touching
+    // a select drops the pin), so they don't narrow it.
     if (!focusTeam) {
       if (filters.division !== 'ALL') {
         result = result.filter((g) => g.division === filters.division)
@@ -137,13 +140,28 @@ export default function Schedule() {
 
   // Schedule only applies division/tier. gameType and club share the
   // filter object but are never read here, so they must not show as active.
-  // While a team is pinned those two selects are hidden, so they don't count.
+  // While a team is pinned the dropdowns are on screen but the pin's list
+  // wins, so they don't count.
   const hasActiveFilters =
     !focusTeam && (filters.division !== 'ALL' || filters.tier !== 'ALL')
   const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
 
   // Back to the normal division/tier view.
-  const clearFocus = () => setSearchParams({}, { replace: true })
+  const clearFocus = useCallback(() => setSearchParams({}, { replace: true }), [setSearchParams])
+
+  // A pin that is just the followed team — every card button's default flow —
+  // says nothing the blue quick-filter chip doesn't already show, so drop it
+  // on arrival. The list doesn't move: the pin's name filter and the followed
+  // team's name filter are the same filter, and the competition the link
+  // carried now sits in the dropdowns either way. A pin on anyone else (a
+  // standings row) keeps its chip — there it is the only indicator of whose
+  // games are on screen, and the only way out.
+  useEffect(() => {
+    if (!focusTeam || !activeTeamName) return
+    if (focusTeam.toLowerCase() !== activeTeamName.toLowerCase()) return
+    if (!followsTeamFilters) return
+    clearFocus()
+  }, [focusTeam, activeTeamName, followsTeamFilters, clearFocus])
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto animate-fade-in">
@@ -153,11 +171,6 @@ export default function Schedule() {
         <span className="bg-nyhl-blue text-white text-sm font-semibold px-3 py-1 rounded-full">
           20{season.split('-')[0]}–{season.split('-')[1]}
         </span>
-        {displayTeam && (
-          <span className="w-full text-sm text-nyhl-blue dark:text-blue-400">
-            {displayTeam}
-          </span>
-        )}
       </div>
 
       {/* One tap back to a saved team: snaps season, division and tier to it */}
@@ -238,10 +251,11 @@ export default function Schedule() {
         </div>
       ) : (
       <div>
-      {/* Active filter summary — the pinned team and the pre-filled
-          competition read together while a link's team is on screen */}
-      <div className="flex items-center gap-2 mb-4 flex-wrap">
-        {focusTeam && (
+      {/* Only a pin the quick-filter row can't speak for: the followed
+          team's pin is dropped above, and the dropdowns already show the
+          competition — chips here would just repeat them. */}
+      {focusTeam && (
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
           <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
             Showing {focusTeam}'s games
             <button
@@ -252,18 +266,8 @@ export default function Schedule() {
               ✕
             </button>
           </span>
-        )}
-        {filters.division !== 'ALL' && (
-          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.division}
-          </span>
-        )}
-        {filters.tier !== 'ALL' && (
-          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.tier}
-          </span>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Upcoming / Completed tabs */}
       <div className="flex bg-gray-100 dark:bg-slate-800 rounded-lg p-1 mb-4">

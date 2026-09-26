@@ -4,6 +4,7 @@ import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameDate, formatTime, formatGameType } from '../components/GameDetail.jsx'
 import { teamScheduleLink, teamStandingsLink } from '../lib/links.js'
+import { teamId } from '../lib/teams.js'
 
 export default function Home() {
   const { savedTeams, activeTeam, setActiveTeam, hasTeams } = usePreferences()
@@ -34,9 +35,9 @@ export default function Home() {
           const ready = seasonReady(team.season || season)
           return (
             <TeamCard
-              key={team.name}
+              key={teamId(team)}
               team={team}
-              isActive={activeTeam?.toLowerCase() === team.name.toLowerCase()}
+              isActive={teamId(team) === activeTeam}
               nextGame={getNextGame(team)}
               lastGame={getLastGame(team)}
               standing={standing}
@@ -44,7 +45,7 @@ export default function Home() {
               // Logos live on the schedule and standings rows, but a team can
               // have neither and still deserve its crest on the card.
               logo={standing?.logo || team.logo || allTeams.find((t) => t.name === team.name)?.logo || null}
-              onSelect={() => setActiveTeam(team.name)}
+              onSelect={() => setActiveTeam(team)}
               onOpenGame={setSelectedGame}
               index={index}
               globalSeason={season}

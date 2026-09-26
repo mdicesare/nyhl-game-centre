@@ -10,7 +10,7 @@ const navItems = [
 ]
 
 export default function Layout() {
-  const { activeTeam } = usePreferences()
+  const { activeTeamName } = usePreferences()
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900 transition-colors pb-20">
@@ -21,9 +21,9 @@ export default function Layout() {
         </a>
         {/* Shown on phones too — between pages this is the only place the
             followed team stays visible. */}
-        {activeTeam && (
+        {activeTeamName && (
           <span className="text-sm text-blue-200 truncate">
-            {activeTeam}
+            {activeTeamName}
           </span>
         )}
       </header>

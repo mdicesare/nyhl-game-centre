@@ -21,7 +21,7 @@ function formatSeasonLabel(s) {
 }
 
 export default function Standings() {
-  const { filters, setFilters, clearFilters, activeTeam, season, setSeason } = usePreferences()
+  const { filters, setFilters, clearFilters, activeTeamName, season, setSeason } = usePreferences()
   // effectiveGameType lives in useData so the place shown on a Home card is
   // always the place shown in this table.
   const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, lastUpdated } =
@@ -238,7 +238,7 @@ export default function Standings() {
           <div className="hidden md:block">
             <StandingsTable
               standings={filteredStandings}
-              activeTeam={activeTeam}
+              activeTeam={activeTeamName}
               started={tableStarted}
             />
           </div>
@@ -250,7 +250,7 @@ export default function Standings() {
                 key={team.teamId || team.name}
                 team={team}
                 rank={tableStarted ? i + 1 : null}
-                isActive={activeTeam?.toLowerCase() === team.name.toLowerCase()}
+                isActive={activeTeamName?.toLowerCase() === team.name.toLowerCase()}
                 isExpanded={expandedTeam === team.name}
                 onToggle={() =>
                   setExpandedTeam(expandedTeam === team.name ? null : team.name)

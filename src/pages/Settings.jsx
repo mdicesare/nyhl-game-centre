@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import TeamFinder from '../components/TeamFinder.jsx'
+import { teamId } from '../lib/teams.js'
+import { SEASONS } from '../lib/seasons.js'
+
+// "25-26" -> "2025-26", the same label the data pages and finder show.
+const seasonLabel = (value) => SEASONS.find((s) => s.value === value)?.label || value
 
 export default function Settings() {
   const { savedTeams, activeTeam, setActiveTeam, removeTeam } = usePreferences()
@@ -34,8 +39,8 @@ export default function Settings() {
     localStorage.setItem('nyhl-dark-mode', nowDark ? 'dark' : 'light')
   }
 
-  const handleRemoveTeam = (name) => {
-    removeTeam(name)
+  const handleRemoveTeam = (id) => {
+    removeTeam(id)
     setConfirmRemove(null)
   }
 
@@ -61,20 +66,21 @@ export default function Settings() {
           <div className="space-y-2">
             {savedTeams.map((team) => (
               <div
-                key={team.name}
+                key={teamId(team)}
                 className={`rounded-xl border p-3 flex items-center justify-between transition-colors ${
-                  activeTeam?.toLowerCase() === team.name.toLowerCase()
+                  teamId(team) === activeTeam
                     ? 'bg-gradient-to-r from-nyhl-blue/5 to-nyhl-blue/10 border-nyhl-blue/30 dark:from-nyhl-blue/10 dark:to-nyhl-blue/20 dark:border-blue-500/30'
                     : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700'
                 }`}
               >
                 <div>
-                  <p className={`font-medium ${activeTeam?.toLowerCase() === team.name.toLowerCase() ? 'text-nyhl-blue dark:text-blue-400' : 'dark:text-slate-200'}`}>
+                  <p className={`font-medium ${teamId(team) === activeTeam ? 'text-nyhl-blue dark:text-blue-400' : 'dark:text-slate-200'}`}>
                     {team.name}
                   </p>
-                  {team.division && (
+                  {team.season && (
                     <p className="text-xs text-gray-500 dark:text-slate-400">
-                      {team.division}
+                      {seasonLabel(team.season)}
+                      {team.division ? ` · ${team.division}` : ''}
                       {team.tier ? ` · ${team.tier}` : ''}
                     </p>
                   )}
@@ -82,17 +88,17 @@ export default function Settings() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => {
-                      setActiveTeam(team.name)
+                      setActiveTeam(team)
                       navigate('/schedule')
                     }}
                     className="text-xs text-nyhl-blue hover:underline"
                   >
-                    {activeTeam?.toLowerCase() === team.name.toLowerCase() ? 'Active' : 'Set active'}
+                    {teamId(team) === activeTeam ? 'Active' : 'Set active'}
                   </button>
-                  {confirmRemove === team.name ? (
+                  {confirmRemove === teamId(team) ? (
                     <div className="flex items-center gap-1">
                       <button
-                        onClick={() => handleRemoveTeam(team.name)}
+                        onClick={() => handleRemoveTeam(teamId(team))}
                         className="text-xs text-red-600 font-medium"
                       >
                         Remove
@@ -106,7 +112,7 @@ export default function Settings() {
                     </div>
                   ) : (
                     <button
-                      onClick={() => setConfirmRemove(team.name)}
+                      onClick={() => setConfirmRemove(teamId(team))}
                       className="text-xs text-gray-400 dark:text-slate-500 hover:text-red-500"
                     >
                       ✕

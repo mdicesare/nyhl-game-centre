@@ -3,6 +3,7 @@ import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import Select from './Select.jsx'
 import { SEASONS, CURRENT_SEASON } from '../lib/seasons.js'
+import { teamId } from '../lib/teams.js'
 
 function seasonLabel(value) {
   return SEASONS.find((s) => s.value === value)?.label || value
@@ -25,8 +26,11 @@ function seasonLabel(value) {
  * The season select writes straight to the shared preference, because that
  * value is what decides which snapshot the data layer loads. Opening the
  * finder resets it to the current season and gives the previous one back on
- * close unless a team was added. Settings hides the select — season is picked
- * on the data pages or during first-time setup.
+ * close unless a team was added. Both onboarding and Settings show the
+ * select, so last season's rosters are reachable from either entry point —
+ * and a team followed in another season can be added again here, since the
+ * duplicate check compares the whole season/division/tier combination, not
+ * just the name.
  */
 export default function TeamFinder({
   onAdded,
@@ -62,8 +66,8 @@ export default function TeamFinder({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const savedNames = useMemo(
-    () => new Set(savedTeams.map((t) => t.name.toLowerCase())),
+  const savedIds = useMemo(
+    () => new Set(savedTeams.filter((t) => t?.name).map(teamId)),
     [savedTeams]
   )
 
@@ -87,14 +91,23 @@ export default function TeamFinder({
     [divisionScoped]
   )
 
-  // Step 3: teams inside the season/division/tier combination, less saved ones.
+  // Step 3: teams inside the season/division/tier combination, less the
+  // combinations already saved. The full composite counts, not the name —
+  // last year's U14 entry stays addable while this year's U15 team of the
+  // same name is already followed.
   const comboTeams = useMemo(
     () => divisionScoped.filter((t) => t.tiers.includes(selectedTier)),
     [divisionScoped, selectedTier]
   )
   const filteredTeams = useMemo(
-    () => comboTeams.filter((t) => !savedNames.has(t.name.toLowerCase())),
-    [comboTeams, savedNames]
+    () =>
+      comboTeams.filter(
+        (t) =>
+          !savedIds.has(
+            teamId({ name: t.name, season, division: selectedDivision, tier: selectedTier })
+          )
+      ),
+    [comboTeams, savedIds, season, selectedDivision, selectedTier]
   )
 
   const hasData = allTeams.length > 0
@@ -134,7 +147,7 @@ export default function TeamFinder({
       logo: comboTeams.find((t) => t.name === selectedTeam)?.logo || undefined,
     }
     addTeam(team)
-    setActiveTeam(selectedTeam)
+    setActiveTeam(team)
     // The season this finder set up is now the visitor's real season — don't
     // restore the old one when the panel closes.
     addedRef.current = true
