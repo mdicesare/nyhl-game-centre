@@ -62,24 +62,6 @@ export default function Home() {
         </Link>
       )}
 
-      {/* Quick access links */}
-      <div className="mt-8 grid grid-cols-2 gap-3">
-        <Link
-          to="/schedule"
-          className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4 text-center card-hover"
-        >
-          <span className="text-2xl">📅</span>
-          <p className="text-sm font-medium mt-1 dark:text-slate-200">All Games</p>
-        </Link>
-        <Link
-          to="/standings"
-          className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl p-4 text-center card-hover"
-        >
-          <span className="text-2xl">📊</span>
-          <p className="text-sm font-medium mt-1 dark:text-slate-200">Standings</p>
-        </Link>
-      </div>
-
       {lastUpdated && (
         <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
           Updated {formatTimestamp(lastUpdated)}
@@ -93,10 +75,11 @@ export default function Home() {
   )
 }
 
-// The card is deliberately not one big link. Three sections lead to three
-// different places — the record to Standings, the next game to Schedule, the
-// last result to its own overlay — so each one is its own target with its own
-// hover affordance, and the card body only picks the active team.
+// The card is deliberately not one big link. Every section is its own target:
+// the record leads to Standings (the subtle route for users who click text on
+// instinct — the labelled button row at the bottom is the explicit one), the
+// two game blocks open their own overlays, and only the card body itself picks
+// the active team.
 function TeamCard({
   team,
   isActive,
@@ -176,6 +159,7 @@ function TeamCard({
         <Link
           to={teamStandingsLink(team, standing.gameType)}
           aria-label={`${team.name} standings`}
+          onClick={(e) => e.stopPropagation()}
           className="group flex items-center gap-3 mb-4 p-3 rounded-xl bg-gray-50 dark:bg-slate-700/50 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
         >
           <div className="flex-1 min-w-0">
@@ -207,17 +191,23 @@ function TeamCard({
         </Link>
       )}
 
-      {/* Next game → that team's own schedule */}
-      <Link
-        to={teamScheduleLink(team)}
-        aria-label={`${team.name} schedule`}
-        className="group block mb-3 p-3 -mx-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
+      {/* Next game → its own overlay, like the last result. The labelled
+          Schedule button at the bottom of the card owns navigation to the
+          list, so tapping a game means "tell me about *this* game". */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation()
+          if (nextGame) onOpenGame(nextGame)
+        }}
+        disabled={!nextGame}
+        className="w-full text-left block mb-3 p-3 -mx-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors disabled:cursor-default disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"
       >
         <div className="flex items-center justify-between mb-1">
           <p className="text-xs font-semibold text-gray-400 dark:text-slate-500 uppercase tracking-wide">
             Next Game
           </p>
-          <Chevron label="schedule" />
+          <Chevron label="game detail" />
         </div>
         {nextGame ? (
           <div className="text-sm">
@@ -236,7 +226,7 @@ function TeamCard({
             {ready ? 'No upcoming games' : 'Loading…'}
           </p>
         )}
-      </Link>
+      </button>
 
       {/* Last result → game detail overlay */}
       {lastGame && (
@@ -276,6 +266,26 @@ function TeamCard({
           </div>
         </button>
       )}
+
+      {/* The explicit doors — one pair per team, so a parent's second child
+          gets its own buttons too. Pure navigation: pressing them never
+          switches the active team (the card body alone does that). */}
+      <div className="grid grid-cols-2 gap-2 mt-3" onClick={(e) => e.stopPropagation()}>
+        <Link
+          to={teamScheduleLink(team)}
+          aria-label={`Open ${team.name} schedule`}
+          className="py-2.5 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-center text-nyhl-blue dark:text-blue-400 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+        >
+          📅 Schedule
+        </Link>
+        <Link
+          to={teamStandingsLink(team, standing?.gameType)}
+          aria-label={`Open ${team.name} standings`}
+          className="py-2.5 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm font-medium text-center text-nyhl-blue dark:text-blue-400 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors"
+        >
+          📊 Standings
+        </Link>
+      </div>
     </div>
   )
 }

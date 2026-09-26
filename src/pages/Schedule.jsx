@@ -41,13 +41,21 @@ export default function Schedule() {
     setSearchParams(next, { replace: true })
   }, [searchParams])
 
-  // The followed team's filter only counts when its season is on screen —
-  // otherwise every game of the browsed season is dropped by a name that
-  // cannot appear in it. A pinned team always wins: its season link has just
-  // been applied above, so its games are the ones on offer.
+  // The active team's name filter only rides along when the filters on screen
+  // really are that team's competition — season, division and tier together.
+  // When they diverge the filters win and the page browses normally: a parent
+  // who moved on to another division gets that division's games instead of an
+  // empty list the active team's name could never match. Teams stored without
+  // division/tier only check the season, as before. A pinned team always
+  // wins — its season link has just been applied above.
   const followedTeam = savedTeams.find((t) => t.name === activeTeam)
-  const followInView = !activeTeam || !followedTeam?.season || followedTeam.season === season
-  const displayTeam = focusTeam || (followInView ? activeTeam : null)
+  const followsTeamFilters =
+    !activeTeam ||
+    !followedTeam ||
+    ((!followedTeam.season || followedTeam.season === season) &&
+      (!followedTeam.division || filters.division === followedTeam.division) &&
+      (!followedTeam.tier || filters.tier === followedTeam.tier))
+  const displayTeam = focusTeam || (followsTeamFilters ? activeTeam : null)
 
   // One competition at a time, same rule as Standings: a visitor who has only
   // picked a season would otherwise get every division and tier's games in a

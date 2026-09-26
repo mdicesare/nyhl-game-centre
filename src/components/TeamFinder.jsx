@@ -2,16 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import Select from './Select.jsx'
-
-// Last three seasons we keep a snapshot for. The first entry is the current
-// season and is what every team search opens on.
-const SEASONS = [
-  { value: '26-27', label: '2026–27' },
-  { value: '25-26', label: '2025–26' },
-  { value: '24-25', label: '2024–25' },
-]
-
-const CURRENT_SEASON = SEASONS[0].value
+import { SEASONS, CURRENT_SEASON } from '../lib/seasons.js'
 
 function seasonLabel(value) {
   return SEASONS.find((s) => s.value === value)?.label || value

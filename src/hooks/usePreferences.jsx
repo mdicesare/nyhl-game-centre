@@ -1,11 +1,12 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { CURRENT_SEASON } from '../lib/seasons.js'
 
 const PreferencesContext = createContext(null)
 
 const STORAGE_KEY = 'nyhl-preferences'
 
 const DEFAULT_PREFS = {
-  savedTeams: [],       // [{ name, division, tier, label? }]
+  savedTeams: [],       // [{ name, division, tier, season, label? }]
   activeTeam: null,     // currently focused team name
   season: '26-27',
   // Shared filter context (persists across Schedule ↔ Standings)
@@ -27,6 +28,13 @@ function loadPreferences() {
     return {
       ...DEFAULT_PREFS,
       ...parsed,
+      // Teams saved before the season field existed get stamped with the
+      // current season — every one of them was added while it was on screen,
+      // and without this their card links ship no season and land on
+      // whichever year was last browsed.
+      savedTeams: (parsed.savedTeams || []).map((team) =>
+        team.season ? team : { ...team, season: CURRENT_SEASON }
+      ),
       // Merge filters individually: an older/partial record missing a key
       // would otherwise turn the filter selects uncontrolled.
       filters: { ...DEFAULT_PREFS.filters, ...(parsed.filters || {}) },

@@ -19,8 +19,10 @@ export default function Layout() {
         <a href="https://nyhl.on.ca/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
           <img src={`${import.meta.env.BASE_URL}images/NYHLLogo-h150.png`} alt="NYHL" className="h-8 w-auto" />
         </a>
+        {/* Shown on phones too — between pages this is the only place the
+            followed team stays visible. */}
         {activeTeam && (
-          <span className="text-sm text-blue-200 hidden sm:block">
+          <span className="text-sm text-blue-200 truncate">
             {activeTeam}
           </span>
         )}
