@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail from '../components/GameDetail.jsx'
-import TeamChips from '../components/TeamChips.jsx'
 import UpdatedStamp from '../components/UpdatedStamp.jsx'
 import { teamId } from '../lib/teams.js'
 
@@ -174,9 +173,6 @@ export default function Schedule() {
         </span>
       </div>
 
-      {/* One tap back to a saved team: snaps season, division and tier to it */}
-      <TeamChips onPick={() => { if (focusTeam) clearFocus() }} />
-
       {/* Filter bar */}
       <div className="flex items-center gap-2 mb-3 flex-wrap">
         <select
@@ -252,9 +248,9 @@ export default function Schedule() {
         </div>
       ) : (
       <div>
-      {/* Only a pin the quick-filter row can't speak for: the followed
-          team's pin is dropped above, and the dropdowns already show the
-          competition — chips here would just repeat them. */}
+      {/* The one thing header and dropdowns can't speak for: a pin on some
+          other team. The followed team's pin clears itself on arrival, so
+          whatever is left here always earns its line. */}
       {focusTeam && (
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
