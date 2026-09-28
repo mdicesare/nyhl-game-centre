@@ -17,7 +17,7 @@
         "name": "Knights",
         "logo": "NK3"
       },
-      "division": "U9 /",
+      "division": "U9",
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",
@@ -25,7 +25,7 @@
       "score": null
     },
     {
-      "id": "26-27_2026-09-15_18:00__Duffield Black",
+      "id": "26-27_2026-09-15_18:00_TBD_Duffield Black",
       "date": "2026-09-15",
       "time": "18:00",
       "homeTeam": {
@@ -35,10 +35,10 @@
       },
       "awayTeam": {
         "id": "",
-        "name": "",
+        "name": "TBD",
         "logo": ""
       },
-      "division": "U9 /",
+      "division": "U9",
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",
@@ -46,7 +46,7 @@
       "score": null
     },
     {
-      "id": "26-27_2026-09-15_18:45__Vaughan White",
+      "id": "26-27_2026-09-15_18:45_TBD_Vaughan White",
       "date": "2026-09-15",
       "time": "18:45",
       "homeTeam": {
@@ -56,10 +56,10 @@
       },
       "awayTeam": {
         "id": "",
-        "name": "",
+        "name": "TBD",
         "logo": ""
       },
-      "division": "U9 /",
+      "division": "U9",
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",

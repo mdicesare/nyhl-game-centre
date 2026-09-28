@@ -393,6 +393,11 @@ def parse_schedule_table(html: str) -> list[dict]:
             parts = div_tier.split(" / ", 1)
             division = parts[0].strip()
             tier = parts[1].strip()
+        elif div_tier.endswith("/"):
+            # With no tier the cell is just "U9 / " — stripping the text
+            # removes the trailing space the split above keys on, which would
+            # leave the dangling slash behind as part of the division label.
+            division = div_tier[:-1].strip()
         elif div_tier:
             division = div_tier
 
@@ -751,8 +756,14 @@ def normalize_game(raw: dict, season: str) -> dict:
     away = raw.get("awayTeam", {})
     home = raw.get("homeTeam", {})
 
+    # The site renders an unassigned side as an empty cell (preseason house
+    # games get a blank opponent for weeks). Name it so a card never shows a
+    # hole where a team belongs — and so the id below stays stable.
+    away_name = (away.get("name", "") or "").strip() or "TBD"
+    home_name = (home.get("name", "") or "").strip() or "TBD"
+
     # Build a stable ID
-    game_id = f"{season}_{game_date}_{game_time}_{away.get('name', '')}_{home.get('name', '')}"
+    game_id = f"{season}_{game_date}_{game_time}_{away_name}_{home_name}"
 
     return {
         "id": game_id,
@@ -760,12 +771,12 @@ def normalize_game(raw: dict, season: str) -> dict:
         "time": game_time,
         "homeTeam": {
             "id": home.get("id", ""),
-            "name": home.get("name", ""),
+            "name": home_name,
             "logo": home.get("logo", ""),
         },
         "awayTeam": {
             "id": away.get("id", ""),
-            "name": away.get("name", ""),
+            "name": away_name,
             "logo": away.get("logo", ""),
         },
         "division": raw.get("division", ""),
