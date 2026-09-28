@@ -2,10 +2,12 @@ name: Scrape & Deploy
 
 on:
   schedule:
-    # 6:00 AM ET daily (10:00 UTC). Current season only — the cron asks for
-    # 'current' + U15, and the tier walk inside the scraper covers every tier
-    # of that division. 25-26 U14 was pulled once on 2026-09-24 and is served
-    # from its snapshot; it is deliberately not re-hit every day.
+    # 6:00 AM ET daily (10:00 UTC). Current season, every division it is
+    # playing: the cron asks for 'current' + ALL, the tier walk covers every
+    # tier, and only divisions the data already proves exist get probed —
+    # see the division hint in nyhl_scrape.py. 25-26 U14 was pulled once on
+    # 2026-09-24 and is served from its snapshot; it is deliberately not
+    # re-hit every day.
     - cron: "0 10 * * *"
   workflow_dispatch:
     inputs:
@@ -14,12 +16,13 @@ on:
         required: false
         default: "current"
       division:
-        description: "Division filter (e.g. U15 or ALL)"
+        description: "Division filter (e.g. U15 to scope down, or ALL)"
         required: false
-        # U15 for now: that is the division we are following for 26-27. The
-        # snapshot merges per division, so widening this later accumulates
-        # rather than replacing what has already been collected.
-        default: "U15"
+        # ALL: pull every division the current season is playing. The
+        # snapshot merges per division, so this accumulates rather than
+        # replacing what has already been collected; name a division to
+        # scope a manual run down to one.
+        default: "ALL"
 
 permissions:
   contents: write
@@ -58,12 +61,15 @@ jobs:
       - name: Run scraper
         run: |
           season="${{ github.event.inputs.season || 'current' }}"
-          division="${{ github.event.inputs.division || 'U15' }}"
+          division="${{ github.event.inputs.division || 'ALL' }}"
           # A finished season is normally served straight from its snapshot
           # with zero requests. Naming one explicitly means "pull it for
           # real", so pass --force. 'current' never needs it, and the cron
           # stays on the current season alone: last season (25-26 U14) was
-          # pulled once on 2026-09-24 and is not re-hit daily.
+          # pulled once on 2026-09-24 and is not re-hit daily. ALL is the
+          # whole current season; the scraper only walks divisions its data
+          # can vouch for, so widening the scope does not mean probing every
+          # empty dropdown entry.
           force_flag=""
           if [ "$season" != "current" ]; then force_flag="--force"; fi
           python scraper/nyhl_scrape.py \

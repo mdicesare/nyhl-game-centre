@@ -40,13 +40,28 @@ STANDINGS_URL = f"{AGILEX_BASE}/Standings.aspx?event=171"
 
 VIEWSTATE_GENERATOR = "EBDC8456"  # observed stable across sessions
 
+# Be a polite guest. www.agilex.ca/robots.txt is a 404 (checked 2026-09-26),
+# so there are no directives to obey — the house rules are therefore ours to
+# keep: say who we are and where to reach us, wait THROTTLE_SECONDS between
+# every request, back off when the site signals pressure, honour Retry-After
+# when it is given, and fetch only what we publish. Problems with the run
+# should be reported through the repository below.
 USER_AGENT = (
     "NYHL-GameCentre/1.0 "
-    "(scraper; contact: your-email@example.com) "
-    "Python-requests/"
+    "(+https://github.com/mdicesare/nyhl-game-centre; polite scraper, "
+    "2s between requests) python-requests"
 )
 
 THROTTLE_SECONDS = 2.0
+
+# Reported at the end of every run so the traffic this scraper generates is
+# visible rather than assumed.
+REQUEST_COUNT = 0
+
+
+def bump_requests(n: int = 1) -> None:
+    global REQUEST_COUNT
+    REQUEST_COUNT += n
 
 # Schedule HTML table ID
 SCHEDULE_TABLE_ID = "sche_repeater"
@@ -127,6 +142,7 @@ def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 
         resp = None
         failure = None
         try:
+            bump_requests()
             resp = do_request()
             resp.raise_for_status()
         except requests.RequestException as exc:
@@ -138,6 +154,16 @@ def request_with_retry(do_request, *, label: str, healthy=None, attempts: int = 
             # must never be returned as if the request had succeeded.
             resp = None
             failure = f"{exc.__class__.__name__}: {exc}"
+            # 429/503 is the site stating how long it wants to be left alone.
+            # That answer outranks our own backoff schedule.
+            http = getattr(exc, "response", None)
+            if http is not None and http.status_code in (429, 503):
+                try:
+                    asked = int(http.headers.get("Retry-After", ""))
+                except (TypeError, ValueError):
+                    asked = 0
+                if asked > delay:
+                    delay = min(asked, 300)
         if resp is not None and is_ok(resp.text):
             return resp
         if failure is None:
@@ -206,6 +232,7 @@ def download_logos(session: requests.Session, codes: set[str], dry_run: bool = F
                 continue
 
             log.info("Downloading logo: %s", code)
+            bump_requests()
             resp = session.get(url, timeout=15)
             if resp.status_code == 200 and len(resp.content) > 100:
                 local_path.write_bytes(resp.content)
@@ -829,6 +856,8 @@ def scrape_standings(
     season: str = "26-27",
     division: str = "ALL",
     tier: str = "ALL",
+    only_divisions: Optional[set[str]] = None,
+    initial_html: Optional[str] = None,
 ) -> list[dict]:
     """Scrape standings for a season, walking every division and tier.
 
@@ -843,23 +872,32 @@ def scrape_standings(
       __EVENTTARGET=ddlTier  -> one POST per remaining tier, replaying the
                                 ViewState the response above just returned
 
-    Division "ALL" walks every division the page lists, because unlike the
-    schedule page the standings page has no ALL option to post. Each POST is
-    throttled, and a POST that exhausts its retries aborts the whole run
-    instead of writing a half-scraped tier set over a complete one.
+    Division "ALL" walks every division the page lists, unless only_divisions
+    narrows it to divisions the caller already knows hold data — the page
+    offers every division the event has (U07..U21, OTH), and probing empties
+    is the largest request cost in the run. initial_html lets a caller that
+    has already fetched this page hand it over instead of paying for a
+    second GET. Each POST is throttled, and a POST that exhausts its retries
+    aborts the whole run instead of writing a half-scraped tier set over a
+    complete one.
     """
     # GET standings page to harvest its ViewState and event ID
-    log.info("Fetching standings page for ViewState...")
-    resp = request_with_retry(
-        lambda: session.get(STANDINGS_URL, timeout=60),
-        label="standings GET",
-        healthy=has_full_viewstate,
-    )
-    viewstate = extract_viewstate(resp.text)
-    throttle()
+    if initial_html:
+        log.info("Reusing the standings page the caller already fetched")
+        page_html = initial_html
+    else:
+        log.info("Fetching standings page for ViewState...")
+        resp = request_with_retry(
+            lambda: session.get(STANDINGS_URL, timeout=60),
+            label="standings GET",
+            healthy=has_full_viewstate,
+        )
+        page_html = resp.text
+        throttle()
+    viewstate = extract_viewstate(page_html)
 
     # Extract lbEventID from hidden field (varies by season/event)
-    soup = BeautifulSoup(resp.text, "lxml")
+    soup = BeautifulSoup(page_html, "lxml")
     event_id_input = soup.find("input", {"id": "lbEventID"})
     event_id = int(event_id_input.get("value", 162)) if event_id_input else 162
     log.info("Standings event ID: %d", event_id)
@@ -877,11 +915,24 @@ def scrape_standings(
 
     # Unlike the schedule page, ddlDiv here has no ALL option — resolve it to
     # the real list so "ALL" means every division rather than the default one.
-    divisions = extract_select_options(resp.text, "ddlDiv")
+    divisions = extract_select_options(page_html, "ddlDiv")
     if division != "ALL":
         divisions = [division]
     elif not divisions:
         divisions = ["ALL"]
+    if only_divisions:
+        # Keep only divisions the caller can vouch for. A hint that matches
+        # nothing (brand-new season, nothing scraped yet) falls back to the
+        # full walk rather than scraping nothing at all.
+        picked = [d for d in divisions if d.strip().lower() in only_divisions]
+        if picked:
+            log.info(
+                "Trimmed %d listed divisions down to %d known-active ones: %s",
+                len(divisions), len(picked), picked,
+            )
+            divisions = picked
+        else:
+            log.info("Division hint matched nothing — walking every division")
     log.info("Standings divisions to scrape: %s", divisions)
 
     results = []
@@ -1295,22 +1346,36 @@ def main():
         "gameTypes": filters.get("gameTypes", []),
     }
 
-    # Discover available seasons from the standings page (schedule page doesn't have ddlSeason)
-    log.info("Discovering available seasons from standings page...")
-    try:
-        standings_resp = session.get(STANDINGS_URL, timeout=60)
-        standings_resp.raise_for_status()
-        seasons = extract_select_options(standings_resp.text, "ddlSeason")
-        if seasons:
-            metadata["seasons"] = seasons
-            log.info("Available seasons: %s", seasons)
-        else:
-            metadata["seasons"] = [season]
-            log.info("No seasons dropdown found, using: %s", season)
-        throttle()
-    except Exception as e:
-        log.warning("Could not discover seasons: %s", e)
-        metadata["seasons"] = [season]
+    # The standings page doubles as the season list (the schedule page has no
+    # ddlSeason), and scrape_standings starts from that same page. Fetch it
+    # once here and hand it over; a schedule-only run never needs it. This
+    # used to be a second, duplicated standings GET on every run.
+    metadata["seasons"] = [season]
+    standings_html = None
+    if args.schedule_only:
+        log.info("Schedule-only run — skipping the standings page fetch.")
+    else:
+        log.info("Fetching standings page (season list + scrape start)...")
+        try:
+            bump_requests()
+            standings_resp = session.get(STANDINGS_URL, timeout=60)
+            standings_resp.raise_for_status()
+            if has_full_viewstate(standings_resp.text):
+                standings_html = standings_resp.text
+                seasons = extract_select_options(standings_html, "ddlSeason")
+                if seasons:
+                    metadata["seasons"] = seasons
+                    log.info("Available seasons: %s", seasons)
+                else:
+                    log.info("No seasons dropdown found, using: %s", season)
+                throttle()
+            else:
+                log.warning("Degraded standings page — the scrape will refetch it")
+        except Exception as e:
+            log.warning(
+                "Could not fetch the standings page now (%s) — the scrape will refetch it",
+                e,
+            )
 
     log.info("NYHL Scraper — season %s", season)
 
@@ -1329,13 +1394,40 @@ def main():
             tier=args.tier,
         )
 
-    # Step 4: Scrape standings
+    # Step 4: Scrape standings — but only walk divisions the data on hand
+    # vouches for. The standings dropdown lists every division the event has
+    # (U07..U21, OTH) and probing the empties costs two or more POSTs each,
+    # which is the largest request cost in the run. The schedule pass just
+    # showed which divisions have games this season, and the cached files
+    # cover any whose games are not published yet. scrape_standings falls
+    # back to the full walk when this hint comes back empty.
+    divisions_hint = None
+    if args.division == "ALL":
+        hint = {g.get("division", "").strip().lower() for g in games if g.get("division")}
+        for kind in ("standings", "schedule"):
+            for path in (OUTPUT_DIR / f"{kind}-{season}.json", OUTPUT_DIR / f"{kind}.json"):
+                cached = read_json(path)
+                if not cached or cached.get("season") != season:
+                    continue
+                rows = (
+                    cached.get("standings", []) if kind == "standings"
+                    else cached.get("games", [])
+                )
+                hint |= {r.get("division", "").strip().lower() for r in rows if r.get("division")}
+        divisions_hint = hint or None
+        if divisions_hint:
+            log.info("Division hint from data on hand: %s", sorted(divisions_hint))
+        else:
+            log.info("No division hint yet — every division will be probed once")
+
     if not args.schedule_only:
         standings = scrape_standings(
             session,
             season=season,
             division=args.division,
             tier=args.tier,
+            only_divisions=divisions_hint,
+            initial_html=standings_html,
         )
 
     # Step 5: Collect and download team logos
@@ -1358,7 +1450,7 @@ def main():
     write_output(games, standings, metadata, season,
                  dry_run=args.dry_run, write_schedule=schedule_ok)
 
-    log.info("Done.")
+    log.info("Done. — %d requests to Agilex this run", REQUEST_COUNT)
 
 
 if __name__ == "__main__":
