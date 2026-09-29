@@ -324,23 +324,44 @@ def fetch_schedule_page(
     return resp.text
 
 
+def split_division_tier(div_tier: str) -> tuple[str, str]:
+    """Split a combined "U14 / Tier 3" cell into its two halves.
+
+    With no tier the site still prints the separator ("U9 / "), and stripping
+    the text removes the trailing space the split keys on — so a bare slash
+    is treated as an empty tier rather than part of the label.
+    """
+    if " / " in div_tier:
+        parts = div_tier.split(" / ", 1)
+        return parts[0].strip(), parts[1].strip()
+    if div_tier.endswith("/"):
+        return div_tier[:-1].strip(), ""
+    return div_tier, ""
+
+
 def parse_schedule_table(html: str) -> list[dict]:
     """
     Parse the schedule repeater table into structured rows.
 
-    Actual column layout (0-indexed):
-      0: Date          - "26-Oct-2025 Sun" with data='2025-10-26' attribute
-      1: Time          - "4:50 PM"
-      2: Away logo     - <img> with data-alt='XX' (team code)
-      3: Away team     - <a> link text: "Parkwoods"
-      4: Score         - "2 : 1" or empty
-      5: Home logo     - <img> with data-alt='XX' (team code)
-      6: Home team     - <a> link text: "West Hill"
-      7: Div/Cat       - "U14 / Tier 3" (combined)
-      8: Type          - "FS"
-      9: Arena         - "Heron Park 1"
-     10: Status        - (often empty for completed games)
-     11: Extra         - LiveBarn link or empty
+    Two row shapes exist. The site renders the first one since the September
+    2026 redesign; the second is what the pre-redesign page served, kept as a
+    fallback so a revert mid-season does not read as "no games".
+
+    Current shape — cells carry data-label, teams and score share one
+    colspan cell:
+      Date    - "05-Oct-2026&nbsp;Mon" with data='2026-10-05'
+      Time    - "6:10 PM"
+      (match) - class match-container: span.cell-away / cell-score / cell-home
+                plus span.logo-span imgs (away logo first, home logo last)
+      Div/Tier- "U12 / Tier 1"
+      Type    - "FS"
+      Arena   - "Commander Park R1"
+      Status  - (often empty for scheduled games)
+
+    Legacy shape (0-indexed positional):
+      0: Date   1: Time   2: Away logo   3: Away team   4: Score
+      5: Home logo   6: Home team   7: Div/Tier   8: Type
+      9: Arena   10: Status   11: LiveBarn link or empty
     """
     soup = BeautifulSoup(html, "lxml")
     table = soup.find("table", {"id": SCHEDULE_TABLE_ID})
@@ -349,66 +370,77 @@ def parse_schedule_table(html: str) -> list[dict]:
         return []
 
     rows = []
+    skipped = 0
     for tr in table.find_all("tr"):
         cells = tr.find_all("td")
-        if len(cells) < 10:
+        labelled = {td.get("data-label"): td for td in cells if td.get("data-label")}
+
+        if "Date" in labelled:
+            # --- current shape ---
+            date_cell = labelled["Date"]
+            iso_date = date_cell.get("data", "")
+            date_text = date_cell.get_text(strip=True)
+            time_cell = labelled.get("Time")
+            time_text = time_cell.get_text(strip=True) if time_cell else ""
+
+            match = tr.find("td", class_="match-container")
+            if match is None:
+                # A labelled row without the team cell carries no game.
+                skipped += 1
+                continue
+
+            def side_name(side: str) -> str:
+                span = match.select_one(f"span.cell-{side}")
+                if not span:
+                    return ""
+                link = span.find("a")
+                return (link if link else span).get_text(strip=True)
+
+            logos = match.select("span.logo-span img.logo-img")
+            score_span = match.select_one("span.cell-score")
+
+            away_name = side_name("away")
+            home_name = side_name("home")
+            away_logo = logos[0].get("data-alt", "").strip() if len(logos) > 0 else ""
+            home_logo = logos[1].get("data-alt", "").strip() if len(logos) > 1 else ""
+            score_text = score_span.get_text(strip=True) if score_span else ""
+
+            div_cell = labelled.get("Div/Tier")
+            division, tier = split_division_tier(
+                div_cell.get_text(strip=True) if div_cell else ""
+            )
+            type_cell = labelled.get("Type")
+            arena_cell = labelled.get("Arena")
+            status_cell = labelled.get("Status")
+            game_type = type_cell.get_text(strip=True) if type_cell else ""
+            arena = arena_cell.get_text(strip=True) if arena_cell else ""
+            status = status_cell.get_text(strip=True) if status_cell else ""
+
+        elif len(cells) >= 10:
+            # --- legacy shape ---
+            date_cell = cells[0]
+            iso_date = date_cell.get("data", "")
+            date_text = date_cell.get_text(strip=True)
+            time_text = cells[1].get_text(strip=True)
+
+            away_link = cells[3].find("a")
+            away_name = away_link.get_text(strip=True) if away_link else cells[3].get_text(strip=True)
+            away_img = cells[2].find("img", class_="logo-img")
+            away_logo = away_img.get("data-alt", "").strip() if away_img else ""
+
+            score_text = cells[4].get_text(strip=True)
+
+            home_link = cells[6].find("a")
+            home_name = home_link.get_text(strip=True) if home_link else cells[6].get_text(strip=True)
+            home_img = cells[5].find("img", class_="logo-img")
+            home_logo = home_img.get("data-alt", "").strip() if home_img else ""
+
+            division, tier = split_division_tier(cells[7].get_text(strip=True))
+            game_type = cells[8].get_text(strip=True)
+            arena = cells[9].get_text(strip=True)
+            status = cells[10].get_text(strip=True) if len(cells) > 10 else ""
+        else:
             continue
-
-        # Extract date from data attribute on the first td
-        date_cell = cells[0]
-        iso_date = date_cell.get("data", "")
-        date_text = date_cell.get_text(strip=True)
-
-        # Extract time
-        time_text = cells[1].get_text(strip=True)
-
-        # Extract away team from <a> tag in cell 3
-        away_link = cells[3].find("a")
-        away_name = away_link.get_text(strip=True) if away_link else cells[3].get_text(strip=True)
-
-        # Extract away logo code from cell 2
-        away_logo = ""
-        away_img = cells[2].find("img", class_="logo-img")
-        if away_img:
-            away_logo = away_img.get("data-alt", "").strip()
-
-        # Extract score (cell 4) — format is "2 : 1" or empty
-        score_text = cells[4].get_text(strip=True)
-
-        # Extract home team from <a> tag in cell 6
-        home_link = cells[6].find("a")
-        home_name = home_link.get_text(strip=True) if home_link else cells[6].get_text(strip=True)
-
-        # Extract home logo code from cell 5
-        home_logo = ""
-        home_img = cells[5].find("img", class_="logo-img")
-        if home_img:
-            home_logo = home_img.get("data-alt", "").strip()
-
-        # Division/tier combined in cell 7 — e.g. "U14 / Tier 3"
-        div_tier = cells[7].get_text(strip=True)
-        division = ""
-        tier = ""
-        if " / " in div_tier:
-            parts = div_tier.split(" / ", 1)
-            division = parts[0].strip()
-            tier = parts[1].strip()
-        elif div_tier.endswith("/"):
-            # With no tier the cell is just "U9 / " — stripping the text
-            # removes the trailing space the split above keys on, which would
-            # leave the dangling slash behind as part of the division label.
-            division = div_tier[:-1].strip()
-        elif div_tier:
-            division = div_tier
-
-        # Game type (cell 8)
-        game_type = cells[8].get_text(strip=True)
-
-        # Arena (cell 9)
-        arena = cells[9].get_text(strip=True)
-
-        # Status (cell 10, if present)
-        status = cells[10].get_text(strip=True) if len(cells) > 10 else ""
 
         row = {
             "date": iso_date or date_text,
@@ -424,6 +456,8 @@ def parse_schedule_table(html: str) -> list[dict]:
         }
         rows.append(row)
 
+    if skipped:
+        log.warning("Skipped %d labelled schedule rows without a match cell", skipped)
     log.info("Parsed %d schedule rows", len(rows))
     return rows
 
@@ -477,24 +511,49 @@ def parse_standings_table(html: str) -> list[dict]:
     """
     Parse the standings repeater table into structured rows.
 
-    Actual column layout (0-indexed):
-      0: Logo        - <img> with data="3250|TEAM NAME|25-26|U14|SL"
-      1: Team        - <a> with data-teamid="3250" and data="3250|TEAM|25-26|U14|Tier 1"
-      2: GP          - games played
-      3: W-L-T       - combined record "9-0-1"
-      4: PTS         - points
-      5: WIN%        - win percentage ".950"
-      6: GFA         - goals for average
-      7: GAA         - goals against average
-      8: GF          - goals for (total)
-      9: GA          - goals against (total)
-     10: GF/GA       - ratio
-     11: Home        - home record "4-0-1"
-     12: Away        - away record "5-0-0"
-     13: P10         - past 10 games
-     14: Streak      - "Won 7"
-     15: PIM         - penalty minutes
+    Two row shapes exist (the site redesigned in September 2026); the first is
+    current, the second kept as a fallback so a revert mid-season does not read
+    as "no standings".
+
+    Current shape — logo and team share one leading cell, every stat cell
+    declares its column via data-label:
+      cell-team: img.logo-img plus a balloon link whose data attr is the
+                 pipe identity "3250|NORTH TORONTO|25-26|U14|Tier 1"
+                 (the logo link holds the same identity but a placeholder
+                 tier, so the balloon link is the one to trust)
+      labels:    GP, W-L-T, PTS, WIN%, GFA, GAA, GF, GA, GF/GA,
+                 Home, Away, P10, Streak, PIM
+
+    Legacy shape (0-indexed positional):
+      0: Logo (img data-alt)   1: Team (data attr "3250|TEAM|25-26|U14|Tier 1")
+      2: GP   3: W-L-T   4: PTS   5: WIN%   6: GFA   7: GAA   8: GF
+      9: GA  10: GF/GA  11: Home  12: Away  13: P10  14: Streak  15: PIM
     """
+    def safe_int(text):
+        text = text.strip().replace(",", "")
+        try:
+            return int(text)
+        except (ValueError, TypeError):
+            return 0
+
+    def safe_float(text):
+        text = text.strip().replace(",", "")
+        try:
+            return float(text)
+        except (ValueError, TypeError):
+            return 0.0
+
+    def parse_wlt(text):
+        w, l, t = 0, 0, 0
+        if "-" in text:
+            parts = text.split("-")
+            if len(parts) == 3:
+                try:
+                    w, l, t = int(parts[0]), int(parts[1]), int(parts[2])
+                except ValueError:
+                    pass
+        return w, l, t
+
     soup = BeautifulSoup(html, "lxml")
     # A chained tier response can carry more than one repeater table (the one
     # left over from the previous selection plus the new one). Reading only
@@ -509,9 +568,78 @@ def parse_standings_table(html: str) -> list[dict]:
     for table in tables:
         for tr in table.find_all("tr"):
             cells = tr.find_all("td")
+            if not cells:
+                continue
+            labelled = {td.get("data-label"): td for td in cells if td.get("data-label")}
+
+            if "GP" in labelled:
+                # --- current shape ---
+                team_td = next(
+                    (td for td in cells
+                     if not td.get("data-label") and td.find("a", attrs={"data": True})),
+                    None,
+                )
+                if team_td is None:
+                    continue
+
+                def cell_text(label):
+                    td = labelled.get(label)
+                    return td.get_text(strip=True) if td else ""
+
+                # Balloon link first: the logo link's identity carries a
+                # placeholder tier ("SL") that would make the row unfilterable.
+                a_tag = tr.select_one("div.balloon a[data]") or team_td.find(
+                    "a", attrs={"data": True}
+                )
+                team_id = ""
+                team_name = ""
+                division = ""
+                tier = ""
+                parts = a_tag.get("data", "").split("|")
+                if len(parts) >= 5:
+                    team_id = parts[0].strip()
+                    team_name = parts[1].strip()
+                    division = parts[3].strip()
+                    tier = parts[4].strip()
+                elif len(parts) >= 2:
+                    team_id = parts[0].strip()
+                    team_name = parts[1].strip()
+                if not team_name:
+                    team_name = team_td.get("data", "").strip() or team_td.get_text(strip=True)
+
+                logo_img = team_td.find("img", class_="logo-img")
+                logo_code = logo_img.get("data-alt", "").strip() if logo_img else ""
+
+                w, l, t = parse_wlt(cell_text("W-L-T"))
+                row = {
+                    "teamId": team_id,
+                    "name": team_name,
+                    "logo": logo_code,
+                    "division": division,
+                    "tier": tier,
+                    "gp": safe_int(cell_text("GP")),
+                    "w": w,
+                    "l": l,
+                    "t": t,
+                    "pts": safe_int(cell_text("PTS")),
+                    "winPct": safe_float(cell_text("WIN%")),
+                    "gfAvg": safe_float(cell_text("GFA")),
+                    "gaAvg": safe_float(cell_text("GAA")),
+                    "gf": safe_int(cell_text("GF")),
+                    "ga": safe_int(cell_text("GA")),
+                    "home": cell_text("Home"),
+                    "away": cell_text("Away"),
+                    "last10": cell_text("P10"),
+                    "streak": cell_text("Streak"),
+                    "pim": safe_int(cell_text("PIM")),
+                }
+                rows.append(row)
+                continue
+
             if len(cells) < 13:
                 continue
 
+            # --- legacy shape ---
             # Extract team identity from the data attribute on the <a> tag
             # Format: "3250|TEAM NAME|25-26|U14|Tier 1"
             team_cell = cells[1]
@@ -521,8 +649,7 @@ def parse_standings_table(html: str) -> list[dict]:
             division = ""
             tier = ""
             if a_tag:
-                data_attr = a_tag.get("data", "")
-                parts = data_attr.split("|")
+                parts = a_tag.get("data", "").split("|")
                 if len(parts) >= 5:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
@@ -532,38 +659,11 @@ def parse_standings_table(html: str) -> list[dict]:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
 
-            # If team name still empty, try the text content
             if not team_name:
                 team_name = team_cell.get_text(strip=True)
 
-            # Parse W-L-T record (combined in one column)
-            wlt_text = cells[3].get_text(strip=True)
-            w, l, t = 0, 0, 0
-            if "-" in wlt_text:
-                wlt_parts = wlt_text.split("-")
-                if len(wlt_parts) == 3:
-                    try:
-                        w = int(wlt_parts[0])
-                        l = int(wlt_parts[1])
-                        t = int(wlt_parts[2])
-                    except ValueError:
-                        pass
+            w, l, t = parse_wlt(cells[3].get_text(strip=True))
 
-            def safe_int(text):
-                text = text.strip().replace(",", "")
-                try:
-                    return int(text)
-                except (ValueError, TypeError):
-                    return 0
-
-            def safe_float(text):
-                text = text.strip().replace(",", "")
-                try:
-                    return float(text)
-                except (ValueError, TypeError):
-                    return 0.0
-
-            # Extract logo code from cell 0 (<img data-alt='NT9'>)
             logo_code = ""
             logo_img = cells[0].find("img", class_="logo-img")
             if logo_img:
@@ -838,6 +938,10 @@ def scrape_schedules(
     log.info("Scraping schedules: %d chunks from %s to %s", len(chunks), start_str, end_str)
 
     all_games = []
+    # The source occasionally renders the same game twice (U07 pre-season:
+    # two rows that differ only in the postback control index). Anything that
+    # normalizes to the same game is the same game — keep the first copy.
+    seen = set()
     for i, (chunk_start, chunk_end) in enumerate(chunks, 1):
         log.info("Chunk %d/%d: %s → %s", i, len(chunks), chunk_start, chunk_end)
         html = fetch_schedule_page(
@@ -853,6 +957,13 @@ def scrape_schedules(
         raw_rows = parse_schedule_table(html)
         for raw in raw_rows:
             game = normalize_game(raw, season)
+            key = json.dumps(game, sort_keys=True, ensure_ascii=False)
+            if key in seen:
+                log.info("Skipping duplicate source row: %s %s @ %s",
+                         game.get("date"), game.get("awayTeam", {}).get("name"),
+                         game.get("homeTeam", {}).get("name"))
+                continue
+            seen.add(key)
             all_games.append(game)
         if i < len(chunks):
             throttle()
