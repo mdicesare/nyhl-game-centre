@@ -1,7 +1,7 @@
 {
   "season": "25-26",
   "scrapedAt": "2026-09-29T02:47:25.834122Z",
-  "gameCount": 3087,
+  "gameCount": 3086,
   "games": [
     {
       "id": "25-26_2025-10-06_18:10_Leaside Red_North Toronto",
@@ -29756,27 +29756,6 @@
         "away": 0,
         "home": 0
       }
-    },
-    {
-      "id": "25-26_2025-12-14_18:30_Parkdale White_Warren Park",
-      "date": "2025-12-14",
-      "time": "18:30",
-      "homeTeam": {
-        "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Parkdale White",
-        "logo": "PF9"
-      },
-      "division": "U12",
-      "tier": "Tier 3",
-      "gameType": "WS",
-      "arena": "Amesbury",
-      "status": "scheduled",
-      "score": null
     },
     {
       "id": "25-26_2025-12-14_19:40_Avenue Road_York Mills",
