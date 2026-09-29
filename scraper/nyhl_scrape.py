@@ -324,6 +324,21 @@ def fetch_schedule_page(
     return resp.text
 
 
+def tier_label(text: Optional[str]) -> str:
+    """Canonical tier label: "TIER 1" / "tier 1" -> "Tier 1", blank stays blank.
+
+    The site's own text is inconsistent about case (the 24-25 schedule mixes
+    both spellings inside one division) and the app matches tiers as exact
+    strings — dropdown options, filters and saved teams all compare with ===,
+    so mixed case would split one tier into two options and hide half its
+    games. Same idea as title-casing team names in normalize_standings.
+    """
+    text = (text or "").strip()
+    if not text:
+        return ""
+    return " ".join(word.capitalize() for word in text.split())
+
+
 def split_division_tier(div_tier: str) -> tuple[str, str]:
     """Split a combined "U14 / Tier 3" cell into its two halves.
 
@@ -333,7 +348,7 @@ def split_division_tier(div_tier: str) -> tuple[str, str]:
     """
     if " / " in div_tier:
         parts = div_tier.split(" / ", 1)
-        return parts[0].strip(), parts[1].strip()
+        return parts[0].strip(), tier_label(parts[1])
     if div_tier.endswith("/"):
         return div_tier[:-1].strip(), ""
     return div_tier, ""
@@ -600,7 +615,7 @@ def parse_standings_table(html: str) -> list[dict]:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
                     division = parts[3].strip()
-                    tier = parts[4].strip()
+                    tier = tier_label(parts[4])
                 elif len(parts) >= 2:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
@@ -654,7 +669,7 @@ def parse_standings_table(html: str) -> list[dict]:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
                     division = parts[3].strip()
-                    tier = parts[4].strip()
+                    tier = tier_label(parts[4])
                 elif len(parts) >= 2:
                     team_id = parts[0].strip()
                     team_name = parts[1].strip()
@@ -898,7 +913,7 @@ def normalize_standings(raw: dict, season: str, division: str, tier: str) -> dic
         "name": name,
         "logo": raw.get("logo", ""),
         "division": raw.get("division", division),
-        "tier": raw.get("tier", tier),
+        "tier": tier_label(raw.get("tier") or tier),
         "season": season,
         "gp": raw.get("gp", 0),
         "w": raw.get("w", 0),
@@ -922,6 +937,31 @@ def normalize_standings(raw: dict, season: str, division: str, tier: str) -> dic
 # Main scraper
 # ---------------------------------------------------------------------------
 
+def game_identity(game: dict) -> tuple:
+    """
+    What makes two schedule rows the same game.
+
+    Date, time, division, tier, type and both teams — the fixture itself.
+    Deliberately not the row: the source renders the same game twice in two
+    ways (identical rows differing only in the postback control index, and
+    one fixture listed as scheduled and again as final), while a club that
+    fields teams in two divisions gets two genuinely different rows that
+    share an id but differ here. status/score/arena are outcomes of the
+    fixture, not part of it, so a stale copy still matches the played one.
+    """
+    return (
+        game.get("date"), game.get("time"), game.get("division"),
+        game.get("tier"), game.get("gameType"),
+        (game.get("awayTeam") or {}).get("name"),
+        (game.get("homeTeam") or {}).get("name"),
+    )
+
+
+def played_rank(game: dict) -> int:
+    """Higher when a row actually records a result — the copy worth keeping."""
+    return (2 if game.get("status") == "final" else 0) + (1 if game.get("score") else 0)
+
+
 def scrape_schedules(
     session: requests.Session,
     viewstate: dict,
@@ -937,11 +977,10 @@ def scrape_schedules(
     chunks = chunk_date_range(start_str, end_str, chunk_days=30)
     log.info("Scraping schedules: %d chunks from %s to %s", len(chunks), start_str, end_str)
 
-    all_games = []
-    # The source occasionally renders the same game twice (U07 pre-season:
-    # two rows that differ only in the postback control index). Anything that
-    # normalizes to the same game is the same game — keep the first copy.
-    seen = set()
+    # Dedupe on the fixture, not on the row: see game_identity(). The dict
+    # keeps scrape order (chunks run chronologically) and re-inserting a
+    # better copy holds its position, so the output stays in date order.
+    games_by_identity: dict[tuple, dict] = {}
     for i, (chunk_start, chunk_end) in enumerate(chunks, 1):
         log.info("Chunk %d/%d: %s → %s", i, len(chunks), chunk_start, chunk_end)
         html = fetch_schedule_page(
@@ -957,17 +996,23 @@ def scrape_schedules(
         raw_rows = parse_schedule_table(html)
         for raw in raw_rows:
             game = normalize_game(raw, season)
-            key = json.dumps(game, sort_keys=True, ensure_ascii=False)
-            if key in seen:
+            key = game_identity(game)
+            kept = games_by_identity.get(key)
+            if kept is None:
+                games_by_identity[key] = game
+            elif played_rank(game) > played_rank(kept):
+                log.info("Replacing stale copy of %s %s @ %s with the played one",
+                         game.get("date"), game.get("awayTeam", {}).get("name"),
+                         game.get("homeTeam", {}).get("name"))
+                games_by_identity[key] = game
+            else:
                 log.info("Skipping duplicate source row: %s %s @ %s",
                          game.get("date"), game.get("awayTeam", {}).get("name"),
                          game.get("homeTeam", {}).get("name"))
-                continue
-            seen.add(key)
-            all_games.append(game)
         if i < len(chunks):
             throttle()
 
+    all_games = list(games_by_identity.values())
     log.info("Total schedule games scraped: %d", len(all_games))
     return all_games
 
@@ -1074,19 +1119,23 @@ def scrape_standings(
             )
             throttle()
             tier_options = extract_select_options(html, "ddlTier") or ["Tier 1"]
+            # Options are posted back exactly as the site lists them (ASP.NET
+            # rejects an unlisted value); comparisons use their canonical
+            # label so a "TIER 1" dropdown still matches "Tier 1" rows.
             wanted = (
                 tier_options if tier == "ALL"
-                else [t for t in tier_options if t == tier] or [tier]
+                else [t for t in tier_options if tier_label(t) == tier_label(tier)]
+                or [tier]
             )
 
             counted = {}
             for raw in parse_standings_table(html):
-                raw_tier = (raw.get("tier") or "").strip()
+                raw_tier = tier_label(raw.get("tier"))
                 # An explicit --tier run keeps only that tier; with tier=ALL
                 # accept whatever the server chose to show for this division.
-                if tier != "ALL" and raw_tier and raw_tier != tier:
+                if tier != "ALL" and raw_tier and raw_tier != tier_label(tier):
                     continue
-                entry = normalize_standings(raw, season, div, raw_tier or tier)
+                entry = normalize_standings(raw, season, div, raw_tier or tier_label(tier))
                 entry["gameType"] = gt
                 results.append(entry)
                 counted[raw_tier or "?"] = counted.get(raw_tier or "?", 0) + 1
@@ -1097,7 +1146,7 @@ def scrape_standings(
             # still lists just the default division's first tier.
             chain = extract_viewstate(html)
             for t in wanted:
-                if t in counted:
+                if tier_label(t) in counted:
                     continue
                 page = fetch_standings_page(
                     session,
@@ -1112,16 +1161,16 @@ def scrape_standings(
                 chain = extract_viewstate(page)
                 kept = 0
                 for raw in parse_standings_table(page):
-                    raw_tier = (raw.get("tier") or "").strip()
+                    raw_tier = tier_label(raw.get("tier"))
                     # A tier the server does not recognise falls back to its
                     # own selection — never record that as the tier asked for.
-                    if raw_tier and raw_tier != t:
+                    if raw_tier and raw_tier != tier_label(t):
                         continue
-                    entry = normalize_standings(raw, season, div, raw_tier or t)
+                    entry = normalize_standings(raw, season, div, raw_tier or tier_label(t))
                     entry["gameType"] = gt
                     results.append(entry)
                     kept += 1
-                counted[t] = kept
+                counted[tier_label(t)] = kept
                 throttle()
             log.info(
                 "Standings %s %s %s (tiers %s): %s",
