@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-09-29T16:24:59.744144Z",
+  "scrapedAt": "2026-09-30T16:20:32.683159Z",
   "gameCount": 185,
   "games": [
     {
@@ -3674,7 +3674,7 @@
       "division": "U11",
       "tier": "Tier 1",
       "gameType": "FS",
-      "arena": "Scarb Centennial",
+      "arena": "Scarborough Centennial",
       "status": "scheduled",
       "score": null
     },
@@ -3695,7 +3695,7 @@
       "division": "U12",
       "tier": "Tier 2",
       "gameType": "FS",
-      "arena": "Scarb Centennial",
+      "arena": "Scarborough Centennial",
       "status": "scheduled",
       "score": null
     },
@@ -3716,7 +3716,7 @@
       "division": "U15",
       "tier": "Tier 2",
       "gameType": "FS",
-      "arena": "Scarb Centennial",
+      "arena": "Scarborough Centennial",
       "status": "scheduled",
       "score": null
     },
@@ -3737,7 +3737,7 @@
       "division": "U16",
       "tier": "Tier 3",
       "gameType": "FS",
-      "arena": "Scarb Centennial",
+      "arena": "Scarborough Centennial",
       "status": "scheduled",
       "score": null
     },
@@ -3999,6 +3999,7 @@
       "Lambton",
       "Leaside",
       "Pleasantview",
+      "Scarborough Centennial",
       "Scarborough Ice Sports",
       "Scotiabank Pond",
       "Vgn Sports Village",
