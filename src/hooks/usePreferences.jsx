@@ -146,6 +146,10 @@ export function PreferencesProvider({ children }) {
   const value = {
     ...prefs,
     hasTeams,
+    // The full saved entry behind activeTeam (name + season + division +
+    // tier), for pages that must recognise the exact team instance rather
+    // than any row sharing its name.
+    activeEntry,
     activeTeamName,
     addTeam,
     removeTeam,

@@ -21,7 +21,7 @@ function formatSeasonLabel(s) {
 }
 
 export default function Standings() {
-  const { filters, setFilters, clearFilters, activeTeamName, season, setSeason } = usePreferences()
+  const { filters, setFilters, clearFilters, activeEntry, season, setSeason } = usePreferences()
   // effectiveGameType lives in useData so the place shown on a Home card is
   // always the place shown in this table.
   const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType } =
@@ -83,6 +83,22 @@ export default function Standings() {
   // repeat the order the rows came in — the same rule the Home card applies
   // to its place, so the two never disagree.
   const tableStarted = filteredStandings.some((s) => Number(s.gp) > 0)
+
+  // The star marks the saved team's exact instance, not every row sharing its
+  // name: this year's U15 Vaughan Blue is a different team from last year's
+  // (composite id, lib/teams.js), so name + season + division + tier all have
+  // to line up. The row's own season decides its year — never the season
+  // select, which may have just flipped while the table still shows the
+  // previous snapshot.
+  const isActiveRow = (row) => {
+    if (!activeEntry) return false
+    if ((row.season || season) !== activeEntry.season) return false
+    if (row.name.toLowerCase() !== activeEntry.name.toLowerCase()) return false
+    // Teams saved without division/tier only check season + name, as before.
+    if (activeEntry.division && row.division !== activeEntry.division) return false
+    if (activeEntry.tier && row.tier !== activeEntry.tier) return false
+    return true
+  }
 
   // A game type is always chosen, so it isn't part of "clear the filters".
   const hasActiveFilters = filters.division !== 'ALL' || filters.tier !== 'ALL'
@@ -245,7 +261,7 @@ export default function Standings() {
           <div className="hidden md:block">
             <StandingsTable
               standings={filteredStandings}
-              activeTeam={activeTeamName}
+              isActive={isActiveRow}
               started={tableStarted}
             />
           </div>
@@ -257,7 +273,7 @@ export default function Standings() {
                 key={team.teamId || team.name}
                 team={team}
                 rank={tableStarted ? i + 1 : null}
-                isActive={activeTeamName?.toLowerCase() === team.name.toLowerCase()}
+                isActive={isActiveRow(team)}
                 isExpanded={expandedTeam === team.name}
                 onToggle={() =>
                   setExpandedTeam(expandedTeam === team.name ? null : team.name)
@@ -277,7 +293,7 @@ export default function Standings() {
 
 // ---- Desktop Table ----
 
-function StandingsTable({ standings, activeTeam, started }) {
+function StandingsTable({ standings, isActive, started }) {
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 overflow-x-auto shadow-lg">
       <table className="w-full text-sm whitespace-nowrap">
@@ -303,7 +319,7 @@ function StandingsTable({ standings, activeTeam, started }) {
             const gf = (team.gfAvg * team.gp).toFixed(0)
             const ga = (team.gaAvg * team.gp).toFixed(0)
             const diff = gf - ga
-            const isUserTeam = activeTeam?.toLowerCase() === team.name.toLowerCase()
+            const isUserTeam = isActive(team)
 
             return (
               <tr
