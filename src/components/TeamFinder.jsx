@@ -126,7 +126,13 @@ export default function TeamFinder({
   }
   const handleDivisionChange = (value) => {
     setSelectedDivision(value)
-    setSelectedTier('')
+    // Keep the tier when the new division plays it — the filter dropdowns
+    // follow the same rule, so the finder doesn't feel stricter than the
+    // pages. The team always clears: it belongs to the old combination.
+    const nextTiers = value
+      ? allTeams.filter((t) => t.divisions.includes(value)).flatMap((t) => t.tiers)
+      : allTeams.flatMap((t) => t.tiers)
+    setSelectedTier([...new Set(nextTiers)].includes(selectedTier) ? selectedTier : '')
     setSelectedTeam('')
   }
   const handleTierChange = (value) => {

@@ -192,7 +192,13 @@ export default function Schedule() {
           value={filters.division}
           onChange={(e) => {
             if (focusTeam) clearFocus()
-            setFilters({ division: e.target.value, tier: 'ALL' })
+            // Same rule as Standings: the tier survives a division change if
+            // the new division plays it, and otherwise falls back to the gate.
+            const division = e.target.value
+            const tier = tiersFor(division).includes(filters.tier)
+              ? filters.tier
+              : 'ALL'
+            setFilters({ division, tier })
           }}
           className={SELECT_CLS}
         >

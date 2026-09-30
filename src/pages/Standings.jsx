@@ -112,7 +112,17 @@ export default function Standings() {
         {divisions.length > 0 && (
           <select
             value={filters.division}
-            onChange={(e) => setFilters({ division: e.target.value, tier: 'ALL' })}
+          onChange={(e) => {
+            const division = e.target.value
+            // Changing division keeps the tier when the new division plays it
+            // — that's usually exactly the tier the visitor came for. A tier
+            // this division doesn't have still falls back to the gate: rows
+            // for it would be an empty table that looks like missing data.
+            const tier = tiersFor(division).includes(filters.tier)
+              ? filters.tier
+              : 'ALL'
+            setFilters({ division, tier })
+          }}
             className="px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white"
           >
             <option value="ALL">Choose a division…</option>
