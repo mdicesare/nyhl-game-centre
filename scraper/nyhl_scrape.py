@@ -812,6 +812,31 @@ def extract_select_options(html: str, select_id: str) -> list[str]:
     return [opt.get("value", "") for opt in sel.find_all("option")]
 
 
+def extract_selected_option(html: str, select_id: str) -> str:
+    """Value of the option a server-rendered <select> shows as selected.
+
+    ASP.NET marks it explicitly; when a server omits the attribute the
+    browser shows and posts the first option, so fall back to that.
+    """
+    sel = BeautifulSoup(html, "lxml").find("select", {"id": select_id})
+    if not sel:
+        return ""
+    options = sel.find_all("option")
+    chosen = sel.find("option", selected=True) or (options[0] if options else None)
+    return chosen.get("value", "") if chosen else ""
+
+
+def extract_event_id(html: str) -> Optional[int]:
+    """Read the hidden lbEventID the next postback must echo (None if absent)."""
+    tag = BeautifulSoup(html, "lxml").find("input", {"id": "lbEventID"})
+    if not tag:
+        return None
+    try:
+        return int(tag.get("value") or "")
+    except ValueError:
+        return None
+
+
 def discover_filters(html: str) -> dict:
     """Extract available filter options from the schedule page."""
     return {
@@ -1039,6 +1064,13 @@ def scrape_standings(
       __EVENTTARGET=ddlTier  -> one POST per remaining tier, replaying the
                                 ViewState the response above just returned
 
+    The event id (hidden lbEventID) is season-scoped, so a scrape of any
+    season other than the one the page opened on first selects that season
+    and then echoes the id each response hands back, exactly as a browser
+    would: under the stale id the site answers with a *different event's*
+    stats (the 25-26 backfill recorded playoff rows under Fall/Winter
+    Season labels that way).
+
     Division "ALL" walks every division the page lists, unless only_divisions
     narrows it to divisions the caller already knows hold data — the page
     offers every division the event has (U07..U21, OTH), and probing empties
@@ -1065,9 +1097,63 @@ def scrape_standings(
 
     # Extract lbEventID from hidden field (varies by season/event)
     soup = BeautifulSoup(page_html, "lxml")
-    event_id_input = soup.find("input", {"id": "lbEventID"})
-    event_id = int(event_id_input.get("value", 162)) if event_id_input else 162
+    event_id = extract_event_id(page_html) or 162
     log.info("Standings event ID: %d", event_id)
+
+    # The URL opens on whatever event it carries (event=171 for 26-27) and
+    # only a ddlSeason postback rebinds the hidden event id to another
+    # season's event (162 for 25-26, 136 for 24-25). Posting a past season
+    # under the stale id makes the site answer with a *different event's*
+    # stats: the 25-26 backfill walked the whole season against event 171
+    # and recorded playoff rows under Fall/Winter Season labels (191 of
+    # 473). A browser picks the season first and then posts whatever id
+    # that response handed back — do the same when the page is on a
+    # season we are not scraping.
+    selected_season = extract_selected_option(page_html, "ddlSeason")
+    if season and selected_season and selected_season != season:
+        log.info(
+            "Standings page is on season %s but we scrape %s — selecting it "
+            "to rebind the event id",
+            selected_season, season,
+        )
+        page_html = fetch_standings_page(
+            session,
+            viewstate,
+            event_id=event_id,
+            season=season,
+            event_target="ddlSeason",
+        )
+        throttle()
+        viewstate = extract_viewstate(page_html)
+        rebound = extract_event_id(page_html)
+        if rebound:
+            log.info("Standings event ID rebound: %d -> %d", event_id, rebound)
+            event_id = rebound
+        else:
+            log.warning(
+                "Season postback carried no lbEventID — continuing with %d",
+                event_id,
+            )
+        rebound_season = extract_selected_option(page_html, "ddlSeason")
+        if rebound_season and rebound_season != season:
+            log.warning(
+                "Season postback landed on %s, not %s — tables may still be "
+                "read from the wrong event",
+                rebound_season, season,
+            )
+        # The rebound response carries the new season's dropdowns (and
+        # collapsed viewstate guards already rejected a degraded page),
+        # so discovery below reads it instead of the un-rebound GET.
+        soup = BeautifulSoup(page_html, "lxml")
+    elif season and not selected_season:
+        # Without a readable season dropdown there is no way to tell whether
+        # the page sits on the season we mean to scrape, so say so rather
+        # than let a stale event id poison a backfill without a trace.
+        log.warning(
+            "No readable ddlSeason on the standings page — cannot confirm it "
+            "is on %s; walking with event id %d",
+            season, event_id,
+        )
 
     # Discover available game types from the standings page
     type_select = soup.find("select", {"id": "ddlType"})
@@ -1118,6 +1204,10 @@ def scrape_standings(
                 game_type=gt,
             )
             throttle()
+            # Follow the id the response hands back: a browser posts the
+            # hidden field of the page it is looking at, so a server-side
+            # rebind must not be undone by the stale id the walk started on.
+            event_id = extract_event_id(html) or event_id
             tier_options = extract_select_options(html, "ddlTier") or ["Tier 1"]
             # Options are posted back exactly as the site lists them (ASP.NET
             # rejects an unlisted value); comparisons use their canonical
@@ -1159,6 +1249,7 @@ def scrape_standings(
                     event_target="ddlTier",
                 )
                 chain = extract_viewstate(page)
+                event_id = extract_event_id(page) or event_id
                 kept = 0
                 for raw in parse_standings_table(page):
                     raw_tier = tier_label(raw.get("tier"))
