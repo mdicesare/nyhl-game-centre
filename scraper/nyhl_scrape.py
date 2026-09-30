@@ -1064,12 +1064,16 @@ def scrape_standings(
       __EVENTTARGET=ddlTier  -> one POST per remaining tier, replaying the
                                 ViewState the response above just returned
 
-    The event id (hidden lbEventID) is season-scoped, so a scrape of any
-    season other than the one the page opened on first selects that season
-    and then echoes the id each response hands back, exactly as a browser
-    would: under the stale id the site answers with a *different event's*
-    stats (the 25-26 backfill recorded playoff rows under Fall/Winter
-    Season labels that way).
+    The event id (hidden lbEventID) is scoped to the season *and* to the
+    game type, so a scrape of any season other than the one the page opened
+    on first selects that season, and then keeps one id per game type,
+    taking each from the response that first produced it — exactly as a
+    browser does, moving the type dropdown and posting the hidden field of
+    the page it is looking at. Under an id that belongs to another season
+    the site answers with a *different event's* stats (the 25-26 backfill
+    recorded playoff rows under Fall/Winter Season labels that way), and
+    under another type's id it serves that type's table whatever ddlType
+    says (the first multi-division run recorded WS rows under FS labels).
 
     Division "ALL" walks every division the page lists, unless only_divisions
     narrows it to divisions the caller already knows hold data — the page
@@ -1166,6 +1170,20 @@ def scrape_standings(
         ]
     log.info("Available standings game types: %s", game_types)
 
+    # lbEventID is scoped to (season, game type), not just to the season: after
+    # a type change the site hands back that type's own id (25-26 is 162 for
+    # FS, 167 for WS), and a type-specific id answers with *its own* table
+    # whatever ddlType says — posting 167 while asking for FS served the WS
+    # table for every FS pass once the walk had done one WS request, which is
+    # how the first multi-division run recorded WS rows under FS labels (U07,
+    # the first division, was the only one right). A browser reaches each type
+    # from the page's main id, where ddlType is still honoured, then posts the
+    # id that response carried. Seed every type with that main id and keep each
+    # one's id to itself, so each type's first request is its own div step.
+    event_ids: dict[str, int] = {gt: event_id for gt in game_types}
+    log.info("Standings event ID per game type: %s",
+             ", ".join(f"{gt}={ev}" for gt, ev in event_ids.items()))
+
     # Unlike the schedule page, ddlDiv here has no ALL option — resolve it to
     # the real list so "ALL" means every division rather than the default one.
     divisions = extract_select_options(page_html, "ddlDiv")
@@ -1197,17 +1215,17 @@ def scrape_standings(
             html = fetch_standings_page(
                 session,
                 viewstate,
-                event_id=event_id,
+                event_id=event_ids[gt],
                 division=div,
                 tier="ALL",
                 season=season,
                 game_type=gt,
             )
             throttle()
-            # Follow the id the response hands back: a browser posts the
-            # hidden field of the page it is looking at, so a server-side
-            # rebind must not be undone by the stale id the walk started on.
-            event_id = extract_event_id(html) or event_id
+            # Follow the id the response hands back — but only within this
+            # game type: a browser posts the hidden field of the page it is
+            # looking at, and that field is this type's id.
+            event_ids[gt] = extract_event_id(html) or event_ids[gt]
             tier_options = extract_select_options(html, "ddlTier") or ["Tier 1"]
             # Options are posted back exactly as the site lists them (ASP.NET
             # rejects an unlisted value); comparisons use their canonical
@@ -1241,7 +1259,7 @@ def scrape_standings(
                 page = fetch_standings_page(
                     session,
                     chain,
-                    event_id=event_id,
+                    event_id=event_ids[gt],
                     division=div,
                     tier=t,
                     season=season,
@@ -1249,7 +1267,7 @@ def scrape_standings(
                     event_target="ddlTier",
                 )
                 chain = extract_viewstate(page)
-                event_id = extract_event_id(page) or event_id
+                event_ids[gt] = extract_event_id(page) or event_ids[gt]
                 kept = 0
                 for raw in parse_standings_table(page):
                     raw_tier = tier_label(raw.get("tier"))
