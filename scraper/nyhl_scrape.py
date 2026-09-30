@@ -1050,6 +1050,7 @@ def scrape_standings(
     tier: str = "ALL",
     only_divisions: Optional[set[str]] = None,
     initial_html: Optional[str] = None,
+    listed_tiers: Optional[dict[tuple[str, str], set[str]]] = None,
 ) -> list[dict]:
     """Scrape standings for a season, walking every division and tier.
 
@@ -1083,6 +1084,11 @@ def scrape_standings(
     second GET. Each POST is throttled, and a POST that exhausts its retries
     aborts the whole run instead of writing a half-scraped tier set over a
     complete one.
+
+    listed_tiers, when the caller passes a dict, is filled with the tier list
+    each healthy division step declared for its (division, game type) — the
+    site's own answer to which tables exist there. The merge uses it to retire
+    rows for tiers the site does not list (see merge_standings).
     """
     # GET standings page to harvest its ViewState and event ID
     if initial_html:
@@ -1226,7 +1232,15 @@ def scrape_standings(
             # game type: a browser posts the hidden field of the page it is
             # looking at, and that field is this type's id.
             event_ids[gt] = extract_event_id(html) or event_ids[gt]
-            tier_options = extract_select_options(html, "ddlTier") or ["Tier 1"]
+            raw_tier_options = extract_select_options(html, "ddlTier")
+            tier_options = raw_tier_options or ["Tier 1"]
+            if listed_tiers is not None and raw_tier_options:
+                # The dropdown is the site's own statement of which tiers have
+                # tables for this (division, game type). Remember it so the
+                # merge can retire rows for a tier the site does not offer —
+                # a WS-only pod's fabricated FS rows used to live forever,
+                # because a slice this run returns nothing for is carried on.
+                listed_tiers[(div, gt)] = {tier_label(t) for t in raw_tier_options}
             # Options are posted back exactly as the site lists them (ASP.NET
             # rejects an unlisted value); comparisons use their canonical
             # label so a "TIER 1" dropdown still matches "Tier 1" rows.
@@ -1333,7 +1347,11 @@ def merge_by_division(existing_rows: list[dict], new_rows: list[dict]) -> list[d
     return carried + new_rows
 
 
-def merge_standings(existing_rows: list[dict], new_rows: list[dict]) -> list[dict]:
+def merge_standings(
+    existing_rows: list[dict],
+    new_rows: list[dict],
+    listed_tiers: Optional[dict[tuple[str, str], set[str]]] = None,
+) -> list[dict]:
     """
     Keep rows for every (division, tier, game type) this run returned nothing for.
 
@@ -1346,6 +1364,16 @@ def merge_standings(existing_rows: list[dict], new_rows: list[dict]) -> list[dic
     produced rows for it. A slice that legitimately empties stays stale until
     the season rolls over to a fresh snapshot — the same bargain the rest of
     the scraper makes: never turn a blank response into fact.
+
+    Carrying such slices on is exactly wrong for one case, though: a tier the
+    site does not offer for that game type at all. The 25-26 backfill left WS
+    rows under FS labels in nine WS-only pods (U10 Tier 1, U17 Tier 1, … — no
+    Fall games exist for them), and because their FS walk correctly returns
+    nothing, the fabricated rows were carried forward run after run. When the
+    caller passes listed_tiers — what each healthy division step's own tier
+    dropdown declared for its (division, game type) — a carried row whose tier
+    is not on that list is not "a table that came back empty": it is a table
+    the site says does not exist, and it is dropped rather than kept.
     """
     if not new_rows:
         # This run produced no standings at all — hold on to what is cached
@@ -1356,7 +1384,23 @@ def merge_standings(existing_rows: list[dict], new_rows: list[dict]) -> list[dic
         return (row.get("division"), row.get("tier"), row.get("gameType"))
 
     new_slices = {key_of(r) for r in new_rows}
-    carried = [r for r in existing_rows if key_of(r) not in new_slices]
+    carried = []
+    dropped = []
+    for row in existing_rows:
+        div, tier, gt = key_of(row)
+        listed = listed_tiers.get((div, gt)) if listed_tiers else None
+        if listed is not None and tier_label(tier) not in listed:
+            dropped.append(row)
+            continue
+        if key_of(row) not in new_slices:
+            carried.append(row)
+    if dropped:
+        log.info(
+            "Dropped %d standings rows for tiers the site does not list for "
+            "their (division, game type): %s",
+            len(dropped),
+            sorted({"/".join(str(p) for p in key_of(r)) for r in dropped}),
+        )
     if carried:
         log.info(
             "Carried forward %d standings rows from slices this run returned "
@@ -1374,6 +1418,7 @@ def write_output(
     season: str,
     dry_run: bool = False,
     write_schedule: bool = True,
+    listed_standings_tiers: Optional[dict[tuple[str, str], set[str]]] = None,
 ):
     """Write normalized JSON to public/data/."""
     # tzinfo stripped so the stamp keeps its plain "…Z" shape (the app parses
@@ -1479,8 +1524,11 @@ def write_output(
         schedule_payload["gameCount"] = len(merged_games)
     # Standings merge per (division, tier, game type) rather than per
     # division — those are separate tables on the site, and one that comes
-    # back empty must not erase the tables that did return rows.
-    merged_standings = merge_standings(existing_standings_rows, standings)
+    # back empty must not erase the tables that did return rows. The tier
+    # lists the walk saw retire rows for tiers the site does not offer.
+    merged_standings = merge_standings(
+        existing_standings_rows, standings, listed_standings_tiers
+    )
     standings_payload["standings"] = merged_standings
     standings_payload["teamCount"] = len(merged_standings)
 
@@ -1661,6 +1709,10 @@ def main():
 
     games = []
     standings = []
+    # Tier lists each healthy division step declared for its (division, game
+    # type); the merge uses them to retire rows for tiers the site does not
+    # offer. Filled by scrape_standings, empty for a schedule-only run.
+    listed_tiers: dict[tuple[str, str], set[str]] = {}
 
     # Step 3: Scrape schedules
     if not args.standings_only and schedule_ok:
@@ -1708,6 +1760,7 @@ def main():
             tier=args.tier,
             only_divisions=divisions_hint,
             initial_html=standings_html,
+            listed_tiers=listed_tiers,
         )
 
     # Step 5: Collect and download team logos
@@ -1728,7 +1781,8 @@ def main():
 
     # Step 6: Write output
     write_output(games, standings, metadata, season,
-                 dry_run=args.dry_run, write_schedule=schedule_ok)
+                 dry_run=args.dry_run, write_schedule=schedule_ok,
+                 listed_standings_tiers=listed_tiers)
 
     log.info("Done. — %d requests to Agilex this run", REQUEST_COUNT)
 
