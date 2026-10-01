@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1e3a5f" />
+    <title>NYHL Game Center</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        color: #0f172a;
+        font: 16px/1.5 system-ui, -apple-system, sans-serif;
+        text-align: center;
+      }
+      main { max-width: 28rem; padding: 2rem; }
+      h1 { font-size: 1.35rem; margin: 0 0 0.5rem; }
+      p { color: #475569; margin: 0 0 1rem; }
+      a { color: #1e3a5f; font-weight: 600; }
+    </style>
+    <script>
+      // GitHub Pages serves this file (with a 404 status) for every path it
+      // has no file for — which includes every client-side route: /home,
+      // /schedule, /standings, /settings. Refreshing one of those, or opening
+      // a shared team link, would otherwise land on a dead page. Local dev
+      // servers have an SPA fallback, so this only ever bites in production.
+      //
+      // So remember where the visitor was actually going, bounce to the app
+      // shell, and let index.html restore the route before React boots.
+      // A path whose last segment has a dot is a missing file (a bundle, a
+      // data JSON) — a real 404. Redirecting *it* into the app would trade a
+      // clear failure for a confusing parse error, so those keep the plain
+      // message below.
+      (function () {
+        var BASE = '/nyhl-game-centre/'
+        if (location.pathname.indexOf(BASE) !== 0) return
+        var segs = location.pathname.slice(BASE.length).split('/').filter(Boolean)
+        var last = segs[segs.length - 1] || ''
+        if (last.indexOf('.') !== -1) return
+        try {
+          sessionStorage.setItem(
+            'nyhl-redirect',
+            location.pathname + location.search + location.hash
+          )
+        } catch (e) {
+          // Storage off: still send them to the app (without the deep link)
+          // rather than leave them on a dead page.
+        }
+        location.replace(BASE)
+      })()
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>Page not found</h1>
+      <p>
+        The page or file you asked for isn’t here. The Game Center itself is
+        still just a click away.
+      </p>
+      <p><a href="/nyhl-game-centre/">Open the NYHL Game Center →</a></p>
+    </main>
+  </body>
+</html>
