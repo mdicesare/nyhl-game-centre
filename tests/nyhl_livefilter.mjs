@@ -40,6 +40,16 @@ const SEED = {
   scheduleFilter: 'all', viewPreference: 'list',
 }
 const SEED27 = { ...SEED, season: '26-27' }
+// Followed team whose competition matches the on-screen filters — the
+// parent's report: this browse must show the whole competition, not just
+// the followed team's games.
+const SEED_FOLLOW = {
+  savedTeams: [{ name: 'Vaughan Blue', division: 'U15', tier: 'Tier 1', season: '26-27' }],
+  activeTeam: 'vaughan blue|26-27|u15|tier 1',
+  season: '26-27',
+  filters: { division: 'U15', tier: 'Tier 1', gameType: 'ALL', club: 'ALL' },
+  scheduleFilter: 'all', viewPreference: 'list',
+}
 
 async function waitForJson(url, opts = {}, ms = 20000) {
   const t0 = Date.now()
@@ -267,6 +277,28 @@ try {
     if (!keepFound) check('LIVE TeamFinder: tier kept case', true, 'SKIPPED - no other division has this tier')
     if (!resetFound) check('LIVE TeamFinder: tier reset case', true, 'SKIPPED - every division has this tier')
   }
+
+  // ---- Schedule browse with a followed team (the parent's report) --------
+  // A saved active team whose competition matches the on-screen filters
+  // must NOT narrow the list: browsing U15 Tier 1 shows every game in it
+  // (teams the visitor does not follow included), no pin chip, and the own
+  // team's games highlighted.
+  await evaluateRetry(E_SEED(SEED_FOLLOW))
+  await nav(`${BASE}/`)   // server-served root; prefs only load at boot
+  await waitFor(E_MOUNT, 'app mount for followed-team browse')
+  await waitFor(
+    `location.pathname.includes('/home') || document.body.innerText.includes('Just browse')`,
+    'home or landing for followed-team browse')
+  if (await evaluateRetry(E_CLICK_TEXT('Just browse'))) {
+    await waitFor(E_PATH_ENDS('/home'), 'client nav to /home (followed team)')
+  }
+  await clickPath(E_CLICK_HREF('/schedule'), '/schedule', 'client nav to /schedule (followed team)')
+
+  st = await waitFor(E_STATE_IF(`s.div === 'U15' && s.tier === 'Tier 1'`), 'followed-team filters on live Schedule')
+  check('LIVE Schedule: followed-team filters seeded', st && st.tier === 'Tier 1', JSON.stringify(st))
+  check('LIVE Schedule: no pin chip on plain browse', !(await evaluateRetry(E_TEXT('Showing '))))
+  check('LIVE Schedule: whole competition shown', await waitFor(E_TEXT('Ted Reeve'), 'a non-followed team in the live browse'))
+  check('LIVE Schedule: own team highlighted', await evaluateRetry(`document.body.innerHTML.includes('from-nyhl-blue/5')`))
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

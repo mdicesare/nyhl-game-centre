@@ -122,7 +122,7 @@ Check 'D6 pinned team game listed'        $d6.Contains('Leaside Red')
 Check 'D6 pinned team visible'            $d6.Contains('Vaughan Blue')
 Check 'D6 not awaiting division'          (-not $d6.Contains('Choose a division to see games'))
 Check 'D6 tier select still visible'      $d6.Contains('Choose a tier')
-Check 'D6 redundant pin auto-dropped'     (-not $d6.Contains('Showing '))
+Check 'D6 pin keeps its chip'             $d6.Contains('Showing Vaughan')
 Check 'D6 summary chips removed'          ((-not $d6.Contains('bg-blue-100')) -and (-not $d6.Contains('bg-purple-100')))
 Check 'D6 header team line removed'       (-not $d6.Contains('w-full text-sm text-nyhl-blue'))
 Check 'D6 header + game rows show team'   ((Count $d6 'Vaughan Blue') -ge 2)
@@ -160,6 +160,8 @@ Check 'D11 header shows active twin'      ($d11.Contains('text-sm text-blue-200 
 Check 'D11 season badge shows active season' ((HasEn $d11 '2026' '27') -and [regex]::IsMatch($d11, 'bg-nyhl-blue[^>]*>2026.27<'))
 Check 'D11 filters pre-selected (no gate)'   (-not $d11.Contains('Choose a division to see games'))
 Check 'D11 no pin chip on plain load'     (-not $d11.Contains('Showing '))
+Check 'D11 browse shows the whole competition' (($d11.Contains('Ted Reeve') -and $d11.Contains('Vaughan Blue')))
+Check 'D11 own team highlighted'          $d11.Contains('from-nyhl-blue/5')
 
 Write-Output '--- D12 seed-opp (opponent pin keeps its chip) ---'
 Check 'D12 focus chip survives'           $d12.Contains('Showing Leaside')

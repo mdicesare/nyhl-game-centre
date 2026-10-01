@@ -53,13 +53,13 @@ export default function Schedule() {
     setSearchParams(next, { replace: true })
   }, [searchParams])
 
-  // The active team's name filter only rides along when the filters on screen
-  // really are that team's competition — season, division and tier together.
-  // When they diverge the filters win and the page browses normally: a parent
-  // who moved on to another division gets that division's games instead of an
-  // empty list the active team's name could never match. Teams stored without
-  // division/tier only check the season, as before. A pinned team always
-  // wins — its season link has just been applied above.
+  // The followed team only rides along as a *highlight*, and only when the
+  // filters on screen really are that team's competition — season, division
+  // and tier together. It never narrows the list: a parent browsing their
+  // team's division must see every game in it, with their own team's games
+  // picked out. Only an explicit pin (a standings row or a Home card button)
+  // narrows, and the pin always keeps its chip. Teams stored without
+  // division/tier only check the season, as before.
   const followedTeam = savedTeams.find((t) => teamId(t) === activeTeam)
   const followsTeamFilters =
     !activeTeam ||
@@ -82,9 +82,10 @@ export default function Schedule() {
   const filteredGames = useMemo(() => {
     let result = games
 
-    // Team context: the pinned team wins over the followed one, since the
-    // visitor explicitly asked to see that team's games.
-    const teamFilter = displayTeam
+    // Team context: only an explicit pin narrows — the visitor asked for
+    // that one team. The followed team never narrows the browse; it only
+    // highlights its games further down.
+    const teamFilter = focusTeam
     if (teamFilter) {
       const lower = teamFilter.toLowerCase()
       result = result.filter(
@@ -120,7 +121,7 @@ export default function Schedule() {
       const db = new Date(`${b.date}T${b.time || '00:00'}`)
       return da - db
     })
-  }, [games, filters, displayTeam, focusTeam, scheduleFilter])
+  }, [games, filters, focusTeam, scheduleFilter])
 
   // Group by month
   const groupedGames = useMemo(() => {
@@ -149,19 +150,11 @@ export default function Schedule() {
   // Back to the normal division/tier view.
   const clearFocus = useCallback(() => setSearchParams({}, { replace: true }), [setSearchParams])
 
-  // A pin that is just the followed team — every card button's default flow —
-  // says nothing the blue quick-filter chip doesn't already show, so drop it
-  // on arrival. The list doesn't move: the pin's name filter and the followed
-  // team's name filter are the same filter, and the competition the link
-  // carried now sits in the dropdowns either way. A pin on anyone else (a
-  // standings row) keeps its chip — there it is the only indicator of whose
-  // games are on screen, and the only way out.
-  useEffect(() => {
-    if (!focusTeam || !activeTeamName) return
-    if (focusTeam.toLowerCase() !== activeTeamName.toLowerCase()) return
-    if (!followsTeamFilters) return
-    clearFocus()
-  }, [focusTeam, activeTeamName, followsTeamFilters, clearFocus])
+  // Deliberately no pin-clearing effect here: a pin always keeps its chip,
+  // because it is now the only thing narrowing the list. The old auto-drop
+  // (a pin equal to the followed team cleared itself on arrival) made the ✕
+  // useless — clearing it just fell back to the followed team's narrowed
+  // list, and the plain browse could never show the whole competition.
 
   return (
     <div className="px-4 py-6 max-w-lg mx-auto animate-fade-in">
@@ -254,9 +247,9 @@ export default function Schedule() {
         </div>
       ) : (
       <div>
-      {/* The one thing header and dropdowns can't speak for: a pin on some
-          other team. The followed team's pin clears itself on arrival, so
-          whatever is left here always earns its line. */}
+      {/* A pin is the only thing narrowing the list to one team, so it
+          always earns its line — the ✕ is the way back to the whole
+          competition. */}
       {focusTeam && (
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
