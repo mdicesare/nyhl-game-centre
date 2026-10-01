@@ -299,6 +299,21 @@ try {
   check('LIVE Schedule: no pin chip on plain browse', !(await evaluateRetry(E_TEXT('Showing '))))
   check('LIVE Schedule: whole competition shown', await waitFor(E_TEXT('Ted Reeve'), 'a non-followed team in the live browse'))
   check('LIVE Schedule: own team highlighted', await evaluateRetry(`document.body.innerHTML.includes('from-nyhl-blue/5')`))
+
+  // Card pin: scoped to the linked competition. The name "Vaughan Blue" is
+  // reused across U07/U08/U14/U17 in 26-27 — none of those games may show.
+  await clickPath(E_CLICK_HREF('/home'), '/home', 'back to /home')
+  await clickPath(
+    `(() => { const el=[...document.querySelectorAll('a')]` +
+    `.find(a => (a.getAttribute('aria-label') || '') === 'Open Vaughan Blue schedule');` +
+    ` if (!el) return false; el.click(); return true })()`,
+    '/schedule', 'home card schedule button (aria-label)')
+  await waitFor(E_TEXT('Showing Vaughan'), 'pin chip on card-pinned schedule')
+  check('LIVE Schedule: card pin keeps its chip', true)
+  check('LIVE Schedule: card pin shows the own-team game',
+        await waitFor(E_TEXT('Leaside Red'), 'own U15 Tier 1 game under the pin'))
+  check('LIVE Schedule: card pin scoped to U15 Tier 1',
+        !(await evaluate(E_TEXT('George Bell'))))
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

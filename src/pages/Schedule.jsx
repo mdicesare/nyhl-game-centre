@@ -26,8 +26,9 @@ export default function Schedule() {
   // …&tier=…&season=… so the schedule opens on the team that was just clicked
   // rather than on whoever the visitor happens to follow. The team rides as a
   // removable chip while its competition pre-fills the selects below — the
-  // list stays that one team's games until the chip is cleared, then browses
-  // exactly the division and tier the link showed.
+  // list stays that one team's games inside the division and tier the link
+  // showed (several divisions reuse a team name), and clearing the chip
+  // browses that same competition for everyone.
   const [searchParams, setSearchParams] = useSearchParams()
   const focusTeam = searchParams.get('team')
 
@@ -93,15 +94,16 @@ export default function Schedule() {
       )
     }
 
-    // Filter dropdowns — while a pin is on screen its list wins (and touching
-    // a select drops the pin), so they don't narrow it.
-    if (!focusTeam) {
-      if (filters.division !== 'ALL') {
-        result = result.filter((g) => g.division === filters.division)
-      }
-      if (filters.tier !== 'ALL') {
-        result = result.filter((g) => g.tier === filters.tier)
-      }
+    // Filter dropdowns — applied pinned or not. The link that pinned a team
+    // carried its competition and the selects show it, so the pin narrows to
+    // that team inside its division/tier instead of every reuse of the name
+    // across the league (touching a select drops the pin and browses the
+    // picked competition instead).
+    if (filters.division !== 'ALL') {
+      result = result.filter((g) => g.division === filters.division)
+    }
+    if (filters.tier !== 'ALL') {
+      result = result.filter((g) => g.tier === filters.tier)
     }
 
     // Schedule filter: upcoming / completed
@@ -141,8 +143,9 @@ export default function Schedule() {
 
   // Schedule only applies division/tier. gameType and club share the
   // filter object but are never read here, so they must not show as active.
-  // While a team is pinned the dropdowns are on screen but the pin's list
-  // wins, so they don't count.
+  // While a team is pinned the chip's X is the way out, so the dropdowns
+  // don't offer Clear — clearing filters under a pin would drop the very
+  // competition the pin is scoped by.
   const hasActiveFilters =
     !focusTeam && (filters.division !== 'ALL' || filters.tier !== 'ALL')
   const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
