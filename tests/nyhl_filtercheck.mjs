@@ -220,6 +220,46 @@ try {
   await waitFor(E_TEXT('Choose a tier to see games'), 'tier gate on Schedule')
   check('Schedule: tier gate shown after reset', true)
 
+  // ---- Schedule: game type (fall / winter / playoffs) ---------------------
+  // SEED puts us in 25-26 U14 Tier 1 — the slice with all four game types
+  // (fall, winter, playoff round robin, playoff elimination).
+  await evaluateRetry(E_SEED(SEED))
+  await send('Page.reload', {})
+  await waitFor(E_STATE_IF(`s.div === 'U14' && s.tier === 'Tier 1'`), 'seeded U14/Tier 1 for the type segment')
+
+  const E_TYPE_STATE =
+    `(() => {` +
+    ` const s=[...document.querySelectorAll('select')].find(s => [...s.options].some(o => o.value==='FS'));` +
+    ` if (!s) return null;` +
+    ` return { value: s.value, opts: [...s.options].map(o => o.textContent.trim()) }; })()`
+  const E_SET_TYPE = (v) =>
+    `(() => {` +
+    ` const s=[...document.querySelectorAll('select')].find(s => [...s.options].some(o => o.value==='FS'));` +
+    ` if (!s) return false;` +
+    ` s.value=${JSON.stringify(v)};` +
+    ` s.dispatchEvent(new Event('change', { bubbles:true }));` +
+    ` return s.value; })()`
+  const E_CARDS = `document.querySelectorAll('button.rounded-xl').length`
+  const E_BADGE = (t) =>
+    `(() => [...document.querySelectorAll('button.rounded-xl span')].some(s => s.textContent === ${JSON.stringify(t)}))()`
+
+  const ty = await waitFor(E_TYPE_STATE, 'type select on Schedule')
+  check('Schedule: type select offers the slice types',
+    ['All types', 'Fall Season', 'Winter Season', 'Playoff Round Robin', 'Playoff Elimination']
+      .every((l) => ty.opts.includes(l)),
+    JSON.stringify(ty.opts))
+
+  await waitFor(`${E_CARDS} > 0`, 'game cards before the type filter')
+  const allCount = await evaluate(E_CARDS)
+  await evaluate(E_SET_TYPE('WS'))
+  await waitFor(`${E_CARDS} > 0 && ${E_CARDS} < ${allCount}`, 'winter filter narrows the list')
+  check('Schedule: Winter narrows the list', true, `${allCount} -> ${await evaluate(E_CARDS)}`)
+  check('Schedule: narrowed rows are badged Winter', await evaluate(E_BADGE('Winter')))
+
+  await evaluate(E_SET_TYPE('ALL'))
+  await waitFor(`${E_CARDS} === ${allCount}`, 'all types restore the list')
+  check('Schedule: All types restores the list', true, `${allCount} cards`)
+
   // ---- TeamFinder (custom Select) -----------------------------------------
   await evaluateRetry(E_SEED(SEED27))
   await nav(`${BASE}/settings`)

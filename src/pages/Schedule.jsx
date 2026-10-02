@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
-import GameDetail from '../components/GameDetail.jsx'
+import GameDetail, { formatGameType } from '../components/GameDetail.jsx'
 import UpdatedStamp from '../components/UpdatedStamp.jsx'
 import { teamId } from '../lib/teams.js'
 
@@ -28,7 +28,8 @@ export default function Schedule() {
   // removable chip while its competition pre-fills the selects below — the
   // list stays that one team's games inside the division and tier the link
   // showed (several divisions reuse a team name), and clearing the chip
-  // browses that same competition for everyone.
+  // browses that same competition for everyone. The game type select (fall /
+  // winter / playoffs) narrows both ways — pinned or browsing.
   const [searchParams, setSearchParams] = useSearchParams()
   const focusTeam = searchParams.get('team')
 
@@ -79,6 +80,20 @@ export default function Schedule() {
   const needsTier = tierOptions.length > 0 && filters.tier === 'ALL'
   const awaitingFilters = hasData && !focusTeam && (needsDivision || needsTier)
 
+  // Game type select: only offer what this division and tier actually play —
+  // same data-derived rule as the division and tier selects. A remembered
+  // type the slice doesn't have is injected below so the select can't
+  // silently show a type the list isn't filtered by.
+  const gameTypeFilter = filters.gameType || 'ALL'
+  const typeOptions = useMemo(() => {
+    const pool = games.filter(
+      (g) =>
+        (filters.division === 'ALL' || g.division === filters.division) &&
+        (filters.tier === 'ALL' || g.tier === filters.tier)
+    )
+    return GAME_TYPES_ORDER.filter((t) => pool.some((g) => g.gameType === t))
+  }, [games, filters.division, filters.tier])
+
   // Apply filters
   const filteredGames = useMemo(() => {
     let result = games
@@ -94,16 +109,19 @@ export default function Schedule() {
       )
     }
 
-    // Filter dropdowns — applied pinned or not. The link that pinned a team
-    // carried its competition and the selects show it, so the pin narrows to
-    // that team inside its division/tier instead of every reuse of the name
-    // across the league (touching a select drops the pin and browses the
-    // picked competition instead).
+    // Filter dropdowns — division, tier and game type applied pinned or
+    // not. The link that pinned a team carried its competition and the
+    // selects show it, so the pin narrows to that team inside its
+    // division/tier instead of every reuse of the name across the league
+    // (touching a select drops the pin and browses the picked competition).
     if (filters.division !== 'ALL') {
       result = result.filter((g) => g.division === filters.division)
     }
     if (filters.tier !== 'ALL') {
       result = result.filter((g) => g.tier === filters.tier)
+    }
+    if (gameTypeFilter !== 'ALL') {
+      result = result.filter((g) => g.gameType === gameTypeFilter)
     }
 
     // Schedule filter: upcoming / completed
@@ -141,14 +159,18 @@ export default function Schedule() {
     return groups
   }, [filteredGames])
 
-  // Schedule only applies division/tier. gameType and club share the
-  // filter object but are never read here, so they must not show as active.
-  // While a team is pinned the chip's X is the way out, so the dropdowns
-  // don't offer Clear — clearing filters under a pin would drop the very
-  // competition the pin is scoped by.
+  // Schedule applies division/tier plus the game type, so all three count
+  // as active; club still shares the filter object without being read here
+  // and must not show. While a team is pinned the chip's X is the way out,
+  // so the dropdowns don't offer Clear — clearing filters under a pin would
+  // drop the very competition the pin is scoped by. The empty list still
+  // counts a type (or the Upcoming/Completed tab) as narrowing, so its
+  // "Clear filters" button is offered even under a pin.
   const hasActiveFilters =
-    !focusTeam && (filters.division !== 'ALL' || filters.tier !== 'ALL')
-  const isNarrowed = hasActiveFilters || scheduleFilter !== 'all'
+    !focusTeam &&
+    (filters.division !== 'ALL' || filters.tier !== 'ALL' || gameTypeFilter !== 'ALL')
+  const isNarrowed =
+    hasActiveFilters || gameTypeFilter !== 'ALL' || scheduleFilter !== 'all'
 
   // Back to the normal division/tier view.
   const clearFocus = useCallback(() => setSearchParams({}, { replace: true }), [setSearchParams])
@@ -226,6 +248,29 @@ export default function Schedule() {
           </select>
         )}
 
+        {/* Fall / winter / playoffs — Standings forces one type because its
+            tables are per type; here it's a convenience filter with "All
+            types" as the timeline default, and it narrows a pin exactly the
+            way division and tier do. */}
+        {typeOptions.length > 0 && (
+          <select
+            value={gameTypeFilter}
+            onChange={(e) => {
+              if (focusTeam) clearFocus()
+              setFilters({ gameType: e.target.value })
+            }}
+            className={SELECT_CLS}
+          >
+            <option value="ALL">All types</option>
+            {gameTypeFilter !== 'ALL' && !typeOptions.includes(gameTypeFilter) && (
+              <option value={gameTypeFilter}>{formatGameType(gameTypeFilter)}</option>
+            )}
+            {typeOptions.map((t) => (
+              <option key={t} value={t}>{formatGameType(t)}</option>
+            ))}
+          </select>
+        )}
+
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
@@ -293,7 +338,7 @@ export default function Schedule() {
       {filteredGames.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-4xl mb-4">🏒</p>
-          {focusTeam && hasData ? (
+          {focusTeam && gameTypeFilter === 'ALL' && hasData ? (
             <>
               <p className="text-gray-600 dark:text-slate-300 text-lg mb-2">
                 No games for {focusTeam} in {formatSeasonLabel(season)}
@@ -314,11 +359,16 @@ export default function Schedule() {
                 No games match these filters
               </p>
               <p className="text-gray-400 dark:text-slate-500 text-sm mb-4">
-                Try a different division, tier or view.
+                Try a different division, tier, type or view.
               </p>
               {isNarrowed && (
                 <button
                   onClick={() => {
+                    // "Clear filters" means all of them — the pin too, so
+                    // the list can't come back empty on the same
+                    // combination: one click lands on the plain browse of
+                    // the whole competition.
+                    if (focusTeam) clearFocus()
                     clearFilters()
                     setScheduleFilter('all')
                   }}
@@ -395,9 +445,19 @@ function GameCard({ game, activeTeam, onClick }) {
           : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700 hover:border-gray-200 dark:hover:border-slate-600'
       }`}
     >
-      {/* Date / Time */}
-      <p className="text-xs text-gray-400 dark:text-slate-500 mb-2">
-        {formatGameDate(game.date)} · {formatTime(game.time)}
+      {/* Date / Time — with the fall/winter/playoffs badge so the type is
+          legible in the list, not just in the detail sheet */}
+      <p className="text-xs text-gray-400 dark:text-slate-500 mb-2 flex items-center gap-2 flex-wrap">
+        <span>{formatGameDate(game.date)} · {formatTime(game.time)}</span>
+        {game.gameType && (
+          <span
+            className={`text-[10px] font-semibold px-1.5 py-0.5 rounded uppercase tracking-wide ${
+              GAME_TYPE_BADGE_CLS[game.gameType] || GAME_TYPE_BADGE_CLS._default
+            }`}
+          >
+            {GAME_TYPE_BADGES[game.gameType]}
+          </span>
+        )}
       </p>
 
       {/* Teams + Score */}
@@ -474,6 +534,26 @@ function GameCard({ game, activeTeam, onClick }) {
 // Same styling as the Standings filter row so the two pages read as one UI.
 const SELECT_CLS =
   'px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white'
+
+// The season's game types in schedule order; the Type select offers only
+// those this division/tier actually plays.
+const GAME_TYPES_ORDER = ['FS', 'WS', 'PO', 'PB']
+
+// Short labels for the row badge — the full "Fall Season" wording lives in
+// the detail sheet and the select options.
+const GAME_TYPE_BADGES = {
+  FS: 'Fall',
+  WS: 'Winter',
+  PO: 'Playoffs',
+  PB: 'Playoffs',
+}
+const GAME_TYPE_BADGE_CLS = {
+  FS: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  WS: 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300',
+  PO: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+  PB: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+  _default: 'bg-gray-100 text-gray-600 dark:bg-slate-700 dark:text-slate-300',
+}
 
 function formatSeasonLabel(s) {
   // "25-26" → "2025–26"

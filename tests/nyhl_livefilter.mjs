@@ -314,6 +314,71 @@ try {
         await waitFor(E_TEXT('Leaside Red'), 'own U15 Tier 1 game under the pin'))
   check('LIVE Schedule: card pin scoped to U15 Tier 1',
         !(await evaluate(E_TEXT('George Bell'))))
+
+  // ---- Game type filter (fall / winter / playoffs) ------------------------
+  // Drop the pin first (its chip's X), then check the type select: a
+  // fall-only slice offers only what it plays, and a season with all four
+  // types narrows and restores the list.
+  if (await evaluateRetry(
+    `(() => { const el=[...document.querySelectorAll('button')]` +
+    `.find(b => (b.getAttribute('aria-label') || '') === 'Back to all games');` +
+    ` if (!el) return false; el.click(); return true })()`)) {
+    await waitFor(E_TEXT('Ted Reeve'), 'whole competition back after the pin drops')
+  }
+  check('LIVE Schedule: pin dropped for the type segment', !(await evaluateRetry(E_TEXT('Showing '))))
+
+  const E_TYPE_SELECT =
+    `(() => { const s=[...document.querySelectorAll('select')]` +
+    `.find(s => [...s.options].some(o => o.value==='FS'));` +
+    ` if (!s) return null;` +
+    ` return { opts: [...s.options].map(o => o.textContent.trim()) }; })()`
+  const E_SET_TYPE = (v) =>
+    `(() => { const s=[...document.querySelectorAll('select')]` +
+    `.find(s => [...s.options].some(o => o.value==='FS'));` +
+    ` if (!s) return false;` +
+    ` s.value=${JSON.stringify(v)};` +
+    ` s.dispatchEvent(new Event('change', { bubbles:true })); return true })()`
+  const E_SET_SEASON = (v) =>
+    `(() => { const s=[...document.querySelectorAll('select')]` +
+    `.find(s => [...s.options].some(o => o.value===${JSON.stringify(v)}));` +
+    ` if (!s) return false;` +
+    ` s.value=${JSON.stringify(v)};` +
+    ` s.dispatchEvent(new Event('change', { bubbles:true })); return true })()`
+  const E_CARDS = `document.querySelectorAll('button.rounded-xl').length`
+  const E_BADGE = (t) =>
+    `(() => [...document.querySelectorAll('button.rounded-xl span')].some(s => s.textContent === ${JSON.stringify(t)}))()`
+
+  const ty = await waitFor(E_TYPE_SELECT, 'type select on live Schedule')
+  check('LIVE Schedule: type select is data-derived (fall-only slice)',
+    ty.opts.includes('All types') && ty.opts.includes('Fall Season') && !ty.opts.includes('Winter Season'),
+    JSON.stringify(ty.opts))
+  check('LIVE Schedule: rows carry a fall badge',
+    await waitFor(E_BADGE('Fall'), 'fall badge on a live row'))
+
+  // 25-26 U14 Tier 1 is frozen data with all four types: winter narrows the
+  // list to its games (badged Winter), All types puts the whole slice back.
+  await evaluateRetry(E_SET_SEASON('25-26'))
+  await waitFor(
+    `(() => { const s=[...document.querySelectorAll('select')].find(s => [...s.options].some(o => o.value==='25-26')); return s && s.value==='25-26' })()`,
+    'season select on 25-26')
+  await evaluateRetry(E_SET('div', 'U14'))
+  await evaluateRetry(E_SET('tier', 'Tier 1'))
+  const ty4 = await waitFor(
+    `(() => { const t = ${E_TYPE_SELECT}; return t && t.opts.includes('Playoff Round Robin') ? t : null })()`,
+    'all four types offered on 25-26 U14 Tier 1')
+  check('LIVE Schedule: 25-26 slice offers all four types',
+    ty4.opts.includes('Winter Season'), JSON.stringify(ty4.opts))
+
+  await waitFor(`${E_CARDS} > 0`, 'game cards on 25-26 U14 Tier 1')
+  const allCount = await evaluate(E_CARDS)
+  await evaluateRetry(E_SET_TYPE('WS'))
+  await waitFor(`${E_CARDS} > 0 && ${E_CARDS} < ${allCount}`, 'winter narrows the live list')
+  check('LIVE Schedule: winter narrows the list', true, `${allCount} -> ${await evaluate(E_CARDS)}`)
+  check('LIVE Schedule: narrowed rows are badged Winter', await evaluate(E_BADGE('Winter')))
+
+  await evaluateRetry(E_SET_TYPE('ALL'))
+  await waitFor(`${E_CARDS} === ${allCount}`, 'all types restore the live list')
+  check('LIVE Schedule: all types restore the list', true, `${allCount} cards`)
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

@@ -124,6 +124,8 @@ Check 'D6 not awaiting division'          (-not $d6.Contains('Choose a division 
 Check 'D6 tier select still visible'      $d6.Contains('Choose a tier')
 Check 'D6 pin keeps its chip'             $d6.Contains('Showing Vaughan')
 Check 'D6 pin scoped to linked competition' (-not $d6.Contains('George Bell'))
+Check 'D6 type select offered'             $d6.Contains('All types')
+Check 'D6 rows carry a fall badge'         $d6.Contains('>Fall</span>')
 Check 'D6 summary chips removed'          ((-not $d6.Contains('bg-blue-100')) -and (-not $d6.Contains('bg-purple-100')))
 Check 'D6 header team line removed'       (-not $d6.Contains('w-full text-sm text-nyhl-blue'))
 Check 'D6 header + game rows show team'   ((Count $d6 'Vaughan Blue') -ge 2)

@@ -28,7 +28,7 @@ from its own location, so run them from anywhere. Exit code 0 = pass.
 ```
 npm run build
 npm.cmd run preview -- --port 4173 --strictPort
-powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-uitest.ps1    # 75 checks
+powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-uitest.ps1    # 77 checks
 powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-histtest.ps1  # 22 checks
 ```
 
@@ -39,10 +39,10 @@ them.
 ## CDP suites (headless Chrome)
 
 ```
-node tests/nyhl_filtercheck.mjs   # 15 — division/tier gates + keep rules   (default :4173)
+node tests/nyhl_filtercheck.mjs   # 19 — division/tier gates, keep rules, game type filter  (default :4173)
 node tests/nyhl_starcheck.mjs     #  5 — star marks the exact team instance (default :4173)
 node tests/nyhl_404check.mjs      # 10 — 404 shim contract                  (needs the sim server below)
-node tests/nyhl_livefilter.mjs    # 21 — filter persistence, followed-team browse and pin scope (live site)   (hits the live site)
+node tests/nyhl_livefilter.mjs    # 28 — filter persistence, browse/pin scope, game type filter (live site)   (hits the live site)
 ```
 
 Environment overrides: `BASE_URL` (target site), `WAIT_MS` (load patience),
