@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-01T16:58:01.783940Z",
-  "gameCount": 327,
+  "scrapedAt": "2026-10-02T02:09:22.803668Z",
+  "gameCount": 328,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -21,6 +21,7 @@
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-09-11/18:00",
       "status": "scheduled",
       "score": null
     },
@@ -42,6 +43,7 @@
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-09-15/18:00",
       "status": "scheduled",
       "score": null
     },
@@ -63,6 +65,7 @@
       "tier": "",
       "gameType": "WS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-09-15/18:45",
       "status": "scheduled",
       "score": null
     },
@@ -84,6 +87,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -105,6 +109,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -126,6 +131,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -147,6 +153,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -168,6 +175,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/18:25",
       "status": "scheduled",
       "score": null
     },
@@ -189,6 +197,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/19:35",
       "status": "scheduled",
       "score": null
     },
@@ -210,6 +219,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/20:45",
       "status": "scheduled",
       "score": null
     },
@@ -231,6 +241,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/21:55",
       "status": "scheduled",
       "score": null
     },
@@ -252,6 +263,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -273,6 +285,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -294,6 +307,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -315,6 +329,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -336,6 +351,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -357,6 +373,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -378,6 +395,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -399,6 +417,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -420,6 +439,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-05/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -441,6 +461,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-05/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -462,6 +483,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-05/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -483,6 +505,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -504,6 +527,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -525,6 +549,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -546,6 +571,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -567,6 +593,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-05/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -588,6 +615,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-05/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -609,6 +637,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-05/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -630,6 +659,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-05/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -651,6 +681,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-05/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -672,6 +703,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-05/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -693,6 +725,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-05/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -714,6 +747,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-05/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -735,6 +769,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -756,6 +791,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -777,6 +813,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -798,6 +835,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -819,6 +857,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -840,6 +879,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -861,6 +901,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -882,6 +923,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -903,6 +945,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -924,6 +967,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -945,6 +989,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -966,6 +1011,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -987,6 +1033,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -1008,6 +1055,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -1029,6 +1077,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -1050,6 +1099,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-06/17:55",
       "status": "scheduled",
       "score": null
     },
@@ -1071,6 +1121,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-06/19:00",
       "status": "scheduled",
       "score": null
     },
@@ -1092,6 +1143,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1113,6 +1165,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -1134,6 +1187,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -1155,6 +1209,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -1176,6 +1231,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1197,6 +1253,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -1218,6 +1275,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -1239,6 +1297,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -1260,6 +1319,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1281,6 +1341,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1302,6 +1363,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1323,6 +1385,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/18:40",
       "status": "scheduled",
       "score": null
     },
@@ -1344,6 +1407,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -1365,6 +1429,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -1386,6 +1451,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -1407,6 +1473,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1428,6 +1495,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -1449,6 +1517,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -1470,6 +1539,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -1491,6 +1561,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -1512,6 +1583,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -1533,6 +1605,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -1554,6 +1627,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1575,6 +1649,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -1596,6 +1671,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -1617,6 +1693,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1638,6 +1715,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -1659,6 +1737,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -1680,13 +1759,36 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/21:40",
       "status": "scheduled",
       "score": null
     },
     {
-      "id": "26-27_2026-10-09_18:40_Leaside Red_North Toronto",
+      "id": "26-27_2026-10-09_18:40_Willowdale_Knights",
       "date": "2026-10-09",
       "time": "18:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/18:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-09_19:40_Leaside Red_North Toronto",
+      "date": "2026-10-09",
+      "time": "19:40",
       "homeTeam": {
         "id": "",
         "name": "North Toronto",
@@ -1701,6 +1803,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -1722,6 +1825,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -1743,6 +1847,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -1764,6 +1869,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1785,6 +1891,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1806,6 +1913,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1827,6 +1935,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -1848,6 +1957,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-13/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -1869,6 +1979,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-13/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -1890,6 +2001,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-13/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -1911,6 +2023,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-13/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -1932,6 +2045,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-13/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -1953,6 +2067,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-13/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -1974,6 +2089,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-13/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -1995,6 +2111,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2016,6 +2133,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2037,6 +2155,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2058,6 +2177,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -2079,6 +2199,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-13/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -2100,6 +2221,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-13/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -2121,6 +2243,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-13/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -2142,6 +2265,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-13/17:55",
       "status": "scheduled",
       "score": null
     },
@@ -2163,6 +2287,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-13/19:00",
       "status": "scheduled",
       "score": null
     },
@@ -2184,6 +2309,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2205,6 +2331,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2226,6 +2353,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2247,6 +2375,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -2268,6 +2397,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2289,6 +2419,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2310,6 +2441,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2331,6 +2463,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -2352,6 +2485,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2373,6 +2507,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2394,6 +2529,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2415,6 +2551,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -2436,6 +2573,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2457,6 +2595,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2478,6 +2617,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2499,6 +2639,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2520,6 +2661,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2541,6 +2683,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2562,6 +2705,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -2583,6 +2727,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/18:40",
       "status": "scheduled",
       "score": null
     },
@@ -2604,6 +2749,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/19:50",
       "status": "scheduled",
       "score": null
     },
@@ -2625,6 +2771,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/21:00",
       "status": "scheduled",
       "score": null
     },
@@ -2646,6 +2793,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/22:05",
       "status": "scheduled",
       "score": null
     },
@@ -2667,6 +2815,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2688,6 +2837,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2709,6 +2859,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2730,6 +2881,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -2751,6 +2903,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2772,6 +2925,7 @@
       "tier": "",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -2793,6 +2947,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -2814,6 +2969,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -2835,6 +2991,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -2856,6 +3013,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-16/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -2877,6 +3035,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-16/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -2898,6 +3057,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-16/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -2919,6 +3079,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-16/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -2940,6 +3101,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-16/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -2961,6 +3123,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-16/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -2982,6 +3145,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-16/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -3003,6 +3167,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-16/18:40",
       "status": "scheduled",
       "score": null
     },
@@ -3024,6 +3189,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-16/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -3045,6 +3211,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-16/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -3066,6 +3233,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-16/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -3087,6 +3255,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3108,6 +3277,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3129,6 +3299,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3150,6 +3321,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3171,6 +3343,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/12:10",
       "status": "scheduled",
       "score": null
     },
@@ -3192,6 +3365,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/13:10",
       "status": "scheduled",
       "score": null
     },
@@ -3213,6 +3387,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/14:20",
       "status": "scheduled",
       "score": null
     },
@@ -3234,6 +3409,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/15:20",
       "status": "scheduled",
       "score": null
     },
@@ -3255,6 +3431,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/16:30",
       "status": "scheduled",
       "score": null
     },
@@ -3276,6 +3453,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/17:30",
       "status": "scheduled",
       "score": null
     },
@@ -3297,6 +3475,7 @@
       "tier": "",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3318,6 +3497,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3339,6 +3519,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3360,6 +3541,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3381,6 +3563,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3402,6 +3585,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/18:05",
       "status": "scheduled",
       "score": null
     },
@@ -3423,6 +3607,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/19:15",
       "status": "scheduled",
       "score": null
     },
@@ -3444,6 +3629,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/20:25",
       "status": "scheduled",
       "score": null
     },
@@ -3465,6 +3651,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/21:35",
       "status": "scheduled",
       "score": null
     },
@@ -3486,6 +3673,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/17:50",
       "status": "scheduled",
       "score": null
     },
@@ -3507,6 +3695,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/19:00",
       "status": "scheduled",
       "score": null
     },
@@ -3528,6 +3717,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/20:10",
       "status": "scheduled",
       "score": null
     },
@@ -3549,6 +3739,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/21:20",
       "status": "scheduled",
       "score": null
     },
@@ -3570,6 +3761,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/17:10",
       "status": "scheduled",
       "score": null
     },
@@ -3591,6 +3783,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -3612,6 +3805,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -3633,6 +3827,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -3654,6 +3849,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3675,6 +3871,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3696,6 +3893,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -3717,6 +3915,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-18/17:10",
       "status": "scheduled",
       "score": null
     },
@@ -3738,6 +3937,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-18/18:20",
       "status": "scheduled",
       "score": null
     },
@@ -3759,6 +3959,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-18/19:30",
       "status": "scheduled",
       "score": null
     },
@@ -3780,6 +3981,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-18/20:40",
       "status": "scheduled",
       "score": null
     },
@@ -3801,6 +4003,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/15:40",
       "status": "scheduled",
       "score": null
     },
@@ -3822,6 +4025,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/16:40",
       "status": "scheduled",
       "score": null
     },
@@ -3843,6 +4047,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/17:50",
       "status": "scheduled",
       "score": null
     },
@@ -3864,6 +4069,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/18:50",
       "status": "scheduled",
       "score": null
     },
@@ -3885,6 +4091,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/15:55",
       "status": "scheduled",
       "score": null
     },
@@ -3906,6 +4113,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/17:05",
       "status": "scheduled",
       "score": null
     },
@@ -3927,6 +4135,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/18:15",
       "status": "scheduled",
       "score": null
     },
@@ -3948,6 +4157,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-19/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -3969,6 +4179,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-19/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -3990,6 +4201,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-19/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4011,6 +4223,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-10-19/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4032,6 +4245,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-19/18:25",
       "status": "scheduled",
       "score": null
     },
@@ -4053,6 +4267,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-19/19:35",
       "status": "scheduled",
       "score": null
     },
@@ -4074,6 +4289,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-19/20:45",
       "status": "scheduled",
       "score": null
     },
@@ -4095,6 +4311,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-10-19/21:55",
       "status": "scheduled",
       "score": null
     },
@@ -4116,6 +4333,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -4137,6 +4355,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -4158,6 +4377,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4179,6 +4399,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4200,6 +4421,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-19/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -4221,6 +4443,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-19/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -4242,6 +4465,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-19/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -4263,6 +4487,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-19/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -4284,6 +4509,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-19/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -4305,6 +4531,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-19/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4326,6 +4553,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-19/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4347,6 +4575,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-19/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -4368,6 +4597,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-19/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -4389,6 +4619,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-10-19/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -4410,6 +4641,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Honey and Barry North",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4431,6 +4663,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Honey and Barry North",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4452,6 +4685,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Honey and Barry North",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4473,6 +4707,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4494,6 +4729,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4515,6 +4751,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4536,6 +4773,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4557,6 +4795,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -4578,6 +4817,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -4599,6 +4839,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4620,6 +4861,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4641,6 +4883,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4662,6 +4905,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4683,6 +4927,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4704,6 +4949,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -4725,6 +4971,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -4746,6 +4993,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -4767,6 +5015,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4788,6 +5037,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4809,6 +5059,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-20/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -4830,6 +5081,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-20/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -4851,6 +5103,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-10-20/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -4872,6 +5125,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -4893,6 +5147,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -4914,6 +5169,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -4935,6 +5191,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -4956,6 +5213,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-20/19:40",
       "status": "scheduled",
       "score": null
     },
@@ -4977,6 +5235,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-20/20:50",
       "status": "scheduled",
       "score": null
     },
@@ -4998,6 +5257,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-10-20/22:00",
       "status": "scheduled",
       "score": null
     },
@@ -5019,6 +5279,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-20/17:55",
       "status": "scheduled",
       "score": null
     },
@@ -5040,6 +5301,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-10-20/19:00",
       "status": "scheduled",
       "score": null
     },
@@ -5061,6 +5323,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5082,6 +5345,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5103,6 +5367,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5124,6 +5389,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5145,6 +5411,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-22/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5166,6 +5433,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-22/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5187,6 +5455,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-22/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5208,6 +5477,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-22/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5229,6 +5499,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-22/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5250,6 +5521,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-22/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5271,6 +5543,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-22/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5292,6 +5565,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-10-22/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5313,6 +5587,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5334,6 +5609,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5355,6 +5631,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5376,6 +5653,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5397,6 +5675,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5418,6 +5697,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5439,6 +5719,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -5460,6 +5741,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-22/18:40",
       "status": "scheduled",
       "score": null
     },
@@ -5481,6 +5763,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-22/19:50",
       "status": "scheduled",
       "score": null
     },
@@ -5502,6 +5785,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-22/21:00",
       "status": "scheduled",
       "score": null
     },
@@ -5523,6 +5807,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-22/22:05",
       "status": "scheduled",
       "score": null
     },
@@ -5544,6 +5829,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-22/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5565,6 +5851,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-22/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5586,6 +5873,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-22/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5607,6 +5895,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-10-22/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5628,6 +5917,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-23/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5649,6 +5939,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-23/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -5670,6 +5961,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-23/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -5691,6 +5983,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-23/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -5712,6 +6005,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-23/19:10",
       "status": "scheduled",
       "score": null
     },
@@ -5733,6 +6027,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-23/20:20",
       "status": "scheduled",
       "score": null
     },
@@ -5754,6 +6049,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-10-23/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -5775,6 +6071,7 @@
       "tier": "",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5796,6 +6093,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5817,6 +6115,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5838,6 +6137,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5859,6 +6159,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/18:10",
       "status": "scheduled",
       "score": null
     },
@@ -5880,6 +6181,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/19:20",
       "status": "scheduled",
       "score": null
     },
@@ -5901,6 +6203,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/20:30",
       "status": "scheduled",
       "score": null
     },
@@ -5922,6 +6225,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/21:40",
       "status": "scheduled",
       "score": null
     },
@@ -5943,6 +6247,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/18:40",
       "status": "scheduled",
       "score": null
     },
@@ -5964,6 +6269,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/19:50",
       "status": "scheduled",
       "score": null
     },
@@ -5985,6 +6291,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/21:00",
       "status": "scheduled",
       "score": null
     },
@@ -6006,6 +6313,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/22:05",
       "status": "scheduled",
       "score": null
     },
@@ -6027,6 +6335,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6048,6 +6357,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6069,6 +6379,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6090,6 +6401,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini A",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6111,6 +6423,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/12:10",
       "status": "scheduled",
       "score": null
     },
@@ -6132,6 +6445,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/13:10",
       "status": "scheduled",
       "score": null
     },
@@ -6153,6 +6467,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/14:20",
       "status": "scheduled",
       "score": null
     },
@@ -6174,6 +6489,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/15:20",
       "status": "scheduled",
       "score": null
     },
@@ -6195,6 +6511,7 @@
       "tier": "Tier E",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/16:30",
       "status": "scheduled",
       "score": null
     },
@@ -6216,6 +6533,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/17:30",
       "status": "scheduled",
       "score": null
     },
@@ -6237,6 +6555,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6258,6 +6577,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6279,6 +6599,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6300,6 +6621,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini B",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6321,6 +6643,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/18:05",
       "status": "scheduled",
       "score": null
     },
@@ -6342,6 +6665,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/19:15",
       "status": "scheduled",
       "score": null
     },
@@ -6363,6 +6687,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/20:25",
       "status": "scheduled",
       "score": null
     },
@@ -6384,6 +6709,7 @@
       "tier": "",
       "gameType": "FS",
       "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/21:35",
       "status": "scheduled",
       "score": null
     },
@@ -6405,6 +6731,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/17:50",
       "status": "scheduled",
       "score": null
     },
@@ -6426,6 +6753,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/19:00",
       "status": "scheduled",
       "score": null
     },
@@ -6447,6 +6775,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/20:10",
       "status": "scheduled",
       "score": null
     },
@@ -6468,6 +6797,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/21:20",
       "status": "scheduled",
       "score": null
     },
@@ -6489,6 +6819,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/17:10",
       "status": "scheduled",
       "score": null
     },
@@ -6510,6 +6841,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/18:20",
       "status": "scheduled",
       "score": null
     },
@@ -6531,6 +6863,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/19:30",
       "status": "scheduled",
       "score": null
     },
@@ -6552,6 +6885,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/20:40",
       "status": "scheduled",
       "score": null
     },
@@ -6573,6 +6907,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6594,6 +6929,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6615,6 +6951,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -6636,6 +6973,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-25/17:10",
       "status": "scheduled",
       "score": null
     },
@@ -6657,6 +6995,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-25/18:20",
       "status": "scheduled",
       "score": null
     },
@@ -6678,6 +7017,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-25/19:30",
       "status": "scheduled",
       "score": null
     },
@@ -6699,6 +7039,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-10-25/20:40",
       "status": "scheduled",
       "score": null
     },
@@ -6720,6 +7061,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/13:50",
       "status": "scheduled",
       "score": null
     },
@@ -6741,6 +7083,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/14:50",
       "status": "scheduled",
       "score": null
     },
@@ -6762,6 +7105,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/16:00",
       "status": "scheduled",
       "score": null
     },
@@ -6783,6 +7127,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/17:00",
       "status": "scheduled",
       "score": null
     },
@@ -6804,6 +7149,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/14:40",
       "status": "scheduled",
       "score": null
     },
@@ -6825,6 +7171,7 @@
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/15:50",
       "status": "scheduled",
       "score": null
     },
@@ -6846,6 +7193,7 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/17:00",
       "status": "scheduled",
       "score": null
     },
@@ -6867,6 +7215,7 @@
       "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/18:00",
       "status": "scheduled",
       "score": null
     }
@@ -6977,6 +7326,7 @@
       "Habitant",
       "Herbert Carnegie",
       "Heron Park",
+      "Honey and Barry",
       "John Booth",
       "Lambton",
       "Leaside",
