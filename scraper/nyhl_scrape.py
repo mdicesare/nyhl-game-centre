@@ -431,6 +431,13 @@ def parse_schedule_table(html: str) -> list[dict]:
             arena = arena_cell.get_text(strip=True) if arena_cell else ""
             status = status_cell.get_text(strip=True) if status_cell else ""
 
+            # The watch button is an unlabelled trailing cell (its header is
+            # an empty <th>) holding an anchor to LiveBarn that wraps a
+            # stream icon — present for some games only. Match on the href
+            # so the row's postback anchors can't be mistaken for it.
+            stream_a = tr.find("a", href=re.compile("livebarn", re.I))
+            livebarn = stream_a.get("href", "").strip() if stream_a else ""
+
         elif len(cells) >= 10:
             # --- legacy shape ---
             date_cell = cells[0]
@@ -454,6 +461,9 @@ def parse_schedule_table(html: str) -> list[dict]:
             game_type = cells[8].get_text(strip=True)
             arena = cells[9].get_text(strip=True)
             status = cells[10].get_text(strip=True) if len(cells) > 10 else ""
+            # Column 11 is the LiveBarn link or empty.
+            stream_a = cells[11].find("a") if len(cells) > 11 else None
+            livebarn = stream_a.get("href", "").strip() if stream_a else ""
         else:
             continue
 
@@ -468,6 +478,7 @@ def parse_schedule_table(html: str) -> list[dict]:
             "gameType": game_type,
             "arena": arena,
             "status": status,
+            "livebarn": livebarn,
         }
         rows.append(row)
 
@@ -923,6 +934,10 @@ def normalize_game(raw: dict, season: str) -> dict:
         "tier": raw.get("tier", ""),
         "gameType": raw.get("gameType", ""),
         "arena": raw.get("arena", ""),
+        # LiveBarn watch URL ("" when the source offers no stream for the
+        # game). Kept on the game so the list and detail sheet can link
+        # straight to the replay instead of the visitor hunting for it.
+        "livebarn": raw.get("livebarn", ""),
         "status": status_cat,
         "score": score,
     }
@@ -1234,12 +1249,31 @@ def scrape_standings(
             event_ids[gt] = extract_event_id(html) or event_ids[gt]
             raw_tier_options = extract_select_options(html, "ddlTier")
             tier_options = raw_tier_options or ["Tier 1"]
+            default_rows = parse_standings_table(html)
+            if not default_rows:
+                # A response with no standings table is not this slice
+                # speaking. Selecting a historical season turns the later
+                # game-type answers into tableless pages whose tier dropdowns
+                # describe another season (the 24-25 WS pass lists 25-26's
+                # tiers); recording those as "what the site offers" would
+                # retire rows the run never looked at — 24-25 U09 Tier 1 WS
+                # is real — and its tier posts answer just as empty. The
+                # merge carries the slice instead, the honest state of data
+                # this run did not actually see.
+                log.info(
+                    "Standings %s %s %s: no table in the response — slice "
+                    "carried, nothing recorded",
+                    season, div, gt,
+                )
+                continue
             if listed_tiers is not None and raw_tier_options:
                 # The dropdown is the site's own statement of which tiers have
-                # tables for this (division, game type). Remember it so the
-                # merge can retire rows for a tier the site does not offer —
-                # a WS-only pod's fabricated FS rows used to live forever,
-                # because a slice this run returns nothing for is carried on.
+                # tables for this (division, game type) — read only from a
+                # response that actually rendered a table, per the guard above.
+                # Remember it so the merge can retire rows for a tier the site
+                # does not offer: a WS-only pod's fabricated FS rows used to
+                # live forever, because a slice this run returns nothing for
+                # is carried on.
                 listed_tiers[(div, gt)] = {tier_label(t) for t in raw_tier_options}
             # Options are posted back exactly as the site lists them (ASP.NET
             # rejects an unlisted value); comparisons use their canonical
@@ -1251,7 +1285,7 @@ def scrape_standings(
             )
 
             counted = {}
-            for raw in parse_standings_table(html):
+            for raw in default_rows:
                 raw_tier = tier_label(raw.get("tier"))
                 # An explicit --tier run keeps only that tier; with tier=ALL
                 # accept whatever the server chose to show for this division.

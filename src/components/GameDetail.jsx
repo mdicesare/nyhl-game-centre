@@ -190,6 +190,19 @@ export default function GameDetail({ game, onClose }) {
               <span className="font-medium dark:text-slate-200">{formatGameType(game.gameType)}</span>
             </div>
           )}
+          {game.livebarn && (
+            <div className="flex justify-between">
+              <span className="text-gray-500 dark:text-slate-400">Watch</span>
+              <a
+                href={game.livebarn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-nyhl-blue hover:underline"
+              >
+                LiveBarn ↗
+              </a>
+            </div>
+          )}
         </div>
 
         <button

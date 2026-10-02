@@ -521,9 +521,26 @@ function GameCard({ game, activeTeam, onClick }) {
         )}
       </div>
 
-      {/* Arena */}
-      {game.arena && (
-        <p className="text-xs text-gray-400 dark:text-slate-500 mt-2">📍 {game.arena}</p>
+      {/* Arena / watch — the LiveBarn link is the only thing on the card
+          that leaves the app, so it stops the card's own click: the visitor
+          gets the stream, not the detail sheet opening behind the new tab. */}
+      {(game.arena || game.livebarn) && (
+        <div className="flex items-center justify-between gap-2 mt-2">
+          {game.arena && (
+            <p className="text-xs text-gray-400 dark:text-slate-500">📍 {game.arena}</p>
+          )}
+          {game.livebarn && (
+            <a
+              href={game.livebarn}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-xs font-medium text-nyhl-blue hover:underline whitespace-nowrap"
+            >
+              📺 Watch
+            </a>
+          )}
+        </div>
       )}
     </button>
   )

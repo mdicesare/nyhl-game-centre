@@ -28,7 +28,7 @@ from its own location, so run them from anywhere. Exit code 0 = pass.
 ```
 npm run build
 npm.cmd run preview -- --port 4173 --strictPort
-powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-uitest.ps1    # 77 checks
+powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-uitest.ps1    # 78 checks
 powershell -NoProfile -ExecutionPolicy Bypass -File tests/nyhl-histtest.ps1  # 22 checks
 ```
 

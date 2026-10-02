@@ -119,9 +119,39 @@ jobs:
           git push
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    # Data commits are [skip ci], so push CI never sees them: gate this
+    # deploy on the suites reading the snapshot the scrape just made —
+    # bad standings merge into main, but they do not reach Pages.
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.scrape.outputs.sha || github.ref_name }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: Install scraper dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Scraper unit tests
+        run: |
+          python tests/nyhl_merge_test.py
+          python tests/nyhl_health_test.py
+
+      - name: Standings vs schedule data agreement
+        run: python tests/nyhl_fullcheck.py
+
   build:
     name: Build & Deploy
-    needs: scrape
+    needs: [scrape, tests]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

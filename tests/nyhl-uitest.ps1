@@ -44,6 +44,24 @@ Write-Seed 'seed-twinS'  (Prefs ($V27 + ',' + $V26) 'Vaughan Blue' '26-27' $F_T1
 Write-Seed 'seed-twinC'  (Prefs ($V27 + ',' + $V26) 'Vaughan Blue' '26-27' $F_T1) '/nyhl-game-centre/schedule'
 Write-Seed 'seed-opp'    (Prefs $V27 'Vaughan Blue' '26-27' $F_T1) '/nyhl-game-centre/schedule?team=Leaside+Red&division=U15&tier=Tier+1&season=26-27'
 
+# Fixture: stamp one game the seed-deep pin is guaranteed to list with a
+# LiveBarn URL, so the watch link's render is covered before any scrape has
+# landed real links. Only dist is touched — a rebuild (documented below)
+# clears it, exactly like the seed files.
+$schedJson = Join-Path $dist 'data/schedule-26-27.json'
+$sched = Get-Content -Raw -Encoding UTF8 $schedJson | ConvertFrom-Json
+$patched = $false
+foreach ($g in $sched.games) {
+  if (-not $patched -and $g.division -eq 'U15' -and $g.tier -eq 'Tier 1' -and
+      ($g.homeTeam.name -eq 'Vaughan Blue' -or $g.awayTeam.name -eq 'Vaughan Blue')) {
+    $g | Add-Member -NotePropertyName livebarn -NotePropertyValue 'https://livebarn.com/en/video/9999/2026-10-05/18:10' -Force
+    $patched = $true
+  }
+}
+if (-not $patched) { throw 'uitest fixture: no Vaughan Blue U15 Tier 1 game to stamp with livebarn' }
+# WriteAllText, not Set-Content: PS5's UTF8 would add a BOM.
+[System.IO.File]::WriteAllText($schedJson, ($sched | ConvertTo-Json -Depth 16))
+
 $seeds = 'seed-home', 'seed-bug1', 'seed-guard', 'seed-legacy', 'seed-two', 'seed-deep', 'seed-deepst', 'seed-none', 'seed-twin', 'seed-twinS', 'seed-twinC', 'seed-opp'
 foreach ($s in $seeds) {
   $prof = Join-Path $work "prof-$s"
@@ -126,6 +144,7 @@ Check 'D6 pin keeps its chip'             $d6.Contains('Showing Vaughan')
 Check 'D6 pin scoped to linked competition' (-not $d6.Contains('George Bell'))
 Check 'D6 type select offered'             $d6.Contains('All types')
 Check 'D6 rows carry a fall badge'         $d6.Contains('>Fall</span>')
+Check 'D6 watch link on a streamed game'   ($d6.Contains('livebarn.com') -and $d6.Contains('Watch'))
 Check 'D6 summary chips removed'          ((-not $d6.Contains('bg-blue-100')) -and (-not $d6.Contains('bg-purple-100')))
 Check 'D6 header team line removed'       (-not $d6.Contains('w-full text-sm text-nyhl-blue'))
 Check 'D6 header + game rows show team'   ((Count $d6 'Vaughan Blue') -ge 2)
