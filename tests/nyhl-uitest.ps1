@@ -111,6 +111,7 @@ Check 'D1 card season label 2026-27'      (HasEn $d1 '2026' '27')
 Check 'D1 next-game bleed removed'        (-not $d1.Contains('-mx-3'))
 Check 'D1 stats left aligned (3 cells)'   ((Count $d1 '<div class="text-left">') -eq 3)
 Check 'D1 refresh control present'        $d1.Contains('Refresh data')
+Check 'D1 stamp above source credit'      (($d1.IndexOf('Data sourced from') -gt 0) -and ($d1.IndexOf('Refresh data') -ge 0) -and ($d1.IndexOf('Refresh data') -lt $d1.IndexOf('Data sourced from')))
 
 Write-Output '--- D2 seed-bug1 (cross-season card regression) ---'
 Check 'D2 card own-season label'          (HasEn $d2 '2026' '27')
@@ -160,6 +161,7 @@ Check 'D7 saved-team chips removed'       (-not $d7.Contains('flex gap-2 mb-3 ov
 Write-Output '--- D8 seed-none (Settings season picker) ---'
 Check 'D8 season picker offered'          ($d8.Contains('>Season</label>') -and (HasEn $d8 '2026' '27'))
 Check 'D8 empty-state finder shown'       $d8.Contains('Find your team')
+Check 'D8 about states the update time'   ($d8.Contains('10:00 UTC') -and (-not $d8.Contains('Updated regularly')))
 
 Write-Output '--- D9 seed-twin (same name, two seasons, two cards) ---'
 Check 'D9 both cards get doors'           ((Count $d9 'Open Vaughan Blue schedule') -eq 2)
@@ -173,7 +175,9 @@ Write-Output '--- D10 seed-twinS (settings lists both) ---'
 Check 'D10 two saved rows'                $d10.Contains('My Teams (2)')
 Check 'D10 exactly one active row'        ((Count $d10 'Set active') -eq 1)
 Check 'D10 seasons distinguish twins'     ((HasEn $d10 '2025' '26') -and (HasEn $d10 '2026' '27'))
-Check 'D10 both names listed'             ((Count $d10 'Vaughan Blue') -eq 3)
+Check 'D10 both names listed'             ((Count $d10 '>Vaughan Blue<') -eq 3)
+Check 'D10 remove controls labelled'      (((Count $d10 'aria-label="Remove Vaughan Blue"') -eq 2) -and ((Count $d10 'aria-label="Remove ') -eq 2))
+Check 'D10 bare glyph remove gone'        (-not $d10.Contains('>✕<'))
 
 Write-Output '--- D11 seed-twinC (chips removed; header + filters carry state) ---'
 Check 'D11 saved-team chips removed'      (-not $d11.Contains('flex gap-2 mb-3 overflow-x-auto'))

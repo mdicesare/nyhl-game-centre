@@ -99,23 +99,30 @@ export default function Settings() {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => handleRemoveTeam(teamId(team))}
-                        className="text-xs text-red-600 font-medium"
+                        aria-label={`Confirm remove ${team.name}`}
+                        className="text-xs text-white bg-red-600 px-2 py-1 rounded-md hover:bg-red-700 transition-colors"
                       >
-                        Remove
+                        Yes, remove
                       </button>
                       <button
                         onClick={() => setConfirmRemove(null)}
+                        aria-label={`Keep ${team.name}`}
                         className="text-xs text-gray-400 dark:text-slate-500"
                       >
                         Cancel
                       </button>
                     </div>
                   ) : (
+                    // Labelled, not a bare glyph: an unmarked ✕ at the card
+                    // edge read as decoration and the remove path went
+                    // unnoticed. Red text pairs with "Set active" without
+                    // shouting; the confirm step still guards the tap.
                     <button
                       onClick={() => setConfirmRemove(teamId(team))}
-                      className="text-xs text-gray-400 dark:text-slate-500 hover:text-red-500"
+                      aria-label={`Remove ${team.name}`}
+                      className="text-xs text-red-500 hover:text-red-600 hover:underline font-medium"
                     >
-                      ✕
+                      Remove
                     </button>
                   )}
                 </div>
@@ -183,7 +190,10 @@ export default function Settings() {
             North York Hockey League Game Center — Schedules, standings, and results for your NYHL teams.
           </p>
           <p>
-            Data sourced from the NYHL/Agilex Game Centre. Updated regularly.
+            Data sourced from the NYHL/Agilex Game Centre. Refreshed daily at
+            10:00 UTC — early morning in Eastern time — by an automated
+            scrape, and whenever you tap ⟳ Refresh on any page. The footer
+            shows the exact time of the last update.
           </p>
           <p>
             This is an unofficial fan tool and is not affiliated with NYHL or Agilex.

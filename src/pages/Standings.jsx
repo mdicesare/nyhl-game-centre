@@ -5,7 +5,7 @@ import { useData } from '../hooks/useData.jsx'
 // A standings row leads to that team's own schedule, not to whatever team the
 // visitor happens to follow.
 import { teamScheduleLink } from '../lib/links.js'
-import UpdatedStamp from '../components/UpdatedStamp.jsx'
+
 
 const GAME_TYPE_LABELS = {
   'FS': 'Fall Season',
@@ -336,8 +336,6 @@ export default function Standings() {
       )}
       </div>
       )}
-
-      <UpdatedStamp />
     </div>
   )
 }

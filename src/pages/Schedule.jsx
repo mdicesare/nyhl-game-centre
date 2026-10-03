@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameType } from '../components/GameDetail.jsx'
-import UpdatedStamp from '../components/UpdatedStamp.jsx'
+
 import { teamId } from '../lib/teams.js'
 
 export default function Schedule() {
@@ -410,8 +410,6 @@ export default function Schedule() {
       )}
       </div>
       )}
-
-      <UpdatedStamp />
 
       {/* Game detail modal */}
       {selectedGame && (

@@ -164,6 +164,12 @@ const E_PICK = (t, v) =>
 
 const E_LABEL = (t) => `(() => { const t = ${E_TRIGGER(t)}; return t ? t.textContent.trim() : null })()`
 
+// Plain button by exact visible text (Settings' remove/confirm controls).
+const E_CLICK_BTN = (txt) =>
+  `(() => { const b = [...document.querySelectorAll('button')].` +
+  `find(x => x.textContent.trim() === ${JSON.stringify(txt)});` +
+  ` if (!b) return false; b.click(); return true })()`
+
 let ws
 try {
   await waitForJson(`http://127.0.0.1:${PORT}/json/version`)
@@ -445,6 +451,45 @@ try {
   check('Standings: played slice with no table stays blank (24-25 U11 T2)',
     !(await evaluate(`document.querySelectorAll('table tbody tr').length > 0`)),
     'no synthesized rows for a finished season')
+
+  // ---- Settings: remove a saved team --------------------------------------
+  // The remove path is a labelled button behind a confirm step (a bare ✕
+  // glyph went unnoticed), so drive the whole flow: offer, cancel, confirm.
+  await evaluateRetry(E_SEED({
+    ...SEED,
+    savedTeams: [
+      { name: 'Vaughan Blue', division: 'U15', tier: 'Tier 1', season: '26-27' },
+      { name: 'Leaside Red', division: 'U15', tier: 'Tier 1', season: '26-27' },
+    ],
+    activeTeam: null,
+  }))
+  await nav(`${BASE}/settings`)
+  // The heading carries Tailwind's `uppercase`, and innerText returns the
+  // transformed text — the needle must be upper case, unlike the raw HTML
+  // the PowerShell suite greps.
+  await waitFor(E_TEXT('MY TEAMS (2)'), 'two saved teams on Settings')
+  const labelled = await evaluate(`document.querySelectorAll('[aria-label^="Remove "]').length`)
+  check('Settings: remove controls labelled', labelled === 2, `${labelled} labelled Remove buttons`)
+
+  // Cancel must leave the list alone — the confirm step is reachable but
+  // not a one-way door.
+  await waitFor(E_CLICK_BTN('Remove'), 'first Remove click')
+  await waitFor(E_TEXT('Yes, remove'), 'confirm step shown')
+  await waitFor(E_CLICK_BTN('Cancel'), 'Cancel click')
+  await waitFor(`!document.body.innerText.includes('Yes, remove')`, 'confirm dismissed')
+  check('Settings: cancel keeps the team',
+    await evaluate(E_TEXT('MY TEAMS (2)')), 'list unchanged after Cancel')
+
+  // Confirm removes it from state and from storage alike.
+  await waitFor(E_CLICK_BTN('Remove'), 'Remove click again')
+  await waitFor(E_TEXT('Yes, remove'), 'confirm step shown again')
+  await waitFor(E_CLICK_BTN('Yes, remove'), 'confirm click')
+  await waitFor(E_TEXT('MY TEAMS (1)'), 'list shrunk to one')
+  const persisted = await waitFor(
+    `(JSON.parse(localStorage.getItem('nyhl-preferences') || '{}').savedTeams || []).length === 1 ? true : false`,
+    'removal persisted to localStorage'
+  )
+  check('Settings: confirm removes and persists', persisted, 'savedTeams length 1 in storage')
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

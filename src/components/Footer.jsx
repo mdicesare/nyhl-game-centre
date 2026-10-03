@@ -1,6 +1,13 @@
+import UpdatedStamp from './UpdatedStamp.jsx'
+
+// The one bottom panel every route shares (Layout pages and Landing), so
+// freshness lives in a single spot: the "Updated … ⟳ Refresh" line sits
+// directly above the source credit instead of each page carrying its own
+// copy at a different scroll depth.
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50 pt-4 pb-4 px-4 text-center transition-colors">
+      <UpdatedStamp />
       <p className="text-xs text-gray-400 dark:text-slate-400">
         Data sourced from{' '}
         <a
@@ -12,7 +19,7 @@ export default function Footer() {
           North York Hockey League
         </a>
       </p>
-      <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">
+      <p className="text-xs text-gray-500 dark:text-slate-500 mt-1">
         Powered by{' '}
         <a
           href="http://www.agilex.ca/"

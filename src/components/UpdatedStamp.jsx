@@ -1,7 +1,8 @@
 import { useData } from '../hooks/useData.jsx'
 
-// The "Updated …" footer every data page used to carry a copy of, plus the
-// manual way to ask for fresh data. iOS standalone PWAs have no
+// The single "Updated …" line plus the manual way to ask for fresh data,
+// rendered inside the shared footer panel directly above the source credit
+// — one copy, one place, on every page. iOS standalone PWAs have no
 // pull-to-refresh, so instead of adding a hidden gesture (or fighting
 // Android's built-in one) the control sits exactly where the freshness
 // claim already is.
@@ -9,7 +10,7 @@ export default function UpdatedStamp() {
   const { lastUpdated, reload, loading } = useData()
   if (!lastUpdated) return null
   return (
-    <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-8">
+    <p className="text-xs text-gray-400 dark:text-slate-500 text-center mb-2">
       Updated {formatTimestamp(lastUpdated)}
       <button
         type="button"

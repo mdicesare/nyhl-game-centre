@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameDate, formatTime, formatGameType } from '../components/GameDetail.jsx'
-import UpdatedStamp from '../components/UpdatedStamp.jsx'
+
 import { teamScheduleLink, teamStandingsLink } from '../lib/links.js'
 import { teamId } from '../lib/teams.js'
 
@@ -63,8 +63,6 @@ export default function Home() {
           + {extraCount} more {extraCount === 1 ? 'team' : 'teams'}
         </Link>
       )}
-
-      <UpdatedStamp />
 
       {selectedGame && (
         <GameDetail game={selectedGame} onClose={() => setSelectedGame(null)} />
