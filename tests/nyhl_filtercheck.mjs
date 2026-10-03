@@ -551,13 +551,31 @@ try {
   await waitFor(E_CLICK_BTN('Vaughan Blue · 26-27'), 'quick chip click on Schedule')
   const pinned = await waitFor(
     `(() => { const s = ${E_STATE}; const se = ${E_SEASON};` +
-    ` const pin = document.body.innerText.includes('Showing Vaughan Blue');` +
+    ` const chip = document.querySelector('[aria-label="Quick filter Vaughan Blue · 26-27"]');` +
+    ` const lit = chip && chip.getAttribute('aria-pressed') === 'true';` +
     ` const cards = document.querySelectorAll('button.rounded-xl').length;` +
-    ` return s && s.div === 'U15' && s.tier === 'Tier 1' && se === '26-27' && pin && cards > 0` +
+    ` return s && s.div === 'U15' && s.tier === 'Tier 1' && se === '26-27' && lit && cards > 0` +
     ` ? true : false })()`,
-    'pin + competition + games after the Schedule chip')
+    'active chip + competition + games after the Schedule chip')
   check('Schedule: chip pins the team with its competition', pinned,
-    'Showing chip, U15 Tier 1, 2026-27, games listed')
+    'chip lit, U15 Tier 1, 2026-27, games listed')
+  check('Schedule: active chip replaces the Showing pill',
+    !(await evaluate(E_TEXT('Showing '))), 'no redundant pill while the chip is lit')
+
+  // The lit chip is also the way back: tap it again and the pin drops,
+  // leaving the team's competition browsable for everyone.
+  const pinnedCards = await evaluate(
+    `document.querySelectorAll('button.rounded-xl').length`)
+  await waitFor(E_CLICK_BTN('Vaughan Blue · 26-27'), 'active chip click (toggle off)')
+  const toggled = await waitFor(
+    `(() => { const chip = document.querySelector('[aria-label="Quick filter Vaughan Blue · 26-27"]');` +
+    ` const unlit = chip && chip.getAttribute('aria-pressed') === 'false';` +
+    ` const clean = !location.search.includes('team=');` +
+    ` const cards = document.querySelectorAll('button.rounded-xl').length;` +
+    ` return unlit && clean && cards >= ${pinnedCards} ? true : false })()`,
+    'pin dropped by the chip toggle')
+  check('Schedule: tapping the active chip drops the pin', toggled,
+    'chip unlit, team out of the URL, list widened back')
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

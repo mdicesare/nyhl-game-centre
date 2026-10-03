@@ -39,7 +39,7 @@ them.
 ## CDP suites (headless Chrome)
 
 ```
-node tests/nyhl_filtercheck.mjs   # 30 — division/tier gates, keep rules, game type filter, finder list scoping, pre-season zero tables, saved-team removal, quick team filter  (default :4173)
+node tests/nyhl_filtercheck.mjs   # 32 — division/tier gates, keep rules, game type filter, finder list scoping, pre-season zero tables, saved-team removal, quick team filter  (default :4173)
 node tests/nyhl_starcheck.mjs     #  5 — star marks the exact team instance (default :4173)
 node tests/nyhl_404check.mjs      # 10 — 404 shim contract                  (needs the sim server below)
 node tests/nyhl_livefilter.mjs    # 32 — filter persistence, browse/pin scope, game type filter, quick team filter (live site)   (hits the live site)

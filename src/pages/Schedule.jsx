@@ -176,13 +176,27 @@ export default function Schedule() {
   // Back to the normal division/tier view.
   const clearFocus = useCallback(() => setSearchParams({}, { replace: true }), [setSearchParams])
 
+  // What makes a saved team's chip active here: the pin sits on that exact
+  // instance (name + season) and the selects show its competition.
+  const quickMatches = (team) =>
+    (team.season || season) === season &&
+    focusTeam === team.name &&
+    filters.division === (team.division || 'ALL') &&
+    filters.tier === (team.tier || 'ALL')
+
   // One tap back to a saved team: its competition and season replace whatever
   // the selects were left on, the tabs reset to all games, and the team is
   // pinned so the list narrows to its own games — the same state a standings
-  // row's or Home card's link lands in. Nothing here goes through the
-  // selects' handlers, so an old pin is simply swapped for this team instead
-  // of being cleared on the way.
+  // row's or Home card's link lands in. Tapping the chip you are already on
+  // drops the pin instead: while a chip is lit it — not the "Showing …"
+  // pill, which stays hidden for it — marks the pin and takes it back off.
+  // Nothing here goes through the selects' handlers, so an existing pin on
+  // another team is simply swapped rather than cleared on the way.
   const quickPin = (team) => {
+    if (quickMatches(team)) {
+      clearFocus()
+      return
+    }
     if (team.season && team.season !== season) setSeason(team.season)
     setFilters({
       division: team.division || 'ALL',
@@ -303,12 +317,7 @@ export default function Schedule() {
 
       <TeamQuickFilter
         teams={savedTeams}
-        isActive={(team) =>
-          (team.season || season) === season &&
-          focusTeam === team.name &&
-          filters.division === (team.division || 'ALL') &&
-          filters.tier === (team.tier || 'ALL')
-        }
+        isActive={quickMatches}
         onSelect={quickPin}
       />
 
@@ -326,10 +335,11 @@ export default function Schedule() {
         </div>
       ) : (
       <div>
-      {/* A pin is the only thing narrowing the list to one team, so it
-          always earns its line — the ✕ is the way back to the whole
-          competition. */}
-      {focusTeam && (
+      {/* A pin nothing else marks still earns its line — the ✕ is the way
+          back to the whole competition. While a quick-filter chip is lit it
+          already shows this pin and toggles it off, so the pill would only
+          repeat what the chip says. */}
+      {focusTeam && !savedTeams.some(quickMatches) && (
         <div className="flex items-center gap-2 mb-4 flex-wrap">
           <span className="inline-flex items-center gap-2 bg-nyhl-blue text-white text-xs font-medium px-2.5 py-1 rounded-full">
             Showing {focusTeam}'s games

@@ -329,7 +329,7 @@ try {
 
   st = await waitFor(E_STATE_IF(`s.div === 'U15' && s.tier === 'Tier 1'`), 'followed-team filters on live Schedule')
   check('LIVE Schedule: followed-team filters seeded', st && st.tier === 'Tier 1', JSON.stringify(st))
-  check('LIVE Schedule: no pin chip on plain browse', !(await evaluateRetry(E_TEXT('Showing '))))
+  check('LIVE Schedule: no pin on plain browse', !(await evaluate(`location.search.includes('team=')`)))
   check('LIVE Schedule: whole competition shown', await waitFor(E_TEXT('Ted Reeve'), 'a non-followed team in the live browse'))
   check('LIVE Schedule: own team highlighted', await evaluateRetry(`document.body.innerHTML.includes('from-nyhl-blue/5')`))
 
@@ -340,21 +340,27 @@ try {
   check('LIVE Schedule: quick team filter present',
     await waitFor(`document.querySelectorAll('[aria-label^="Quick filter "]').length === 1`,
       'quick filter chip on live Schedule'))
+  const CHIP_SEL = '[aria-label="Quick filter Vaughan Blue"]'
+  const E_CHIP_LIT =
+    `(() => { const c = document.querySelector('${CHIP_SEL}');` +
+    ` return !!c && c.getAttribute('aria-pressed') === 'true' })()`
+  const E_CHIP_CLICK =
+    `(() => { const c = document.querySelector('${CHIP_SEL}');` +
+    ` if (!c) return false; c.click(); return true })()`
+  await waitFor(E_CHIP_CLICK, 'quick filter chip click')
+  await waitFor(E_CHIP_LIT, 'lit chip after the quick filter click')
+  check('LIVE Schedule: quick filter pins the team (chip lit)',
+    await evaluate(`!document.body.innerText.includes('Showing ')`),
+    'pill stays hidden for a saved team')
+  // The lit chip is also the way back: tap it again and the pin drops.
+  await waitFor(E_CHIP_CLICK, 'active chip click (toggle off)')
   await waitFor(
-    `(() => { const b=[...document.querySelectorAll('button')]` +
-    `.find(b => (b.getAttribute('aria-label') || '') === 'Quick filter Vaughan Blue');` +
-    ` if (!b) return false; b.click(); return true })()`,
-    'quick filter chip click')
-  await waitFor(E_TEXT('Showing Vaughan'), 'pin after the quick filter click')
-  check('LIVE Schedule: quick filter pins the team', true)
-  if (await evaluateRetry(
-    `(() => { const b=[...document.querySelectorAll('button')]` +
-    `.find(b => (b.getAttribute('aria-label') || '') === 'Back to all games');` +
-    ` if (!b) return false; b.click(); return true })()`)) {
-    await waitFor(E_TEXT('Ted Reeve'), 'plain browse back after the pin drops')
-  }
-  check('LIVE Schedule: quick filter pin clears via chip ✕',
-    !(await evaluate(E_TEXT('Showing '))))
+    `(() => { const c = document.querySelector('${CHIP_SEL}');` +
+    ` return !!c && c.getAttribute('aria-pressed') === 'false' &&` +
+    ` !location.search.includes('team=') })()`,
+    'pin dropped by the chip toggle')
+  await waitFor(E_TEXT('Ted Reeve'), 'whole competition back after the chip toggle')
+  check('LIVE Schedule: active chip toggles the pin off', true)
 
   // Card pin: scoped to the linked competition. The name "Vaughan Blue" is
   // reused across U07/U08/U14/U17 in 26-27 — none of those games may show.
@@ -364,24 +370,25 @@ try {
     `.find(a => (a.getAttribute('aria-label') || '') === 'Open Vaughan Blue schedule');` +
     ` if (!el) return false; el.click(); return true })()`,
     '/schedule', 'home card schedule button (aria-label)')
-  await waitFor(E_TEXT('Showing Vaughan'), 'pin chip on card-pinned schedule')
-  check('LIVE Schedule: card pin keeps its chip', true)
+  await waitFor(E_CHIP_LIT, 'active quick chip on card-pinned schedule')
+  check('LIVE Schedule: card pin marked by the active chip',
+    await evaluate(`!document.body.innerText.includes('Showing ')`),
+    'pill hidden — the chip carries the pin for a saved team')
   check('LIVE Schedule: card pin shows the own-team game',
         await waitFor(E_TEXT('Leaside Red'), 'own U15 Tier 1 game under the pin'))
   check('LIVE Schedule: card pin scoped to U15 Tier 1',
         !(await evaluate(E_TEXT('George Bell'))))
 
   // ---- Game type filter (fall / winter / playoffs) ------------------------
-  // Drop the pin first (its chip's X), then check the type select: a
-  // fall-only slice offers only what it plays, and a season with all four
-  // types narrows and restores the list.
-  if (await evaluateRetry(
-    `(() => { const el=[...document.querySelectorAll('button')]` +
-    `.find(b => (b.getAttribute('aria-label') || '') === 'Back to all games');` +
-    ` if (!el) return false; el.click(); return true })()`)) {
+  // Drop the pin first (tap its lit quick chip — the pill's ✕ stays hidden
+  // while a chip carries the pin), then check the type select: a fall-only
+  // slice offers only what it plays, and a season with all four types
+  // narrows and restores the list.
+  if (await evaluateRetry(E_CHIP_CLICK)) {
     await waitFor(E_TEXT('Ted Reeve'), 'whole competition back after the pin drops')
   }
-  check('LIVE Schedule: pin dropped for the type segment', !(await evaluateRetry(E_TEXT('Showing '))))
+  check('LIVE Schedule: pin dropped for the type segment',
+    !(await evaluate(`location.search.includes('team=')`)))
 
   const E_TYPE_SELECT =
     `(() => { const s=[...document.querySelectorAll('select')]` +
