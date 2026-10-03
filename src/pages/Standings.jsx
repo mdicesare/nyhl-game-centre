@@ -24,7 +24,7 @@ export default function Standings() {
   const { filters, setFilters, clearFilters, activeEntry, season, setSeason } = usePreferences()
   // effectiveGameType lives in useData so the place shown on a Home card is
   // always the place shown in this table.
-  const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType } =
+  const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, games } =
     useData()
   const [expandedTeam, setExpandedTeam] = useState(null)
 
@@ -76,8 +76,59 @@ export default function Standings() {
       result = result.filter((s) => s.gameType === effectiveGameType)
     }
 
+    // Pre-season fallback. The source publishes a table only once a
+    // competition is live (26-27 opened with U15 Tier 1 alone, all zeros)
+    // and leaves every other slice blank — so until a slice's table exists,
+    // show the same all-zero table derived from its own schedule, keeping
+    // every division/tier browsable. Display-only: these rows are never
+    // stored, and the moment the real table lands it wins.
+    //
+    // Strictly gated on two conditions, because fabricating further would
+    // lie: the slice must hold no published rows of ANY type (a table that
+    // exists but not under this game type is a real gap, not pre-season),
+    // and not one of its games may carry a result. That second rule is what
+    // keeps finished seasons honest — 24-25 U11 Tier 2 has scheduled games
+    // but was never published, and a 0-0-0 table there would claim the
+    // season never started.
+    if (
+      result.length === 0 &&
+      filters.division !== 'ALL' &&
+      filters.tier !== 'ALL' &&
+      !standingsList.some((s) => s.division === filters.division && s.tier === filters.tier)
+    ) {
+      const pool = games.filter(
+        (g) =>
+          g.division === filters.division &&
+          g.tier === filters.tier &&
+          (!effectiveGameType || g.gameType === effectiveGameType)
+      )
+      const started = pool.some((g) => g.score != null || (g.status && g.status !== 'scheduled'))
+      if (pool.length > 0 && !started) {
+        const teams = new Map()
+        for (const g of pool) {
+          for (const side of ['homeTeam', 'awayTeam']) {
+            const t = g[side]
+            if (t?.name && !teams.has(t.name)) teams.set(t.name, t.logo || null)
+          }
+        }
+        result = [...teams.entries()]
+          .sort((a, b) => a[0].localeCompare(b[0]))
+          .map(([name, logo]) => ({
+            name,
+            logo,
+            division: filters.division,
+            tier: filters.tier,
+            season,
+            gameType: effectiveGameType || pool[0].gameType,
+            gp: 0, w: 0, l: 0, t: 0, pts: 0,
+            winPct: 0, gfAvg: 0, gaAvg: 0, gf: 0, ga: 0,
+            home: '', away: '', last10: '', streak: '', pim: 0,
+          }))
+      }
+    }
+
     return result
-  }, [standingsList, filters.division, filters.tier, effectiveGameType])
+  }, [standingsList, games, filters.division, filters.tier, effectiveGameType, season])
 
   // Until someone in the displayed table has played, a row number would only
   // repeat the order the rows came in — the same rule the Home card applies

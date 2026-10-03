@@ -76,6 +76,21 @@ const finderTeamCount = (div, tier) => {
   return names.size
 }
 
+// Teams the schedule puts in one slice — the row count the synthesized
+// pre-season table must show. Type-scoped the way the page scopes it
+// (effectiveGameType falls back to the season's first published type, which
+// for 26-27 is the only one: FS).
+const scheduleSliceTeams = (season, div, tier, type) => {
+  const data = JSON.parse(readFileSync(join(ROOT, 'dist', 'data', `schedule-${season}.json`), 'utf8'))
+  const names = new Set()
+  for (const g of data.games || []) {
+    if (g.division !== div || g.tier !== tier || (type && g.gameType !== type)) continue
+    if (g.homeTeam?.name) names.add(g.homeTeam.name)
+    if (g.awayTeam?.name) names.add(g.awayTeam.name)
+  }
+  return names
+}
+
 async function waitForJson(url, opts = {}, ms = 15000) {
   const t0 = Date.now()
   let lastErr
@@ -393,6 +408,43 @@ try {
     }
     if (!resetFound) check('TeamFinder: tier reset case', true, 'SKIPPED - every division has this tier')
   }
+
+  // ---- Standings: pre-season zero table -----------------------------------
+  // A slice the source never published shows the same all-zero table it
+  // shows for U15 Tier 1, derived from the schedule — display-only.
+  await nav(`${BASE}/standings`)
+  await waitFor(`document.querySelector('#root') && document.querySelector('#root').children.length > 0`, 'app mount')
+  await evaluateRetry(E_SEED({ ...SEED, season: '26-27',
+    filters: { division: 'U09', tier: 'Tier 1', gameType: 'ALL', club: 'ALL' } }))
+  await send('Page.reload', {})
+  await waitFor(E_STATE_IF(`s.div === 'U09' && s.tier === 'Tier 1'`), 'seeded U09/Tier 1 pre-season slice')
+  let preRows = null
+  try {
+    preRows = await waitFor(
+      `(() => { const tr = [...document.querySelectorAll('table tbody tr')];` +
+      ` return tr.length ? tr.map(r => ({` +
+      `  gp: r.cells[2].innerText.trim(), place: r.cells[0].innerText.trim() })) : null })()`,
+      'pre-season table rows', WAIT_MS
+    )
+  } catch { /* falls through to the check with preRows = null */ }
+  const preExpected = scheduleSliceTeams('26-27', 'U09', 'Tier 1', 'FS')
+  const preZeros = preRows !== null && preRows.every((r) => r.gp === '0' && r.place === '—')
+  check('Standings: unplayed slice shows the pre-season zero table',
+    preRows !== null && preRows.length === preExpected.size && preZeros,
+    preRows === null
+      ? 'no table rendered'
+      : `${preRows.length} rows (data has ${preExpected.size}), all-zero/no-rank: ${preZeros}`)
+
+  // The same rule must NOT invent history: a finished slice with scheduled
+  // games but no published table keeps its honest blank (every game has a
+  // result, so zeros would be false).
+  await evaluateRetry(E_SEED({ ...SEED, season: '24-25',
+    filters: { division: 'U11', tier: 'Tier 2', gameType: 'ALL', club: 'ALL' } }))
+  await send('Page.reload', {})
+  await waitFor(E_TEXT('No teams match these filters'), '24-25 U11 Tier 2 empty state')
+  check('Standings: played slice with no table stays blank (24-25 U11 T2)',
+    !(await evaluate(`document.querySelectorAll('table tbody tr').length > 0`)),
+    'no synthesized rows for a finished season')
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {
