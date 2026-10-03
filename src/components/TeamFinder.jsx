@@ -86,9 +86,16 @@ export default function TeamFinder({
         : allTeams,
     [allTeams, selectedDivision]
   )
+  // Tiers scoped to the chosen division. `t.tiers` spans every division a
+  // name plays in, so filtering on it let every club that fields a Tier 1
+  // team anywhere pass a Tier 1 filter everywhere — the list showed a whole
+  // division instead of its tier. Only when no division is asked for (the
+  // data has none) does the flat set remain the right scope.
+  const scopedTiers = (t) =>
+    selectedDivision ? t.tiersByDivision[selectedDivision] || [] : t.tiers
   const tierOptions = useMemo(
-    () => [...new Set(divisionScoped.flatMap((t) => t.tiers))].sort(),
-    [divisionScoped]
+    () => [...new Set(divisionScoped.flatMap(scopedTiers))].sort(),
+    [divisionScoped, selectedDivision]
   )
 
   // Step 3: teams inside the season/division/tier combination, less the
@@ -96,8 +103,8 @@ export default function TeamFinder({
   // last year's U14 entry stays addable while this year's U15 team of the
   // same name is already followed.
   const comboTeams = useMemo(
-    () => divisionScoped.filter((t) => t.tiers.includes(selectedTier)),
-    [divisionScoped, selectedTier]
+    () => divisionScoped.filter((t) => scopedTiers(t).includes(selectedTier)),
+    [divisionScoped, selectedTier, selectedDivision]
   )
   const filteredTeams = useMemo(
     () =>
@@ -130,7 +137,7 @@ export default function TeamFinder({
     // follow the same rule, so the finder doesn't feel stricter than the
     // pages. The team always clears: it belongs to the old combination.
     const nextTiers = value
-      ? allTeams.filter((t) => t.divisions.includes(value)).flatMap((t) => t.tiers)
+      ? allTeams.filter((t) => t.divisions.includes(value)).flatMap((t) => t.tiersByDivision[value] || [])
       : allTeams.flatMap((t) => t.tiers)
     setSelectedTier([...new Set(nextTiers)].includes(selectedTier) ? selectedTier : '')
     setSelectedTeam('')

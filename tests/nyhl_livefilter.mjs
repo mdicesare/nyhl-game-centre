@@ -253,28 +253,59 @@ try {
 
   if (curDiv && keepT) {
     await waitFor(`${E_LABEL('Tier')} === ${JSON.stringify(keepT)}`, `tier ${keepT} selected`)
-    let keepFound = false, resetFound = false
-    for (const d of allDivs.filter((x) => x !== curDiv)) {
+    // Each rule must be observed from a selected tier: visiting a division
+    // without it clears the value (that IS the reset rule), so probe each
+    // candidate from the original division with the tier back in place —
+    // otherwise a division that has the tier looks like a keep failure just
+    // because an earlier one reset it.
+    const pickDivision = async (d) => {
       await evaluateRetry(E_CLICK('Division'))
       await evaluateRetry(E_PICK('Division', d))
       await waitFor(`${E_LABEL('Division')} === ${JSON.stringify(d)}`, `picked division ${d}`)
-      if (!(await evaluate(E_HAS('Tier')))) continue
+    }
+    const tierOptionsNow = async () => {
+      if (!(await evaluate(E_HAS('Tier')))) return null
       await evaluateRetry(E_CLICK('Tier'))
-      const tiers = (await evaluate(E_OPTIONS('Tier'))) || []
+      const opts = (await evaluate(E_OPTIONS('Tier'))) || []
       await evaluateRetry(E_CLICK('Tier')) // close without selecting
+      return opts
+    }
+    const ensureTier = async () => {
+      if ((await evaluate(E_LABEL('Tier'))) === keepT) return
+      await evaluateRetry(E_CLICK('Tier'))
+      await evaluateRetry(E_PICK('Tier', keepT))
+      await waitFor(`${E_LABEL('Tier')} === ${JSON.stringify(keepT)}`, `reselected ${keepT}`)
+    }
+
+    // Rule 1: switching to another division that also plays this tier keeps it.
+    let keepFound = false
+    for (const d of allDivs.filter((x) => x !== curDiv)) {
+      await pickDivision(curDiv)
+      await ensureTier()
+      await pickDivision(d)
+      const tiers = await tierOptionsNow()
+      if (!tiers || !tiers.includes(keepT)) continue
       const shown = await evaluate(E_LABEL('Tier'))
-      if (tiers.includes(keepT)) {
-        if (!keepFound) {
-          check(`LIVE TeamFinder: tier kept (${curDiv} -> ${d}, has ${keepT})`, shown === keepT, `shows "${shown}"`)
-          keepFound = true
-        }
-      } else if (!resetFound) {
-        check(`LIVE TeamFinder: tier reset (${curDiv} -> ${d}, lacks ${keepT})`, shown === 'Choose a tier', `shows "${shown}"`)
-        resetFound = true
-      }
-      if (keepFound && resetFound) break
+      check(`LIVE TeamFinder: tier kept (${curDiv} -> ${d}, has ${keepT})`, shown === keepT, `shows "${shown}"`)
+      keepFound = true
+      break
     }
     if (!keepFound) check('LIVE TeamFinder: tier kept case', true, 'SKIPPED - no other division has this tier')
+
+    // Rule 2: a division without it resets to the gate — again probed with
+    // the tier actually selected, or the check would pass off a stale clear.
+    let resetFound = false
+    for (const d of allDivs.filter((x) => x !== curDiv)) {
+      await pickDivision(curDiv)
+      await ensureTier()
+      await pickDivision(d)
+      const tiers = await tierOptionsNow()
+      if (!tiers || tiers.includes(keepT)) continue
+      const shown = await evaluate(E_LABEL('Tier'))
+      check(`LIVE TeamFinder: tier reset (${curDiv} -> ${d}, lacks ${keepT})`, shown === 'Choose a tier', `shows "${shown}"`)
+      resetFound = true
+      break
+    }
     if (!resetFound) check('LIVE TeamFinder: tier reset case', true, 'SKIPPED - every division has this tier')
   }
 

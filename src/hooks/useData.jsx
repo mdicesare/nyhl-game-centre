@@ -301,32 +301,53 @@ export function DataProvider({ children }) {
 
   // Build per-team metadata: which divisions/tiers each team plays in, plus
   // its logo code so a team can be shown before any standings row is found.
+  //
+  // Tiers are tracked per division, not as one flat set per name. Team names
+  // repeat across the league — a club's "Vaughan Blue" plays in more than
+  // one division — so a flat set cannot answer "who is in this division's
+  // Tier 1": every name that fields a Tier 1 team anywhere would pass a
+  // Tier 1 filter everywhere and the picker would list a whole division.
   const teamMeta = {}
+  const metaFor = (key, name) => {
+    if (!teamMeta[key]) {
+      teamMeta[key] = { name, divisions: new Set(), plays: new Map(), logo: null }
+    }
+    return teamMeta[key]
+  }
+  const record = (entry, division, tier) => {
+    if (!division) return
+    entry.divisions.add(division)
+    if (!tier) return
+    if (!entry.plays.has(division)) entry.plays.set(division, new Set())
+    entry.plays.get(division).add(tier)
+  }
   for (const g of games) {
     for (const side of ['homeTeam', 'awayTeam']) {
       const name = g[side]?.name
       if (!name) continue
-      const key = name.toUpperCase()
-      if (!teamMeta[key]) teamMeta[key] = { name, divisions: new Set(), tiers: new Set(), logo: null }
-      if (g.division) teamMeta[key].divisions.add(g.division)
-      if (g.tier) teamMeta[key].tiers.add(g.tier)
-      if (g[side].logo && !teamMeta[key].logo) teamMeta[key].logo = g[side].logo
+      const entry = metaFor(name.toUpperCase(), name)
+      record(entry, g.division, g.tier)
+      if (g[side].logo && !entry.logo) entry.logo = g[side].logo
     }
   }
   // Also add standings teams
   for (const s of standingsList) {
     const key = s.name?.toUpperCase()
     if (!key) continue
-    if (!teamMeta[key]) teamMeta[key] = { name: s.name, divisions: new Set(), tiers: new Set(), logo: null }
-    if (s.division) teamMeta[key].divisions.add(s.division)
-    if (s.tier) teamMeta[key].tiers.add(s.tier)
-    if (s.logo && !teamMeta[key].logo) teamMeta[key].logo = s.logo
+    const entry = metaFor(key, s.name)
+    record(entry, s.division, s.tier)
+    if (s.logo && !entry.logo) entry.logo = s.logo
   }
 
   const allTeams = Object.values(teamMeta).map((t) => ({
     name: t.name,
     divisions: [...t.divisions],
-    tiers: [...t.tiers],
+    tiers: [...new Set([...t.plays.values()].flatMap((x) => [...x]))],
+    // Division -> tiers this name plays there; the finder filters on this
+    // so the tier choice is honoured inside the chosen division only.
+    tiersByDivision: Object.fromEntries(
+      [...t.plays].map(([d, tiers]) => [d, [...tiers]])
+    ),
     logo: t.logo,
   })).sort((a, b) => a.name.localeCompare(b.name))
 

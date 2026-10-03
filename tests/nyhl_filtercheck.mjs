@@ -11,9 +11,10 @@
  * Run: node nyhl_filtercheck.mjs   (preview server must be on :4173)
  */
 import { spawn } from 'node:child_process'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdtempSync, rmSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { setTimeout as sleep } from 'node:timers/promises'
 
 const CHROME = process.env.CHROME_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
@@ -49,6 +50,31 @@ const SEED = {
 // The finder forces the current season on mount; seed it so no data reload
 // races the dropdown reads.
 const SEED27 = { ...SEED, season: '26-27' }
+
+const ROOT = dirname(dirname(fileURLToPath(import.meta.url))) // tests/ -> repo root
+
+// Mirror of the finder's data basis: distinct team names holding a
+// (division, tier) row in the loaded season's schedule or standings. The
+// expected team-list length the finder must show for a picked pair.
+const finderTeamCount = (div, tier) => {
+  const names = new Set()
+  for (const file of ['schedule-26-27.json', 'standings-26-27.json']) {
+    const data = JSON.parse(readFileSync(join(ROOT, 'dist', 'data', file), 'utf8'))
+    if (file.startsWith('schedule')) {
+      for (const g of data.games || []) {
+        if (g.division !== div || g.tier !== tier) continue
+        for (const side of ['homeTeam', 'awayTeam']) {
+          if (g[side]?.name) names.add(g[side].name.toUpperCase())
+        }
+      }
+    } else {
+      for (const s of data.standings || []) {
+        if (s.division === div && s.tier === tier && s.name) names.add(s.name.toUpperCase())
+      }
+    }
+  }
+  return names.size
+}
 
 async function waitForJson(url, opts = {}, ms = 15000) {
   const t0 = Date.now()
@@ -294,29 +320,77 @@ try {
 
   if (curDiv && keepT) {
     await waitFor(`${E_LABEL('Tier')} === ${JSON.stringify(keepT)}`, `tier ${keepT} selected`)
-    let keepFound = false
-    let resetFound = false
-    for (const d of allDivs.filter((x) => x !== curDiv)) {
+
+    // The list must be scoped to (division, tier). Team names repeat
+    // across divisions, so filtering on the flat per-name tier set used to
+    // pass the tier test for every division — 26-27 U08 + Tier 1 listed
+    // all 12 of its teams while the data has none at all.
+    let shownCount = null
+    try {
+      const got = await waitFor(
+        `(() => { const m = document.body.innerText.match(/Team \\((\\d+) available\\)/);` +
+        ` return m ? { n: Number(m[1]) } : null })()`,
+        'finder team count', WAIT_MS
+      )
+      shownCount = got.n
+    } catch { /* fall through to the check with shownCount = null */ }
+    const expectCount = finderTeamCount(curDiv, keepT)
+    check(`TeamFinder: list scoped to ${curDiv} ${keepT}`,
+      shownCount === expectCount, `shows ${shownCount}, data has ${expectCount}`)
+
+    // Each rule must be observed from a selected tier: visiting a division
+    // without it clears the value (that IS the reset rule), so probe each
+    // candidate from the original division with the tier back in place —
+    // otherwise a division that has the tier looks like a keep failure just
+    // because an earlier one reset it.
+    const pickDivision = async (d) => {
       await evaluate(E_CLICK('Division'))
       await evaluate(E_PICK('Division', d))
       await waitFor(`${E_LABEL('Division')} === ${JSON.stringify(d)}`, `picked division ${d}`)
-      if (!(await evaluate(E_HAS('Tier')))) continue
+    }
+    const tierOptionsNow = async () => {
+      if (!(await evaluate(E_HAS('Tier')))) return null
       await evaluate(E_CLICK('Tier'))
-      const tiers = (await evaluate(E_OPTIONS('Tier'))) || []
+      const opts = (await evaluate(E_OPTIONS('Tier'))) || []
       await evaluate(E_CLICK('Tier')) // close without selecting
+      return opts
+    }
+    const ensureTier = async () => {
+      if ((await evaluate(E_LABEL('Tier'))) === keepT) return
+      await evaluate(E_CLICK('Tier'))
+      await evaluate(E_PICK('Tier', keepT))
+      await waitFor(`${E_LABEL('Tier')} === ${JSON.stringify(keepT)}`, `reselected ${keepT}`)
+    }
+
+    // Rule 1: switching to another division that also plays this tier keeps it.
+    let keepFound = false
+    for (const d of allDivs.filter((x) => x !== curDiv)) {
+      await pickDivision(curDiv)
+      await ensureTier()
+      await pickDivision(d)
+      const tiers = await tierOptionsNow()
+      if (!tiers || !tiers.includes(keepT)) continue
       const shown = await evaluate(E_LABEL('Tier'))
-      if (tiers.includes(keepT)) {
-        if (!keepFound) {
-          check(`TeamFinder: tier kept (${curDiv} -> ${d}, has ${keepT})`, shown === keepT, `shows "${shown}"`)
-          keepFound = true
-        }
-      } else if (!resetFound) {
-        check(`TeamFinder: tier reset (${curDiv} -> ${d}, lacks ${keepT})`, shown === 'Choose a tier', `shows "${shown}"`)
-        resetFound = true
-      }
-      if (keepFound && resetFound) break
+      check(`TeamFinder: tier kept (${curDiv} -> ${d}, has ${keepT})`, shown === keepT, `shows "${shown}"`)
+      keepFound = true
+      break
     }
     if (!keepFound) check('TeamFinder: tier kept case', true, 'SKIPPED - no other division has this tier')
+
+    // Rule 2: a division without it resets to the gate — again probed with
+    // the tier actually selected, or the check would pass off a stale clear.
+    let resetFound = false
+    for (const d of allDivs.filter((x) => x !== curDiv)) {
+      await pickDivision(curDiv)
+      await ensureTier()
+      await pickDivision(d)
+      const tiers = await tierOptionsNow()
+      if (!tiers || tiers.includes(keepT)) continue
+      const shown = await evaluate(E_LABEL('Tier'))
+      check(`TeamFinder: tier reset (${curDiv} -> ${d}, lacks ${keepT})`, shown === 'Choose a tier', `shows "${shown}"`)
+      resetFound = true
+      break
+    }
     if (!resetFound) check('TeamFinder: tier reset case', true, 'SKIPPED - every division has this tier')
   }
 } catch (e) {
