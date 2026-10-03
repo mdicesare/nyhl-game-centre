@@ -122,7 +122,7 @@ Write-Output '--- D3 seed-guard (two-team filter rule) ---'
 Check 'D3 tier mismatch browses (T2 game)' $d3.Contains('Scarborough Black')
 Check 'D3 not the empty-list state'       (-not $d3.Contains('No games match these filters'))
 Check 'D3 not awaiting division'          (-not $d3.Contains('Choose a division to see games'))
-Check 'D3 Vaughan = header only'          ((Count $d3 'Vaughan Blue') -eq 1)
+Check 'D3 Vaughan = header + chip only'  ((Count $d3 'Vaughan Blue') -eq 3)
 Check 'D3 saved-team chips removed'       (-not $d3.Contains('flex gap-2 mb-3 overflow-x-auto'))
 Check 'D3 Leaside absent (no T1 games leak)' ((Count $d3 'Leaside Red') -eq 0)
 
@@ -151,12 +151,17 @@ Check 'D6 header team line removed'       (-not $d6.Contains('w-full text-sm tex
 Check 'D6 header + game rows show team'   ((Count $d6 'Vaughan Blue') -ge 2)
 Check 'D6 saved-team chips removed'       (-not $d6.Contains('flex gap-2 mb-3 overflow-x-auto'))
 Check 'D6 refresh control present'        $d6.Contains('Refresh data')
+Check 'D6 quick team filter present'      $d6.Contains('Quick filter Vaughan Blue')
+Check 'D6 quick filter marks the pin'     $d6.Contains('aria-pressed="true"')
 
 Write-Output '--- D7 seed-deepst (standings deep link) ---'
 Check 'D7 table rendered (name >= 3x)'    ((Count $d7 'Vaughan Blue') -ge 3)
 Check 'D7 season badge 2026-27'           (HasEn $d7 '2026' '27')
 Check 'D7 refresh control present'        $d7.Contains('Refresh data')
 Check 'D7 saved-team chips removed'       (-not $d7.Contains('flex gap-2 mb-3 overflow-x-auto'))
+Check 'D7 quick team filter present'      $d7.Contains('Quick filter Vaughan Blue')
+Check 'D7 quick filter marks its team'    $d7.Contains('aria-pressed="true"')
+Check 'D7 summary pills removed'          ((-not $d7.Contains('dark:bg-blue-900/40')) -and (-not $d7.Contains('bg-purple-100')) -and (-not $d7.Contains('bg-amber-100')))
 
 Write-Output '--- D8 seed-none (Settings season picker) ---'
 Check 'D8 season picker offered'          ($d8.Contains('>Season</label>') -and (HasEn $d8 '2026' '27'))
@@ -188,6 +193,8 @@ Check 'D11 filters pre-selected (no gate)'   (-not $d11.Contains('Choose a divis
 Check 'D11 no pin chip on plain load'     (-not $d11.Contains('Showing '))
 Check 'D11 browse shows the whole competition' (($d11.Contains('Ted Reeve') -and $d11.Contains('Vaughan Blue')))
 Check 'D11 own team highlighted'          $d11.Contains('from-nyhl-blue/5')
+Check 'D11 twin quick filters rendered'   (([regex]::Matches($d11, 'aria-label="Quick filter ').Count) -eq 2)
+Check 'D11 no quick filter active on browse' (-not $d11.Contains('aria-pressed="true"'))
 
 Write-Output '--- D12 seed-opp (opponent pin keeps its chip) ---'
 Check 'D12 focus chip survives'           $d12.Contains('Showing Leaside')

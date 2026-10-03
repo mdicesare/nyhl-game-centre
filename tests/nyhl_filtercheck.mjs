@@ -490,6 +490,74 @@ try {
     'removal persisted to localStorage'
   )
   check('Settings: confirm removes and persists', persisted, 'savedTeams length 1 in storage')
+
+  // ---- Quick team filter (one tap back to a saved team) -------------------
+  // The same club team saved in two seasons must show two distinguishable
+  // chips, and a tap must replace whatever the selects were left on:
+  // competition and season on Standings, plus the pin on Schedule.
+  const E_SEASON =
+    `(() => { const s=[...document.querySelectorAll('select')]` +
+    `.find(s => [...s.options].some(o => o.value==='26-27')); return s ? s.value : null })()`
+  await evaluateRetry(E_SEED({
+    ...SEED,
+    savedTeams: [
+      { name: 'Vaughan Blue', division: 'U15', tier: 'Tier 1', season: '26-27' },
+      { name: 'Vaughan Blue', division: 'U14', tier: 'Tier 1', season: '25-26' },
+    ],
+    activeTeam: null,
+    season: '25-26',
+    filters: { division: 'U14', tier: 'Tier 1', gameType: 'ALL', club: 'ALL' },
+  }))
+  await nav(`${BASE}/standings`)
+  await waitFor(
+    `document.querySelectorAll('[aria-label^="Quick filter "]').length === 2`,
+    'two quick-filter chips on Standings')
+  const quickLabels = await evaluate(
+    `[...document.querySelectorAll('[aria-label^="Quick filter "]')]` +
+    `.map(b => b.getAttribute('aria-label'))`)
+  check('Standings: twin chips carry their season',
+    quickLabels.includes('Quick filter Vaughan Blue · 26-27') &&
+    quickLabels.includes('Quick filter Vaughan Blue · 25-26'),
+    JSON.stringify(quickLabels))
+
+  // The view starts on the 25-26 twin — exactly that chip is marked active.
+  check('Standings: chip marks the season on screen',
+    await evaluate(
+      `document.querySelector('[aria-label="Quick filter Vaughan Blue · 25-26"]')` +
+      `.getAttribute('aria-pressed') === 'true' &&` +
+      `document.querySelector('[aria-label="Quick filter Vaughan Blue · 26-27"]')` +
+      `.getAttribute('aria-pressed') === 'false'`),
+    'active chip = 25-26 before the jump')
+
+  // Tap the other twin: season, division and tier must all swap together.
+  await waitFor(E_CLICK_BTN('Vaughan Blue · 26-27'), 'quick chip click (26-27)')
+  const jumped = await waitFor(
+    `(() => { const s = ${E_STATE}; const se = ${E_SEASON};` +
+    ` return s && s.div === 'U15' && s.tier === 'Tier 1' && se === '26-27' ? true : false })()`,
+    '26-27 U15 Tier 1 after the chip')
+  check('Standings: chip swaps competition and season', jumped, 'landed on U15 Tier 1 in 2026-27')
+  check('Standings: active chip follows the jump',
+    await evaluate(
+      `document.querySelector('[aria-label="Quick filter Vaughan Blue · 26-27"]')` +
+      `.getAttribute('aria-pressed') === 'true'`),
+    '26-27 chip pressed after the jump')
+
+  // Schedule: the same tap lands in the pinned state a standings row's link
+  // produces — team pinned, competition pre-filled, games actually listed.
+  await nav(`${BASE}/schedule`)
+  await waitFor(
+    `document.querySelectorAll('[aria-label^="Quick filter "]').length === 2`,
+    'two quick-filter chips on Schedule')
+  await waitFor(E_CLICK_BTN('Vaughan Blue · 26-27'), 'quick chip click on Schedule')
+  const pinned = await waitFor(
+    `(() => { const s = ${E_STATE}; const se = ${E_SEASON};` +
+    ` const pin = document.body.innerText.includes('Showing Vaughan Blue');` +
+    ` const cards = document.querySelectorAll('button.rounded-xl').length;` +
+    ` return s && s.div === 'U15' && s.tier === 'Tier 1' && se === '26-27' && pin && cards > 0` +
+    ` ? true : false })()`,
+    'pin + competition + games after the Schedule chip')
+  check('Schedule: chip pins the team with its competition', pinned,
+    'Showing chip, U15 Tier 1, 2026-27, games listed')
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {

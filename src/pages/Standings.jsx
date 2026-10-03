@@ -5,6 +5,7 @@ import { useData } from '../hooks/useData.jsx'
 // A standings row leads to that team's own schedule, not to whatever team the
 // visitor happens to follow.
 import { teamScheduleLink } from '../lib/links.js'
+import TeamQuickFilter from '../components/TeamQuickFilter.jsx'
 
 
 const GAME_TYPE_LABELS = {
@@ -21,7 +22,8 @@ function formatSeasonLabel(s) {
 }
 
 export default function Standings() {
-  const { filters, setFilters, clearFilters, activeEntry, season, setSeason } = usePreferences()
+  const { filters, setFilters, clearFilters, activeEntry, savedTeams, season, setSeason } =
+    usePreferences()
   // effectiveGameType lives in useData so the place shown on a Home card is
   // always the place shown in this table.
   const { standingsList, divisions, tiersFor, standingsGameTypes, effectiveGameType, games } =
@@ -151,6 +153,15 @@ export default function Standings() {
     return true
   }
 
+  // One tap back to a saved team: its competition (and season) replace
+  // whatever the selects were left on, so the gate lifts and the table lands
+  // on that team's rank — its row is starred there. The game type is left
+  // alone: the slice resolves it to something it actually plays.
+  const jumpToTeam = (team) => {
+    if (team.season && team.season !== season) setSeason(team.season)
+    setFilters({ division: team.division || 'ALL', tier: team.tier || 'ALL' })
+  }
+
   // A game type is always chosen, so it isn't part of "clear the filters".
   const hasActiveFilters = filters.division !== 'ALL' || filters.tier !== 'ALL'
 
@@ -241,6 +252,16 @@ export default function Standings() {
         )}
       </div>
 
+      <TeamQuickFilter
+        teams={savedTeams}
+        isActive={(team) =>
+          (team.season || season) === season &&
+          filters.division === (team.division || 'ALL') &&
+          filters.tier === (team.tier || 'ALL')
+        }
+        onSelect={jumpToTeam}
+      />
+
       {/* Nothing to rank until a competition is picked */}
       {awaitingFilters ? (
         <div className="text-center py-12 rounded-xl bg-gray-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-700">
@@ -255,25 +276,6 @@ export default function Standings() {
         </div>
       ) : (
       <div>
-      {/* Active filter summary */}
-      <div className="flex items-center gap-2 mb-4 flex-wrap">
-        {filters.division !== 'ALL' && (
-          <span className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.division}
-          </span>
-        )}
-        {filters.tier !== 'ALL' && (
-          <span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {filters.tier}
-          </span>
-        )}
-        {effectiveGameType && (
-          <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-medium px-2.5 py-1 rounded-full">
-            {GAME_TYPE_LABELS[effectiveGameType] || effectiveGameType}
-          </span>
-        )}
-      </div>
-
       {/* Standings list */}
       {filteredStandings.length === 0 ? (
         <div className="text-center py-12">

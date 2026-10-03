@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { usePreferences } from '../hooks/usePreferences.jsx'
 import { useData } from '../hooks/useData.jsx'
 import GameDetail, { formatGameType } from '../components/GameDetail.jsx'
+import TeamQuickFilter from '../components/TeamQuickFilter.jsx'
 
 import { teamId } from '../lib/teams.js'
 
@@ -175,6 +176,25 @@ export default function Schedule() {
   // Back to the normal division/tier view.
   const clearFocus = useCallback(() => setSearchParams({}, { replace: true }), [setSearchParams])
 
+  // One tap back to a saved team: its competition and season replace whatever
+  // the selects were left on, the tabs reset to all games, and the team is
+  // pinned so the list narrows to its own games — the same state a standings
+  // row's or Home card's link lands in. Nothing here goes through the
+  // selects' handlers, so an old pin is simply swapped for this team instead
+  // of being cleared on the way.
+  const quickPin = (team) => {
+    if (team.season && team.season !== season) setSeason(team.season)
+    setFilters({
+      division: team.division || 'ALL',
+      tier: team.tier || 'ALL',
+      gameType: 'ALL',
+    })
+    setScheduleFilter('all')
+    const next = new URLSearchParams(searchParams)
+    next.set('team', team.name)
+    setSearchParams(next)
+  }
+
   // Deliberately no pin-clearing effect here: a pin always keeps its chip,
   // because it is now the only thing narrowing the list. The old auto-drop
   // (a pin equal to the followed team cleared itself on arrival) made the ✕
@@ -280,6 +300,17 @@ export default function Schedule() {
           </button>
         )}
       </div>
+
+      <TeamQuickFilter
+        teams={savedTeams}
+        isActive={(team) =>
+          (team.season || season) === season &&
+          focusTeam === team.name &&
+          filters.division === (team.division || 'ALL') &&
+          filters.tier === (team.tier || 'ALL')
+        }
+        onSelect={quickPin}
+      />
 
       {/* Nothing to show until a competition is picked */}
       {awaitingFilters ? (

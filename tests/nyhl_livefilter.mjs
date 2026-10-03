@@ -193,6 +193,8 @@ try {
   let st = await waitFor(E_STATE_IF(`s.div === 'U14' && s.tier === 'Tier 1'`), 'seeded U14/Tier 1 on live Standings')
   check('LIVE Standings: seeded state (U14, Tier 1)', st.div === 'U14' && st.tier === 'Tier 1', JSON.stringify(st))
   check('LIVE Standings: no gate when seeded', !(await evaluate(E_TEXT('Choose a tier to see standings'))))
+  check('LIVE Standings: quick filter hidden without saved teams',
+    !(await evaluate(`document.querySelectorAll('[aria-label^="Quick filter "]').length > 0`)))
 
   await evaluateRetry(E_SET('div', 'U15'))
   st = await stateWhere(`s.div === 'U15' && s.tier === 'Tier 1'`, 'tier kept after U14 -> U15 (live)')
@@ -330,6 +332,29 @@ try {
   check('LIVE Schedule: no pin chip on plain browse', !(await evaluateRetry(E_TEXT('Showing '))))
   check('LIVE Schedule: whole competition shown', await waitFor(E_TEXT('Ted Reeve'), 'a non-followed team in the live browse'))
   check('LIVE Schedule: own team highlighted', await evaluateRetry(`document.body.innerHTML.includes('from-nyhl-blue/5')`))
+
+  // ---- Quick team filter (one tap back to a saved team) -------------------
+  // The chip must exist for a saved team and land in the same pin state the
+  // card link produces below — so drop it again (its chip's ✕) and restore
+  // the plain browse, keeping that next segment just as strict as before.
+  check('LIVE Schedule: quick team filter present',
+    await waitFor(`document.querySelectorAll('[aria-label^="Quick filter "]').length === 1`,
+      'quick filter chip on live Schedule'))
+  await waitFor(
+    `(() => { const b=[...document.querySelectorAll('button')]` +
+    `.find(b => (b.getAttribute('aria-label') || '') === 'Quick filter Vaughan Blue');` +
+    ` if (!b) return false; b.click(); return true })()`,
+    'quick filter chip click')
+  await waitFor(E_TEXT('Showing Vaughan'), 'pin after the quick filter click')
+  check('LIVE Schedule: quick filter pins the team', true)
+  if (await evaluateRetry(
+    `(() => { const b=[...document.querySelectorAll('button')]` +
+    `.find(b => (b.getAttribute('aria-label') || '') === 'Back to all games');` +
+    ` if (!b) return false; b.click(); return true })()`)) {
+    await waitFor(E_TEXT('Ted Reeve'), 'plain browse back after the pin drops')
+  }
+  check('LIVE Schedule: quick filter pin clears via chip ✕',
+    !(await evaluate(E_TEXT('Showing '))))
 
   // Card pin: scoped to the linked competition. The name "Vaughan Blue" is
   // reused across U07/U08/U14/U17 in 26-27 — none of those games may show.
