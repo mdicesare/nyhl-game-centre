@@ -24,6 +24,18 @@ updates:
       # CSS build. Take it as a project or stay on v3.
       - dependency-name: "tailwindcss"
         versions: [">= 4.0.0"]
+      # Vite 6+ is a triple-major build-toolchain migration (rolldown-era;
+      # engines, peers, config and output all shift). Same policy as the
+      # plugin above: a deliberate project, not weekly churn — and
+      # vite-plugin-pwa moves with it when it happens.
+      - dependency-name: "vite"
+        versions: [">= 6.0.0"]
+      # 1.x is a major on the SW/manifest generator (workbox 7 peer set);
+      # every merge regenerates sw.js + the precache list. Gate it on a
+      # local battery (404check's SW/manifest/offline checks), not a
+      # weekly PR.
+      - dependency-name: "vite-plugin-pwa"
+        versions: [">= 1.0.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
