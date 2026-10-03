@@ -192,8 +192,7 @@ export default function Settings() {
           <p>
             Data sourced from the NYHL/Agilex Game Centre. Refreshed daily at
             10:00 UTC — early morning in Eastern time — by an automated
-            scrape, and whenever you tap ⟳ Refresh on any page. The footer
-            shows the exact time of the last update.
+            scrape. The footer shows the exact time of the last update.
           </p>
           <p>
             This is an unofficial fan tool and is not affiliated with NYHL or Agilex.
