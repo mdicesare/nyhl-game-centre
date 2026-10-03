@@ -12,6 +12,18 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # v6 of the React plugin requires Vite 8; this app is on Vite 5, so a
+      # bump alone cannot satisfy its peer range and would fail npm ci.
+      # Revisit inside a deliberate Vite migration, never as routine churn.
+      - dependency-name: "@vitejs/plugin-react"
+        versions: [">= 5.0.0"]
+      # Tailwind v4 is a config-format migration (the PostCSS plugin moved
+      # to @tailwindcss/postcss, @tailwind directives became @import,
+      # autoprefixer is built in) — a package.json-only bump breaks the
+      # CSS build. Take it as a project or stay on v3.
+      - dependency-name: "tailwindcss"
+        versions: [">= 4.0.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
