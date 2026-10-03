@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-02T16:08:48.794448Z",
+  "scrapedAt": "2026-10-03T14:35:55.080078Z",
   "gameCount": 328,
   "games": [
     {
@@ -4756,20 +4756,20 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-19_21:40_Etobicoke Blue_Avenue Road Black",
+      "id": "26-27_2026-10-19_21:40_Ted Reeve Red_Avenue Road",
       "date": "2026-10-19",
       "time": "21:40",
       "homeTeam": {
         "id": "",
-        "name": "Avenue Road Black",
+        "name": "Avenue Road",
         "logo": "AV9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Etobicoke Blue",
-        "logo": "EH9"
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
       },
-      "division": "U16",
+      "division": "U17",
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
@@ -5460,20 +5460,20 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-22_21:40_Ted Reeve Red_Avenue Road",
+      "id": "26-27_2026-10-22_21:40_Etobicoke Blue_Avenue Road Black",
       "date": "2026-10-22",
       "time": "21:40",
       "homeTeam": {
         "id": "",
-        "name": "Avenue Road",
+        "name": "Avenue Road Black",
         "logo": "AV9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
       },
-      "division": "U17",
+      "division": "U16",
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
@@ -6068,7 +6068,7 @@
         "logo": "LE9"
       },
       "division": "U12",
-      "tier": "",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/18:10",
