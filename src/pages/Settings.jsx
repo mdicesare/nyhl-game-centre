@@ -196,6 +196,10 @@ export default function Settings() {
             time of the last update.
           </p>
           <p>
+            Pages visited here are counted anonymously with GoatCounter —
+            no cookies and nothing shared with other sites.
+          </p>
+          <p>
             This is an unofficial fan tool and is not affiliated with NYHL or Agilex.
           </p>
           <p>

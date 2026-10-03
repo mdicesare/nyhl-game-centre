@@ -9,6 +9,9 @@
  *   Schedule : cross-page persistence (U09/ALL carried over) then the same
  *              keep (via U14 -> Tier 1 -> U15) and reset (-> U09) checks
  *   Finder   : landing "Find your team" -> division change keeps tier
+ *   Analytics: tracker injected with the counter endpoint, route changes
+ *              recorded, query-only pin toggles not counted as pageviews
+ *              (count.js itself is network-blocked for this suite)
  */
 import { spawn } from 'node:child_process'
 import { mkdtempSync, rmSync } from 'node:fs'
@@ -96,6 +99,15 @@ const E_CLICK_HREF = (suffix) =>
   `(() => { const el=[...document.querySelectorAll('a')].find(a =>` +
   ` (a.getAttribute('href')||'').endsWith(${JSON.stringify(suffix)}));` +
   ` if (!el) return false; el.click(); return true })()`
+// Recorder standing in for the tracker: the app's usePageView calls
+// window.goatcounter.count(), which lands in __gcHits instead of on the
+// wire (count.js itself can't load — blocked below). Re-run after every
+// full page load: a new document resets both objects.
+const E_STUB_GC =
+  `(() => { window.__gcHits = [];` +
+  ` window.goatcounter = { no_onload: true, count: (v) => {` +
+  `   window.__gcHits.push((v && v.path) || location.pathname); return true } };` +
+  ` return true })()`
 
 // custom Select helpers (TeamFinder)
 const E_LAB = (t) =>
@@ -121,8 +133,11 @@ const E_LABEL = (t) => `(() => { const t = ${E_TRIGGER(t)}; return t ? t.textCon
 let ws
 try {
   await waitForJson(`http://127.0.0.1:${PORT}/json/version`)
+  // Start on about:blank, not the app: the tracker block below has to be in
+  // place before the first page load, or the real count.js could slip in
+  // between load and setup (the boot section navigates to BASE right after).
   const target = await waitForJson(
-    `http://127.0.0.1:${PORT}/json/new?${encodeURIComponent(BASE + '/')}`, { method: 'PUT' })
+    `http://127.0.0.1:${PORT}/json/new?about:blank`, { method: 'PUT' })
   ws = new WebSocket(target.webSocketDebuggerUrl)
   await new Promise((res, rej) => { ws.onopen = res; ws.onerror = () => rej(new Error('ws error')) })
 
@@ -180,15 +195,34 @@ try {
   }
 
   // ---- boot at root, seed, reload (prefs only load at boot) ---------------
+  // Block the analytics before the first load: test traffic must never
+  // reach the counters, and the real count.js must not overwrite the
+  // recorder stub installed after each load below.
+  await send('Network.enable')
+  await send('Network.setBlockedURLs', { urls: ['*gc.zgo.at*', '*goatcounter.com*'] })
   await nav(`${BASE}/`)
   await waitFor(E_MOUNT, 'app mount at root')
   await evaluateRetry(E_SEED(SEED))
   await send('Page.reload', {})
   await waitFor(E_MOUNT, 'app remount after seed')
+  await evaluate(E_STUB_GC)
+
+  const gcEndpoint = await evaluate(
+    `(() => { const s = document.querySelector('script[data-goatcounter]');` +
+    ` return s ? s.getAttribute('data-goatcounter') : null })()`)
+  check('LIVE Analytics: tracker injected with the counter endpoint',
+    gcEndpoint === 'https://nyhlcustom.goatcounter.com/count', String(gcEndpoint))
 
   // ---- Standings ----------------------------------------------------------
   await clickPath(E_CLICK_TEXT('Just browse'), '/home', 'client nav to /home')
   await clickPath(E_CLICK_HREF('/standings'), '/standings', 'client nav to /standings')
+
+  check('LIVE Analytics: SPA route changes counted',
+    await waitFor(
+      `(window.__gcHits || []).some(p => p.endsWith('/home')) &&` +
+      ` (window.__gcHits || []).some(p => p.endsWith('/standings'))`,
+      'recorded hits for /home and /standings'),
+    JSON.stringify(await evaluate(`window.__gcHits || []`)))
 
   let st = await waitFor(E_STATE_IF(`s.div === 'U14' && s.tier === 'Tier 1'`), 'seeded U14/Tier 1 on live Standings')
   check('LIVE Standings: seeded state (U14, Tier 1)', st.div === 'U14' && st.tier === 'Tier 1', JSON.stringify(st))
@@ -231,6 +265,7 @@ try {
   await evaluateRetry(E_SEED(SEED27))
   await nav(`${BASE}/`)   // server-served root; picks up the reseeded prefs
   await waitFor(E_MOUNT, 'app mount for finder')
+  await evaluate(E_STUB_GC)
   if (!(await evaluateRetry(E_CLICK_TEXT('Find your team')))) throw new Error('Find your team click failed')
   await waitFor(E_HAS('Division'), 'finder division select')
 
@@ -319,6 +354,7 @@ try {
   await evaluateRetry(E_SEED(SEED_FOLLOW))
   await nav(`${BASE}/`)   // server-served root; prefs only load at boot
   await waitFor(E_MOUNT, 'app mount for followed-team browse')
+  await evaluate(E_STUB_GC)
   await waitFor(
     `location.pathname.includes('/home') || document.body.innerText.includes('Just browse')`,
     'home or landing for followed-team browse')
@@ -347,6 +383,9 @@ try {
   const E_CHIP_CLICK =
     `(() => { const c = document.querySelector('${CHIP_SEL}');` +
     ` if (!c) return false; c.click(); return true })()`
+  // The pin only changes the query string — pathname-only counting in
+  // usePageView means these toggles must not show up as pageviews.
+  const hitsBeforePin = await evaluate(`(window.__gcHits || []).length`)
   await waitFor(E_CHIP_CLICK, 'quick filter chip click')
   await waitFor(E_CHIP_LIT, 'lit chip after the quick filter click')
   check('LIVE Schedule: quick filter pins the team (chip lit)',
@@ -361,6 +400,9 @@ try {
     'pin dropped by the chip toggle')
   await waitFor(E_TEXT('Ted Reeve'), 'whole competition back after the chip toggle')
   check('LIVE Schedule: active chip toggles the pin off', true)
+  const hitsAfterPin = await evaluate(`(window.__gcHits || []).length`)
+  check('LIVE Analytics: pin toggle (query-only) is not a pageview',
+    hitsAfterPin === hitsBeforePin, `${hitsBeforePin} -> ${hitsAfterPin} hits`)
 
   // Card pin: scoped to the linked competition. The name "Vaughan Blue" is
   // reused across U07/U08/U14/U17 in 26-27 — none of those games may show.

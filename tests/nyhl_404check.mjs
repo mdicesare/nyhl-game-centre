@@ -18,6 +18,8 @@
  *   7. PWA update contract                        -> sw.js skips waiting,
  *      data JSONs out of the cache-first precache, registration with
  *      updateViaCache 'none', injected register script gone
+ *   8. analytics contract                         -> counter wiring in the
+ *      bundle, no tracker injected off the deployed host
  */
 import { spawn } from 'node:child_process'
 import { mkdtempSync, rmSync } from 'node:fs'
@@ -179,6 +181,23 @@ try {
   check('pwa: registration bypasses the HTTP cache', regNone)
   check('pwa: injected register script gone (registration is ours)',
     await evaluate(`!document.querySelector('script[id="vite-plugin-pwa:register-sw"]')`))
+
+  // ---- 8. analytics contract ----------------------------------------------
+  // The GoatCounter wiring must ship in the bundle, but the tracker script
+  // may only ever appear on the deployed host: this sim runs on 127.0.0.1,
+  // so nothing may be injected here (local runs stay off the dashboard and
+  // off the network entirely).
+  const idxHtml = await (await fetch(`${BASE}/`)).text()
+  const bundleName = (idxHtml.match(/assets\/index-[\w-]+\.js/) || [])[0]
+  const bundle = bundleName ? await (await fetch(`${BASE}/${bundleName}`)).text() : ''
+  check('analytics: bundle carries the counter wiring',
+    Boolean(bundleName) &&
+      bundle.includes('nyhlcustom.goatcounter.com') &&
+      bundle.includes('gc.zgo.at') &&
+      bundle.includes('no_onload'),
+    bundleName || 'bundle not found in index.html')
+  check('analytics: no tracker injected off the deployed host',
+    await evaluate(`!document.querySelector('script[data-goatcounter]')`))
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {
