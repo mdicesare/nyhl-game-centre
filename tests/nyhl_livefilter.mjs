@@ -108,6 +108,11 @@ const E_STUB_GC =
   ` window.goatcounter = { no_onload: true, count: (v) => {` +
   `   window.__gcHits.push((v && v.path) || location.pathname); return true } };` +
   ` return true })()`
+// Full loads race the stub: E_MOUNT matches the OUTGOING document too (it
+// has a mounted #root as well), and a recorder planted there dies with it —
+// the hits check would then never see anything. Mark the current document
+// first; once the mark is gone, the new document owns the page.
+const E_MARK = `(() => { window.__outgoingDoc = 1; return true })()`
 
 // custom Select helpers (TeamFinder)
 const E_LAB = (t) =>
@@ -198,14 +203,26 @@ try {
   // Block the analytics before the first load: test traffic must never
   // reach the counters, and the real count.js must not overwrite the
   // recorder stub installed after each load below.
+  // Plant the recorder only once the new document owns the page (see
+  // E_MARK) — a stub on the outgoing document would die with it.
+  const plantStub = async (what) => {
+    await waitFor(`window.__outgoingDoc === undefined && ${E_MOUNT}`, `new document: ${what}`)
+    await evaluate(E_STUB_GC)
+    // The plant must stick in THIS document — everything below asserts on
+    // recorded hits, which are impossible without a live recorder.
+    await waitFor(
+      `window.__gcHits !== undefined &&` +
+      ` String((window.goatcounter && window.goatcounter.count) || '').includes('__gcHits')`,
+      `recorder live: ${what}`)
+  }
   await send('Network.enable')
   await send('Network.setBlockedURLs', { urls: ['*gc.zgo.at*', '*goatcounter.com*'] })
   await nav(`${BASE}/`)
   await waitFor(E_MOUNT, 'app mount at root')
   await evaluateRetry(E_SEED(SEED))
+  await evaluate(E_MARK)
   await send('Page.reload', {})
-  await waitFor(E_MOUNT, 'app remount after seed')
-  await evaluate(E_STUB_GC)
+  await plantStub('seed reload')
 
   const gcEndpoint = await evaluate(
     `(() => { const s = document.querySelector('script[data-goatcounter]');` +
@@ -215,14 +232,30 @@ try {
 
   // ---- Standings ----------------------------------------------------------
   await clickPath(E_CLICK_TEXT('Just browse'), '/home', 'client nav to /home')
+  // Let the /home pageview settle before clicking on: a second navigation
+  // inside the 300ms settle window cancels the pending count (the same
+  // mechanism that skips instant redirects).
+  await waitFor(`(window.__gcHits || []).some(p => p.endsWith('/home'))`, 'settled /home hit')
   await clickPath(E_CLICK_HREF('/standings'), '/standings', 'client nav to /standings')
 
-  check('LIVE Analytics: SPA route changes counted',
-    await waitFor(
-      `(window.__gcHits || []).some(p => p.endsWith('/home')) &&` +
-      ` (window.__gcHits || []).some(p => p.endsWith('/standings'))`,
-      'recorded hits for /home and /standings'),
-    JSON.stringify(await evaluate(`window.__gcHits || []`)))
+  const routeHits = await (async () => {
+    try {
+      return await waitFor(
+        `(window.__gcHits || []).some(p => p.endsWith('/home')) &&` +
+        ` (window.__gcHits || []).some(p => p.endsWith('/standings'))`,
+        'recorded hits for /home and /standings')
+    } catch { return null }
+  })()
+  check('LIVE Analytics: SPA route changes counted', Boolean(routeHits),
+    routeHits
+      ? JSON.stringify(await evaluate(`window.__gcHits || []`))
+      : 'MISSING ' + JSON.stringify(await evaluate(`(() => ({
+          hits: window.__gcHits === undefined ? 'UNDEF' : window.__gcHits,
+          countSrc: String((window.goatcounter && window.goatcounter.count) || '').slice(0, 80),
+          path: location.pathname,
+          navType: (performance.getEntriesByType('navigation')[0] || {}).type,
+          outgoing: window.__outgoingDoc === undefined ? 'UNDEF' : String(window.__outgoingDoc)
+        }))()`).catch((e) => 'dump failed: ' + e.message)))
 
   let st = await waitFor(E_STATE_IF(`s.div === 'U14' && s.tier === 'Tier 1'`), 'seeded U14/Tier 1 on live Standings')
   check('LIVE Standings: seeded state (U14, Tier 1)', st.div === 'U14' && st.tier === 'Tier 1', JSON.stringify(st))
@@ -263,9 +296,9 @@ try {
 
   // ---- TeamFinder on the landing page (current season) --------------------
   await evaluateRetry(E_SEED(SEED27))
+  await evaluate(E_MARK)
   await nav(`${BASE}/`)   // server-served root; picks up the reseeded prefs
-  await waitFor(E_MOUNT, 'app mount for finder')
-  await evaluate(E_STUB_GC)
+  await plantStub('finder root')
   if (!(await evaluateRetry(E_CLICK_TEXT('Find your team')))) throw new Error('Find your team click failed')
   await waitFor(E_HAS('Division'), 'finder division select')
 
@@ -352,9 +385,9 @@ try {
   // (teams the visitor does not follow included), no pin chip, and the own
   // team's games highlighted.
   await evaluateRetry(E_SEED(SEED_FOLLOW))
+  await evaluate(E_MARK)
   await nav(`${BASE}/`)   // server-served root; prefs only load at boot
-  await waitFor(E_MOUNT, 'app mount for followed-team browse')
-  await evaluate(E_STUB_GC)
+  await plantStub('followed-team root')
   await waitFor(
     `location.pathname.includes('/home') || document.body.innerText.includes('Just browse')`,
     'home or landing for followed-team browse')
@@ -384,7 +417,12 @@ try {
     `(() => { const c = document.querySelector('${CHIP_SEL}');` +
     ` if (!c) return false; c.click(); return true })()`
   // The pin only changes the query string — pathname-only counting in
-  // usePageView means these toggles must not show up as pageviews.
+  // usePageView means these toggles must not show up as pageviews. Settle
+  // the pending /schedule pageview first, so a late count can't land in
+  // the middle of the toggle window and fake a pageview.
+  await waitFor(
+    `(window.__gcHits || []).some(p => p.endsWith('/schedule'))`,
+    'settled /schedule hit')
   const hitsBeforePin = await evaluate(`(window.__gcHits || []).length`)
   await waitFor(E_CHIP_CLICK, 'quick filter chip click')
   await waitFor(E_CHIP_LIT, 'lit chip after the quick filter click')
@@ -402,7 +440,7 @@ try {
   check('LIVE Schedule: active chip toggles the pin off', true)
   const hitsAfterPin = await evaluate(`(window.__gcHits || []).length`)
   check('LIVE Analytics: pin toggle (query-only) is not a pageview',
-    hitsAfterPin === hitsBeforePin, `${hitsBeforePin} -> ${hitsAfterPin} hits`)
+    hitsBeforePin > 0 && hitsAfterPin === hitsBeforePin, `${hitsBeforePin} -> ${hitsAfterPin} hits`)
 
   // Card pin: scoped to the linked competition. The name "Vaughan Blue" is
   // reused across U07/U08/U14/U17 in 26-27 — none of those games may show.
