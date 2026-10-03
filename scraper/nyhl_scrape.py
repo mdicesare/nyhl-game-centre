@@ -25,7 +25,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -354,6 +354,27 @@ def split_division_tier(div_tier: str) -> tuple[str, str]:
     return div_tier, ""
 
 
+def clean_livebarn(url: Optional[str]) -> str:
+    """Keep only a real http(s) LiveBarn URL — anything else becomes "".
+
+    This value is dropped straight into an href on the site, so the scheme
+    has to be proven before it is written: a javascript: or data: URL must
+    never travel from upstream HTML (or an old snapshot) into a clickable
+    link, even when it happens to contain the word "livebarn". Everything
+    the source actually serves is https://livebarn.com/... (one host, one
+    scheme, across every value in the committed data), so requiring an
+    http(s) scheme *and* a livebarn host loses nothing real while closing
+    that door.
+    """
+    url = (url or "").strip()
+    parsed = urlparse(url)
+    if parsed.scheme not in ("http", "https"):
+        return ""
+    if "livebarn" not in parsed.netloc.lower():
+        return ""
+    return url
+
+
 def parse_schedule_table(html: str) -> list[dict]:
     """
     Parse the schedule repeater table into structured rows.
@@ -436,7 +457,7 @@ def parse_schedule_table(html: str) -> list[dict]:
             # stream icon — present for some games only. Match on the href
             # so the row's postback anchors can't be mistaken for it.
             stream_a = tr.find("a", href=re.compile("livebarn", re.I))
-            livebarn = stream_a.get("href", "").strip() if stream_a else ""
+            livebarn = clean_livebarn(stream_a.get("href", "")) if stream_a else ""
 
         elif len(cells) >= 10:
             # --- legacy shape ---
@@ -463,7 +484,7 @@ def parse_schedule_table(html: str) -> list[dict]:
             status = cells[10].get_text(strip=True) if len(cells) > 10 else ""
             # Column 11 is the LiveBarn link or empty.
             stream_a = cells[11].find("a") if len(cells) > 11 else None
-            livebarn = stream_a.get("href", "").strip() if stream_a else ""
+            livebarn = clean_livebarn(stream_a.get("href", "")) if stream_a else ""
         else:
             continue
 
@@ -937,7 +958,7 @@ def normalize_game(raw: dict, season: str) -> dict:
         # LiveBarn watch URL ("" when the source offers no stream for the
         # game). Kept on the game so the list and detail sheet can link
         # straight to the replay instead of the visitor hunting for it.
-        "livebarn": raw.get("livebarn", ""),
+        "livebarn": clean_livebarn(raw.get("livebarn", "")),
         "status": status_cat,
         "score": score,
     }

@@ -1,0 +1,22 @@
+# Automated dependency PRs — added in the 2026-10-03 security review.
+# Dependabot *alerts* are on by default for public repos, but nothing was
+# opening update PRs: deps only moved when someone happened to notice.
+# Three ecosystems cover every supply chain this repo has — the app bundle
+# (npm), the scrape job (pip), and the CI itself (github-actions).
+#
+# These PRs trigger no workflows (neither workflow listens to pull_request);
+# the normal Tests job runs only once a PR lands on main.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/scraper"
+    schedule:
+      interval: "weekly"

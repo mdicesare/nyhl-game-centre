@@ -78,15 +78,15 @@ jobs:
 
       - name: Run scraper
         run: |
-          season="${{ github.event.inputs.season || 'current' }}"
-          division="${{ github.event.inputs.division || 'ALL' }}"
-          mode="${{ github.event.inputs.mode || '' }}"
+          season="$IN_SEASON"
+          division="$IN_DIVISION"
+          mode="$IN_MODE"
           # Cron events carry no inputs, so which mode to run comes from
           # which schedule fired: the 16:00 and 21:00 crons are the cheap
           # schedule-only refreshes, the 13:00 morning cron scrapes both.
           # Dispatches pick their own mode (default: full).
           if [ -z "$mode" ]; then
-            case "${{ github.event.schedule }}" in
+            case "$IN_SCHEDULE" in
               "0 16 * * *"|"0 21 * * *") mode="schedule" ;;
               *) mode="full" ;;
             esac
@@ -115,6 +115,18 @@ jobs:
             --verbose
         env:
           PYTHONUNBUFFERED: "1"
+          # Dispatch inputs reach the shell only as environment *data*.
+          # GitHub expands ${{ ... }} into the script text before bash parses
+          # it, so interpolating github.event.inputs.* straight into `run:`
+          # would let a crafted input break out of its quotes and execute —
+          # the documented script-injection pattern. Values set here are
+          # never re-parsed as code, so even a hostile dispatch input stays
+          # an inert string. (Dispatching needs write access anyway, but the
+          # script should hold that line on its own.)
+          IN_SEASON: ${{ github.event.inputs.season || 'current' }}
+          IN_DIVISION: ${{ github.event.inputs.division || 'ALL' }}
+          IN_MODE: ${{ github.event.inputs.mode || '' }}
+          IN_SCHEDULE: ${{ github.event.schedule }}
 
       - name: Validate output
         run: |
