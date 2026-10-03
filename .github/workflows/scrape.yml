@@ -2,13 +2,27 @@ name: Scrape & Deploy
 
 on:
   schedule:
-    # 6:00 AM ET daily (10:00 UTC). Current season, every division it is
-    # playing: the cron asks for 'current' + ALL, the tier walk covers every
-    # tier, and only divisions the data already proves exist get probed —
-    # see the division hint in nyhl_scrape.py. 25-26 U14 was pulled once on
-    # 2026-09-24 and is served from its snapshot; it is deliberately not
-    # re-hit every day.
-    - cron: "0 10 * * *"
+    # Three runs a day, in UTC (GitHub cron has no timezone). Under daylight
+    # time these read as 9 AM / noon / 5 PM ET, under standard time as
+    # 8 AM / 11 AM / 4 PM — treat both as targets, since GitHub's scheduler
+    # is best-effort and has fired hours late here before.
+    #   13:00 — morning full run: schedules + the standings walk. The site's
+    #           overnight results and schedule changes have landed by then,
+    #           and standings — the expensive side, a division-by-game-type
+    #           postback walk costing 25 calls unpublished and up to 95 once
+    #           tables are live — get their single daily hit here.
+    #   16:00 — schedule only: the schedule is a flat 9 calls (one ViewState
+    #           GET plus eight 30-day chunk posts), so a midday refresh is
+    #           cheap.
+    #   21:00 — schedule only: catches afternoon reschedules ahead of
+    #           evening games.
+    # Season scope stays 'current' + ALL, probing only divisions the data
+    # proves exist — see the division hint in nyhl_scrape.py. 25-26 U14 was
+    # pulled once on 2026-09-24 and is served from its snapshot; it is
+    # deliberately not re-hit.
+    - cron: "0 13 * * *"
+    - cron: "0 16 * * *"
+    - cron: "0 21 * * *"
   workflow_dispatch:
     inputs:
       season:
@@ -23,6 +37,10 @@ on:
         # replacing what has already been collected; name a division to
         # scope a manual run down to one.
         default: "ALL"
+      mode:
+        description: "What to scrape: full (schedules + standings), schedule (cheap, 9 calls), or standings"
+        required: false
+        default: "full"
 
 permissions:
   contents: write
@@ -62,10 +80,27 @@ jobs:
         run: |
           season="${{ github.event.inputs.season || 'current' }}"
           division="${{ github.event.inputs.division || 'ALL' }}"
+          mode="${{ github.event.inputs.mode || '' }}"
+          # Cron events carry no inputs, so which mode to run comes from
+          # which schedule fired: the 16:00 and 21:00 crons are the cheap
+          # schedule-only refreshes, the 13:00 morning cron scrapes both.
+          # Dispatches pick their own mode (default: full).
+          if [ -z "$mode" ]; then
+            case "${{ github.event.schedule }}" in
+              "0 16 * * *"|"0 21 * * *") mode="schedule" ;;
+              *) mode="full" ;;
+            esac
+          fi
+          mode_flag=""
+          case "$mode" in
+            schedule) mode_flag="--schedule-only" ;;
+            standings) mode_flag="--standings-only" ;;
+          esac
+          echo "Scrape mode: $mode"
           # A finished season is normally served straight from its snapshot
           # with zero requests. Naming one explicitly means "pull it for
-          # real", so pass --force. 'current' never needs it, and the cron
-          # stays on the current season alone: last season (25-26 U14) was
+          # real", so pass --force. 'current' never needs it, and the crons
+          # stay on the current season alone: last season (25-26 U14) was
           # pulled once on 2026-09-24 and is not re-hit daily. ALL is the
           # whole current season; the scraper only walks divisions its data
           # can vouch for, so widening the scope does not mean probing every
@@ -75,6 +110,7 @@ jobs:
           python scraper/nyhl_scrape.py \
             --season "$season" \
             --division "$division" \
+            $mode_flag \
             $force_flag \
             --verbose
         env:

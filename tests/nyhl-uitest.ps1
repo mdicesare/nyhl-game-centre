@@ -161,7 +161,7 @@ Check 'D7 saved-team chips removed'       (-not $d7.Contains('flex gap-2 mb-3 ov
 Write-Output '--- D8 seed-none (Settings season picker) ---'
 Check 'D8 season picker offered'          ($d8.Contains('>Season</label>') -and (HasEn $d8 '2026' '27'))
 Check 'D8 empty-state finder shown'       $d8.Contains('Find your team')
-Check 'D8 about states the update time'   ($d8.Contains('10:00 UTC') -and (-not $d8.Contains('Updated regularly')))
+Check 'D8 about states the update time'   (($d8.Contains('three times a day') -and $d8.Contains('standings once in the morning') -and (-not $d8.Contains('Updated regularly'))))
 
 Write-Output '--- D9 seed-twin (same name, two seasons, two cards) ---'
 Check 'D9 both cards get doors'           ((Count $d9 'Open Vaughan Blue schedule') -eq 2)
