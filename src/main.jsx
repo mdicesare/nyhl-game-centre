@@ -1,7 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import { registerPwa } from './lib/pwa'
 import './index.css'
+
+// Own the service worker registration (update checks + reload on deploy) —
+// see src/lib/pwa.js. PROD-only, so the dev server never registers.
+registerPwa()
 
 // Initialize dark mode from localStorage (default: dark)
 if (localStorage.getItem('nyhl-dark-mode') === 'light') {

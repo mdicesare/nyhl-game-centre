@@ -8,7 +8,16 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.png', 'data/*.json'],
+      // Registration lives in src/lib/pwa.js instead of the injected
+      // registerSW.js: it passes updateViaCache 'none' (GitHub Pages caches
+      // sw.js for 10 minutes), nudges an update when a long-lived mobile tab
+      // comes back to the foreground, and reloads once when a new worker
+      // takes over. The injected script only called register(), so a phone
+      // kept running the old bundle until the user refreshed repeatedly.
+      injectRegister: null,
+      // Not favicon.png only — see globIgnores: the data JSONs used to be
+      // precached too, which hid every redeploy's fresh standings.
+      includeAssets: ['favicon.png'],
       manifest: {
         name: 'North York Hockey League Game Center',
         short_name: 'NYHL',
@@ -41,14 +50,22 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        // The data JSONs must NOT be precached: precache is cache-first and
+        // its route matches before the runtime route below, so the copy from
+        // the last deploy would answer every request — fresh standings stayed
+        // invisible until a service worker update landed (and on mobile that
+        // update could take days). They go through NetworkFirst instead:
+        // current when online (a conditional request, which also beats GitHub
+        // Pages' own 10-minute HTTP cache), the last copy when offline.
+        globIgnores: ['**/data/*.json'],
         runtimeCaching: [
           {
-            // Cache the data JSON files with network-first strategy
-            // so users get fresh data when online, cached when offline
             urlPattern: /^\/nyhl-game-centre\/data\/.*\.json$/,
             handler: 'NetworkFirst',
             options: {
               cacheName: 'nyhl-data',
+              networkTimeoutSeconds: 5,
+              fetchOptions: { cache: 'no-cache' },
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24, // 24 hours

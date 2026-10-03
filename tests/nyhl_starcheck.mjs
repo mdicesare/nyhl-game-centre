@@ -203,11 +203,22 @@ try {
   await expectStars('desktop: no star on other season (26-27 active, 25-26 shown)', 0, 'Vaughan Blue')
 
   // ---- 2. same session, switch season to the team's own year --------------
+  // Snapshot the visible table first: the badge flips with the *state*, but
+  // the old season's rows stay on screen until standings-26-27.json arrives
+  // (a first fetch of a season goes to the network — data is deliberately
+  // not precached), so "rows exist" passes on the stale table. Wait for the
+  // rows to actually be replaced before counting stars.
+  const beforeRow = (await evaluateRetry(
+    `(() => { const r = document.querySelector('tbody tr'); return r ? r.innerText.replace(/\\s+/g, ' ') : '' })()`
+  )) || ''
   await evaluateRetry(E_SET_SEASON('26-27'))
   await waitFor(
     `[...document.querySelectorAll('span')].some((s) => s.textContent === '2026–27')`,
     'season badge flipped to 2026–27')
-  await waitFor(E_ROWS, 'rows after season switch')
+  await waitFor(
+    `(() => { const r = document.querySelector('tbody tr'); if (!r) return false;` +
+    ` const t = r.innerText.replace(/\\s+/g, ' '); return !!t && t !== ${JSON.stringify(beforeRow)} })()`,
+    'rows replaced with the 26-27 table')
   await expectStars('desktop: star on own season (26-27 active, 26-27 shown)', 1, 'Vaughan Blue')
 
   // ---- 3. active 25-26 instance, browsing 25-26 ---------------------------

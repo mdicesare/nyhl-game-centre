@@ -15,6 +15,9 @@
  *   5. missing file with SW active                -> shell or 404 message,
  *      never a broken half-state
  *   6. plain shell load                           -> unaffected
+ *   7. PWA update contract                        -> sw.js skips waiting,
+ *      data JSONs out of the cache-first precache, registration with
+ *      updateViaCache 'none', injected register script gone
  */
 import { spawn } from 'node:child_process'
 import { mkdtempSync, rmSync } from 'node:fs'
@@ -157,6 +160,25 @@ try {
   const p6 = await pageState()
   check('shell: boots clean, no stray restore',
     (p6.path === '/nyhl-game-centre/' || p6.path === '/nyhl-game-centre') && p6.key === null, JSON.stringify(p6))
+
+  // ---- 7. PWA update contract (a redeploy must reach the phone) ----------
+  // Everything the update path rests on: our own registration (the plugin's
+  // injected registerSW.js is gone) with updateViaCache 'none' so a cached
+  // sw.js can't mean "no update", a worker that skips its waiting phase, and
+  // the data JSONs kept OUT of the cache-first precache — precache matches
+  // before the runtime NetworkFirst route, so precached data would answer
+  // with the last deploy's copy until a worker update happened to land.
+  const swText = await (await fetch(`${BASE}/sw.js`)).text()
+  check('pwa: worker skips waiting and claims clients',
+    swText.includes('skipWaiting') && swText.includes('clientsClaim'))
+  check('pwa: data JSONs out of the precache (NetworkFirst owns them)',
+    !swText.includes('data/schedule-26-27.json') && swText.includes('nyhl-data'))
+  const regNone = await waitFor(
+    `navigator.serviceWorker.getRegistration().then(r => !!(r && r.updateViaCache === 'none'))`,
+    'registration with updateViaCache none')
+  check('pwa: registration bypasses the HTTP cache', regNone)
+  check('pwa: injected register script gone (registration is ours)',
+    await evaluate(`!document.querySelector('script[id="vite-plugin-pwa:register-sw"]')`))
 } catch (e) {
   check('script completed without error', false, e.message)
 } finally {
