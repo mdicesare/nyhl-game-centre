@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-04T23:47:03.753365Z",
-  "gameCount": 328,
+  "scrapedAt": "2026-10-05T22:26:58.883901Z",
+  "gameCount": 324,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -264,8 +264,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-05_19:10_Vaughan Silver_Vaughan JCC",
@@ -330,94 +333,6 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-05/21:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-05_18:10_North Toronto_Parkwoods",
-      "date": "2026-10-05",
-      "time": "18:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Parkwoods",
-        "logo": "PW9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "North Toronto",
-        "logo": "NT9"
-      },
-      "division": "U11",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-05_19:20_Vaughan Red_Ted Reeve Red",
-      "date": "2026-10-05",
-      "time": "19:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "division": "U11",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/19:20",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-05_20:30_Parkwoods_Forest Hill Gold",
-      "date": "2026-10-05",
-      "time": "20:30",
-      "homeTeam": {
-        "id": "",
-        "name": "Forest Hill Gold",
-        "logo": "FH9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Parkwoods",
-        "logo": "PW9"
-      },
-      "division": "U15",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/20:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-05_21:40_Parkwoods_Etobicoke White",
-      "date": "2026-10-05",
-      "time": "21:40",
-      "homeTeam": {
-        "id": "",
-        "name": "Etobicoke White",
-        "logo": "EH9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Parkwoods",
-        "logo": "PW9"
-      },
-      "division": "U16",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-05/21:40",
       "status": "scheduled",
       "score": null
     },
