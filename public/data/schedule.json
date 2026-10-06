@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-06T11:56:44.626926Z",
-  "gameCount": 324,
+  "scrapedAt": "2026-10-06T19:19:56.283367Z",
+  "gameCount": 322,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -1537,72 +1537,6 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-09_19:10_East York_Ted Reeve Black",
-      "date": "2026-10-09",
-      "time": "19:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Ted Reeve Black",
-        "logo": "TR9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "East York",
-        "logo": "EY9"
-      },
-      "division": "U11",
-      "tier": "Tier 3",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/19:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-09_20:20_Willowdale_West Hill",
-      "date": "2026-10-09",
-      "time": "20:20",
-      "homeTeam": {
-        "id": "",
-        "name": "West Hill",
-        "logo": "WH1"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Willowdale",
-        "logo": "WI9"
-      },
-      "division": "U18",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/20:20",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-09_21:30_York Mills_Parkwoods",
-      "date": "2026-10-09",
-      "time": "21:30",
-      "homeTeam": {
-        "id": "",
-        "name": "Parkwoods",
-        "logo": "PW9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "York Mills",
-        "logo": "YM9"
-      },
-      "division": "U18",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Fenside",
-      "livebarn": "https://livebarn.com/en/video/4142/2026-10-09/21:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
       "id": "26-27_2026-10-09_18:10_Parkdale_York Mills Red",
       "date": "2026-10-09",
       "time": "18:10",
@@ -1621,6 +1555,28 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-09_19:20_East York_Ted Reeve Black",
+      "date": "2026-10-09",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U11",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/19:20",
       "status": "scheduled",
       "score": null
     },
