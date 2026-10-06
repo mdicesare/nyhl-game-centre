@@ -190,12 +190,12 @@ export default function Settings() {
             North York Hockey League Game Center — Schedules, standings, and results for your NYHL teams.
           </p>
           <p>
-            Data sourced from the NYHL/Agilex Game Centre. Refreshed four
-            times a day — a morning catch-up around 8–9 AM Eastern plus
-            three evening runs through the night's game waves, so
-            standings pick up the day's results soon after the final
-            whistle. Schedules and standings refresh on every run. The
-            footer shows the exact time of the last update.
+            Data sourced from the NYHL/Agilex Game Centre. Schedules
+            refresh seven times a day — morning, midday, late afternoon
+            and through the evening. Standings sweep in after each wave of
+            night games plus a morning catch-up, so results show up soon
+            after the final whistle. The footer shows the exact time of
+            the last update.
           </p>
           <p>
             Pages visited here are counted anonymously with GoatCounter —

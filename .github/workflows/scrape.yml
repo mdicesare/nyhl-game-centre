@@ -2,23 +2,29 @@ name: Scrape & Deploy
 
 on:
   schedule:
-    # Four runs a day, in UTC (GitHub cron has no timezone). The evening
-    # trio is pinned for EST — the heart of the season — and reads an hour
-    # later (9/11 PM + 1 AM) during the EDT shoulder months; treat all of
-    # them as targets anyway, since GitHub's scheduler is best-effort and
-    # has fired hours late here before. Parents check standings right after
-    # their kid's game, so the evening wave runs are the point:
-    #   01:00 — 8 PM ET: the first wave of games (starts from 6:10, done
-    #           ~7:20) into standings.
-    #   03:00 — 10 PM ET: the middle waves (7:20–9:40 starts).
-    #   05:00 — midnight ET: sweeps the tail — the last start is 22:05 and
-    #           the ice is clear by ~23:15.
-    #   13:00 — morning catch-up (8–9 AM ET): late strays, overnight
-    #           corrections, and insurance if an evening run dies. Every
-    #           run is full: schedules (a flat 9 calls) plus the standings
-    #           walk — a division-by-game-type postback walk costing 25
-    #           calls unpublished and up to 95 once tables are live. The
-    #           bot only commits when data actually changed.
+    # Seven runs a day, in UTC (GitHub cron has no timezone). Every slot is
+    # pinned for EST — the heart of the season — so under EDT (Oct, Mar)
+    # each fires an hour later than the local names below; and treat every
+    # one as a target anyway, since GitHub's scheduler is best-effort and
+    # has fired hours late here before.
+    #
+    # Schedules get the daytime cadence: they are posted during the day and
+    # they carry the final scores too (the three daytime slots are
+    # schedule-only; every other run is full and refreshes them as well):
+    #   14:00 — 9 AM:  morning refresh, doubles as the standings catch-up
+    #   17:00 — noon:  schedule only
+    #   20:00 — 3 PM:  schedule only
+    #   23:00 — 6 PM:  schedule only, just before the first wave (~6:10)
+    #   01:00 — 8 PM:  full — first wave (from 6:10, done ~7:20) into standings
+    #   03:00 — 10 PM: full — middle waves (7:20–9:40 starts)
+    #   05:00 — midnight: full — tail sweep (last start 22:05, ice clear
+    #           ~23:15)
+    # The standings walk — a division-by-game-type postback walk costing 25
+    # calls unpublished and up to 95 once tables are live — only runs on the
+    # four full slots: parents check right after their kid's game, which is
+    # why the evening slots exist at all, while the morning slot catches
+    # strays, overnight corrections and insurance if an evening run died.
+    # The bot only commits when data actually changed.
     # Season scope stays 'current' + ALL, probing only divisions the data
     # proves exist — see the division hint in nyhl_scrape.py. 25-26 U14 was
     # pulled once on 2026-09-24 and is served from its snapshot; it is
@@ -26,7 +32,10 @@ on:
     - cron: "0 1 * * *"
     - cron: "0 3 * * *"
     - cron: "0 5 * * *"
-    - cron: "0 13 * * *"
+    - cron: "0 14 * * *"
+    - cron: "0 17 * * *"
+    - cron: "0 20 * * *"
+    - cron: "0 23 * * *"
   workflow_dispatch:
     inputs:
       season:
@@ -85,14 +94,17 @@ jobs:
           season="$IN_SEASON"
           division="$IN_DIVISION"
           mode="$IN_MODE"
-          # Cron events carry no inputs, and every scheduled run is a full
-          # one now: the morning catch-up plus the evening wave runs that
-          # put each night's results into standings within about an hour
-          # of the last whistle. Dispatches pick their own mode (default:
-          # full), and the mapping below still honours a schedule-only
-          # dispatch.
+          # Cron events carry no inputs, so which mode to run comes from
+          # which schedule fired: the noon, 3 PM and 6 PM slots are cheap
+          # schedule-only refreshes (a flat 9 calls), while everything else
+          # — the evening wave runs and the morning catch-up — is full,
+          # standings included. Dispatches pick their own mode (default:
+          # full).
           if [ -z "$mode" ]; then
-            mode="full"
+            case "$IN_SCHEDULE" in
+              "0 17 * * *"|"0 20 * * *"|"0 23 * * *") mode="schedule" ;;
+              *) mode="full" ;;
+            esac
           fi
           mode_flag=""
           case "$mode" in
