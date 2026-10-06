@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-06T02:41:56.804939Z",
+  "scrapedAt": "2026-10-06T11:56:44.626926Z",
   "gameCount": 324,
   "games": [
     {
@@ -88,8 +88,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-05_19:20_Scarborough Black_Forest Hill",
@@ -110,8 +113,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-05_20:30_Forest Hill Gold_Willowdale",
@@ -132,8 +138,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-05_21:40_Knights_East York",
@@ -154,8 +163,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-10-05/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-05_18:25_North Toronto_Leaside Gold",
@@ -176,8 +188,11 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/18:25",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-05_19:35_Leaside Gold_Willowdale",
@@ -198,8 +213,11 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/19:35",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-05_20:45_Scarborough Black_Leaside Gold",
@@ -220,8 +238,11 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/20:45",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-05_21:55_Forest Hill Gold_Scarborough",
@@ -242,8 +263,11 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-10-05/21:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-05_18:10_Etobicoke_Vaughan Red",
@@ -514,8 +538,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-05_18:10_Ted Reeve Black_East York",
@@ -711,8 +738,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-10-05/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-06_18:20_Vaughan Red_Etobicoke",
