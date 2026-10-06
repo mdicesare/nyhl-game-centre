@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Agilex Standings
+</title>
+
+    <script src="../Scripts/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="../Script/jquery.min.js" type="text/javascript"></script>
+    <script src="../Script/js.cookie.js" type="text/javascript"></script>
+    <script src="../Script/common.js" type="text/javascript"></script>
+    <script src="../Script/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script src="../Script/iframeResizer.contentWindow.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var client = 'NYHL';
+        g_DynamicLoading.js("Event.js?v=" + Date.now());
+        g_DynamicLoading.css("../App_Themes/" + client + "/Main.css?v=" + Date.now());
+
+        $(function () {
+            if (client !== 'NYHL') {
+                $('.switch-panel').hide();
+            }
+
+            $("a.linkButton").each(function () {
+                $(this).click(function () {
+                    var arr = $(this).attr("data").split('|');
+                    window.location.href = "Schedules.aspx?from=standings&event=" + g_EventID[client].Schedules + "&Centre=" + arr[0].split('-')[0] + "&TeamName=" + arr[1] + "&Season=" + arr[2] + "&Division=" + arr[3] + "&Category=" + arr[4];
+                });
+            });
+
+            $("#btnPlayoffs").click(function () {
+                window.location.href = "Playoffs.aspx?event=" + g_EventID[client].Playoffs;
+            });
+
+            $("#btnSchedules").click(function () {
+                window.location.href = "Schedules.aspx?event=" + g_EventID[client].Schedules;
+            });
+
+            // link to the html of Champion_Weekend schedules
+            $("#btnChampion").click(function (e) {
+                e.preventDefault(); // Prevent the default behavior of the radio button
+
+                var url = "https://www.agilex.ca/HTML/" + client + "/ChampionshipWeekend";
+                var myModal = new bootstrap.Modal($("#exampleModal"), {});
+
+                loadChampionWeenendImage(url, $("#modalBody"));
+
+                myModal.show();
+            });
+
+            var $balloondiv = $('div.balloon');
+            $balloondiv.each(function () {
+                let control = $(this);
+
+                $.ajax({
+                    type: "Post",
+                    url: "Standings.aspx/GetBalloon",
+                    data: "{ 'Season': '" + control.data("season") + "', 'TeamID': '" + control.data("teamid") + "', 'Event': '" + $("#lbEventID").val() + "' }",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                })
+                .done(function (e) {
+                    var a = control.children("a");
+                    a.prop("title", e.d);
+                    var tooltip = new bootstrap.Tooltip(a, {
+                        sanitize: false
+                    });
+                })
+                .fail(function (jqXHR) {
+                    console.log(jqXHR.statusText);
+                });
+            });
+
+            $.tablesorter.addParser({
+                // set a unique id 
+                id: 'team',
+                is: function (s) {
+                    // return false so this parser is not auto detected 
+                    return false;
+                },
+                format: function (s, table, cell, cellIndex) {
+                    // get data attributes from $(cell).attr('data-something');
+                    // check specific column using cellIndex
+                    return $(cell).attr('data');
+                },
+                // set type, either numeric or text 
+                type: 'text'
+            });
+
+            $.tablesorter.addParser({
+                // set a unique id 
+                id: 'WLT',
+                is: function (s) {
+                    // return false so this parser is not auto detected 
+                    return false;
+                },
+                format: function (s, table, cell, cellIndex) {
+                    // get data attributes from $(cell).attr('data-something');
+                    // check specific column using cellIndex
+                    if (s == "") {
+                        return $.tablesorter.formatFloat(s);
+                    }
+
+                    var dataset = s.split('-');
+                    var r = "";
+                    var item = dataset[0];
+                    if (item.length == 2) {
+                        r += "0" + item;
+                    }
+                    else if (item.length == 1) {
+                        r += "00" + item;
+                    }
+                    else {
+                        r += item;
+                    }
+
+                    item = dataset[2];
+                    if (item.length == 2) {
+                        r += "0" + item;
+                    }
+                    else if (item.length == 1) {
+                        r += "00" + item;
+                    }
+                    else {
+                        r += item;
+                    }
+
+                    item = 99 - dataset[1];
+                    if (item.length == 2) {
+                        r += "0" + item;
+                    }
+                    else if (item.length == 1) {
+                        r += "00" + item;
+                    }
+                    else {
+                        r += item;
+                    }
+
+                    return $.tablesorter.formatFloat(r);
+                },
+                // set type, either numeric or text 
+                type: 'numeric'
+            });
+
+            $.tablesorter.addParser({
+                // set a unique id 
+                id: 'STREAK',
+                is: function (s) {
+                    return false;
+                },
+                format: function (s, table, cell, cellIndex) {
+                    var dataset = s.split(' ');
+                    var str = "";
+                    if (dataset.length == 2) {
+                        if ($.trim(dataset[0]).toUpperCase() == "WON") {
+                            str = dataset[1] * 10;
+                        }
+                        else if ($.trim(dataset[0]).toUpperCase() == "TIED") {
+                            str = dataset[1] * 1;
+                        }
+                        else if ($.trim(dataset[0]).toUpperCase() == "LOST") {
+                            str = dataset[1] * (-1);
+                        }
+                    }
+
+                    return str;
+                },
+                // set type, either numeric or text 
+                type: 'numeric'
+            });
+
+            if (client == "NYHL") {
+                $.tablesorter.defaults.headers = { 0: { sorter: false }, 1: { sorter: 'team' }, 3: { sorter: 'WLT' }, 11: { sorter: 'WLT' }, 12: { sorter: 'STREAK' } };
+            }
+            else {
+                $.tablesorter.defaults.headers = { 0: { sorter: false }, 1: { sorter: 'team' }, 3: { sorter: 'WLT' }, 8: { sorter: 'WLT' }, 9: { sorter: 'WLT' }, 10: { sorter: 'WLT' }, 11: { sorter: 'STREAK' } };
+            }
+
+            $(".tablesorter").each(function () {
+                $(this).tablesorter();
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        .modal-dialog {
+            min-width: 650px;
+            height: auto;
+        }
+        button.btn-close {
+            width: 15px; height: 15px;
+        }
+        .modal-header {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer border-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" action="./Standings.aspx?event=185" id="ctl01">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="7A997BE5" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+        <div class="container">
+            <div class="row mt-2">
+                <span class="col-lg-6 col-md-6 col-sm-6 text-start"><span id="lbTitle" class="page-title fw-bold">NYHL FALL SEASON - Standings</span></span>
+                <span class="col-lg-3 col-md-6 col-sm-6 text-end"></span>
+                <span class="col-lg-3 col-md-12 col-sm-12 text-end"><a class="link-copyright" target="_blank" href="http://www.agilex.ca">Powered by AGILEX</a>&nbsp;</span>
+                <input name="lbEventID" type="hidden" id="lbEventID" value="185" />
+                <input name="lbGameType" type="hidden" id="lbGameType" value="FS" />
+            </div>
+
+            <div class="row clearfix col-lg-12 col-md-12 col-sm-12 mt-3">
+                <div id="pnlDiv" class="col-lg-2 col-md-3 col-sm-8">
+	
+                    <label for="ddlDiv" class="control-label fw-bold"><span id="lbDivision">Division</span></label>
+                    <div class="text-start">
+                        <select name="ddlDiv" id="ddlDiv" class="form-control form-select">
+		<option value="U07">Under 7</option>
+		<option value="U08">Under 8</option>
+		<option value="U09">Under 9</option>
+		<option value="U10">Under 10</option>
+		<option value="U11">Under 11</option>
+		<option value="U12">Under 12</option>
+		<option value="U13">Under 13</option>
+		<option value="U14">Under 14</option>
+		<option selected="selected" value="U15">Under 15</option>
+		<option value="U16">Under 16</option>
+		<option value="U17">Under 17</option>
+		<option value="U18">Under 18</option>
+		<option value="U21">Under 21</option>
+		<option value="OTH">Other</option>
+
+	</select>
+                    </div>
+                
+</div>
+                <div id="pnlTier" class="col-lg-2 col-md-3 col-sm-8">
+	
+                    <label for="ddlTier" class="control-label fw-bold"><span id="lbTier">Tier</span></label>
+                    <div class="text-start">
+                        <select name="ddlTier" id="ddlTier" class="form-control form-select">
+		<option selected="selected" value="Tier 1">Tier 1</option>
+		<option value="Tier 2">Tier 2</option>
+		<option value="Tier 3">Tier 3</option>
+
+	</select>
+                    </div>
+                
+</div>
+                
+                <div id="pnlType" class="col-lg-2 col-md-3 col-sm-8">
+	
+                    <label for="ddlType" class="control-label fw-bold"><span id="lbType">Game Type</span></label>
+                    <div class="text-left">
+                        <select name="ddlType" id="ddlType" class="form-control form-select">
+		<option selected="selected" value="FS">Fall Season</option>
+		<option value="WS">Winter Season</option>
+
+	</select>
+                    </div>
+                
+</div>
+                <div id="pnlSeason" class="col-lg-2 col-md-3 col-sm-8">
+	
+                    <label for="ddlSeason" class="control-label fw-bold"><span id="lbSeason">Season</span></label>
+                    <div class="text-start">
+                        <select name="ddlSeason" id="ddlSeason" class="form-control form-select">
+		<option selected="selected" value="26-27">26-27</option>
+		<option value="25-26">25-26</option>
+		<option value="24-25">24-25</option>
+		<option value="23-24">23-24</option>
+		<option value="22-23">22-23</option>
+
+	</select>
+                    </div>
+                
+</div>
+                
+            </div>
+
+            <div class="row mt-2 switch-panel">
+                <div class="col-12 text-end">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnSchedules" autocomplete="off" />
+                        <label class="btn btn-outline-secondary" for="btnSchedules">Schedules</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnStandings" autocomplete="off" checked />
+                        <label class="btn btn-outline-secondary" for="btnStandings">Standings</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnPlayoffs" autocomplete="off" />
+                        <label class="btn btn-outline-secondary" for="btnPlayoffs">Brackets</label>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+                    <div class="clearfix mt-3">
+                        <label for="st_tblRepeater" class="control-label fw-bold"><span id="rptMain_st_lbDetail_0"></span></label>
+
+                        <div class="table-responsive">
+                            <table id="st_tblRepeater" class="tablesorter table table-striped table-standing-mobile">
+                                
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col" class="col-4 text-center" title="Name of team">Team</th>
+                                                <th scope="col" class="col-1" title="Game(s) played">GP</th>
+                                                <th scope="col" class="tdWLT col-1" title="Win-Lose-Tie">W-L-T</th>
+                                                <th scope="col" class="col-1" title="Points in the season">PTS</th>
+                                                <th scope="col" class="col-1" title="Win percentage">WIN%</th>
+                                                <th scope="col" class="tdGFA col-1" title="Goals for average">GFA</th>
+                                                <th scope="col" class="tdGAA col-1" title="Goals against average">GAA</th>
+                                                <th scope="col" class="tdGF col-1" title="Goals for">GF</th>
+                                                <th scope="col" class="tdGA col-1" title="Goals against">GA</th>
+                                                <th scope="col" class="tdGFGA col-1" title="GF/GA">GF/GA</th>
+                                                <th scope="col" class="tdHome col-1" title="W-L-T record at home">Home</th>
+                                                <th scope="col" class="tdAway col-1" title="W-L-T record while away">Away</th>
+                                                <th scope="col" class="tdP10 col-1" title="W-L-T record in the past 10 games">P10</th>
+                                                <th scope="col" class="col-1" title="Streak">Streak</th>
+                                                <th scope="col" class="tdPIM col-1" title="Penalty in minutes">PIM</th>
+                                            </tr>
+                                        </thead>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='VAUGHAN BLUE'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3785|VAUGHAN BLUE|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/VS1.png' alt='' data-alt='VS1' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3785' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3785|VAUGHAN BLUE|26-27|U15|Tier 1">
+                                                            VAUGHAN BLUE
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">1</td>
+                                            <td data-label="W-L-T" class="align-middle">1-0-0</td>
+                                            <td data-label="PTS" class="align-middle">2</td>
+                                            <td data-label="WIN%" class="align-middle">1.000</td>
+                                            <td data-label="GFA" class="align-middle tdGFA">4.00</td>
+                                            <td data-label="GAA" class="align-middle tdGAA">2.00</td>
+                                            <td data-label="GF" class="align-middle tdGF">4</td>
+                                            <td data-label="GA" class="align-middle tdGA">2</td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA">0.67</td>
+                                            <td data-label="Home" class="align-middle tdHome">1-0-0</td>
+                                            <td data-label="Away" class="align-middle tdAway">0-0-0</td>
+                                            <td data-label="P10" class="align-middle tdP10">1-0-0</td>
+                                            <td data-label="Streak" class="align-middle">Won 1</td>
+                                            <td data-label="PIM" class="align-middle tdPIM">0</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='LEASIDE RED'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3875|LEASIDE RED|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/LE9.png' alt='' data-alt='LE9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3875' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3875|LEASIDE RED|26-27|U15|Tier 1">
+                                                            LEASIDE RED
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">1</td>
+                                            <td data-label="W-L-T" class="align-middle">0-1-0</td>
+                                            <td data-label="PTS" class="align-middle">0</td>
+                                            <td data-label="WIN%" class="align-middle">.000</td>
+                                            <td data-label="GFA" class="align-middle tdGFA">2.00</td>
+                                            <td data-label="GAA" class="align-middle tdGAA">4.00</td>
+                                            <td data-label="GF" class="align-middle tdGF">2</td>
+                                            <td data-label="GA" class="align-middle tdGA">4</td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA">0.33</td>
+                                            <td data-label="Home" class="align-middle tdHome">0-0-0</td>
+                                            <td data-label="Away" class="align-middle tdAway">0-1-0</td>
+                                            <td data-label="P10" class="align-middle tdP10">0-1-0</td>
+                                            <td data-label="Streak" class="align-middle">Lost 1</td>
+                                            <td data-label="PIM" class="align-middle tdPIM">0</td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='NORTH TORONTO'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3890|NORTH TORONTO|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/NT9.png' alt='' data-alt='NT9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3890' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3890|NORTH TORONTO|26-27|U15|Tier 1">
+                                                            NORTH TORONTO
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='PARKWOODS'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3905|PARKWOODS|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/PW9.png' alt='' data-alt='PW9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3905' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3905|PARKWOODS|26-27|U15|Tier 1">
+                                                            PARKWOODS
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='YORK MILLS RED'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3924|YORK MILLS RED|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/YM9.png' alt='' data-alt='YM9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3924' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3924|YORK MILLS RED|26-27|U15|Tier 1">
+                                                            YORK MILLS RED
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='FOREST HILL GOLD'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3948|FOREST HILL GOLD|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/FH9.png' alt='' data-alt='FH9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3948' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3948|FOREST HILL GOLD|26-27|U15|Tier 1">
+                                                            FOREST HILL GOLD
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='AVENUE ROAD'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3812|AVENUE ROAD|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/AV9.png' alt='' data-alt='AV9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3812' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3812|AVENUE ROAD|26-27|U15|Tier 1">
+                                                            AVENUE ROAD
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='TED REEVE'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3832|TED REEVE|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/TR9.png' alt='' data-alt='TR9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3832' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3832|TED REEVE|26-27|U15|Tier 1">
+                                                            TED REEVE
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='FAUSTINA BLACK'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3861|FAUSTINA BLACK|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/FA9.png' alt='' data-alt='FA9' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3861' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3861|FAUSTINA BLACK|26-27|U15|Tier 1">
+                                                            FAUSTINA BLACK
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td class="cell-team align-middle" data='VAUGHAN RED'>
+                                                <span class="logo-span">
+                                                    <a href="javascript:void(0)" class="linkButton" data="3784|VAUGHAN RED|26-27|U15|SL">
+                                                        <img class="logo-img mx-auto d-block" src='../Images/NYHL/Logo/VS1.png' alt='' data-alt='VS1' onerror="this.classList.add('error');" />
+                                                    </a>
+                                                </span>
+                                                <div class="balloon" data-teamid='3784' data-season='26-27'>
+                                                    
+                                                        <a href="javascript:void(0)" class="linkButton fw-bold" data-bs-toggle="tooltip" data-bs-html="true" title="" data="3784|VAUGHAN RED|26-27|U15|Tier 1">
+                                                            VAUGHAN RED
+                                                        </a>
+                                                    
+                                                </div>
+                                            </td>
+                                            <td data-label="GP" class="align-middle">0</td>
+                                            <td data-label="W-L-T" class="align-middle"></td>
+                                            <td data-label="PTS" class="align-middle"></td>
+                                            <td data-label="WIN%" class="align-middle"></td>
+                                            <td data-label="GFA" class="align-middle tdGFA"></td>
+                                            <td data-label="GAA" class="align-middle tdGAA"></td>
+                                            <td data-label="GF" class="align-middle tdGF"></td>
+                                            <td data-label="GA" class="align-middle tdGA"></td>
+                                            <td data-label="GF/GA" class="align-middle tdGFGA"></td>
+                                            <td data-label="Home" class="align-middle tdHome"></td>
+                                            <td data-label="Away" class="align-middle tdAway"></td>
+                                            <td data-label="P10" class="align-middle tdP10"></td>
+                                            <td data-label="Streak" class="align-middle"></td>
+                                            <td data-label="PIM" class="align-middle tdPIM"></td>
+                                        </tr>
+                                    
+                            </table>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                
+        </div>
+    </form>
+</body>
+</html>

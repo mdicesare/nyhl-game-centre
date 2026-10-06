@@ -9,6 +9,7 @@ from its own location, so run them from anywhere. Exit code 0 = pass.
 |---|---|---|
 | `python tests/nyhl_merge_test.py` | 23 | merge/season-rebind/write logic: slices replaced not duplicated, `listed_tiers` drop, shrink/empty-run guards, snapshot handling |
 | `python tests/nyhl_health_test.py` | 3 | page-health predicates: throttle stub, hollow vs full ViewState |
+| `python tests/nyhl_eventid_test.py` | 16 | standings event discovery: Event.js parser, resolver fallback/adoption/cache paths, row parse of a real response from the current event |
 
 ## Data (offline, validates the committed `public/data`)
 

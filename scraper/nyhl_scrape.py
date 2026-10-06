@@ -36,7 +36,14 @@ from bs4 import BeautifulSoup
 
 AGILEX_BASE = "https://www.agilex.ca/SSP/Hockey"
 SCHEDULE_URL = f"{AGILEX_BASE}/schedules.aspx?event=176"
+# Only a fallback: the standings event id is re-created by NYHL from season
+# to season (it has moved 162 -> 171 -> 185; on 2026-10-05 the old 171 shell
+# started answering every postback with a page that carries *no table at
+# all*, which the slice guards read as "nothing published" and quietly kept
+# the pre-season zeros). resolve_standings_event() points this at the
+# current id from EVENT_MAP_URL before any standings request goes out.
 STANDINGS_URL = f"{AGILEX_BASE}/Standings.aspx?event=171"
+EVENT_MAP_URL = f"{AGILEX_BASE}/Event.js"
 
 VIEWSTATE_GENERATOR = "EBDC8456"  # observed stable across sessions
 
@@ -512,6 +519,63 @@ def parse_schedule_table(html: str) -> list[dict]:
 # ---------------------------------------------------------------------------
 # Standings scraping
 # ---------------------------------------------------------------------------
+
+# Set once resolve_standings_event() has run, so the shared season-list GET
+# in main() and a later scrape_standings() call only ever pay for the tiny
+# Event.js fetch between them.
+_STANDINGS_EVENT_RESOLVED = False
+
+
+def parse_standings_event_id(js_text: str) -> Optional[int]:
+    """Read g_EventID.NYHL.Standings out of the site's Event.js map.
+
+    Pure and network-free so tests can pin it against the real file. Returns
+    None on anything unrecognised, so callers keep the URL's built-in event
+    id instead of failing the run over a config file.
+    """
+    client = re.search(r"\bNYHL\s*:\s*\{(.*?)\}", js_text, re.S)
+    if not client:
+        return None
+    found = re.search(r"\bStandings\s*:\s*(\d+)", client.group(1))
+    return int(found.group(1)) if found else None
+
+
+def resolve_standings_event(session: requests.Session) -> str:
+    """Point STANDINGS_URL at the current NYHL standings event (once/run).
+
+    Every page's nav loads its event ids from Event.js — that map is the
+    site's own answer to "which event is live", so one sub-kilobyte static
+    GET per run replaces an id that has already gone stale twice. On any failure
+    the run continues on the fallback URL exactly as before: the slice
+    guards carry rows forward rather than losing them.
+    """
+    global STANDINGS_URL, _STANDINGS_EVENT_RESOLVED
+    if _STANDINGS_EVENT_RESOLVED:
+        return STANDINGS_URL
+    _STANDINGS_EVENT_RESOLVED = True
+    resp = request_with_retry(
+        lambda: session.get(EVENT_MAP_URL, timeout=30),
+        label="event map GET",
+        healthy=lambda text: "g_EventID" in text,
+        attempts=3,
+        fatal=False,
+    )
+    event_id = parse_standings_event_id(resp.text) if resp is not None else None
+    if not event_id:
+        log.warning(
+            "Event map unavailable or missing NYHL.Standings — standings "
+            "will use the fallback %s", STANDINGS_URL,
+        )
+        return STANDINGS_URL
+    resolved = f"{AGILEX_BASE}/Standings.aspx?event={event_id}"
+    if resolved != STANDINGS_URL:
+        log.info(
+            "Standings event id from Event.js: %d (fallback was %s)",
+            event_id, STANDINGS_URL,
+        )
+    STANDINGS_URL = resolved
+    return STANDINGS_URL
+
 
 def fetch_standings_page(
     session: requests.Session,
@@ -1126,6 +1190,12 @@ def scrape_standings(
     site's own answer to which tables exist there. The merge uses it to retire
     rows for tiers the site does not list (see merge_standings).
     """
+    # Every entry point resolves the current event first: main() does it
+    # before the shared season-list GET, and a direct caller (dropcheck,
+    # a scoped debug run) lands here without one. After the first call this
+    # is free.
+    resolve_standings_event(session)
+
     # GET standings page to harvest its ViewState and event ID
     if initial_html:
         log.info("Reusing the standings page the caller already fetched")
@@ -1146,8 +1216,9 @@ def scrape_standings(
     event_id = extract_event_id(page_html) or 162
     log.info("Standings event ID: %d", event_id)
 
-    # The URL opens on whatever event it carries (event=171 for 26-27) and
-    # only a ddlSeason postback rebinds the hidden event id to another
+    # The URL opens on whatever event Event.js reported (185 for 26-27 as of
+    # 2026-10-05, previously 171) and only a ddlSeason postback rebinds the
+    # hidden event id to another
     # season's event (162 for 25-26, 136 for 24-25). Posting a past season
     # under the stale id makes the site answer with a *different event's*
     # stats: the 25-26 backfill walked the whole season against event 171
@@ -1739,6 +1810,7 @@ def main():
         log.info("Schedule-only run — skipping the standings page fetch.")
     else:
         log.info("Fetching standings page (season list + scrape start)...")
+        resolve_standings_event(session)
         try:
             bump_requests()
             standings_resp = session.get(STANDINGS_URL, timeout=60)

@@ -3,6 +3,7 @@ dist/
 *.log
 .DS_Store
 scraper/debug_*.html
+scraper/debug_*.js
 scraper/__pycache__/
 *.pyc
 src-clean/

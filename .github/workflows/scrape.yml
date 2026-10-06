@@ -193,6 +193,7 @@ jobs:
         run: |
           python tests/nyhl_merge_test.py
           python tests/nyhl_health_test.py
+          python tests/nyhl_eventid_test.py
 
       - name: Standings vs schedule data agreement
         run: python tests/nyhl_fullcheck.py
