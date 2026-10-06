@@ -2,27 +2,31 @@ name: Scrape & Deploy
 
 on:
   schedule:
-    # Three runs a day, in UTC (GitHub cron has no timezone). Under daylight
-    # time these read as 9 AM / noon / 5 PM ET, under standard time as
-    # 8 AM / 11 AM / 4 PM — treat both as targets, since GitHub's scheduler
-    # is best-effort and has fired hours late here before.
-    #   13:00 — morning full run: schedules + the standings walk. The site's
-    #           overnight results and schedule changes have landed by then,
-    #           and standings — the expensive side, a division-by-game-type
-    #           postback walk costing 25 calls unpublished and up to 95 once
-    #           tables are live — get their single daily hit here.
-    #   16:00 — schedule only: the schedule is a flat 9 calls (one ViewState
-    #           GET plus eight 30-day chunk posts), so a midday refresh is
-    #           cheap.
-    #   21:00 — schedule only: catches afternoon reschedules ahead of
-    #           evening games.
+    # Four runs a day, in UTC (GitHub cron has no timezone). The evening
+    # trio is pinned for EST — the heart of the season — and reads an hour
+    # later (9/11 PM + 1 AM) during the EDT shoulder months; treat all of
+    # them as targets anyway, since GitHub's scheduler is best-effort and
+    # has fired hours late here before. Parents check standings right after
+    # their kid's game, so the evening wave runs are the point:
+    #   01:00 — 8 PM ET: the first wave of games (starts from 6:10, done
+    #           ~7:20) into standings.
+    #   03:00 — 10 PM ET: the middle waves (7:20–9:40 starts).
+    #   05:00 — midnight ET: sweeps the tail — the last start is 22:05 and
+    #           the ice is clear by ~23:15.
+    #   13:00 — morning catch-up (8–9 AM ET): late strays, overnight
+    #           corrections, and insurance if an evening run dies. Every
+    #           run is full: schedules (a flat 9 calls) plus the standings
+    #           walk — a division-by-game-type postback walk costing 25
+    #           calls unpublished and up to 95 once tables are live. The
+    #           bot only commits when data actually changed.
     # Season scope stays 'current' + ALL, probing only divisions the data
     # proves exist — see the division hint in nyhl_scrape.py. 25-26 U14 was
     # pulled once on 2026-09-24 and is served from its snapshot; it is
     # deliberately not re-hit.
+    - cron: "0 1 * * *"
+    - cron: "0 3 * * *"
+    - cron: "0 5 * * *"
     - cron: "0 13 * * *"
-    - cron: "0 16 * * *"
-    - cron: "0 21 * * *"
   workflow_dispatch:
     inputs:
       season:
@@ -81,15 +85,14 @@ jobs:
           season="$IN_SEASON"
           division="$IN_DIVISION"
           mode="$IN_MODE"
-          # Cron events carry no inputs, so which mode to run comes from
-          # which schedule fired: the 16:00 and 21:00 crons are the cheap
-          # schedule-only refreshes, the 13:00 morning cron scrapes both.
-          # Dispatches pick their own mode (default: full).
+          # Cron events carry no inputs, and every scheduled run is a full
+          # one now: the morning catch-up plus the evening wave runs that
+          # put each night's results into standings within about an hour
+          # of the last whistle. Dispatches pick their own mode (default:
+          # full), and the mapping below still honours a schedule-only
+          # dispatch.
           if [ -z "$mode" ]; then
-            case "$IN_SCHEDULE" in
-              "0 16 * * *"|"0 21 * * *") mode="schedule" ;;
-              *) mode="full" ;;
-            esac
+            mode="full"
           fi
           mode_flag=""
           case "$mode" in
