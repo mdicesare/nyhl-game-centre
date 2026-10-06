@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-06T21:25:26.472797Z",
+  "scrapedAt": "2026-10-06T23:37:35.263876Z",
   "gameCount": 322,
   "games": [
     {
@@ -763,8 +763,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-06_19:30_Vaughan White_Leaside White",
@@ -851,8 +854,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-06_19:10_Faustina Black_Vaughan Black",
@@ -873,8 +879,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-06_20:20_Willowdale_Etobicoke Blue",
@@ -939,8 +948,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-06_19:20_Etobicoke_York Mills Blue",
@@ -1093,8 +1105,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-06/17:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-06_19:00_Avenue Road_Leaside Gold",
@@ -1115,8 +1130,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-06/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-07_18:10_Faustina Black_Warren Park",
