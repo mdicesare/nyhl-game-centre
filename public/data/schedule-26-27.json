@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-07T19:44:34.346867Z",
+  "scrapedAt": "2026-10-07T21:43:49.479123Z",
   "gameCount": 458,
   "games": [
     {
@@ -2446,13 +2446,13 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-15_21:40_Knights_Warren Park",
+      "id": "26-27_2026-10-15_21:40_Knights_Parkdale",
       "date": "2026-10-15",
       "time": "21:40",
       "homeTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "Parkdale",
+        "logo": "PF9"
       },
       "awayTeam": {
         "id": "",
@@ -6706,7 +6706,7 @@
         "logo": "AV9"
       },
       "division": "U18",
-      "tier": "",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/21:35",
@@ -10336,11 +10336,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
