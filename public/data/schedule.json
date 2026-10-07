@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-06T23:37:35.263876Z",
+  "scrapedAt": "2026-10-07T02:14:15.447187Z",
   "gameCount": 322,
   "games": [
     {
@@ -788,8 +788,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-06_20:40_Vaughan JCC Blue_Vaughan Blue",
@@ -810,8 +813,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-06_21:50_Vaughan White_Vaughan Black",
@@ -881,8 +887,8 @@
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/19:10",
       "status": "final",
       "score": {
-        "away": 2,
-        "home": 1
+        "away": 5,
+        "home": 3
       }
     },
     {
@@ -904,8 +910,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-06_21:30_Vaughan White_Etobicoke Blue",
@@ -973,8 +982,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-06_20:30_Parkdale_Ted Reeve Black",
@@ -995,8 +1007,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-06_21:40_Avenue Road Orange_Vaughan Red",
@@ -1039,8 +1054,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-06_20:50_Leaside Red_Leaside Gold",
@@ -1061,8 +1079,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/20:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-06_22:00_Leaside Red_Goulding Park",
@@ -1083,8 +1104,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-06_17:55_Parkwoods_Leaside Red",
@@ -1132,8 +1156,8 @@
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-06/19:00",
       "status": "final",
       "score": {
-        "away": 1,
-        "home": 1
+        "away": 4,
+        "home": 2
       }
     },
     {
