@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-07T02:14:15.447187Z",
+  "scrapedAt": "2026-10-07T06:56:58.686283Z",
   "gameCount": 322,
   "games": [
     {
@@ -838,8 +838,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-06_18:10_Duffield Black_Ted Reeve Red",
@@ -935,8 +938,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-06/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-06_18:10_Faustina Black_Forest Hill",
@@ -1032,8 +1038,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-06/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-06_19:40_Leaside Red_Forest Hill",
@@ -1106,8 +1115,8 @@
       "livebarn": "https://livebarn.com/en/video/3705/2026-10-06/22:00",
       "status": "final",
       "score": {
-        "away": 0,
-        "home": 0
+        "away": 1,
+        "home": 4
       }
     },
     {
@@ -7335,7 +7344,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
