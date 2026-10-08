@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-08T19:40:58.564035Z",
+  "scrapedAt": "2026-10-08T21:42:35.588523Z",
   "gameCount": 456,
   "games": [
     {
@@ -3316,18 +3316,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-17_12:10_Warren Park White_Port Credit",
+      "id": "26-27_2026-10-17_12:10_Ted Reeve Red_Humber Valley",
       "date": "2026-10-17",
       "time": "12:10",
       "homeTeam": {
         "id": "",
-        "name": "Port Credit",
-        "logo": "PCS"
+        "name": "Humber Valley",
+        "logo": "HB9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Warren Park White",
-        "logo": "WP9"
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
       },
       "division": "U08",
       "tier": "Tier E",
@@ -3338,18 +3338,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-17_13:10_Ted Reeve Red_Humber Valley",
+      "id": "26-27_2026-10-17_13:10_Warren Park White_Port Credit",
       "date": "2026-10-17",
       "time": "13:10",
       "homeTeam": {
         "id": "",
-        "name": "Humber Valley",
-        "logo": "HB9"
+        "name": "Port Credit",
+        "logo": "PCS"
       },
       "awayTeam": {
         "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
+        "name": "Warren Park White",
+        "logo": "WP9"
       },
       "division": "U08",
       "tier": "Tier E",
@@ -9366,18 +9366,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-31_12:10_Port Credit_Ted Reeve Red",
+      "id": "26-27_2026-10-31_12:10_Humber Valley_Warren Park White",
       "date": "2026-10-31",
       "time": "12:10",
       "homeTeam": {
         "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
+        "name": "Warren Park White",
+        "logo": "WP9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Port Credit",
-        "logo": "PCS"
+        "name": "Humber Valley",
+        "logo": "HB9"
       },
       "division": "U08",
       "tier": "Tier E",
@@ -9388,18 +9388,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-31_13:10_Humber Valley_Warren Park White",
+      "id": "26-27_2026-10-31_13:10_Port Credit_Ted Reeve Red",
       "date": "2026-10-31",
       "time": "13:10",
       "homeTeam": {
         "id": "",
-        "name": "Warren Park White",
-        "logo": "WP9"
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Humber Valley",
-        "logo": "HB9"
+        "name": "Port Credit",
+        "logo": "PCS"
       },
       "division": "U08",
       "tier": "Tier E",
@@ -10304,11 +10304,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
