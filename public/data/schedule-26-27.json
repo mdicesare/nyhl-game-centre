@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-07T21:43:49.479123Z",
+  "scrapedAt": "2026-10-08T00:02:25.552431Z",
   "gameCount": 458,
   "games": [
     {
@@ -1210,8 +1210,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-07_20:30_North Toronto_York Mills Red",
