@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-08T11:57:10.697479Z",
-  "gameCount": 458,
+  "scrapedAt": "2026-10-08T19:40:58.564035Z",
+  "gameCount": 456,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -1188,8 +1188,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-07/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-07_19:20_Parkdale Red_Faustina Black",
@@ -2931,28 +2934,6 @@
         "logo": "VAR"
       },
       "division": "U07",
-      "tier": "",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/19:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-16_19:10_Vaughan Red_Duffield Red",
-      "date": "2026-10-16",
-      "time": "19:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Duffield Red",
-        "logo": "DF9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "division": "U07",
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
@@ -2983,21 +2964,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-16_21:30_Warren Park_Ted Reeve",
+      "id": "26-27_2026-10-16_21:30_Vaughan White_Willowdale",
       "date": "2026-10-16",
       "time": "21:30",
       "homeTeam": {
         "id": "",
-        "name": "Ted Reeve",
-        "logo": "TR9"
+        "name": "Willowdale",
+        "logo": "WI9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "Vaughan White",
+        "logo": "VAR"
       },
       "division": "U18",
-      "tier": "Tier 2",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/21:30",
@@ -3463,28 +3444,6 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/17:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-18_16:35_Vaughan White_Duffield Red",
-      "date": "2026-10-18",
-      "time": "16:35",
-      "homeTeam": {
-        "id": "",
-        "name": "Duffield Red",
-        "logo": "DF9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan White",
-        "logo": "VAR"
-      },
-      "division": "U07",
-      "tier": "",
-      "gameType": "FS",
-      "arena": "Al Palladini B",
-      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -9055,21 +9014,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-30_21:30_Leaside Gold_Warren Park",
+      "id": "26-27_2026-10-30_21:30_York Mills_Ted Reeve",
       "date": "2026-10-30",
       "time": "21:30",
       "homeTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "Ted Reeve",
+        "logo": "TR9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Leaside Gold",
-        "logo": "LE9"
+        "name": "York Mills",
+        "logo": "YM9"
       },
-      "division": "U17",
-      "tier": "Tier 3",
+      "division": "U18",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-30/21:30",
@@ -9297,21 +9256,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-30_21:40_Warren Park_York Mills",
+      "id": "26-27_2026-10-30_21:40_Leaside Gold_Warren Park",
       "date": "2026-10-30",
       "time": "21:40",
       "homeTeam": {
         "id": "",
-        "name": "York Mills",
-        "logo": "YM9"
-      },
-      "awayTeam": {
-        "id": "",
         "name": "Warren Park",
         "logo": "WP9"
       },
-      "division": "U18",
-      "tier": "Tier 2",
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U17",
+      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-30/21:40",
