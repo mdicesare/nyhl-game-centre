@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-08T21:42:35.588523Z",
+  "scrapedAt": "2026-10-09T00:11:01.101808Z",
   "gameCount": 456,
   "games": [
     {
@@ -1288,8 +1288,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-08_19:20_Faustina White_York Mills Blue",
@@ -1442,8 +1445,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 17
+      }
     },
     {
       "id": "26-27_2026-10-08_19:40_East York_Ted Reeve Black",
