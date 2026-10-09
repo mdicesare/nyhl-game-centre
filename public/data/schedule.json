@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T00:11:01.101808Z",
+  "scrapedAt": "2026-10-09T02:54:13.882062Z",
   "gameCount": 456,
   "games": [
     {
@@ -1313,8 +1313,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-08_20:30_Victoria Village Orange_West Hill",
@@ -1335,8 +1338,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-08_21:40_York Mills Blue_Duffield White",
@@ -1357,8 +1363,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-08/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-08_19:10_Vaughan JCC_West Hill",
@@ -1401,8 +1410,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-08_21:30_Etobicoke_Duffield Black",
@@ -1423,8 +1435,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-08_18:40_Willowdale_York Mills",
@@ -1448,7 +1463,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 17
+        "home": 10
       }
     },
     {
@@ -1470,8 +1485,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-08_20:50_Vaughan Red_Ted Reeve",
@@ -1492,8 +1510,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/20:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-08_22:00_Ted Reeve_Knights",
