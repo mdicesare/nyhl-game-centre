@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T21:25:48.459160Z",
-  "gameCount": 456,
+  "scrapedAt": "2026-10-09T23:51:47.948235Z",
+  "gameCount": 595,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -1560,8 +1560,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-09_19:10_Warren Park White_Humber Valley",
@@ -1648,8 +1651,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-09_19:20_East York_Ted Reeve Black",
@@ -1736,8 +1742,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-09_19:20_Parkdale White_Warren Park",
@@ -1824,8 +1833,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-09_19:40_Leaside Red_North Toronto",
@@ -10206,6 +10218,3064 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-01/18:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:10_Warren Park Red_West Hill",
+      "date": "2026-11-02",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park Red",
+        "logo": "WP9"
+      },
+      "division": "U10",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:20_Scarborough Red_Ted Reeve Black",
+      "date": "2026-11-02",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U11",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:30_Scarborough_Victoria Village Blue",
+      "date": "2026-11-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village Blue",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:40_Knights_Leaside Red",
+      "date": "2026-11-02",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "division": "U17",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:35_Scarborough Black_Faustina Black",
+      "date": "2026-11-02",
+      "time": "19:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-11-02/19:35",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:45_Etobicoke Blue_Scarborough Black",
+      "date": "2026-11-02",
+      "time": "20:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U15",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-11-02/20:45",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:55_Goulding Park_Avenue Road",
+      "date": "2026-11-02",
+      "time": "21:55",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Goulding Park",
+        "logo": "GP9"
+      },
+      "division": "U18",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-11-02/21:55",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:10_Duffield Red_Faustina Black",
+      "date": "2026-11-02",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Red",
+        "logo": "DF9"
+      },
+      "division": "U08",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:10_Vaughan White_Etobicoke",
+      "date": "2026-11-02",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "division": "U08",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:20_Faustina Black_Vaughan Red",
+      "date": "2026-11-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:30_York Mills_Knights",
+      "date": "2026-11-02",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills",
+        "logo": "YM9"
+      },
+      "division": "U18",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:10_Faustina White_East York",
+      "date": "2026-11-02",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-02/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:20_Forest Hill_Knights",
+      "date": "2026-11-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "division": "U16",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-02/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:30_East York_Forest Hill Gold",
+      "date": "2026-11-02",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-02/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:10_Parkwoods_Faustina White",
+      "date": "2026-11-02",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U10",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:20_North Toronto_Parkwoods",
+      "date": "2026-11-02",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:30_Scarborough Red_Etobicoke White",
+      "date": "2026-11-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:40_Parkwoods_Ted Reeve",
+      "date": "2026-11-02",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U18",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:10_Forest Hill_Leaside Red",
+      "date": "2026-11-02",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-11-02/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:20_North Toronto_Forest Hill Gold",
+      "date": "2026-11-02",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-11-02/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:30_Forest Hill Blue_Leaside Red",
+      "date": "2026-11-02",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U18",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Forest Hill",
+      "livebarn": "https://livebarn.com/en/video/4437/2026-11-02/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:05_Vaughan JCC_Willowdale",
+      "date": "2026-11-02",
+      "time": "18:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Honey and Barry North",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:15_Faustina White_Vaughan JCC",
+      "date": "2026-11-02",
+      "time": "19:15",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Honey and Barry North",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:25_Vaughan JCC_Forest Hill",
+      "date": "2026-11-02",
+      "time": "20:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Honey and Barry North",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:10_Faustina Black_Avenue Road",
+      "date": "2026-11-02",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U10",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:20_Avenue Road Black_Vaughan Red",
+      "date": "2026-11-02",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road Black",
+        "logo": "AV9"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:30_Parkdale_Forest Hill Blue",
+      "date": "2026-11-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:40_Faustina Black_Vaughan White",
+      "date": "2026-11-02",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:10_East York_Knights",
+      "date": "2026-11-02",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U11",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:20_York Mills Blue_Scarborough Black",
+      "date": "2026-11-02",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_20:30_Leaside Gold_Avenue Road",
+      "date": "2026-11-02",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_21:40_Etobicoke White_Parkwoods",
+      "date": "2026-11-02",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke White",
+        "logo": "EH9"
+      },
+      "division": "U16",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_18:20_Ted Reeve_Vaughan Red",
+      "date": "2026-11-03",
+      "time": "18:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U10",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:30_Vaughan Red_Ted Reeve Red",
+      "date": "2026-11-03",
+      "time": "19:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_20:40_Willowdale_Vaughan Blue",
+      "date": "2026-11-03",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_21:50_York Mills_Vaughan Blue",
+      "date": "2026-11-03",
+      "time": "21:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills",
+        "logo": "YM9"
+      },
+      "division": "U17",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_18:10_Duffield Black_Humber Valley",
+      "date": "2026-11-03",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Humber Valley",
+        "logo": "HB9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Black",
+        "logo": "DF9"
+      },
+      "division": "U08",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-03/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:10_Vaughan JCC_Warren Park Red",
+      "date": "2026-11-03",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park Red",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U08",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-03/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_20:20_York Mills Blue_Faustina White",
+      "date": "2026-11-03",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-03/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_21:30_Forest Hill Blue_Leaside Gold",
+      "date": "2026-11-03",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U17",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-03/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:10_East York_Avenue Road Orange",
+      "date": "2026-11-03",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road Orange",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-03/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_20:20_Warren Park_East York",
+      "date": "2026-11-03",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U16",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-03/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_21:30_East York_Etobicoke",
+      "date": "2026-11-03",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U17",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "East York",
+      "livebarn": "https://livebarn.com/en/video/3877/2026-11-03/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_18:10_Etobicoke_York Mills Blue",
+      "date": "2026-11-03",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:20_North Toronto_Faustina Black",
+      "date": "2026-11-03",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_20:30_Leaside Gold_West Hill",
+      "date": "2026-11-03",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U15",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_21:40_York Mills Blue_West Hill",
+      "date": "2026-11-03",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U16",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:40_Leaside Gold_Leaside Red",
+      "date": "2026-11-03",
+      "time": "19:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U10",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-11-03/19:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_20:50_Leaside White_Vaughan Red",
+      "date": "2026-11-03",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside White",
+        "logo": "LE9"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-11-03/20:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_22:00_Leaside Red_Etobicoke Blue",
+      "date": "2026-11-03",
+      "time": "22:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U16",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside A",
+      "livebarn": "https://livebarn.com/en/video/3705/2026-11-03/22:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_17:55_Leaside Gold_York Mills Red",
+      "date": "2026-11-03",
+      "time": "17:55",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-11-03/17:55",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-03_19:00_Ted Reeve_Leaside Red",
+      "date": "2026-11-03",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Leaside B",
+      "livebarn": "https://livebarn.com/en/video/3754/2026-11-03/19:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-04_18:10_Forest Hill_North Toronto Red",
+      "date": "2026-11-04",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto Red",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "division": "U10",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-04_19:20_North Toronto_Parkdale",
+      "date": "2026-11-04",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-04_20:30_Willowdale_Etobicoke Blue",
+      "date": "2026-11-04",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U15",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-04_21:40_Parkdale_York Mills",
+      "date": "2026-11-04",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U18",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_18:10_Vaughan JCC_Knights",
+      "date": "2026-11-05",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:20_York Mills Blue_Vaughan Red",
+      "date": "2026-11-05",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:30_Vaughan Blue_York Mills Red",
+      "date": "2026-11-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_21:40_Vaughan JCC_Etobicoke Blue",
+      "date": "2026-11-05",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U16",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_18:10_Avenue Road_Faustina White",
+      "date": "2026-11-05",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:20_Faustina Black_Warren Park",
+      "date": "2026-11-05",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:30_Seaside Hockey_Faustina Black",
+      "date": "2026-11-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U14",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_21:40_Faustina Black_Vaughan Red",
+      "date": "2026-11-05",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U16",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Ford Performance Centre 3",
+      "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_18:10_Forest Hill_Parkwoods",
+      "date": "2026-11-05",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:20_Avenue Road Orange_Willowdale",
+      "date": "2026-11-05",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road Orange",
+        "logo": "AV9"
+      },
+      "division": "U13",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:30_West Hill_Duffield",
+      "date": "2026-11-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_21:40_West Hill_North Toronto",
+      "date": "2026-11-05",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:10_Etobicoke_Duffield",
+      "date": "2026-11-05",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "division": "U11",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:20_Forest Hill Blue_Parkdale",
+      "date": "2026-11-05",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_21:30_Ted Reeve Red_Etobicoke",
+      "date": "2026-11-05",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "division": "U17",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "John Booth",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_18:40_Ted Reeve Black_Avenue Road",
+      "date": "2026-11-05",
+      "time": "18:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/18:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:50_Faustina White_Knights",
+      "date": "2026-11-05",
+      "time": "19:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina White",
+        "logo": "FA9"
+      },
+      "division": "U13",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/19:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:50_Vaughan JCC Blue_Leaside Red",
+      "date": "2026-11-05",
+      "time": "20:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC Blue",
+        "logo": "RHV"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/20:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_22:00_North Toronto_Avenue Road Black",
+      "date": "2026-11-05",
+      "time": "22:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road Black",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U16",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/22:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_18:10_York Mills Red_Knights",
+      "date": "2026-11-05",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "division": "U10",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_19:20_Victoria Village_North Toronto",
+      "date": "2026-11-05",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_20:30_Mimico_Victoria Village Orange",
+      "date": "2026-11-05",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village Orange",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Mimico",
+        "logo": "QC9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-05_21:40_Victoria Village Blue_Forest Hill Gold",
+      "date": "2026-11-05",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village Blue",
+        "logo": "VV9"
+      },
+      "division": "U17",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Victoria Village",
+      "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_18:10_Leaside Gold_Vaughan White",
+      "date": "2026-11-06",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U13",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-06/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_19:20_Leaside White_Parkdale White",
+      "date": "2026-11-06",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale White",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside White",
+        "logo": "LE9"
+      },
+      "division": "U13",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-06/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_20:30_York Mills Blue_Victoria Village",
+      "date": "2026-11-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U15",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-06/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_21:40_Duffield White_Victoria Village Orange",
+      "date": "2026-11-06",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village Orange",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "division": "U17",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-06/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_19:10_Etobicoke_West Hill",
+      "date": "2026-11-06",
+      "time": "19:10",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-06/19:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_20:20_Parkwoods_Forest Hill Gold",
+      "date": "2026-11-06",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkwoods",
+        "logo": "PW9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-06/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_21:30_Forest Hill Blue_North Toronto Green",
+      "date": "2026-11-06",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto Green",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Forest Hill Blue",
+        "logo": "FH9"
+      },
+      "division": "U17",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Fenside",
+      "livebarn": "https://livebarn.com/en/video/4142/2026-11-06/21:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_18:10_Leaside Gold_Mimico",
+      "date": "2026-11-06",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Mimico",
+        "logo": "QC9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_19:20_Parkdale Red_York Mills Red",
+      "date": "2026-11-06",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale Red",
+        "logo": "PF9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_20:30_Ted Reeve_Vaughan White",
+      "date": "2026-11-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U16",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_21:40_Duffield Black_Ted Reeve Red",
+      "date": "2026-11-06",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Black",
+        "logo": "DF9"
+      },
+      "division": "U17",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_18:10_Vaughan Silver_Warren Park Red",
+      "date": "2026-11-06",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park Red",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Silver",
+        "logo": "VS1"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_19:20_Warren Park_North Toronto",
+      "date": "2026-11-06",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_20:30_Mimico_Ted Reeve Black",
+      "date": "2026-11-06",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Mimico",
+        "logo": "QC9"
+      },
+      "division": "U14",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_21:40_Ted Reeve Black_Vaughan Red",
+      "date": "2026-11-06",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "division": "U17",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Lambton",
+      "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_18:40_Seaside Hockey_West Hill Gold",
+      "date": "2026-11-06",
+      "time": "18:40",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill Gold",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/18:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_19:50_Willowdale_Victoria Village",
+      "date": "2026-11-06",
+      "time": "19:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/19:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_21:00_Ted Reeve_Leaside Red",
+      "date": "2026-11-06",
+      "time": "21:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/21:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-06_22:05_East York_Scarborough",
+      "date": "2026-11-06",
+      "time": "22:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/22:05",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_15:25_Duffield Red_Vaughan Blue",
+      "date": "2026-11-07",
+      "time": "15:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Red",
+        "logo": "DF9"
+      },
+      "division": "U08",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_16:35_Vaughan Black_George Bell",
+      "date": "2026-11-07",
+      "time": "16:35",
+      "homeTeam": {
+        "id": "",
+        "name": "George Bell",
+        "logo": "GB9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Black",
+        "logo": "VAR"
+      },
+      "division": "U08",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_17:45_Vaughan Red_Ted Reeve Black",
+      "date": "2026-11-07",
+      "time": "17:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Black",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_19:00_Vaughan Blue_Leaside Gold",
+      "date": "2026-11-07",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini A",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_12:10_Duffield Red_Duffield Black",
+      "date": "2026-11-07",
+      "time": "12:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield Black",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Red",
+        "logo": "DF9"
+      },
+      "division": "U09",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/12:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_13:15_George Bell_North Toronto Red",
+      "date": "2026-11-07",
+      "time": "13:15",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto Red",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "George Bell",
+        "logo": "GB9"
+      },
+      "division": "U09",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/13:15",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_14:20_Ted Reeve Red_Vaughan Black",
+      "date": "2026-11-07",
+      "time": "14:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Black",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "division": "U09",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/14:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_15:25_Faustina Black_Vaughan White",
+      "date": "2026-11-07",
+      "time": "15:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U09",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/15:25",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_16:30_Knights_Warren Park White",
+      "date": "2026-11-07",
+      "time": "16:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park White",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Knights",
+        "logo": "NK3"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/16:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-07_17:35_Vaughan Silver_Victoria Village",
+      "date": "2026-11-07",
+      "time": "17:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Silver",
+        "logo": "VS1"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-07/17:35",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_16:35_Vaughan Red_Vaughan Blue",
+      "date": "2026-11-08",
+      "time": "16:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U07",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:45_Avenue Road_Vaughan White",
+      "date": "2026-11-08",
+      "time": "17:45",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U07",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:55_Vaughan Red_Avenue Road",
+      "date": "2026-11-08",
+      "time": "18:55",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_20:05_Vaughan JCC_Avenue Road Black",
+      "date": "2026-11-08",
+      "time": "20:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road Black",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:05_Ted Reeve Red_Avenue Road",
+      "date": "2026-11-08",
+      "time": "18:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/18:05",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_19:15_Victoria Village_Faustina Black",
+      "date": "2026-11-08",
+      "time": "19:15",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/19:15",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_20:25_North Toronto_Avenue Road",
+      "date": "2026-11-08",
+      "time": "20:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/20:25",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_21:35_Parkdale_Warren Park",
+      "date": "2026-11-08",
+      "time": "21:35",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "division": "U17",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Chesswood 1",
+      "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/21:35",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:50_North Toronto Green_York Mills Red",
+      "date": "2026-11-08",
+      "time": "17:50",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto Green",
+        "logo": "NT9"
+      },
+      "division": "U10",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/17:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_19:00_Scarborough Black_Warren Park",
+      "date": "2026-11-08",
+      "time": "19:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough Black",
+        "logo": "SAE"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/19:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_20:10_Duffield Black_Willowdale",
+      "date": "2026-11-08",
+      "time": "20:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Black",
+        "logo": "DF9"
+      },
+      "division": "U16",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/20:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_21:20_Avenue Road_Faustina Black",
+      "date": "2026-11-08",
+      "time": "21:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U17",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Chesswood 2",
+      "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/21:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:10_Avenue Road Black_East York",
+      "date": "2026-11-08",
+      "time": "17:10",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road Black",
+        "logo": "AV9"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-08/17:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:20_Victoria Village_Duffield White",
+      "date": "2026-11-08",
+      "time": "18:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-08/18:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_19:30_Avenue Road Orange_Duffield White",
+      "date": "2026-11-08",
+      "time": "19:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road Orange",
+        "logo": "AV9"
+      },
+      "division": "U16",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-08/19:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_20:40_Victoria Village Blue_North Toronto Red",
+      "date": "2026-11-08",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "North Toronto Red",
+        "logo": "NT9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Victoria Village Blue",
+        "logo": "VV9"
+      },
+      "division": "U17",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-08/20:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_16:10_West Hill Black_Etobicoke",
+      "date": "2026-11-08",
+      "time": "16:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill Black",
+        "logo": "WH1"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:20_Willowdale_Seaside Hockey",
+      "date": "2026-11-08",
+      "time": "17:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "division": "U09",
+      "tier": "",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:30_Vaughan JCC_West Hill",
+      "date": "2026-11-08",
+      "time": "18:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U12",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Heron Park 1",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:10_Scarborough_Forest Hill",
+      "date": "2026-11-08",
+      "time": "17:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Forest Hill",
+        "logo": "FH9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough",
+        "logo": "SAE"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-11-08/17:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:20_Warren Park_Scarborough Red",
+      "date": "2026-11-08",
+      "time": "18:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Scarborough Red",
+        "logo": "SAE"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "division": "U13",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-11-08/18:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_19:30_Vaughan Black_West Hill",
+      "date": "2026-11-08",
+      "time": "19:30",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Black",
+        "logo": "VAR"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-11-08/19:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_20:40_Vaughan Red_Willowdale",
+      "date": "2026-11-08",
+      "time": "20:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Scarborough Centennial",
+      "livebarn": "https://livebarn.com/en/video/4197/2026-11-08/20:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_13:50_Duffield White_Duffield Red",
+      "date": "2026-11-08",
+      "time": "13:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Duffield Red",
+        "logo": "DF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "division": "U07",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/13:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_14:50_Vaughan JCC_Vaughan White",
+      "date": "2026-11-08",
+      "time": "14:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan White",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan JCC",
+        "logo": "RHV"
+      },
+      "division": "U08",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/14:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_16:00_Avenue Road_West Hill",
+      "date": "2026-11-08",
+      "time": "16:00",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road",
+        "logo": "AV9"
+      },
+      "division": "U08",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/16:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:00_Port Credit_Humber Valley",
+      "date": "2026-11-08",
+      "time": "17:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Humber Valley",
+        "logo": "HB9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Port Credit",
+        "logo": "PCS"
+      },
+      "division": "U08",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Westwood 3",
+      "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/17:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_14:40_Duffield Black_Warren Park White",
+      "date": "2026-11-08",
+      "time": "14:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park White",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield Black",
+        "logo": "DF9"
+      },
+      "division": "U08",
+      "tier": "Tier E",
+      "gameType": "FS",
+      "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/14:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_15:50_Etobicoke_Warren Park Red",
+      "date": "2026-11-08",
+      "time": "15:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park Red",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "division": "U08",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/15:50",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_17:00_Avenue Road Orange_York Mills",
+      "date": "2026-11-08",
+      "time": "17:00",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Avenue Road Orange",
+        "logo": "AV9"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/17:00",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-08_18:00_York Mills_Willowdale",
+      "date": "2026-11-08",
+      "time": "18:00",
+      "homeTeam": {
+        "id": "",
+        "name": "Willowdale",
+        "logo": "WI9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills",
+        "logo": "YM9"
+      },
+      "division": "U11",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/18:00",
       "status": "scheduled",
       "score": null
     }
