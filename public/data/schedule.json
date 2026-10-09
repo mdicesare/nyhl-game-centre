@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T19:16:45.278597Z",
+  "scrapedAt": "2026-10-09T21:25:48.459160Z",
   "gameCount": 456,
   "games": [
     {
@@ -2026,7 +2026,7 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-13_20:30_Seaside Hockey_Warren Park",
+      "id": "26-27_2026-10-13_20:30_Vaughan Red_Warren Park",
       "date": "2026-10-13",
       "time": "20:30",
       "homeTeam": {
@@ -2036,8 +2036,8 @@
       },
       "awayTeam": {
         "id": "",
-        "name": "Seaside Hockey",
-        "logo": "SEA"
+        "name": "Vaughan Red",
+        "logo": "VAR"
       },
       "division": "U14",
       "tier": "Tier 2",
@@ -2171,7 +2171,7 @@
         "name": "Forest Hill",
         "logo": "FH9"
       },
-      "division": "U11",
+      "division": "U12",
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
@@ -10334,11 +10334,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
