@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T02:54:13.882062Z",
+  "scrapedAt": "2026-10-09T07:13:08.722297Z",
   "gameCount": 456,
   "games": [
     {
@@ -1535,8 +1535,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-08/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-09_18:10_George Bell_Vaughan Blue",
@@ -10331,7 +10334,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
