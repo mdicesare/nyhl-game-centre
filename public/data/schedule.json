@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T11:48:27.103372Z",
+  "scrapedAt": "2026-10-09T19:16:45.278597Z",
   "gameCount": 456,
   "games": [
     {
@@ -2004,21 +2004,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-13_19:20_Warren Park Red_Scarborough",
+      "id": "26-27_2026-10-13_19:20_North Toronto_Forest Hill",
       "date": "2026-10-13",
       "time": "19:20",
       "homeTeam": {
         "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
+        "name": "Forest Hill",
+        "logo": "FH9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Warren Park Red",
-        "logo": "WP9"
+        "name": "North Toronto",
+        "logo": "NT9"
       },
-      "division": "U10",
-      "tier": "Tier 2",
+      "division": "U11",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-13/19:20",
@@ -2158,21 +2158,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-13_19:20_Etobicoke_Knights",
+      "id": "26-27_2026-10-13_19:20_Forest Hill_Leaside Red",
       "date": "2026-10-13",
       "time": "19:20",
       "homeTeam": {
         "id": "",
-        "name": "Knights",
-        "logo": "NK3"
+        "name": "Leaside Red",
+        "logo": "LE9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Etobicoke",
-        "logo": "EH9"
+        "name": "Forest Hill",
+        "logo": "FH9"
       },
       "division": "U11",
-      "tier": "Tier 3",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/19:20",
@@ -4314,7 +4314,7 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-19_18:10_Scarborough_Faustina White",
+      "id": "26-27_2026-10-19_18:10_Warren Park Red_Faustina White",
       "date": "2026-10-19",
       "time": "18:10",
       "homeTeam": {
@@ -4324,8 +4324,8 @@
       },
       "awayTeam": {
         "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
+        "name": "Warren Park Red",
+        "logo": "WP9"
       },
       "division": "U10",
       "tier": "Tier 2",
