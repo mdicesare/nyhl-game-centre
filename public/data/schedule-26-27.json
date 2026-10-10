@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-09T23:51:47.948235Z",
+  "scrapedAt": "2026-10-10T02:15:13.810204Z",
   "gameCount": 595,
   "games": [
     {
@@ -1388,8 +1388,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-08_20:20_Faustina White_York Mills Blue",
@@ -1585,8 +1588,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-09_20:20_York Mills_Ted Reeve Black",
@@ -1607,8 +1613,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-09/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-09_21:30_North Toronto Red_Knights",
@@ -1676,8 +1685,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-09_20:30_Warren Park_Knights",
@@ -1698,8 +1710,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-09_21:40_Vaughan Red_East York",
@@ -1767,8 +1782,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-09_20:30_Warren Park_Parkdale",
@@ -1789,8 +1807,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-09_21:40_Warren Park_Parkdale",
@@ -1811,8 +1832,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-09_18:40_Willowdale_Knights",
@@ -1858,8 +1882,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-09_20:50_Leaside Gold_Forest Hill Blue",
@@ -1880,8 +1907,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-09/20:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-09_22:00_Ted Reeve Red_East York",
