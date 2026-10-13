@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-13T12:37:11.217448Z",
-  "gameCount": 595,
+  "scrapedAt": "2026-10-13T20:05:49.748105Z",
+  "gameCount": 596,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -1665,8 +1665,8 @@
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-09/18:10",
       "status": "final",
       "score": {
-        "away": 1,
-        "home": 2
+        "away": 8,
+        "home": 3
       }
     },
     {
@@ -1840,7 +1840,7 @@
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-09/21:40",
       "status": "final",
       "score": {
-        "away": 0,
+        "away": 2,
         "home": 4
       }
     },
@@ -2473,21 +2473,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-15_18:10_Mimico_Faustina White",
+      "id": "26-27_2026-10-15_18:10_York Mills Red_North Toronto",
       "date": "2026-10-15",
       "time": "18:10",
       "homeTeam": {
         "id": "",
-        "name": "Faustina White",
-        "logo": "FA9"
+        "name": "North Toronto",
+        "logo": "NT9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Mimico",
-        "logo": "QC9"
+        "name": "York Mills Red",
+        "logo": "YM9"
       },
-      "division": "U11",
-      "tier": "Tier 2",
+      "division": "U12",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/18:10",
@@ -2803,31 +2803,9 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-15_18:40_Scarborough Red_Knights",
+      "id": "26-27_2026-10-15_18:40_Ted Reeve Red_Leaside Gold",
       "date": "2026-10-15",
       "time": "18:40",
-      "homeTeam": {
-        "id": "",
-        "name": "Knights",
-        "logo": "NK3"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Scarborough Red",
-        "logo": "SAE"
-      },
-      "division": "U11",
-      "tier": "Tier 3",
-      "gameType": "FS",
-      "arena": "Pleasantview",
-      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/18:40",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-15_19:50_Ted Reeve Red_Leaside Gold",
-      "date": "2026-10-15",
-      "time": "19:50",
       "homeTeam": {
         "id": "",
         "name": "Leaside Gold",
@@ -2840,6 +2818,28 @@
       },
       "division": "U11",
       "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Pleasantview",
+      "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/18:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-15_19:50_Leaside Gold_Parkdale",
+      "date": "2026-10-15",
+      "time": "19:50",
+      "homeTeam": {
+        "id": "",
+        "name": "Parkdale",
+        "logo": "PF9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/19:50",
@@ -6675,13 +6675,13 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-25_18:05_Faustina Black_Scarborough",
+      "id": "26-27_2026-10-25_18:05_Faustina Black_West Hill",
       "date": "2026-10-25",
       "time": "18:05",
       "homeTeam": {
         "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
+        "name": "West Hill",
+        "logo": "WH1"
       },
       "awayTeam": {
         "id": "",
@@ -10019,7 +10019,7 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-01_18:20_Scarborough_West Hill",
+      "id": "26-27_2026-11-01_18:20_York Mills Blue_West Hill",
       "date": "2026-11-01",
       "time": "18:20",
       "homeTeam": {
@@ -10029,8 +10029,8 @@
       },
       "awayTeam": {
         "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
+        "name": "York Mills Blue",
+        "logo": "YM9"
       },
       "division": "U10",
       "tier": "Tier 2",
@@ -10345,6 +10345,28 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_18:25_Leaside Red_Ted Reeve Red",
+      "date": "2026-11-02",
+      "time": "18:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Commander Park R2",
+      "livebarn": "https://livebarn.com/en/video/4092/2026-11-02/18:25",
       "status": "scheduled",
       "score": null
     },
