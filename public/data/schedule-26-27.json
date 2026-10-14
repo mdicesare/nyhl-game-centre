@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-14T20:24:29.925159Z",
+  "scrapedAt": "2026-10-14T23:00:55.466663Z",
   "gameCount": 596,
   "games": [
     {
@@ -3080,21 +3080,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-16_20:20_Seaside Hockey_Leaside White",
+      "id": "26-27_2026-10-16_20:20_Forest Hill Gold_Ted Reeve",
       "date": "2026-10-16",
       "time": "20:20",
       "homeTeam": {
         "id": "",
-        "name": "Leaside White",
-        "logo": "LE9"
+        "name": "Ted Reeve",
+        "logo": "TR9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Seaside Hockey",
-        "logo": "SEA"
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
       },
-      "division": "U14",
-      "tier": "Tier 2",
+      "division": "U15",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-16/20:20",
@@ -3124,20 +3124,20 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-16_19:10_West Hill_Parkwoods",
+      "id": "26-27_2026-10-16_19:10_Victoria Village_York Mills Blue",
       "date": "2026-10-16",
       "time": "19:10",
       "homeTeam": {
         "id": "",
-        "name": "Parkwoods",
-        "logo": "PW9"
+        "name": "York Mills Blue",
+        "logo": "YM9"
       },
       "awayTeam": {
         "id": "",
-        "name": "West Hill",
-        "logo": "WH1"
+        "name": "Victoria Village",
+        "logo": "VV9"
       },
-      "division": "U10",
+      "division": "U12",
       "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
