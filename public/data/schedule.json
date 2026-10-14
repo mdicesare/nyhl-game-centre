@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-14T10:03:47.772832Z",
+  "scrapedAt": "2026-10-14T18:19:47.842311Z",
   "gameCount": 596,
   "games": [
     {
@@ -2410,8 +2410,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-13/17:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 10
+      }
     },
     {
       "id": "26-27_2026-10-13_19:00_Knights_Leaside Gold",
@@ -7917,21 +7920,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-26_20:30_Duffield_York Mills",
+      "id": "26-27_2026-10-26_20:30_Vaughan JCC Blue_Leaside Gold",
       "date": "2026-10-26",
       "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "York Mills",
-        "logo": "YM9"
+        "name": "Leaside Gold",
+        "logo": "LE9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Duffield",
-        "logo": "DF9"
+        "name": "Vaughan JCC Blue",
+        "logo": "RHV"
       },
       "division": "U14",
-      "tier": "Tier 3",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
@@ -8335,21 +8338,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-27_20:30_Vaughan JCC Blue_Leaside Gold",
+      "id": "26-27_2026-10-27_20:30_Duffield_York Mills",
       "date": "2026-10-27",
       "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "Leaside Gold",
-        "logo": "LE9"
+        "name": "York Mills",
+        "logo": "YM9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Vaughan JCC Blue",
-        "logo": "RHV"
+        "name": "Duffield",
+        "logo": "DF9"
       },
       "division": "U14",
-      "tier": "Tier 1",
+      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-27/20:30",
