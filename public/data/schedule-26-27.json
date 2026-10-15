@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-14T23:00:55.466663Z",
+  "scrapedAt": "2026-10-15T01:23:22.688313Z",
   "gameCount": 596,
   "games": [
     {
@@ -2460,8 +2460,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-14_19:20_North Toronto Red_North Toronto Green",
@@ -2482,8 +2485,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-14/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-14_20:30_Parkdale_Victoria Village Orange",
