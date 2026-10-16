@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-16T19:47:43.758255Z",
-  "gameCount": 727,
+  "scrapedAt": "2026-10-16T22:37:14.291400Z",
+  "gameCount": 726,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -4261,31 +4261,9 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-18_15:55_Etobicoke_Vaughan JCC",
+      "id": "26-27_2026-10-18_15:55_Faustina Black_Duffield Red",
       "date": "2026-10-18",
       "time": "15:55",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan JCC",
-        "logo": "RHV"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Etobicoke",
-        "logo": "EH9"
-      },
-      "division": "U08",
-      "tier": "Tier 3",
-      "gameType": "FS",
-      "arena": "Westwood 4",
-      "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/15:55",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-18_17:05_Faustina Black_Duffield Red",
-      "date": "2026-10-18",
-      "time": "17:05",
       "homeTeam": {
         "id": "",
         "name": "Duffield Red",
@@ -4298,6 +4276,28 @@
       },
       "division": "U08",
       "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Westwood 4",
+      "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/15:55",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-18_17:05_Faustina Black_Victoria Village",
+      "date": "2026-10-18",
+      "time": "17:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Victoria Village",
+        "logo": "VV9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U13",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/17:05",
@@ -5493,31 +5493,9 @@
       "score": null
     },
     {
-      "id": "26-27_2026-10-21_18:10_North Toronto_Warren Park",
+      "id": "26-27_2026-10-21_18:10_Avenue Road_Leaside Gold",
       "date": "2026-10-21",
       "time": "18:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "North Toronto",
-        "logo": "NT9"
-      },
-      "division": "U11",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Habitant",
-      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-10-21_19:20_Avenue Road_Leaside Gold",
-      "date": "2026-10-21",
-      "time": "19:20",
       "homeTeam": {
         "id": "",
         "name": "Leaside Gold",
@@ -5530,6 +5508,28 @@
       },
       "division": "U10",
       "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-10-21_19:20_North Toronto_Warren Park",
+      "date": "2026-10-21",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Warren Park",
+        "logo": "WP9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "North Toronto",
+        "logo": "NT9"
+      },
+      "division": "U11",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/19:20",
@@ -15169,28 +15169,6 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-12/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-12_19:20_Faustina Black_Victoria Village",
-      "date": "2026-11-12",
-      "time": "19:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Victoria Village",
-        "logo": "VV9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Faustina Black",
-        "logo": "FA9"
-      },
-      "division": "U13",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Victoria Village",
-      "livebarn": "https://livebarn.com/en/video/4426/2026-11-12/19:20",
       "status": "scheduled",
       "score": null
     },
