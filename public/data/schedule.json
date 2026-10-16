@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-16T01:10:25.182340Z",
+  "scrapedAt": "2026-10-16T05:35:26.159806Z",
   "gameCount": 727,
   "games": [
     {
@@ -2610,8 +2610,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-15_21:40_Knights_Parkdale",
@@ -2632,8 +2635,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-15/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-10-15_18:10_Leaside Red_Faustina Black",
@@ -2704,8 +2710,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-15_21:40_Duffield Black_Faustina Black",
@@ -2726,8 +2735,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-10-15/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-15_18:10_Forest Hill_York Mills Red",
@@ -2748,8 +2760,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 11
+      }
     },
     {
       "id": "26-27_2026-10-15_19:20_West Hill_Scarborough Black",
@@ -2770,8 +2785,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-15_20:30_Forest Hill Blue_West Hill",
@@ -2792,8 +2810,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-15_21:40_East York_West Hill",
@@ -2814,8 +2835,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-15_19:10_Avenue Road_Vaughan JCC",
@@ -2861,8 +2885,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-10-15_21:30_Avenue Road Black_Ted Reeve",
@@ -2883,8 +2910,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-15_18:40_Ted Reeve Red_Leaside Gold",
@@ -2955,8 +2985,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/21:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-15_22:05_East York_Forest Hill",
@@ -2977,8 +3010,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/22:05",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-15_18:10_Willowdale_West Hill Gold",
@@ -3049,8 +3085,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-15_21:40_Warren Park_Victoria Village Orange",
@@ -3071,8 +3110,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-10-15/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-16_18:10_Duffield White_Vaughan Blue",
@@ -16443,7 +16485,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
