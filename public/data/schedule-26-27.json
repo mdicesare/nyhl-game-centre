@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-16T09:39:57.580122Z",
+  "scrapedAt": "2026-10-16T17:50:36.763668Z",
   "gameCount": 727,
   "games": [
     {
@@ -2862,7 +2862,7 @@
       "livebarn": "",
       "status": "final",
       "score": {
-        "away": 20,
+        "away": 10,
         "home": 0
       }
     },
@@ -2937,7 +2937,7 @@
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-15/18:40",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 10,
         "home": 0
       }
     },
@@ -15437,21 +15437,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-13_20:30_York Mills Blue_Parkdale",
+      "id": "26-27_2026-11-13_20:30_Leaside Red_Forest Hill Gold",
       "date": "2026-11-13",
       "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "Parkdale",
-        "logo": "PF9"
+        "name": "Forest Hill Gold",
+        "logo": "FH9"
       },
       "awayTeam": {
         "id": "",
-        "name": "York Mills Blue",
-        "logo": "YM9"
+        "name": "Leaside Red",
+        "logo": "LE9"
       },
       "division": "U15",
-      "tier": "Tier 3",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-13/20:30",
@@ -15503,18 +15503,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-13_19:20_Seaside Hockey_Warren Park Red",
+      "id": "26-27_2026-11-13_19:20_Warren Park Red_Victoria Village",
       "date": "2026-11-13",
       "time": "19:20",
       "homeTeam": {
         "id": "",
-        "name": "Warren Park Red",
-        "logo": "WP9"
+        "name": "Victoria Village",
+        "logo": "VV9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Seaside Hockey",
-        "logo": "SEA"
+        "name": "Warren Park Red",
+        "logo": "WP9"
       },
       "division": "U09",
       "tier": "Tier 2",
@@ -15525,21 +15525,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-13_20:30_Warren Park_Seaside Hockey",
+      "id": "26-27_2026-11-13_20:30_York Mills Blue_Parkdale",
       "date": "2026-11-13",
       "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "Seaside Hockey",
-        "logo": "SEA"
+        "name": "Parkdale",
+        "logo": "PF9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "York Mills Blue",
+        "logo": "YM9"
       },
-      "division": "U14",
-      "tier": "Tier 2",
+      "division": "U15",
+      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-13/20:30",
@@ -15987,21 +15987,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-15_19:30_Seaside Hockey_Vaughan JCC White",
+      "id": "26-27_2026-11-15_19:30_Warren Park_Scarborough Red",
       "date": "2026-11-15",
       "time": "19:30",
       "homeTeam": {
         "id": "",
-        "name": "Vaughan JCC White",
-        "logo": "RHV"
+        "name": "Scarborough Red",
+        "logo": "SAE"
       },
       "awayTeam": {
         "id": "",
-        "name": "Seaside Hockey",
-        "logo": "SEA"
+        "name": "Warren Park",
+        "logo": "WP9"
       },
-      "division": "U14",
-      "tier": "Tier 2",
+      "division": "U15",
+      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-15/19:30",
@@ -16141,21 +16141,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-15_19:30_Warren Park_Scarborough Red",
+      "id": "26-27_2026-11-15_19:30_Parkwoods_North Toronto",
       "date": "2026-11-15",
       "time": "19:30",
       "homeTeam": {
         "id": "",
-        "name": "Scarborough Red",
-        "logo": "SAE"
+        "name": "North Toronto",
+        "logo": "NT9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "Parkwoods",
+        "logo": "PW9"
       },
       "division": "U15",
-      "tier": "Tier 3",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-15/19:30",
