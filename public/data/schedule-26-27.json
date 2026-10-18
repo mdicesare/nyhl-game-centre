@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-17T22:00:09.244531Z",
+  "scrapedAt": "2026-10-18T00:51:03.015930Z",
   "gameCount": 726,
   "games": [
     {
@@ -3557,8 +3557,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-17_19:00_Mimico_Vaughan Red",
@@ -3579,8 +3582,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-17_12:10_Ted Reeve Red_Humber Valley",
@@ -3726,8 +3732,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-17/17:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-18_16:35_Vaughan White_Duffield Red",
