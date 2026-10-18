@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-18T19:10:20.098966Z",
+  "scrapedAt": "2026-10-18T22:16:24.919475Z",
   "gameCount": 726,
   "games": [
     {
@@ -3757,8 +3757,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 19,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-18_17:45_West Hill_Vaughan White",
@@ -4021,8 +4024,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/17:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-18_18:10_Avenue Road Orange_Avenue Road Black",
@@ -4109,8 +4115,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-18_17:20_West Hill Gold_Duffield White",
@@ -4131,8 +4140,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-18_18:30_Victoria Village_West Hill",
@@ -4263,8 +4275,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/15:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-10-18_16:40_Avenue Road_Duffield White",
@@ -4285,8 +4300,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/16:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-18_17:50_Avenue Road_Warren Park Red",
@@ -4351,8 +4369,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-18/15:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 18,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-18_17:05_Faustina Black_Victoria Village",
