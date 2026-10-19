@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-19T21:19:54.706386Z",
+  "scrapedAt": "2026-10-19T23:23:31.683412Z",
   "gameCount": 727,
   "games": [
     {
@@ -4686,8 +4686,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-19_19:20_Faustina White_Ted Reeve Red",
@@ -4994,8 +4997,11 @@
       "gameType": "FS",
       "arena": "Honey and Barry North",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 12
+      }
     },
     {
       "id": "26-27_2026-10-19_19:15_Vaughan JCC Blue_North Toronto",
@@ -5060,8 +5066,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-19_19:20_Avenue Road Orange_Vaughan White",
@@ -5148,8 +5157,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-19_19:20_Willowdale_Etobicoke",
