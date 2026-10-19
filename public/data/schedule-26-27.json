@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-18T22:16:24.919475Z",
+  "scrapedAt": "2026-10-19T01:03:01.291482Z",
   "gameCount": 726,
   "games": [
     {
@@ -3782,8 +3782,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-18_18:55_Etobicoke Blue_Vaughan White",
@@ -3804,8 +3807,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-18_20:05_Faustina Black_Vaughan Red",
@@ -3848,8 +3854,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/18:05",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-18_19:15_Scarborough_Faustina Black",
@@ -3870,8 +3879,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-18/19:15",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-18_20:25_York Mills Red_North Toronto",
@@ -3936,8 +3948,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/17:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-18_19:00_Vaughan Red_Faustina White",
@@ -3958,8 +3973,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-10-18/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-18_20:10_Avenue Road_Etobicoke",
@@ -4049,8 +4067,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-18_19:20_Avenue Road_Faustina Black",
@@ -4071,8 +4092,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-18/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-18_20:30_Scarborough Red_Warren Park",
@@ -4303,7 +4327,7 @@
       "status": "final",
       "score": {
         "away": 3,
-        "home": 5
+        "home": 9
       }
     },
     {
@@ -4325,8 +4349,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/17:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-18_18:50_Port Credit_Duffield Black",
@@ -4347,8 +4374,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-18/18:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-18_15:55_Faustina Black_Duffield Red",
