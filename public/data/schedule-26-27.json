@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-20T20:15:56.667260Z",
+  "scrapedAt": "2026-10-20T22:58:51.559069Z",
   "gameCount": 727,
   "games": [
     {
@@ -5731,8 +5731,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-20/17:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-10-20_19:00_Leaside Red_North Toronto",
@@ -16537,21 +16540,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-15_14:40_West Hill_Avenue Road",
+      "id": "26-27_2026-11-15_14:40_Humber Valley_Duffield Black",
       "date": "2026-11-15",
       "time": "14:40",
       "homeTeam": {
         "id": "",
-        "name": "Avenue Road",
-        "logo": "AV9"
+        "name": "Duffield Black",
+        "logo": "DF9"
       },
       "awayTeam": {
         "id": "",
-        "name": "West Hill",
-        "logo": "WH1"
+        "name": "Humber Valley",
+        "logo": "HB9"
       },
       "division": "U08",
-      "tier": "Tier 3",
+      "tier": "Tier E",
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-15/14:40",
