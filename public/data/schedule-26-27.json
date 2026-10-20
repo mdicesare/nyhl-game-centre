@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-19T23:23:31.683412Z",
+  "scrapedAt": "2026-10-20T01:42:09.766021Z",
   "gameCount": 727,
   "games": [
     {
@@ -4711,8 +4711,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 11
+      }
     },
     {
       "id": "26-27_2026-10-19_20:30_Mimico_York Mills",
@@ -4733,8 +4736,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-19/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-19_21:40_Vaughan Blue_York Mills",
@@ -4777,8 +4783,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-10-19/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-19_20:20_Faustina Black_East York",
@@ -4799,8 +4808,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-10-19/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-19_21:30_Vaughan White_East York",
@@ -4931,8 +4943,11 @@
       "gameType": "FS",
       "arena": "Forest Hill",
       "livebarn": "https://livebarn.com/en/video/4437/2026-10-19/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 11,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-19_20:20_Victoria Village Blue_Forest Hill Gold",
@@ -4953,8 +4968,11 @@
       "gameType": "FS",
       "arena": "Forest Hill",
       "livebarn": "https://livebarn.com/en/video/4437/2026-10-19/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-19_21:30_Parkdale_Forest Hill Blue",
@@ -5022,8 +5040,11 @@
       "gameType": "FS",
       "arena": "Honey and Barry North",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-19_20:25_Vaughan JCC_North Toronto",
@@ -5044,8 +5065,11 @@
       "gameType": "FS",
       "arena": "Honey and Barry North",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-19_18:10_North Toronto Green_Warren Park White",
@@ -5091,8 +5115,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-19_20:30_Avenue Road_Vaughan Blue",
@@ -5113,8 +5140,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-19_21:40_Ted Reeve Red_Avenue Road",
@@ -5182,8 +5212,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-19_20:30_Faustina Black_North Toronto",
@@ -5204,8 +5237,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-19/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-19_21:40_York Mills_Goulding Park",
