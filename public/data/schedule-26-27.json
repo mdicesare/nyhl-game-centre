@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-20T22:58:51.559069Z",
+  "scrapedAt": "2026-10-21T01:27:54.913266Z",
   "gameCount": 727,
   "games": [
     {
@@ -5335,8 +5335,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-20_19:20_Vaughan White_Vaughan Black",
@@ -5357,8 +5360,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-20_20:30_Vaughan Red_Knights",
@@ -5423,8 +5429,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-20_19:20_Leaside Red_Parkdale Red",
@@ -5445,8 +5454,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-20_20:30_Duffield_Parkdale",
@@ -5467,8 +5479,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-20/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-20_21:40_Leaside Red_Ted Reeve",
@@ -5511,8 +5526,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-10-20/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-10-20_20:20_Forest Hill Blue_York Mills Blue",
@@ -5533,8 +5551,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-10-20/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-20_21:30_Vaughan White_Leaside Red",
@@ -5577,8 +5598,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-20_19:20_Faustina White_Parkdale White",
@@ -5599,8 +5623,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-20/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-20_20:30_Vaughan JCC White_Seaside Hockey",
@@ -5665,8 +5692,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-10-20/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-20_20:50_Leaside Red_Avenue Road",
@@ -5756,8 +5786,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-10-20/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-21_18:10_Avenue Road_Leaside Gold",
