@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-21T20:26:43.313822Z",
+  "scrapedAt": "2026-10-21T23:03:41.548328Z",
   "gameCount": 860,
   "games": [
     {
@@ -2240,8 +2240,8 @@
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-13/18:10",
       "status": "final",
       "score": {
-        "away": 1,
-        "home": 6
+        "away": 10,
+        "home": 0
       }
     },
     {
