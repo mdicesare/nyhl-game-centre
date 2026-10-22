@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-21T23:03:41.548328Z",
+  "scrapedAt": "2026-10-22T01:26:20.134262Z",
   "gameCount": 860,
   "games": [
     {
@@ -5832,8 +5832,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 13,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-21_19:20_North Toronto_Warren Park",
@@ -5854,8 +5857,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-21/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-21_20:30_Etobicoke White_Parkdale",
