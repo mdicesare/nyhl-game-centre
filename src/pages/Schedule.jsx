@@ -17,6 +17,8 @@ export default function Schedule() {
     savedTeams,
     scheduleFilter,
     setScheduleFilter,
+    scheduleSort,
+    setScheduleSort,
     season,
     setSeason,
   } = usePreferences()
@@ -137,12 +139,17 @@ export default function Schedule() {
       result = result.filter((g) => g.status === 'final')
     }
 
-    return result.sort((a, b) => {
+    // The remembered direction: oldest-first by default, newest-first
+    // once the visitor flips it. A copy rather than the shared games
+    // array — reversing that in place would reorder what the rest of the
+    // app reads.
+    const dir = scheduleSort === 'desc' ? -1 : 1
+    return [...result].sort((a, b) => {
       const da = new Date(`${a.date}T${a.time || '00:00'}`)
       const db = new Date(`${b.date}T${b.time || '00:00'}`)
-      return da - db
+      return (da - db) * dir
     })
-  }, [games, filters, focusTeam, scheduleFilter])
+  }, [games, filters, focusTeam, scheduleFilter, scheduleSort])
 
   // Group by month
   const groupedGames = useMemo(() => {
@@ -311,6 +318,21 @@ export default function Schedule() {
             className="text-sm text-red-600 hover:underline whitespace-nowrap"
           >
             Clear
+          </button>
+        )}
+
+        {/* Sort order — the button reads as the order on screen and a tap
+            reverses it, remembered like the filters. Withheld while the
+            list is still gated behind the division/tier pick, where there
+            is nothing yet to order. */}
+        {!awaitingFilters && (
+          <button
+            onClick={() => setScheduleSort(scheduleSort === 'desc' ? 'asc' : 'desc')}
+            aria-label={`Sort order: ${scheduleSort === 'desc' ? 'newest first' : 'oldest first'}. Activate to reverse.`}
+            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors whitespace-nowrap"
+          >
+            <span aria-hidden="true">{scheduleSort === 'desc' ? '↓' : '↑'}</span>
+            {scheduleSort === 'desc' ? 'Newest first' : 'Oldest first'}
           </button>
         )}
       </div>

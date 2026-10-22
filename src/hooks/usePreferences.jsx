@@ -18,6 +18,7 @@ const DEFAULT_PREFS = {
     club: 'ALL',
   },
   scheduleFilter: 'all', // 'all' | 'upcoming' | 'completed'
+  scheduleSort: 'asc',   // 'asc' (oldest first) | 'desc' (newest first)
   viewPreference: 'list', // 'list' | 'calendar' (future)
 }
 
@@ -52,6 +53,9 @@ function loadPreferences() {
       // Merge filters individually: an older/partial record missing a key
       // would otherwise turn the filter selects uncontrolled.
       filters: { ...DEFAULT_PREFS.filters, ...(parsed.filters || {}) },
+      // The schedule sort is a flip between exactly two values; a record
+      // missing it (or carrying anything else) stays on oldest-first.
+      scheduleSort: parsed.scheduleSort === 'desc' ? 'desc' : 'asc',
     }
   } catch {
     return DEFAULT_PREFS
@@ -133,6 +137,13 @@ export function PreferencesProvider({ children }) {
     setPrefs((p) => ({ ...p, scheduleFilter: filter }))
   }, [])
 
+  // Which end of the schedule list sits on top. Remembered like the
+  // filters: a parent who always wants the latest results first should
+  // never have to re-pick it.
+  const setScheduleSort = useCallback((sort) => {
+    setPrefs((p) => ({ ...p, scheduleSort: sort }))
+  }, [])
+
   const hasTeams = prefs.savedTeams.length > 0
 
   // The name behind the active id, for headers and labels that used to read
@@ -158,6 +169,7 @@ export function PreferencesProvider({ children }) {
     setFilters,
     clearFilters,
     setScheduleFilter,
+    setScheduleSort,
   }
 
   return (

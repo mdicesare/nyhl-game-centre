@@ -22,9 +22,10 @@ $F_T1 = '"filters":{"division":"U15","tier":"Tier 1","gameType":"ALL","club":"AL
 $F_T2 = '"filters":{"division":"U15","tier":"Tier 2","gameType":"ALL","club":"ALL"}'
 $F_ALL = '"filters":{"division":"ALL","tier":"ALL","gameType":"ALL","club":"ALL"}'
 
-function Prefs($teams, $active, $season, $filters) {
+function Prefs($teams, $active, $season, $filters, $sort) {
   $act = if ($null -eq $active) { 'null' } else { '"' + $active + '"' }
-  return '{"savedTeams":[' + $teams + '],"activeTeam":' + $act + ',"season":"' + $season + '",' + $filters + ',"scheduleFilter":"all","viewPreference":"list"}'
+  $sortPart = if ($sort) { ',"scheduleSort":"' + $sort + '"' } else { '' }
+  return '{"savedTeams":[' + $teams + '],"activeTeam":' + $act + ',"season":"' + $season + '",' + $filters + ',"scheduleFilter":"all","viewPreference":"list"' + $sortPart + '}'
 }
 function Write-Seed($name, $prefs, $target) {
   $html = "<!doctype html><html><body><script>`nlocalStorage.setItem('nyhl-preferences', JSON.stringify($prefs));`nlocation.replace('$target');`n</script>seeding</body></html>`n"
@@ -43,6 +44,7 @@ Write-Seed 'seed-twin'   (Prefs ($V27 + ',' + $V26) 'Vaughan Blue' '26-27' $F_T1
 Write-Seed 'seed-twinS'  (Prefs ($V27 + ',' + $V26) 'Vaughan Blue' '26-27' $F_T1) '/nyhl-game-centre/settings'
 Write-Seed 'seed-twinC'  (Prefs ($V27 + ',' + $V26) 'Vaughan Blue' '26-27' $F_T1) '/nyhl-game-centre/schedule'
 Write-Seed 'seed-opp'    (Prefs $V27 'Vaughan Blue' '26-27' $F_T1) '/nyhl-game-centre/schedule?team=Leaside+Red&division=U15&tier=Tier+1&season=26-27'
+Write-Seed 'seed-sortd'  (Prefs $V27 'Vaughan Blue' '26-27' $F_T1 'desc') '/nyhl-game-centre/schedule'
 
 # Fixture: stamp one game the seed-deep pin is guaranteed to list with a
 # LiveBarn URL, so the watch link's render is covered before any scrape has
@@ -62,7 +64,7 @@ if (-not $patched) { throw 'uitest fixture: no Vaughan Blue U15 Tier 1 game to s
 # WriteAllText, not Set-Content: PS5's UTF8 would add a BOM.
 [System.IO.File]::WriteAllText($schedJson, ($sched | ConvertTo-Json -Depth 16))
 
-$seeds = 'seed-home', 'seed-bug1', 'seed-guard', 'seed-legacy', 'seed-two', 'seed-deep', 'seed-deepst', 'seed-none', 'seed-twin', 'seed-twinS', 'seed-twinC', 'seed-opp'
+$seeds = 'seed-home', 'seed-bug1', 'seed-guard', 'seed-legacy', 'seed-two', 'seed-deep', 'seed-deepst', 'seed-none', 'seed-twin', 'seed-twinS', 'seed-twinC', 'seed-opp', 'seed-sortd'
 foreach ($s in $seeds) {
   $prof = Join-Path $work "prof-$s"
   $out = Join-Path $work "$s.html"
@@ -95,6 +97,7 @@ $d9 = Get-Dump 'seed-twin'
 $d10 = Get-Dump 'seed-twinS'
 $d11 = Get-Dump 'seed-twinC'
 $d12 = Get-Dump 'seed-opp'
+$d13 = Get-Dump 'seed-sortd'
 
 Write-Output '--- D1 seed-home (card structure + alignment) ---'
 Check 'D1 schedule button present'        $d1.Contains('Open Vaughan Blue schedule')
@@ -202,6 +205,46 @@ Check 'D12 pinned games listed'           $d12.Contains('Leaside Red')
 Check 'D12 header keeps active team'      ($d12.Contains('text-sm text-blue-200 truncate') -and $d12.Contains('Vaughan Blue'))
 Check 'D12 saved-team chips removed'      (-not $d12.Contains('flex gap-2 mb-3 overflow-x-auto'))
 Check 'D12 tier select visible while pinned' $d12.Contains('Choose a tier')
+
+# Card dates in DOM order - "Sat, Oct 24" spans headed by month groups that
+# carry the year. The season schedule is a rolling window that can sit
+# inside a single month, so order is asserted on the cards themselves
+# rather than on having several month headings. The separator is built
+# from its char code: this file is read as ANSI, where a literal middle
+# dot would not survive.
+function CardDates($html) {
+  $dot = [char]0x00B7
+  $rx = [regex]("(<h2[^>]*>\s*(?<mon>[A-Za-z]+ \d{4})\s*</h2>)|>\s*(?<d>\w{3}, [A-Za-z]{3} \d{1,2})\s*" + $dot)
+  $year = $null
+  $out = @()
+  foreach ($m in $rx.Matches($html)) {
+    if ($m.Groups['mon'].Success) {
+      $year = [int]($m.Groups['mon'].Value -split ' ')[1]
+    } elseif ($null -ne $year) {
+      $d = $m.Groups['d'].Value -replace '^\w{3}, ', ''
+      try { $out += [datetime]::ParseExact("$d $year", 'MMM d yyyy', [Globalization.CultureInfo]::InvariantCulture) } catch { }
+    }
+  }
+  return $out
+}
+function Check-CardOrder($name, $html, $desc) {
+  $dates = CardDates $html
+  $ok = $dates.Count -ge 2
+  for ($i = 1; $ok -and $i -lt $dates.Count; $i++) {
+    if ($desc) { $ok = $dates[$i] -le $dates[$i - 1] } else { $ok = $dates[$i] -ge $dates[$i - 1] }
+  }
+  Check $name $ok
+}
+
+Write-Output '--- D13 seed-sortd (schedule sort toggle, remembered) ---'
+Check 'D13 toggle offered'                $d13.Contains('Sort order')
+Check 'D13 sort remembered as newest'     $d13.Contains('Newest first')
+Check 'D13 oldest label absent'           (-not $d13.Contains('Oldest first'))
+Check-CardOrder 'D13 cards newest-first' $d13 $true
+# Every other schedule seed leaves the sort unset, so they pin the
+# default: oldest-first, button and all.
+Check 'D6 default sort stays oldest-first' (($d6.Contains('Oldest first')) -and (-not $d6.Contains('Newest first')))
+Check-CardOrder 'D6 cards oldest-first' $d6 $false
 
 Write-Output ''
 if ($script:fail -eq 0) { Write-Output 'ALL PASS' } else { Write-Output "$script:fail FAILURE(S)" }

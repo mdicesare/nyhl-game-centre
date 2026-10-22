@@ -11,7 +11,7 @@
  * Run: node nyhl_filtercheck.mjs   (preview server must be on :4173)
  */
 import { spawn } from 'node:child_process'
-import { mkdtempSync, rmSync, readFileSync } from 'node:fs'
+import { mkdtempSync, rmSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -52,6 +52,25 @@ const SEED = {
 const SEED27 = { ...SEED, season: '26-27' }
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url))) // tests/ -> repo root
+
+// Fixture for the pre-season zero-table check below: that behaviour needs
+// a slice whose games are all still scheduled and for which the source
+// published no table. By mid-season the site publishes every real slice,
+// often before a game is played, so "never published" has to be staged —
+// the fixture strips one published-but-unstarted slice (U17 Tier 1: 8
+// scheduled Fall games) from the standings the preview serves. Dist-only,
+// exactly like the uitest's LiveBarn stamp: a rebuild restores it.
+const ZERO_SLICE = { div: 'U17', tier: 'Tier 1' }
+{
+  const p = join(ROOT, 'dist', 'data', 'standings-26-27.json')
+  const data = JSON.parse(readFileSync(p, 'utf8'))
+  const before = (data.standings || []).length
+  data.standings = (data.standings || []).filter(
+    (s) => !(s.division === ZERO_SLICE.div && s.tier === ZERO_SLICE.tier)
+  )
+  writeFileSync(p, JSON.stringify(data))
+  console.log(`fixture: stripped ${before - data.standings.length} ${ZERO_SLICE.div} ${ZERO_SLICE.tier} rows from the served standings`)
+}
 
 // Mirror of the finder's data basis: distinct team names holding a
 // (division, tier) row in the loaded season's schedule or standings. The
@@ -417,13 +436,15 @@ try {
 
   // ---- Standings: pre-season zero table -----------------------------------
   // A slice the source never published shows the same all-zero table it
-  // shows for U15 Tier 1, derived from the schedule — display-only.
+  // shows for U15 Tier 1, derived from the schedule — display-only. The
+  // slice is the dist fixture above: the source publishes every real
+  // division/tier by mid-season, so an unpublished one gets staged.
   await nav(`${BASE}/standings`)
   await waitFor(`document.querySelector('#root') && document.querySelector('#root').children.length > 0`, 'app mount')
   await evaluateRetry(E_SEED({ ...SEED, season: '26-27',
-    filters: { division: 'U09', tier: 'Tier 1', gameType: 'ALL', club: 'ALL' } }))
+    filters: { division: ZERO_SLICE.div, tier: ZERO_SLICE.tier, gameType: 'ALL', club: 'ALL' } }))
   await send('Page.reload', {})
-  await waitFor(E_STATE_IF(`s.div === 'U09' && s.tier === 'Tier 1'`), 'seeded U09/Tier 1 pre-season slice')
+  await waitFor(E_STATE_IF(`s.div === '${ZERO_SLICE.div}' && s.tier === '${ZERO_SLICE.tier}'`), 'seeded pre-season slice')
   let preRows = null
   try {
     preRows = await waitFor(
@@ -433,7 +454,7 @@ try {
       'pre-season table rows', WAIT_MS
     )
   } catch { /* falls through to the check with preRows = null */ }
-  const preExpected = scheduleSliceTeams('26-27', 'U09', 'Tier 1', 'FS')
+  const preExpected = scheduleSliceTeams('26-27', ZERO_SLICE.div, ZERO_SLICE.tier, 'FS')
   const preZeros = preRows !== null && preRows.every((r) => r.gp === '0' && r.place === '—')
   check('Standings: unplayed slice shows the pre-season zero table',
     preRows !== null && preRows.length === preExpected.size && preZeros,
