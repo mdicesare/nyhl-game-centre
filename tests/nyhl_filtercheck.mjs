@@ -55,22 +55,47 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url))) // tests/ -> repo 
 
 // Fixture for the pre-season zero-table check below: that behaviour needs
 // a slice whose games are all still scheduled and for which the source
-// published no table. By mid-season the site publishes every real slice,
-// often before a game is played, so "never published" has to be staged —
-// the fixture strips one published-but-unstarted slice (U17 Tier 1: 8
-// scheduled Fall games) from the standings the preview serves. Dist-only,
-// exactly like the uitest's LiveBarn stamp: a rebuild restores it.
-const ZERO_SLICE = { div: 'U17', tier: 'Tier 1' }
-{
-  const p = join(ROOT, 'dist', 'data', 'standings-26-27.json')
-  const data = JSON.parse(readFileSync(p, 'utf8'))
-  const before = (data.standings || []).length
-  data.standings = (data.standings || []).filter(
-    (s) => !(s.division === ZERO_SLICE.div && s.tier === ZERO_SLICE.tier)
-  )
-  writeFileSync(p, JSON.stringify(data))
-  console.log(`fixture: stripped ${before - data.standings.length} ${ZERO_SLICE.div} ${ZERO_SLICE.tier} rows from the served standings`)
-}
+// published no table. The source publishes every real division/tier by
+// mid-season and every slice starts playing within days, so a hardcoded
+// anchor dies on the next data snapshot. The fixture therefore picks, at
+// run time, a slice the other checks never touch (all its games still
+// unplayed, Fall only), un-schedules those games in the schedule the
+// preview serves, and strips the slice's standings rows - staging exactly
+// the unpublished-and-unstarted state the app describes. Dist-only, like
+// the uitest's LiveBarn stamp: a rebuild restores both files, and a
+// re-run against an already staged dist is a no-op.
+const ZERO_SKIP_DIVS = new Set(['U07', 'U09', 'U14', 'U15'])
+const ZERO_SLICE = (() => {
+  const schedPath = join(ROOT, 'dist', 'data', 'schedule-26-27.json')
+  const sched = JSON.parse(readFileSync(schedPath, 'utf8'))
+  const bySlice = new Map()
+  for (const g of sched.games || []) {
+    const k = `${g.division}|${g.tier}`
+    if (!bySlice.has(k)) bySlice.set(k, [])
+    bySlice.get(k).push(g)
+  }
+  for (const k of [...bySlice.keys()].sort()) {
+    const [div, tier] = k.split('|')
+    const pool = bySlice.get(k)
+    if (ZERO_SKIP_DIVS.has(div) || !tier) continue
+    if (!pool.every((g) => g.gameType === 'FS')) continue
+    for (const g of pool) {
+      g.status = 'scheduled'
+      delete g.score
+    }
+    writeFileSync(schedPath, JSON.stringify(sched))
+    const stPath = join(ROOT, 'dist', 'data', 'standings-26-27.json')
+    const st = JSON.parse(readFileSync(stPath, 'utf8'))
+    const before = (st.standings || []).length
+    st.standings = (st.standings || []).filter(
+      (s) => !(s.division === div && s.tier === tier)
+    )
+    writeFileSync(stPath, JSON.stringify(st))
+    console.log(`fixture: staged pre-season slice ${div} ${tier} (${pool.length} games unscheduled, ${before - st.standings.length} standings rows stripped)`)
+    return { div, tier }
+  }
+  throw new Error('no unstarted Fall slice available for the pre-season zero-table fixture')
+})()
 
 // Mirror of the finder's data basis: distinct team names holding a
 // (division, tier) row in the loaded season's schedule or standings. The

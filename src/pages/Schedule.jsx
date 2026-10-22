@@ -320,21 +320,6 @@ export default function Schedule() {
             Clear
           </button>
         )}
-
-        {/* Sort order — the button reads as the order on screen and a tap
-            reverses it, remembered like the filters. Withheld while the
-            list is still gated behind the division/tier pick, where there
-            is nothing yet to order. */}
-        {!awaitingFilters && (
-          <button
-            onClick={() => setScheduleSort(scheduleSort === 'desc' ? 'asc' : 'desc')}
-            aria-label={`Sort order: ${scheduleSort === 'desc' ? 'newest first' : 'oldest first'}. Activate to reverse.`}
-            className="ml-auto inline-flex items-center gap-1.5 px-3 py-2 border border-gray-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors whitespace-nowrap"
-          >
-            <span aria-hidden="true">{scheduleSort === 'desc' ? '↓' : '↑'}</span>
-            {scheduleSort === 'desc' ? 'Newest first' : 'Oldest first'}
-          </button>
-        )}
       </div>
 
       <TeamQuickFilter
@@ -396,6 +381,23 @@ export default function Schedule() {
           </button>
         ))}
       </div>
+
+      {/* Sort order as a plain text control over the list itself — the
+          button reads as the order on screen and a tap reverses it, and
+          the choice persists like the filters. Hidden when there is no
+          list to order. */}
+      {filteredGames.length > 0 && (
+        <div className="mb-2">
+          <button
+            onClick={() => setScheduleSort(scheduleSort === 'desc' ? 'asc' : 'desc')}
+            aria-label={`Sort order: ${scheduleSort === 'desc' ? 'newest first' : 'oldest first'}. Activate to reverse.`}
+            className="text-sm text-nyhl-blue dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+          >
+            <span aria-hidden="true">{scheduleSort === 'desc' ? '↓' : '↑'}</span>
+            {scheduleSort === 'desc' ? 'Newest first' : 'Oldest first'}
+          </button>
+        </div>
+      )}
 
       {/* Game list */}
       {filteredGames.length === 0 ? (

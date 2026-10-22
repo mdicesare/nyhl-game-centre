@@ -498,9 +498,12 @@ function TeamRow({ team, rank, isActive, isExpanded, onToggle }) {
         <span className="font-bold text-xl text-nyhl-navy dark:text-white">{team.pts}</span>
       </div>
 
-      {/* Summary line */}
+      {/* Summary line — GF/GA sit here with the differential, the same
+          numbers the desktop table shows, so a phone never has to expand
+          a row to read a goals line. */}
       <div className="ml-9 text-sm text-gray-500 dark:text-slate-400">
         <span>{team.gp} GP</span> · <span>{team.w}-{team.l}-{team.t}</span> ·{' '}
+        <span>{gf} GF</span> · <span>{ga} GA</span> ·{' '}
         <span className={diff > 0 ? 'text-green-600 dark:text-green-400 font-medium' : diff < 0 ? 'text-red-600 dark:text-red-400 font-medium' : ''}>
           {diff > 0 ? `+${diff}` : diff} GD
         </span>
