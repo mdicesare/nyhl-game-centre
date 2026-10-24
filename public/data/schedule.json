@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-24T01:29:49.586656Z",
+  "scrapedAt": "2026-10-24T05:31:27.467821Z",
   "gameCount": 1000,
   "games": [
     {
@@ -6582,8 +6582,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-23/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-23_19:10_York Mills Blue_Knights",
@@ -6654,8 +6657,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-10-23/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-23_18:10_Leaside Red_Parkdale",
@@ -6726,8 +6732,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-23_21:40_York Mills Red_Duffield Black",
@@ -6748,8 +6757,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-23/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-23_18:10_Parkwoods_Warren Park Red",
@@ -6822,8 +6834,8 @@
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/20:30",
       "status": "final",
       "score": {
-        "away": 1,
-        "home": 1
+        "away": 5,
+        "home": 6
       }
     },
     {
@@ -6845,8 +6857,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-23/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-23_18:40_Warren Park Red_Victoria Village",
@@ -6917,8 +6932,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/21:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-23_22:05_Vaughan Red_York Mills Blue",
@@ -6939,8 +6957,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-23/22:05",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-24_15:25_Vaughan Red_York Mills",
@@ -22929,7 +22950,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
