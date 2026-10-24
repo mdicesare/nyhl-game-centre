@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-24T19:12:49.425853Z",
+  "scrapedAt": "2026-10-24T22:17:32.989100Z",
   "gameCount": 1000,
   "games": [
     {
@@ -6982,8 +6982,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-24_16:35_Vaughan Red_Forest Hill",
@@ -7004,8 +7007,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-24_17:45_Knights_Vaughan White",
@@ -7120,8 +7126,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/14:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-24_15:20_Ted Reeve Red_Warren Park White",
@@ -7142,8 +7151,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/15:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-24_16:30_Humber Valley_Port Credit",
@@ -7164,8 +7176,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/16:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-24_17:30_Vaughan Blue_Vaughan Black",
