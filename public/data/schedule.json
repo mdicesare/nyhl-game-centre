@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-25T19:26:06.441904Z",
+  "scrapedAt": "2026-10-25T22:21:15.424064Z",
   "gameCount": 1000,
   "games": [
     {
@@ -7229,8 +7229,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-25_17:45_York Mills Blue_Vaughan JCC",
@@ -7493,8 +7496,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/17:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-25_18:20_Duffield Red_Avenue Road",
@@ -7581,8 +7587,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-25_17:20_West Hill Black_Avenue Road Orange",
@@ -7603,8 +7612,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 14,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-25_18:30_West Hill_Ted Reeve Black",
@@ -7760,8 +7772,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/14:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 11
+      }
     },
     {
       "id": "26-27_2026-10-25_16:00_Vaughan White_Avenue Road",
@@ -7782,8 +7797,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/16:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-25_17:00_Duffield Red_George Bell",
@@ -7804,8 +7822,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-10-25/17:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 10
+      }
     },
     {
       "id": "26-27_2026-10-25_14:40_Duffield White_Vaughan JCC",
@@ -7826,8 +7847,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/14:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-25_15:50_Willowdale_Warren Park Red",
@@ -7848,8 +7872,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/15:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-25_17:00_Avenue Road Black_Etobicoke",
@@ -7870,8 +7897,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/17:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-25_18:00_Duffield_Willowdale",
