@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-24T22:17:32.989100Z",
+  "scrapedAt": "2026-10-25T01:00:56.357641Z",
   "gameCount": 1000,
   "games": [
     {
@@ -7054,8 +7054,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-24_12:10_George Bell_Duffield Red",
@@ -7201,8 +7204,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/17:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-25_16:35_Willowdale_Vaughan Red",
