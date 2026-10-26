@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-26T10:58:43.238590Z",
+  "scrapedAt": "2026-10-26T19:45:35.319001Z",
   "gameCount": 1000,
   "games": [
     {
@@ -3488,8 +3488,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-16/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-17_15:25_Vaughan Black_Duffield Red",
@@ -6535,7 +6538,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 14
+        "home": 10
       }
     },
     {
@@ -6610,7 +6613,7 @@
       "status": "final",
       "score": {
         "away": 1,
-        "home": 13
+        "home": 11
       }
     },
     {
@@ -6984,7 +6987,7 @@
       "livebarn": "",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 10,
         "home": 0
       }
     },
@@ -7032,8 +7035,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-24_19:00_Vaughan Red_Etobicoke",
@@ -7081,7 +7087,7 @@
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-24/12:10",
       "status": "final",
       "score": {
-        "away": 14,
+        "away": 12,
         "home": 2
       }
     },
@@ -7331,7 +7337,7 @@
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/18:05",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 10,
         "home": 0
       }
     },
@@ -7356,7 +7362,7 @@
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/19:15",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 11,
         "home": 1
       }
     },
@@ -7656,7 +7662,7 @@
       "livebarn": "",
       "status": "final",
       "score": {
-        "away": 14,
+        "away": 11,
         "home": 1
       }
     },
@@ -22198,18 +22204,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-28_15:35_Faustina Black_Ted Reeve Red",
+      "id": "26-27_2026-11-28_15:35_Vaughan Black_George Bell",
       "date": "2026-11-28",
       "time": "15:35",
       "homeTeam": {
         "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
+        "name": "George Bell",
+        "logo": "GB9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Faustina Black",
-        "logo": "FA9"
+        "name": "Vaughan Black",
+        "logo": "VAR"
       },
       "division": "U09",
       "tier": "Tier E",
@@ -22242,18 +22248,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-28_17:45_Vaughan Black_George Bell",
+      "id": "26-27_2026-11-28_17:45_Faustina Black_Ted Reeve Red",
       "date": "2026-11-28",
       "time": "17:45",
       "homeTeam": {
         "id": "",
-        "name": "George Bell",
-        "logo": "GB9"
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Vaughan Black",
-        "logo": "VAR"
+        "name": "Faustina Black",
+        "logo": "FA9"
       },
       "division": "U09",
       "tier": "Tier E",
