@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-25T22:21:15.424064Z",
+  "scrapedAt": "2026-10-26T01:07:00.627437Z",
   "gameCount": 1000,
   "games": [
     {
@@ -7254,8 +7254,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-25_18:55_Vaughan JCC White_Warren Park",
@@ -7276,8 +7279,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-25_20:05_Vaughan Red_Vaughan White",
@@ -7298,8 +7304,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-25_18:05_Faustina Black_West Hill",
@@ -7320,8 +7329,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/18:05",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-25_19:15_Avenue Road_York Mills Blue",
@@ -7342,8 +7354,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-10-25/19:15",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-25_20:25_Warren Park_Victoria Village",
@@ -7408,8 +7423,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/17:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-25_19:00_Faustina White_Warren Park",
@@ -7430,8 +7448,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-25_20:10_Victoria Village Blue_Ted Reeve Black",
@@ -7452,8 +7473,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-10-25/20:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-25_21:20_Faustina Black_Duffield White",
@@ -7521,8 +7545,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/18:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 13
+      }
     },
     {
       "id": "26-27_2026-10-25_19:30_Faustina White_Scarborough Red",
@@ -7543,8 +7570,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-25/19:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-25_20:40_North Toronto Green_Warren Park",
@@ -7637,8 +7667,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-10-25_17:10_Vaughan JCC_Victoria Village",
@@ -7922,8 +7955,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-10-25/18:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-26_18:10_Willowdale_Ted Reeve Black",
