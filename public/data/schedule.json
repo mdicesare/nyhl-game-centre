@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-27T21:05:35.672633Z",
+  "scrapedAt": "2026-10-27T23:34:24.122260Z",
   "gameCount": 1000,
   "games": [
     {
@@ -8835,8 +8835,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-10-27_19:30_Vaughan Red_Faustina White",
@@ -8923,8 +8926,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-27/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-27_19:10_Duffield White_Vaughan Silver",
@@ -9077,8 +9083,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-27/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 18,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-10-27_19:20_Faustina Black_Parkdale Red",
