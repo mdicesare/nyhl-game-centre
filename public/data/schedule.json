@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-28T21:30:13.333918Z",
+  "scrapedAt": "2026-10-28T23:55:28.529168Z",
   "gameCount": 1000,
   "games": [
     {
@@ -9335,8 +9335,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-28/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 10
+      }
     },
     {
       "id": "26-27_2026-10-28_19:20_Duffield_Ted Reeve Black",
