@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-28T11:13:54.293012Z",
+  "scrapedAt": "2026-10-28T19:21:50.590714Z",
   "gameCount": 1000,
   "games": [
     {
@@ -5413,8 +5413,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-20_18:10_Parkwoods_Faustina Black",
@@ -9210,7 +9213,7 @@
       "status": "final",
       "score": {
         "away": 2,
-        "home": 1
+        "home": 2
       }
     },
     {
@@ -11140,9 +11143,31 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-02_18:10_Warren Park Red_West Hill",
+      "id": "26-27_2026-11-02_18:10_Duffield White_Seaside Hockey",
       "date": "2026-11-02",
       "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "Seaside Hockey",
+        "logo": "SEA"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "division": "U09",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Commander Park R1",
+      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-02_19:20_Warren Park Red_West Hill",
+      "date": "2026-11-02",
+      "time": "19:20",
       "homeTeam": {
         "id": "",
         "name": "West Hill",
@@ -11155,28 +11180,6 @@
       },
       "division": "U10",
       "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Commander Park R1",
-      "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-02_19:20_Scarborough Red_Ted Reeve Black",
-      "date": "2026-11-02",
-      "time": "19:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Ted Reeve Black",
-        "logo": "TR9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Scarborough Red",
-        "logo": "SAE"
-      },
-      "division": "U11",
-      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/19:20",
@@ -13926,7 +13929,7 @@
         "logo": "WI9"
       },
       "division": "U09",
-      "tier": "",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
@@ -17754,7 +17757,7 @@
         "logo": "VV9"
       },
       "division": "U09",
-      "tier": "",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-16/18:10",
@@ -18810,7 +18813,7 @@
         "logo": "VS1"
       },
       "division": "U09",
-      "tier": "",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-20/19:10",
@@ -20042,7 +20045,7 @@
         "logo": "RHV"
       },
       "division": "U09",
-      "tier": "",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-23/18:10",
