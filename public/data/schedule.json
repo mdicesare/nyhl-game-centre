@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-29T21:31:09.050363Z",
+  "scrapedAt": "2026-10-29T23:49:30.330166Z",
   "gameCount": 1140,
   "games": [
     {
@@ -9438,8 +9438,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-29/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 11,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-29_19:10_Etobicoke_Avenue Road",
@@ -9526,8 +9529,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-10-29/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-29_19:20_George Bell_Faustina Black",
@@ -9856,8 +9862,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-10-29/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-29_19:20_Knights_Scarborough Red",
