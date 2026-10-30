@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-30T11:19:40.914347Z",
+  "scrapedAt": "2026-10-30T19:00:56.124512Z",
   "gameCount": 1140,
   "games": [
     {
@@ -19873,21 +19873,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-22_18:20_Ted Reeve Red_East York",
+      "id": "26-27_2026-11-22_18:20_Scarborough Red_Warren Park",
       "date": "2026-11-22",
       "time": "18:20",
       "homeTeam": {
         "id": "",
-        "name": "East York",
-        "logo": "EY9"
+        "name": "Warren Park",
+        "logo": "WP9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Ted Reeve Red",
-        "logo": "TR9"
+        "name": "Scarborough Red",
+        "logo": "SAE"
       },
-      "division": "U11",
-      "tier": "Tier 2",
+      "division": "U13",
+      "tier": "Tier 3",
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-22/18:20",
@@ -22711,21 +22711,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-29_19:00_Scarborough Red_Warren Park",
+      "id": "26-27_2026-11-29_19:00_Ted Reeve Red_East York",
       "date": "2026-11-29",
       "time": "19:00",
       "homeTeam": {
         "id": "",
-        "name": "Warren Park",
-        "logo": "WP9"
+        "name": "East York",
+        "logo": "EY9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Scarborough Red",
-        "logo": "SAE"
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
       },
-      "division": "U13",
-      "tier": "Tier 3",
+      "division": "U11",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-29/19:00",
@@ -24207,21 +24207,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-12-01_20:30_York Mills Red_Etobicoke White",
+      "id": "26-27_2026-12-01_20:30_Vaughan JCC_Ted Reeve",
       "date": "2026-12-01",
       "time": "20:30",
       "homeTeam": {
         "id": "",
-        "name": "Etobicoke White",
-        "logo": "EH9"
+        "name": "Ted Reeve",
+        "logo": "TR9"
       },
       "awayTeam": {
         "id": "",
-        "name": "York Mills Red",
-        "logo": "YM9"
+        "name": "Vaughan JCC",
+        "logo": "RHV"
       },
       "division": "U16",
-      "tier": "Tier 2",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-12-01/20:30",
@@ -24845,21 +24845,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-12-03_22:00_Vaughan JCC_Ted Reeve",
+      "id": "26-27_2026-12-03_22:00_York Mills Red_Etobicoke White",
       "date": "2026-12-03",
       "time": "22:00",
       "homeTeam": {
         "id": "",
-        "name": "Ted Reeve",
-        "logo": "TR9"
+        "name": "Etobicoke White",
+        "logo": "EH9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Vaughan JCC",
-        "logo": "RHV"
+        "name": "York Mills Red",
+        "logo": "YM9"
       },
       "division": "U16",
-      "tier": "Tier 1",
+      "tier": "Tier 2",
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-12-03/22:00",
