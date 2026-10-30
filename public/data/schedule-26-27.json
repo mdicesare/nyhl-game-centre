@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-30T21:18:37.336033Z",
+  "scrapedAt": "2026-10-30T23:30:55.540160Z",
   "gameCount": 1140,
   "games": [
     {
@@ -10013,8 +10013,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-30/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 10
+      }
     },
     {
       "id": "26-27_2026-10-30_19:10_North Toronto Red_Duffield Red",
@@ -10167,8 +10170,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-30/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-10-30_19:20_North Toronto_Leaside Red",
@@ -10255,8 +10261,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-30/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-10-30_19:20_Vaughan White_Warren Park",
@@ -10343,8 +10352,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-30/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-30_19:40_Seaside Hockey_Vaughan Silver",
