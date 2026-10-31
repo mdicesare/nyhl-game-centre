@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-31T02:14:48.569902Z",
+  "scrapedAt": "2026-10-31T06:46:44.995419Z",
   "gameCount": 1140,
   "games": [
     {
@@ -10088,8 +10088,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-30/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-30_19:10_Leaside Red_Victoria Village",
@@ -10160,8 +10163,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-10-30/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-30_18:10_Knights_Vaughan Red",
@@ -10257,8 +10263,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-10-30/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-10-30_18:10_Warren Park_Leaside Red",
@@ -10354,8 +10363,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-10-30/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-10-30_18:40_Warren Park White_East York",
@@ -10451,8 +10463,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-10-30/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-31_12:10_Humber Valley_Warren Park White",
@@ -26441,7 +26456,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
