@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-31T20:24:07.183331Z",
+  "scrapedAt": "2026-10-31T23:09:28.204697Z",
   "gameCount": 1140,
   "games": [
     {
@@ -10588,8 +10588,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-31/16:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-10-31_17:30_Victoria Village Orange_Duffield White",
@@ -10610,8 +10613,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-31/17:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-01_16:35_Vaughan Black_Duffield Black",
