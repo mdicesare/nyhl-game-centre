@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-10-31T10:52:52.933156Z",
+  "scrapedAt": "2026-10-31T18:11:47.537954Z",
   "gameCount": 1140,
   "games": [
     {
@@ -10488,8 +10488,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-31/12:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-31_13:10_Port Credit_Ted Reeve Red",
@@ -10510,8 +10513,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-10-31/13:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-10-31_14:20_George Bell_Vaughan Black",
