@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-02T13:22:22.938094Z",
-  "gameCount": 1140,
+  "scrapedAt": "2026-11-02T22:38:05.420798Z",
+  "gameCount": 1136,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -11567,94 +11567,6 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-11-02/21:55",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-02_18:10_Duffield Red_Faustina Black",
-      "date": "2026-11-02",
-      "time": "18:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Faustina Black",
-        "logo": "FA9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Duffield Red",
-        "logo": "DF9"
-      },
-      "division": "U08",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-02_19:10_Vaughan White_Etobicoke",
-      "date": "2026-11-02",
-      "time": "19:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Etobicoke",
-        "logo": "EH9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan White",
-        "logo": "VAR"
-      },
-      "division": "U08",
-      "tier": "Tier 3",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/19:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-02_20:20_Faustina Black_Vaughan Red",
-      "date": "2026-11-02",
-      "time": "20:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Faustina Black",
-        "logo": "FA9"
-      },
-      "division": "U15",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/20:20",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-02_21:30_York Mills_Knights",
-      "date": "2026-11-02",
-      "time": "21:30",
-      "homeTeam": {
-        "id": "",
-        "name": "Knights",
-        "logo": "NK3"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "York Mills",
-        "logo": "YM9"
-      },
-      "division": "U18",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-02/21:30",
       "status": "scheduled",
       "score": null
     },
