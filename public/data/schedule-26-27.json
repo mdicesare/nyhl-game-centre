@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-03T02:03:23.790536Z",
+  "scrapedAt": "2026-11-03T03:55:27.693337Z",
   "gameCount": 1136,
   "games": [
     {
@@ -11413,8 +11413,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-02_19:20_Warren Park Red_West Hill",
@@ -11435,8 +11438,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-02_20:30_Scarborough_Victoria Village Blue",
@@ -11457,8 +11463,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-02_21:40_Knights_Leaside Red",
@@ -11479,8 +11488,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-02/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-02_18:25_Leaside Red_Ted Reeve Red",
@@ -11614,8 +11626,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-02/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-02_21:30_East York_Forest Hill Gold",
@@ -11636,8 +11651,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-02/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-02_18:10_Parkwoods_Faustina White",
@@ -11708,8 +11726,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-02_21:40_Parkwoods_Ted Reeve",
@@ -11730,8 +11751,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-02/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-02_19:10_Forest Hill_Leaside Red",
@@ -11802,8 +11826,11 @@
       "gameType": "FS",
       "arena": "Forest Hill",
       "livebarn": "https://livebarn.com/en/video/4437/2026-11-02/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-02_18:05_Vaughan JCC_Willowdale",
@@ -11874,8 +11901,11 @@
       "gameType": "FS",
       "arena": "Honey and Barry North",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-02_18:10_Faustina Black_Avenue Road",
@@ -11946,8 +11976,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-02_21:40_Faustina Black_Vaughan White",
@@ -11968,8 +12001,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-02_18:10_East York_Faustina White",
@@ -12040,8 +12076,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-02_21:40_Etobicoke White_Parkwoods",
@@ -12062,8 +12101,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-02/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-03_18:20_Ted Reeve_Vaughan Red",
