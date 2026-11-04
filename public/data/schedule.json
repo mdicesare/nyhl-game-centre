@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-04T02:59:46.150524Z",
+  "scrapedAt": "2026-11-04T07:21:10.829037Z",
   "gameCount": 1132,
   "games": [
     {
@@ -12213,8 +12213,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-03_19:10_East York_Avenue Road Orange",
@@ -12285,8 +12288,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-03/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-03_18:10_Etobicoke_York Mills Blue",
@@ -12382,8 +12388,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-03_19:40_Leaside Gold_Leaside Red",
@@ -12454,8 +12463,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-03/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-03_17:55_Leaside Gold_York Mills Red",
@@ -26514,7 +26526,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
