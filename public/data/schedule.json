@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-04T12:55:31.055580Z",
+  "scrapedAt": "2026-11-04T20:42:21.679911Z",
   "gameCount": 1132,
   "games": [
     {
@@ -23520,18 +23520,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-30_19:10_Vaughan JCC_Avenue Road",
+      "id": "26-27_2026-11-30_19:10_Etobicoke_West Hill",
       "date": "2026-11-30",
       "time": "19:10",
       "homeTeam": {
         "id": "",
-        "name": "Avenue Road",
-        "logo": "AV9"
+        "name": "West Hill",
+        "logo": "WH1"
       },
       "awayTeam": {
         "id": "",
-        "name": "Vaughan JCC",
-        "logo": "RHV"
+        "name": "Etobicoke",
+        "logo": "EH9"
       },
       "division": "U08",
       "tier": "Tier 3",
@@ -24576,18 +24576,18 @@
       "score": null
     },
     {
-      "id": "26-27_2026-12-03_18:10_Etobicoke_West Hill",
+      "id": "26-27_2026-12-03_18:10_Vaughan JCC_Avenue Road",
       "date": "2026-12-03",
       "time": "18:10",
       "homeTeam": {
         "id": "",
-        "name": "West Hill",
-        "logo": "WH1"
+        "name": "Avenue Road",
+        "logo": "AV9"
       },
       "awayTeam": {
         "id": "",
-        "name": "Etobicoke",
-        "logo": "EH9"
+        "name": "Vaughan JCC",
+        "logo": "RHV"
       },
       "division": "U08",
       "tier": "Tier 3",
