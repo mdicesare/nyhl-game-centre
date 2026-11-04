@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-03T22:11:27.220406Z",
+  "scrapedAt": "2026-11-04T00:26:47.135937Z",
   "gameCount": 1132,
   "games": [
     {
@@ -12138,8 +12138,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-03_19:30_Vaughan Red_Ted Reeve Red",
@@ -12292,8 +12295,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 12,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-03_19:20_North Toronto_Faustina Black",
@@ -12446,8 +12452,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-11-03/17:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-03_19:00_Ted Reeve_Leaside Red",
