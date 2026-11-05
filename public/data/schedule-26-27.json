@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-05T00:46:47.571138Z",
+  "scrapedAt": "2026-11-05T03:25:53.849121Z",
   "gameCount": 1132,
   "games": [
     {
@@ -12563,8 +12563,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-04_20:30_Willowdale_Etobicoke Blue",
@@ -12585,8 +12588,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-04_21:40_Parkdale_York Mills",
