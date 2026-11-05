@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-05T13:03:37.329570Z",
-  "gameCount": 1132,
+  "scrapedAt": "2026-11-05T20:58:50.143495Z",
+  "gameCount": 1128,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -12618,94 +12618,6 @@
         "away": 5,
         "home": 3
       }
-    },
-    {
-      "id": "26-27_2026-11-05_18:10_Vaughan JCC_Knights",
-      "date": "2026-11-05",
-      "time": "18:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Knights",
-        "logo": "NK3"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan JCC",
-        "logo": "RHV"
-      },
-      "division": "U12",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-05_19:20_York Mills Blue_Vaughan Red",
-      "date": "2026-11-05",
-      "time": "19:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "York Mills Blue",
-        "logo": "YM9"
-      },
-      "division": "U13",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/19:20",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-05_20:30_Vaughan Blue_York Mills Red",
-      "date": "2026-11-05",
-      "time": "20:30",
-      "homeTeam": {
-        "id": "",
-        "name": "York Mills Red",
-        "logo": "YM9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan Blue",
-        "logo": "VAR"
-      },
-      "division": "U15",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/20:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-05_21:40_Vaughan JCC_Etobicoke Blue",
-      "date": "2026-11-05",
-      "time": "21:40",
-      "homeTeam": {
-        "id": "",
-        "name": "Etobicoke Blue",
-        "logo": "EH9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan JCC",
-        "logo": "RHV"
-      },
-      "division": "U16",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-05/21:40",
-      "status": "scheduled",
-      "score": null
     },
     {
       "id": "26-27_2026-11-05_18:10_Avenue Road_Faustina White",
