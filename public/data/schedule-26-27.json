@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-04T22:20:14.993974Z",
+  "scrapedAt": "2026-11-05T00:46:47.571138Z",
   "gameCount": 1132,
   "games": [
     {
@@ -12538,8 +12538,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-04/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-04_19:20_North Toronto_Parkdale",
