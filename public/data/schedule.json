@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-06T00:49:45.078974Z",
+  "scrapedAt": "2026-11-06T03:22:27.945379Z",
   "gameCount": 1128,
   "games": [
     {
@@ -12663,8 +12663,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-05_20:30_Seaside Hockey_Faustina Black",
@@ -12685,8 +12688,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-05_21:40_Faustina Black_Vaughan Red",
@@ -12819,8 +12825,8 @@
       "livebarn": "",
       "status": "final",
       "score": {
-        "away": 0,
-        "home": 0
+        "away": 5,
+        "home": 3
       }
     },
     {
@@ -12842,8 +12848,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-05_21:30_Ted Reeve Red_Etobicoke",
@@ -12911,8 +12920,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/19:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 13,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-05_20:50_Vaughan JCC Blue_Leaside Red",
@@ -12933,8 +12945,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/20:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-05_22:00_North Toronto_Avenue Road Black",
@@ -13002,8 +13017,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-05_20:30_Mimico_Victoria Village Orange",
@@ -13024,8 +13042,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-05_21:40_Victoria Village Blue_Forest Hill Gold",
