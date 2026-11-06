@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-05T22:29:54.564998Z",
+  "scrapedAt": "2026-11-06T00:49:45.078974Z",
   "gameCount": 1128,
   "games": [
     {
@@ -12638,8 +12638,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-05/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-05_19:20_Faustina Black_Warren Park",
@@ -12814,8 +12817,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-05_20:20_Forest Hill Blue_Parkdale",
@@ -12880,8 +12886,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-05_19:50_Faustina White_Knights",
@@ -12968,8 +12977,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 13,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-05_19:20_Victoria Village_North Toronto",
