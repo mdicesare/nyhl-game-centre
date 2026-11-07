@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-07T20:39:11.778972Z",
+  "scrapedAt": "2026-11-07T23:29:39.186363Z",
   "gameCount": 1114,
   "games": [
     {
@@ -13488,8 +13488,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-07_16:35_Vaughan Black_George Bell",
@@ -13510,8 +13513,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-07_17:45_Vaughan Red_Ted Reeve Black",
