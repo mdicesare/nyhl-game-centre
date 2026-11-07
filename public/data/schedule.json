@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-06T23:59:31.429262Z",
+  "scrapedAt": "2026-11-07T02:40:39.710317Z",
   "gameCount": 1114,
   "games": [
     {
@@ -13113,8 +13113,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-06/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-06_20:20_Parkwoods_Forest Hill Gold",
@@ -13135,8 +13138,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-06/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-06_21:30_Forest Hill Blue_North Toronto Green",
@@ -13179,8 +13185,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-06_19:20_Parkdale Red_York Mills Red",
@@ -13201,8 +13210,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-06_20:30_Ted Reeve_Vaughan White",
@@ -13223,8 +13235,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-06/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-06_21:40_Duffield Black_Ted Reeve Red",
@@ -13267,8 +13282,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-06_19:20_Warren Park_North Toronto",
@@ -13289,8 +13307,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-06_20:30_Mimico_Ted Reeve Black",
@@ -13311,8 +13332,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-06/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-06_21:40_Ted Reeve Black_Vaughan Red",
@@ -13355,8 +13379,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 15,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-06_19:50_Willowdale_Victoria Village",
@@ -13377,8 +13404,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/19:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-06_21:00_Ted Reeve_Leaside Red",
