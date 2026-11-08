@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-08T20:57:16.720140Z",
+  "scrapedAt": "2026-11-08T23:28:16.843906Z",
   "gameCount": 1114,
   "games": [
     {
@@ -13588,8 +13588,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 13,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-08_17:45_Avenue Road_Vaughan White",
@@ -13852,8 +13855,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-08_17:20_Willowdale_Seaside Hockey",
@@ -13874,8 +13880,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-08_18:30_Vaughan JCC_West Hill",
@@ -13918,8 +13927,11 @@
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-08/17:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-08_18:20_Warren Park_Scarborough Red",
@@ -14056,8 +14068,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/16:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-08_17:00_Port Credit_Humber Valley",
@@ -14078,8 +14093,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-11-08/17:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-08_14:40_Duffield Black_Warren Park White",
@@ -14125,8 +14143,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/15:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-08_17:00_Avenue Road Orange_York Mills",
@@ -14147,8 +14168,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/17:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-08_18:00_York Mills_Willowdale",
