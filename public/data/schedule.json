@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-07T23:29:39.186363Z",
+  "scrapedAt": "2026-11-08T02:17:55.885750Z",
   "gameCount": 1114,
   "games": [
     {
@@ -13538,8 +13538,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-07_19:00_Vaughan Blue_Leaside Gold",
@@ -13560,8 +13563,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-08_16:35_Vaughan Red_Vaughan Blue",
