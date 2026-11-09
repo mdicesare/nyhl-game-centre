@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-09T13:47:23.816878Z",
-  "gameCount": 1114,
+  "scrapedAt": "2026-11-09T23:19:19.630627Z",
+  "gameCount": 1110,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -14417,94 +14417,6 @@
       "gameType": "FS",
       "arena": "Commander Park R2",
       "livebarn": "https://livebarn.com/en/video/4092/2026-11-09/21:55",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-09_18:10_Duffield Red_Vaughan White",
-      "date": "2026-11-09",
-      "time": "18:10",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan White",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Duffield Red",
-        "logo": "DF9"
-      },
-      "division": "U09",
-      "tier": "Tier E",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-09/18:10",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-09_19:20_Warren Park White_Avenue Road Orange",
-      "date": "2026-11-09",
-      "time": "19:20",
-      "homeTeam": {
-        "id": "",
-        "name": "Avenue Road Orange",
-        "logo": "AV9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Warren Park White",
-        "logo": "WP9"
-      },
-      "division": "U09",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-09/19:20",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-09_20:30_North Toronto_Vaughan Blue",
-      "date": "2026-11-09",
-      "time": "20:30",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Blue",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "North Toronto",
-        "logo": "NT9"
-      },
-      "division": "U15",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-09/20:30",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-11-09_21:40_Avenue Road_York Mills",
-      "date": "2026-11-09",
-      "time": "21:40",
-      "homeTeam": {
-        "id": "",
-        "name": "York Mills",
-        "logo": "YM9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Avenue Road",
-        "logo": "AV9"
-      },
-      "division": "U18",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Downsview",
-      "livebarn": "https://livebarn.com/en/video/4195/2026-11-09/21:40",
       "status": "scheduled",
       "score": null
     },
