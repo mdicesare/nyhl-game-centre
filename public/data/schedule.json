@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-08T23:28:16.843906Z",
+  "scrapedAt": "2026-11-09T02:34:23.803741Z",
   "gameCount": 1114,
   "games": [
     {
@@ -13613,8 +13613,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 14
+      }
     },
     {
       "id": "26-27_2026-11-08_18:55_Vaughan Red_Avenue Road",
@@ -13635,8 +13638,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-08_20:05_Vaughan JCC_Avenue Road Black",
@@ -13657,8 +13663,11 @@
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-11-08_18:05_Ted Reeve Red_Avenue Road",
@@ -13679,8 +13688,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/18:05",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-08_19:15_Victoria Village_Faustina Black",
@@ -13701,8 +13713,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/19:15",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-08_20:25_North Toronto_Avenue Road",
@@ -13723,8 +13738,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-08/20:25",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-08_21:35_Parkdale_Warren Park",
@@ -13767,8 +13785,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/17:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-11-08_19:00_Scarborough Black_Warren Park",
@@ -13789,8 +13810,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-08_20:10_Duffield Black_Willowdale",
@@ -13811,8 +13835,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-08/20:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-08_21:20_Avenue Road_Faustina Black",
@@ -13905,8 +13932,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-08_17:10_Scarborough_Forest Hill",
@@ -14193,8 +14223,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-08/18:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-09_18:10_Scarborough Red_Knights",
