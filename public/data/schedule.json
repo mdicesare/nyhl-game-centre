@@ -1,7 +1,7 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-11T12:37:07.378612Z",
-  "gameCount": 1232,
+  "scrapedAt": "2026-11-11T21:05:06.293025Z",
+  "gameCount": 1239,
   "games": [
     {
       "id": "26-27_2026-09-11_18:00_Knights_Vaughan Black",
@@ -18352,9 +18352,31 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-18_18:10_York Mills Red_Victoria Village",
+      "id": "26-27_2026-11-18_18:10_Etobicoke_York Mills Red",
       "date": "2026-11-18",
       "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke",
+        "logo": "EH9"
+      },
+      "division": "U12",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-18_19:20_York Mills Red_Victoria Village",
+      "date": "2026-11-18",
+      "time": "19:20",
       "homeTeam": {
         "id": "",
         "name": "Victoria Village",
@@ -18369,7 +18391,139 @@
       "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Habitant",
-      "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/18:10",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-18_20:30_Faustina Black_Ted Reeve Red",
+      "date": "2026-11-18",
+      "time": "20:30",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve Red",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Faustina Black",
+        "logo": "FA9"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/20:30",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-18_21:40_York Mills Blue_Vaughan Red",
+      "date": "2026-11-18",
+      "time": "21:40",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U16",
+      "tier": "Tier 3",
+      "gameType": "FS",
+      "arena": "Habitant",
+      "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/21:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-19_18:10_Duffield White_West Hill Black",
+      "date": "2026-11-19",
+      "time": "18:10",
+      "homeTeam": {
+        "id": "",
+        "name": "West Hill Black",
+        "logo": "WH1"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Duffield White",
+        "logo": "DF9"
+      },
+      "division": "U09",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/18:10",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-19_19:20_Leaside Red_Ted Reeve",
+      "date": "2026-11-19",
+      "time": "19:20",
+      "homeTeam": {
+        "id": "",
+        "name": "Ted Reeve",
+        "logo": "TR9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Leaside Red",
+        "logo": "LE9"
+      },
+      "division": "U10",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/19:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-19_20:20_Etobicoke Blue_York Mills Red",
+      "date": "2026-11-19",
+      "time": "20:20",
+      "homeTeam": {
+        "id": "",
+        "name": "York Mills Red",
+        "logo": "YM9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Etobicoke Blue",
+        "logo": "EH9"
+      },
+      "division": "U15",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/20:20",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-11-19_21:30_West Hill_East York",
+      "date": "2026-11-19",
+      "time": "21:30",
+      "homeTeam": {
+        "id": "",
+        "name": "East York",
+        "logo": "EY9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "West Hill",
+        "logo": "WH1"
+      },
+      "division": "U16",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Downsview",
+      "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/21:30",
       "status": "scheduled",
       "score": null
     },
@@ -18770,21 +18924,21 @@
       "score": null
     },
     {
-      "id": "26-27_2026-11-19_21:40_York Mills Blue_Vaughan Red",
+      "id": "26-27_2026-11-19_21:40_Ted Reeve_East York",
       "date": "2026-11-19",
       "time": "21:40",
       "homeTeam": {
         "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
+        "name": "East York",
+        "logo": "EY9"
       },
       "awayTeam": {
         "id": "",
-        "name": "York Mills Blue",
-        "logo": "YM9"
+        "name": "Ted Reeve",
+        "logo": "TR9"
       },
-      "division": "U16",
-      "tier": "Tier 3",
+      "division": "U18",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-19/21:40",
