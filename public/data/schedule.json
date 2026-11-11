@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-11T00:27:54.437551Z",
+  "scrapedAt": "2026-11-11T02:42:33.661891Z",
   "gameCount": 1232,
   "games": [
     {
@@ -5891,7 +5891,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 16
+        "home": 10
       }
     },
     {
@@ -8566,7 +8566,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 12
+        "home": 10
       }
     },
     {
@@ -11241,7 +11241,7 @@
       "status": "final",
       "score": {
         "away": 6,
-        "home": 21
+        "home": 16
       }
     },
     {
@@ -11265,7 +11265,7 @@
       "livebarn": "https://livebarn.com/en/video/3731/2026-11-01/16:00",
       "status": "final",
       "score": {
-        "away": 19,
+        "away": 15,
         "home": 5
       }
     },
@@ -12315,7 +12315,7 @@
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-03/18:10",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 11,
         "home": 1
       }
     },
@@ -12790,7 +12790,7 @@
       "livebarn": "",
       "status": "final",
       "score": {
-        "away": 12,
+        "away": 10,
         "home": 0
       }
     },
@@ -12940,7 +12940,7 @@
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-05/19:50",
       "status": "final",
       "score": {
-        "away": 13,
+        "away": 10,
         "home": 0
       }
     },
@@ -13015,7 +13015,7 @@
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-05/18:10",
       "status": "final",
       "score": {
-        "away": 13,
+        "away": 11,
         "home": 1
       }
     },
@@ -13390,7 +13390,7 @@
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-06/18:40",
       "status": "final",
       "score": {
-        "away": 15,
+        "away": 11,
         "home": 1
       }
     },
@@ -14091,7 +14091,7 @@
       "status": "final",
       "score": {
         "away": 3,
-        "home": 17
+        "home": 13
       }
     },
     {
@@ -14365,7 +14365,7 @@
       "livebarn": "https://livebarn.com/en/video/4092/2026-11-09/18:25",
       "status": "final",
       "score": {
-        "away": 13,
+        "away": 11,
         "home": 1
       }
     },
@@ -14716,7 +14716,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 11
+        "home": 10
       }
     },
     {
@@ -15013,8 +15013,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-10_20:40_Vaughan Blue_Ted Reeve Black",
@@ -15104,8 +15107,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-10/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-10_20:20_York Mills_Leaside Red",
@@ -15126,8 +15132,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-10/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-10_21:30_Etobicoke_Ted Reeve Red",
@@ -15170,8 +15179,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-10/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-10_20:20_Leaside Red_Ted Reeve Red",
@@ -15192,8 +15204,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-10/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-10_21:30_York Mills Red_East York",
@@ -15261,8 +15276,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-10/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-10_20:30_Forest Hill_Duffield Black",
@@ -15283,8 +15301,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-10/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-10_21:40_Vaughan White_Vaughan JCC",
@@ -15327,8 +15348,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-10/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-10_20:50_West Hill_Leaside Gold",
@@ -15418,8 +15442,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-11-10/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-11_18:10_Vaughan Red_North Toronto Green",
