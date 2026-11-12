@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-12T01:50:32.089281Z",
+  "scrapedAt": "2026-11-12T03:45:42.695052Z",
   "gameCount": 1239,
   "games": [
     {
@@ -15538,8 +15538,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-11/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 14
+      }
     },
     {
       "id": "26-27_2026-11-11_21:40_North Toronto Green_Duffield White",
@@ -15560,8 +15563,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-11/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-12_18:10_Faustina White_Vaughan Red",
