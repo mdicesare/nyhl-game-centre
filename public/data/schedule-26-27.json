@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-11T23:16:05.427627Z",
+  "scrapedAt": "2026-11-12T01:50:32.089281Z",
   "gameCount": 1239,
   "games": [
     {
@@ -15488,8 +15488,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-11/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-11_19:20_West Hill_Vaughan Red",
@@ -15510,8 +15513,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-11/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-11_20:30_Etobicoke White_Forest Hill Blue",
