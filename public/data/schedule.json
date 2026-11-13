@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-12T22:33:02.639660Z",
+  "scrapedAt": "2026-11-13T00:56:04.349915Z",
   "gameCount": 1239,
   "games": [
     {
@@ -15588,8 +15588,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-12/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-12_19:20_Duffield_Knights",
@@ -15676,8 +15679,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-12/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-12_19:20_Faustina Black_Faustina White",
@@ -15918,8 +15924,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-12/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-12_19:50_Etobicoke_Scarborough Red",
@@ -16006,8 +16015,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-12/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-12_19:20_Avenue Road Orange_Leaside White",
