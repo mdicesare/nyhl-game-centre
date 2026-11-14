@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-13T22:21:23.653065Z",
+  "scrapedAt": "2026-11-14T00:43:52.854715Z",
   "gameCount": 1239,
   "games": [
     {
@@ -16163,8 +16163,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-13/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-13_19:10_Parkwoods_North Toronto",
@@ -16317,8 +16320,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-13/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-13_19:20_Parkdale Red_North Toronto",
@@ -16405,8 +16411,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-13/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-13_19:20_Warren Park Red_Victoria Village",
@@ -16493,8 +16502,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-13/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-13_19:50_Knights_Victoria Village",
