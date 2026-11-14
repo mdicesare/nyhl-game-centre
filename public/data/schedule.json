@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-14T21:03:46.558693Z",
+  "scrapedAt": "2026-11-14T23:42:36.421469Z",
   "gameCount": 1239,
   "games": [
     {
@@ -16713,8 +16713,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-14/15:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 13
+      }
     },
     {
       "id": "26-27_2026-11-14_16:50_Leaside Red_Parkdale",
@@ -16735,8 +16738,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-14/16:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-15_18:00_Warren Park White_North Toronto Red",
