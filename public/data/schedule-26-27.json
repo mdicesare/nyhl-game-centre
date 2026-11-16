@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-15T23:49:20.375114Z",
+  "scrapedAt": "2026-11-16T02:42:04.048401Z",
   "gameCount": 1239,
   "games": [
     {
@@ -16763,8 +16763,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-15/18:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-15_19:10_Forest Hill_York Mills Blue",
@@ -16785,8 +16788,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-15/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-15_20:20_Duffield White_York Mills Blue",
@@ -16807,8 +16813,11 @@
       "gameType": "FS",
       "arena": "Chesswood 1",
       "livebarn": "https://livebarn.com/en/video/3734/2026-11-15/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-15_21:30_Parkwoods_Avenue Road",
@@ -16876,8 +16885,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-15/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-15_20:10_Ted Reeve_Avenue Road Black",
@@ -16898,8 +16910,11 @@
       "gameType": "FS",
       "arena": "Chesswood 2",
       "livebarn": "https://livebarn.com/en/video/3735/2026-11-15/20:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-15_21:20_Victoria Village Orange_Warren Park",
@@ -16967,8 +16982,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-15/18:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 9,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-15_19:30_Warren Park_Scarborough Red",
@@ -16989,8 +17007,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-15/19:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-15_20:40_Parkwoods_York Mills Red",
@@ -17083,8 +17104,11 @@
       "gameType": "FS",
       "arena": "Heron Park 1",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-15_17:10_Scarborough_Parkdale",
@@ -17130,8 +17154,11 @@
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-15/18:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-15_19:30_Parkwoods_North Toronto",
@@ -17152,8 +17179,11 @@
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-15/19:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-15_20:40_Willowdale_Scarborough Black",
@@ -17174,8 +17204,11 @@
       "gameType": "FS",
       "arena": "Scarborough Centennial",
       "livebarn": "https://livebarn.com/en/video/4197/2026-11-15/20:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-15_13:50_Faustina Black_Ted Reeve Red",
@@ -17371,8 +17404,11 @@
       "gameType": "FS",
       "arena": "Westwood 4",
       "livebarn": "https://livebarn.com/en/video/3732/2026-11-15/18:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-16_18:10_Ted Reeve Black_Knights",
