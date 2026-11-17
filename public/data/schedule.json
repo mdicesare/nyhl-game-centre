@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-17T22:02:49.851540Z",
+  "scrapedAt": "2026-11-17T23:43:53.705965Z",
   "gameCount": 1239,
   "games": [
     {
@@ -18659,8 +18659,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-11-17/17:55",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-17_19:00_Leaside Red_Leaside Gold",
@@ -29567,11 +29570,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
