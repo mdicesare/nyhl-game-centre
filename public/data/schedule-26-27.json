@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-17T23:43:53.705965Z",
+  "scrapedAt": "2026-11-18T02:11:24.213421Z",
   "gameCount": 1239,
   "games": [
     {
@@ -18263,8 +18263,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-17_19:30_Scarborough Black_Vaughan Red",
@@ -18285,8 +18288,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-17_20:40_Vaughan JCC White_Leaside White",
@@ -18307,8 +18313,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-17_21:50_Forest Hill Gold_Vaughan Blue",
@@ -18351,8 +18360,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-17/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-17_19:20_Avenue Road_Parkwoods",
@@ -18373,8 +18385,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-17/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-17_20:30_Etobicoke Blue_Willowdale",
@@ -18439,8 +18454,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-17/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 13
+      }
     },
     {
       "id": "26-27_2026-11-17_20:20_Scarborough_Leaside Red",
@@ -18461,8 +18479,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-17/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-11-17_21:30_Leaside Red_North Toronto Red",
@@ -18505,8 +18526,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-17/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 11
+      }
     },
     {
       "id": "26-27_2026-11-17_19:20_Faustina Black_Parkwoods",
@@ -18527,8 +18551,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-17/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-17_20:30_York Mills_Parkdale",
@@ -18593,8 +18620,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-17/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-17_20:50_Leaside Gold_West Hill",
@@ -18684,8 +18714,11 @@
       "gameType": "FS",
       "arena": "Leaside B",
       "livebarn": "https://livebarn.com/en/video/3754/2026-11-17/19:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-18_18:10_Etobicoke_York Mills Red",
