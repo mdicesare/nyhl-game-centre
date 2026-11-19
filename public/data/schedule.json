@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-19T14:17:36.795357Z",
+  "scrapedAt": "2026-11-19T22:00:22.853011Z",
   "gameCount": 1239,
   "games": [
     {
@@ -28987,28 +28987,6 @@
       "score": null
     },
     {
-      "id": "26-27_2026-12-12_19:00_Scarborough_Vaughan Red",
-      "date": "2026-12-12",
-      "time": "19:00",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
-      },
-      "division": "U18",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Al Palladini A",
-      "livebarn": "",
-      "status": "scheduled",
-      "score": null
-    },
-    {
       "id": "26-27_2026-12-12_12:10_Duffield Red_Duffield Black",
       "date": "2026-12-12",
       "time": "12:10",
@@ -29156,6 +29134,28 @@
       },
       "division": "U12",
       "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Al Palladini B",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-12-13_18:55_Scarborough_Vaughan Red",
+      "date": "2026-12-13",
+      "time": "18:55",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough",
+        "logo": "SAE"
+      },
+      "division": "U18",
+      "tier": "Tier 1",
       "gameType": "FS",
       "arena": "Al Palladini B",
       "livebarn": "",
