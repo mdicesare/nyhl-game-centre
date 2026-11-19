@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-18T23:15:09.098668Z",
+  "scrapedAt": "2026-11-19T01:45:59.957694Z",
   "gameCount": 1239,
   "games": [
     {
@@ -18763,8 +18763,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-18_19:20_York Mills Red_Victoria Village",
@@ -18785,8 +18788,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-18_20:30_Faustina Black_Ted Reeve Red",
