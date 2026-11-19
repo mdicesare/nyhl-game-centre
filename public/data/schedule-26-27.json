@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-19T01:45:59.957694Z",
+  "scrapedAt": "2026-11-19T04:05:10.695353Z",
   "gameCount": 1239,
   "games": [
     {
@@ -18813,8 +18813,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-18_21:40_York Mills Blue_Vaughan Red",
@@ -18835,8 +18838,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-18/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-19_18:10_Duffield White_West Hill Black",
