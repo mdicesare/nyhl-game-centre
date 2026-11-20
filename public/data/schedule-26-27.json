@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-19T23:23:40.755635Z",
+  "scrapedAt": "2026-11-20T01:42:03.129541Z",
   "gameCount": 1239,
   "games": [
     {
@@ -18863,8 +18863,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-19_19:20_Leaside Red_Ted Reeve",
@@ -18885,8 +18888,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-19/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-19_20:20_Etobicoke Blue_York Mills Red",
@@ -18951,8 +18957,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-19/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-19_19:20_Faustina White_Avenue Road Orange",
@@ -18973,8 +18982,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-19/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-19_20:30_Parkdale_Faustina White",
@@ -19127,8 +19139,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-19_20:20_Forest Hill Blue_Warren Park",
@@ -19193,8 +19208,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-19/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 11,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-19_19:50_Ted Reeve_Parkdale Red",
@@ -19281,8 +19299,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-19/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-19_19:20_Scarborough Red_Leaside White",
@@ -19303,8 +19324,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-19/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-19_20:30_Victoria Village Orange_Duffield",
