@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-20T13:58:15.236181Z",
+  "scrapedAt": "2026-11-20T21:42:47.189155Z",
   "gameCount": 1239,
   "games": [
     {
@@ -28987,72 +28987,6 @@
       "score": null
     },
     {
-      "id": "26-27_2026-12-12_15:25_Vaughan Red_Leaside Gold",
-      "date": "2026-12-12",
-      "time": "15:25",
-      "homeTeam": {
-        "id": "",
-        "name": "Leaside Gold",
-        "logo": "LE9"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "division": "U11",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Al Palladini A",
-      "livebarn": "",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-12-12_16:35_York Mills Blue_Vaughan Red",
-      "date": "2026-12-12",
-      "time": "16:35",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Red",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "York Mills Blue",
-        "logo": "YM9"
-      },
-      "division": "U13",
-      "tier": "Tier 2",
-      "gameType": "FS",
-      "arena": "Al Palladini A",
-      "livebarn": "",
-      "status": "scheduled",
-      "score": null
-    },
-    {
-      "id": "26-27_2026-12-12_17:45_Scarborough_Vaughan Blue",
-      "date": "2026-12-12",
-      "time": "17:45",
-      "homeTeam": {
-        "id": "",
-        "name": "Vaughan Blue",
-        "logo": "VAR"
-      },
-      "awayTeam": {
-        "id": "",
-        "name": "Scarborough",
-        "logo": "SAE"
-      },
-      "division": "U14",
-      "tier": "Tier 1",
-      "gameType": "FS",
-      "arena": "Al Palladini A",
-      "livebarn": "",
-      "status": "scheduled",
-      "score": null
-    },
-    {
       "id": "26-27_2026-12-12_12:10_Duffield Red_Duffield Black",
       "date": "2026-12-12",
       "time": "12:10",
@@ -29181,6 +29115,72 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-12-12/17:40",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-12-12_16:05_Vaughan Red_Leaside Gold",
+      "date": "2026-12-12",
+      "time": "16:05",
+      "homeTeam": {
+        "id": "",
+        "name": "Leaside Gold",
+        "logo": "LE9"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "division": "U11",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Rosemount",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-12-12_17:15_York Mills Blue_Vaughan Red",
+      "date": "2026-12-12",
+      "time": "17:15",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Red",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "York Mills Blue",
+        "logo": "YM9"
+      },
+      "division": "U13",
+      "tier": "Tier 2",
+      "gameType": "FS",
+      "arena": "Rosemount",
+      "livebarn": "",
+      "status": "scheduled",
+      "score": null
+    },
+    {
+      "id": "26-27_2026-12-12_18:25_Scarborough_Vaughan Blue",
+      "date": "2026-12-12",
+      "time": "18:25",
+      "homeTeam": {
+        "id": "",
+        "name": "Vaughan Blue",
+        "logo": "VAR"
+      },
+      "awayTeam": {
+        "id": "",
+        "name": "Scarborough",
+        "logo": "SAE"
+      },
+      "division": "U14",
+      "tier": "Tier 1",
+      "gameType": "FS",
+      "arena": "Rosemount",
+      "livebarn": "",
       "status": "scheduled",
       "score": null
     },
@@ -29692,6 +29692,7 @@
       "Lambton",
       "Leaside",
       "Pleasantview",
+      "Rosemount",
       "Scarborough Centennial",
       "Scarborough Ice Sports",
       "Scotiabank Pond",
