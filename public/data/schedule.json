@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-20T22:55:57.192872Z",
+  "scrapedAt": "2026-11-21T01:08:59.167892Z",
   "gameCount": 1239,
   "games": [
     {
@@ -19435,8 +19435,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-20/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_19:10_Ted Reeve Red_Port Credit",
@@ -19457,8 +19460,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-20/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-20_20:20_York Mills_Ted Reeve Black",
@@ -19589,8 +19595,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-20/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_19:20_York Mills Blue_Etobicoke",
@@ -19677,8 +19686,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-20/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_19:20_Warren Park White_Vaughan Red",
@@ -19765,8 +19777,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-20/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 10
+      }
     },
     {
       "id": "26-27_2026-11-20_19:50_Warren Park_Leaside Gold",
