@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-21T01:08:59.167892Z",
+  "scrapedAt": "2026-11-21T03:54:25.101969Z",
   "gameCount": 1239,
   "games": [
     {
@@ -19485,8 +19485,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-20/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-20_21:30_York Mills_Vaughan Red",
@@ -19507,8 +19510,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-20/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-20_19:10_Vaughan Silver_Seaside Hockey",
@@ -19529,8 +19535,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-20/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 9
+      }
     },
     {
       "id": "26-27_2026-11-20_20:20_Vaughan Blue_Ted Reeve Red",
@@ -19551,8 +19560,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-20/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_21:30_Parkwoods_Duffield Black",
@@ -19573,8 +19585,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-20/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-20_18:10_Vaughan White_Parkdale White",
@@ -19620,8 +19635,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-20/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-20_20:30_Vaughan Red_West Hill",
@@ -19642,8 +19660,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-20/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-20_21:40_Willowdale_Faustina Black",
@@ -19711,8 +19732,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-20/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-20_20:30_Knights_Warren Park",
@@ -19733,8 +19757,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-20/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 7
+      }
     },
     {
       "id": "26-27_2026-11-20_21:40_Forest Hill Blue_Warren Park",
@@ -19755,8 +19782,11 @@
       "gameType": "FS",
       "arena": "Lambton",
       "livebarn": "https://livebarn.com/en/video/4198/2026-11-20/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 8,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_18:40_York Mills Blue_Vaughan Red",
@@ -19802,8 +19832,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-20/19:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-20_21:00_Seaside Hockey_Leaside White",
@@ -19824,8 +19857,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-20/21:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-20_22:05_West Hill_Scarborough",
