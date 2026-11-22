@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-22T02:58:35.386497Z",
+  "scrapedAt": "2026-11-22T07:52:49.844312Z",
   "gameCount": 1239,
   "games": [
     {
@@ -19685,8 +19685,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-20/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-20_18:10_Duffield Black_George Bell",
@@ -29793,7 +29796,11 @@
       "WS"
     ],
     "seasons": [
-      "26-27"
+      "26-27",
+      "25-26",
+      "24-25",
+      "23-24",
+      "22-23"
     ],
     "logos": {
       "AV9": "AV9.png",
