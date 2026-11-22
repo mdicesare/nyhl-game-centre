@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-21T21:59:42.529339Z",
+  "scrapedAt": "2026-11-22T00:08:27.358566Z",
   "gameCount": 1239,
   "games": [
     {
@@ -19932,8 +19932,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-21_17:45_Vaughan Red_Knights",
@@ -19954,8 +19957,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-21_19:00_Vaughan Black_Scarborough",
@@ -20098,8 +20104,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-21/16:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-21_17:40_Port Credit_Warren Park White",
@@ -20120,8 +20129,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-21/17:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 10,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-22_16:35_Vaughan Red_Warren Park White",
