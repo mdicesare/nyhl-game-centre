@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-22T13:14:34.411861Z",
+  "scrapedAt": "2026-11-22T20:37:10.445875Z",
   "gameCount": 1239,
   "games": [
     {
@@ -20669,8 +20669,11 @@
       "gameType": "FS",
       "arena": "Westwood 3",
       "livebarn": "https://livebarn.com/en/video/3731/2026-11-22/13:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-22_14:50_Avenue Road_Duffield Red",
