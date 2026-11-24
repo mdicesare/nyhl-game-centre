@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-24T01:30:54.414181Z",
+  "scrapedAt": "2026-11-24T03:09:17.622816Z",
   "gameCount": 1239,
   "games": [
     {
@@ -20935,8 +20935,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-23/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 12
+      }
     },
     {
       "id": "26-27_2026-11-23_19:20_Willowdale_Knights",
@@ -20957,8 +20960,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-23/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-23_20:30_North Toronto_Scarborough",
@@ -20979,8 +20985,11 @@
       "gameType": "FS",
       "arena": "Commander Park R1",
       "livebarn": "https://livebarn.com/en/video/4091/2026-11-23/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-23_21:40_North Toronto_Leaside Red",
@@ -21161,8 +21170,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-23/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-23_21:30_Parkdale_Avenue Road",
@@ -21230,8 +21242,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-23/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-23_21:30_East York_Etobicoke White",
@@ -21324,8 +21339,11 @@
       "gameType": "FS",
       "arena": "Fenside",
       "livebarn": "https://livebarn.com/en/video/4142/2026-11-23/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-23_21:40_Ted Reeve_Parkwoods",
@@ -21393,8 +21411,11 @@
       "gameType": "FS",
       "arena": "Forest Hill",
       "livebarn": "https://livebarn.com/en/video/4437/2026-11-23/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-23_21:30_York Mills_Forest Hill Gold",
@@ -21487,8 +21508,11 @@
       "gameType": "FS",
       "arena": "Honey and Barry North",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 17
+      }
     },
     {
       "id": "26-27_2026-11-23_18:10_Etobicoke_Warren Park White",
@@ -21559,8 +21583,11 @@
       "gameType": "FS",
       "arena": "John Booth",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-23_21:40_Faustina Black_Duffield Black",
@@ -21653,8 +21680,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-23/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-23_21:40_Forest Hill Blue_York Mills",
@@ -29922,11 +29952,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
