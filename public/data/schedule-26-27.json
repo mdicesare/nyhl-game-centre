@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-25T03:25:06.071361Z",
+  "scrapedAt": "2026-11-25T05:23:23.317039Z",
   "gameCount": 1239,
   "games": [
     {
@@ -21835,8 +21835,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-24_18:10_Etobicoke_Vaughan JCC",
@@ -21932,8 +21935,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-24/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-24_19:10_Avenue Road_East York",
@@ -22004,8 +22010,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-24/21:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-24_18:10_York Mills_Scarborough Red",
@@ -22101,8 +22110,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-24/21:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 5,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-24_19:40_Parkwoods_Leaside Gold",
@@ -22173,8 +22185,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-24/22:00",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 8
+      }
     },
     {
       "id": "26-27_2026-11-24_17:55_Leaside Red_North Toronto",
