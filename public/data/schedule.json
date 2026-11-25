@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-25T01:15:01.252259Z",
+  "scrapedAt": "2026-11-25T03:25:06.071361Z",
   "gameCount": 1239,
   "games": [
     {
@@ -21785,8 +21785,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-24_20:40_Seaside Hockey_Vaughan Red",
@@ -21807,8 +21810,11 @@
       "gameType": "FS",
       "arena": "Al Palladini A",
       "livebarn": "",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 6
+      }
     },
     {
       "id": "26-27_2026-11-24_21:50_Leaside Red_Vaughan Blue",
@@ -21901,8 +21907,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-24/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-24_21:30_Forest Hill Blue_Duffield White",
@@ -21945,8 +21954,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-24/19:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 4
+      }
     },
     {
       "id": "26-27_2026-11-24_20:20_Scarborough Black_West Hill",
@@ -21967,8 +21979,11 @@
       "gameType": "FS",
       "arena": "East York",
       "livebarn": "https://livebarn.com/en/video/3877/2026-11-24/20:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-24_21:30_Avenue Road_East York",
@@ -22036,8 +22051,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-24/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-24_20:30_Victoria Village Orange_Parkdale",
@@ -22058,8 +22076,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-24/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-24_21:40_Forest Hill_Warren Park",
@@ -22102,8 +22123,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-24/19:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 7,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-24_20:50_Parkdale_Leaside Gold",
@@ -22124,8 +22148,11 @@
       "gameType": "FS",
       "arena": "Leaside A",
       "livebarn": "https://livebarn.com/en/video/3705/2026-11-24/20:50",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 0
+      }
     },
     {
       "id": "26-27_2026-11-24_22:00_Knights_Leaside Red",
