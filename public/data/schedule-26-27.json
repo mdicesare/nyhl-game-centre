@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-25T22:57:51.692973Z",
+  "scrapedAt": "2026-11-26T00:49:53.504130Z",
   "gameCount": 1239,
   "games": [
     {
@@ -22260,8 +22260,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-25/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 0,
+        "home": 16
+      }
     },
     {
       "id": "26-27_2026-11-25_19:20_Leaside Gold_Faustina White",
@@ -30045,11 +30048,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
