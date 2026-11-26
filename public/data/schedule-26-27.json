@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-26T14:57:15.890872Z",
+  "scrapedAt": "2026-11-26T22:48:49.756859Z",
   "gameCount": 1239,
   "games": [
     {
@@ -16266,7 +16266,7 @@
       "status": "final",
       "score": {
         "away": 0,
-        "home": 17
+        "home": 10
       }
     },
     {
