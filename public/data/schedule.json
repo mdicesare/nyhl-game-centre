@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-26T00:49:53.504130Z",
+  "scrapedAt": "2026-11-26T02:41:53.668777Z",
   "gameCount": 1239,
   "games": [
     {
@@ -22285,8 +22285,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-25/19:20",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 5
+      }
     },
     {
       "id": "26-27_2026-11-25_20:30_Ted Reeve_Vaughan Blue",
@@ -22307,8 +22310,11 @@
       "gameType": "FS",
       "arena": "Habitant",
       "livebarn": "https://livebarn.com/en/video/3857/2026-11-25/20:30",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 3,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-25_21:40_Leaside Red_Vaughan White",
