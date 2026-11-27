@@ -1,6 +1,6 @@
 {
   "season": "26-27",
-  "scrapedAt": "2026-11-26T22:48:49.756859Z",
+  "scrapedAt": "2026-11-27T00:55:39.669069Z",
   "gameCount": 1239,
   "games": [
     {
@@ -22360,8 +22360,11 @@
       "gameType": "FS",
       "arena": "Downsview",
       "livebarn": "https://livebarn.com/en/video/4195/2026-11-26/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 6,
+        "home": 2
+      }
     },
     {
       "id": "26-27_2026-11-26_19:20_Ted Reeve Black_Etobicoke",
@@ -22448,8 +22451,11 @@
       "gameType": "FS",
       "arena": "Ford Performance Centre 3",
       "livebarn": "https://livebarn.com/en/video/4126/2026-11-26/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 2,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-26_19:20_Leaside Red_Faustina White",
@@ -22690,8 +22696,11 @@
       "gameType": "FS",
       "arena": "Pleasantview",
       "livebarn": "https://livebarn.com/en/video/4114/2026-11-26/18:40",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 4,
+        "home": 3
+      }
     },
     {
       "id": "26-27_2026-11-26_19:50_Mimico_Ted Reeve Red",
@@ -22778,8 +22787,11 @@
       "gameType": "FS",
       "arena": "Victoria Village",
       "livebarn": "https://livebarn.com/en/video/4426/2026-11-26/18:10",
-      "status": "scheduled",
-      "score": null
+      "status": "final",
+      "score": {
+        "away": 1,
+        "home": 1
+      }
     },
     {
       "id": "26-27_2026-11-26_19:20_Knights_Avenue Road Orange",
@@ -30057,11 +30069,7 @@
       "WS"
     ],
     "seasons": [
-      "26-27",
-      "25-26",
-      "24-25",
-      "23-24",
-      "22-23"
+      "26-27"
     ],
     "logos": {
       "AV9": "AV9.png",
